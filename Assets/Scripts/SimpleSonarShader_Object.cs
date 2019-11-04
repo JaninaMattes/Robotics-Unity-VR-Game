@@ -1,7 +1,4 @@
-﻿// SimpleSonarShader scripts and shaders were written by Drew Okenfuss.
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleSonarShader_Object : MonoBehaviour
@@ -82,10 +79,20 @@ public class SimpleSonarShader_Object : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    //OLD Code
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    // Start sonar ring from the contact point
+    //    StartSonarRing(collision.contacts[0].point, collision.impulse.magnitude / 10.0f);
+    //}
+
+    /// <summary>
+    /// Player Position in worldspace as 4dim Vector
+    /// </summary>
+    void OnMenuSelection(Vector4 playerPos)
     {
         // Start sonar ring from the contact point
-        StartSonarRing(collision.contacts[0].point, collision.impulse.magnitude / 10.0f);
+        StartSonarRing(playerPos, playerPos.magnitude / 10.0f);
     }
 
 }

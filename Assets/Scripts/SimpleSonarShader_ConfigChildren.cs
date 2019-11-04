@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 
-public class SonarShaderConfigure : MonoBehaviour
+public class SimpleSonarShader_ConfigChildren : MonoBehaviour
 {
-    // Reference to object material
+
     public Material SonarMaterial;
 
     private void Start()
     {
+        // TODO
+        foreach (Collider col in GetComponentsInChildren<Collider>(true))
+        {
+            //add SimpleSonarShader_MenuSelection to each gameobject
+            col.gameObject.AddComponent<SimpleSonarShader_MenuSelection>();
+        }
+
         foreach (Renderer rend in GetComponentsInChildren<Renderer>(true))
         {
             Texture mainTex = rend.material.mainTexture;
@@ -14,5 +21,5 @@ public class SonarShaderConfigure : MonoBehaviour
             rend.material.mainTexture = mainTex;
         }
     }
-    
+
 }

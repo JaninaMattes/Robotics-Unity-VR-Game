@@ -79,13 +79,6 @@ public class SimpleSonarShader_Object : MonoBehaviour
         }
     }
 
-    //OLD Code
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    // Start sonar ring from the contact point
-    //    StartSonarRing(collision.contacts[0].point, collision.impulse.magnitude / 10.0f);
-    //}
-
     /// <summary>
     /// Player Position in worldspace as 4dim Vector
     /// </summary>
@@ -94,5 +87,12 @@ public class SimpleSonarShader_Object : MonoBehaviour
         // Start sonar ring from the contact point
         StartSonarRing(playerPos, playerPos.magnitude / 10.0f);
     }
+
+    //OLD Code
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    // Start sonar ring from the contact point
+    //    StartSonarRing(collision.contacts[0].point, collision.impulse.magnitude / 10.0f);
+    //}
 
 }

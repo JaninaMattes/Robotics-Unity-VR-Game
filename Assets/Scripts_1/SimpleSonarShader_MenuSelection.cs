@@ -1,7 +1,4 @@
-﻿// SimpleSonarShader scripts and shaders were written by Drew Okenfuss.
-
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class SimpleSonarShader_MenuSelection : MonoBehaviour

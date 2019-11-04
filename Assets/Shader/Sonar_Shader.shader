@@ -1,5 +1,4 @@
-﻿// SimpleSonarShader scripts and shaders were written by Drew Okenfuss.
-// For this shader to work, the object must have values passed in to it from the SimpleSonarShader_Parent.cs script.
+﻿// For this shader to work, the object must have values passed in to it from the SimpleSonarShader_Parent.cs script.
 // By default, this happens by having the object be a child of SimpleSonarShader_Parent.
 Shader "Shader/Sonar_Shader" {
 	Properties{

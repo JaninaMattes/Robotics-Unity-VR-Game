@@ -4,6 +4,7 @@ using System;
 using Oculus.Avatar;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using UnityEngine.Events;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -179,6 +180,9 @@ public class OvrAvatar : MonoBehaviour
     public AvatarControllerBlend BlendController;
     public UnityEvent AssetsDoneLoading = new UnityEvent();
 #endif
+
+    public UnityEvent AssetsDoneLoading = new UnityEvent();
+
 
     // Avatar packets
     public class PacketEventArgs : EventArgs

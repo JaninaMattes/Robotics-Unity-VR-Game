@@ -709,7 +709,15 @@ namespace VRTK
             }
 
             string loadedDeviceName = string.IsNullOrEmpty(XRSettings.loadedDeviceName) ? "None" : XRSettings.loadedDeviceName;
-            bool isDeviceAlreadyLoaded = sdkSetups[0].usedVRDeviceNames.Contains(loadedDeviceName);
+            bool isDeviceAlreadyLoaded = false;
+            if (sdkSetups.Length > 0 && sdkSetups != null)
+            {
+                isDeviceAlreadyLoaded = sdkSetups[0].usedVRDeviceNames.Contains(loadedDeviceName);
+            }
+            else
+            {
+                Debug.Log("The array sdkSetups is empty.");
+            }
             if (!isDeviceAlreadyLoaded)
             {
                 if (!tryToReinitialize && !XRSettings.enabled && loadedDeviceName != "None")

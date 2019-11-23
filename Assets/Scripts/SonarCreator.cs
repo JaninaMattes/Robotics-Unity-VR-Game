@@ -31,7 +31,7 @@ public class SonarCreator : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        col = collision;
         Debug.Log($"A collision has been detected and stored in object {col}");
-        col = collision; 
     }
 }

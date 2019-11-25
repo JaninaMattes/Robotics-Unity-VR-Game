@@ -6,10 +6,12 @@ public class SonarCreator : MonoBehaviour
 {
     private SonarState state;
     private Collision col = null;
-    
+    Vector3 testvec = new Vector3(0.0f, 0.0f, 0.0f);
+
     // Update is called once per frame
     void Update()
-    {
+    {        
+      
         // For debugging
         if (col != null)
         {
@@ -34,4 +36,6 @@ public class SonarCreator : MonoBehaviour
         col = collision;
         Debug.Log($"A collision has been detected and stored in object {col}");
     }
+
+
 }

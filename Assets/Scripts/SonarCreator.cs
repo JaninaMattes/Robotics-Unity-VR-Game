@@ -17,6 +17,7 @@ public class SonarCreator : MonoBehaviour
         {
             // Takes collission position and translates it into a ray
             // which then can be projected into 3D space
+
             var ray = Camera.main.ScreenPointToRay(col.contacts[0].point);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))

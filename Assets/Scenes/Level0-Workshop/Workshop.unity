@@ -323,6 +323,32 @@ MonoBehaviour:
     fallbackTypeName: VRTK.SDK_FallbackController
     typeName: VRTK.SDK_SimController
     descriptionIndex: 0
+--- !u!114 &48227790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48227787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f2042c83ae0cc4989e9272a368e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  material: {fileID: 0}
+--- !u!114 &48227791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48227787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608bd7d9e292c9b4bb244ba5c3bca3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &58959267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -2609,6 +2635,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608bd7d9e292c9b4bb244ba5c3bca3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1930952288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930952284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04696475, y: 0.044040084, z: 0.03664604}
+  m_Center: {x: 0.012181625, y: -0.008950532, z: -0.006845477}
 --- !u!64 &1930952291
 MeshCollider:
   m_ObjectHideFlags: 0

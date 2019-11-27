@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 226050188}
   - component: {fileID: 226050186}
   - component: {fileID: 226050187}
+  - component: {fileID: 226050189}
   m_Layer: 0
   m_Name: PlayAreaScript
   m_TagString: Untagged
@@ -558,6 +559,23 @@ MonoBehaviour:
   interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
   controller: {fileID: 0}
+--- !u!114 &226050189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226050184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed2aa1a29b92ca4f84a26a5f6e9218b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  operation: 0
+  checkType: 1
+  identifiers:
+  - ExcludeTeleport
+  - Cube
 --- !u!1 &295288077
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +792,7 @@ GameObject:
   - component: {fileID: 384748377}
   m_Layer: 0
   m_Name: Menu Level2
-  m_TagString: Untagged
+  m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1302,20 +1320,40 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: -1435745037420900390, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 6408027021358640671, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408027021358640671, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: -7774106025989775695, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: -7774106025989775695, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
+      objectReference: {fileID: 0}
     - target: {fileID: 3239273863981769791, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239273863981769791, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 1598952738356583958, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
@@ -1326,6 +1364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179517344801119225, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_TagString
+      value: ExcludeTeleport
       objectReference: {fileID: 0}
     - target: {fileID: 4553290073538286241, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
@@ -1712,6 +1755,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot_Arms
       objectReference: {fileID: 0}
+    - target: {fileID: -3151554163418203837, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.605
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbaf49195b326404c836cb02be140514, type: 3}
 --- !u!1 &1156608861
@@ -1987,7 +2035,7 @@ GameObject:
   - component: {fileID: 1544464729}
   m_Layer: 0
   m_Name: Menu Level1
-  m_TagString: Untagged
+  m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

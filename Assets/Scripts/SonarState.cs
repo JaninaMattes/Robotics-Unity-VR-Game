@@ -7,6 +7,10 @@ public class SonarState : MonoBehaviour
     // Properties
     public float speed;
     public Material material;
+    // sonarOrigin as a Vector4 type will store the 
+    // sonar rings original position, which can later be
+    // retrieved via a Hit ray cast
+   
     private Vector4 sonarOrigin = Vector4.one;
 
     // Setter and Getter
@@ -17,6 +21,8 @@ public class SonarState : MonoBehaviour
     {
         // If sonar ring exceedes one it gets reduced 
         // so that colors are not inverted
+        // w = is the variable for time
+        // if w = 1, the sonar ring will be transparent as it gets reduced to 0
         sonarOrigin.w = Mathf.Min(sonarOrigin.w + (Time.deltaTime * speed), 1);
         material.SetVector("_SonarOrigin", sonarOrigin);
     }

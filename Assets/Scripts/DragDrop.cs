@@ -2,20 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class draganddrop : MonoBehaviour {
+public class DragDrop : MonoBehaviour {
 
     public float moveSpeed = 200f;
     Vector3 dist;
     float posX;
     float posY;
-    AudioSource collisionsound;
     
-    void Start()
-    {
-        
-        collisionsound = GetComponent<AudioSource>();
-    }
-
   
      void OnMouseDown()
     {
@@ -30,15 +23,5 @@ public class draganddrop : MonoBehaviour {
         transform.position = worldPos;
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        
-          if (col.gameObject.name == "Cube")
-            {
-                Destroy(col.gameObject);
-            collisionsound.Play();
-            
-            }
-          
-    }
+    
 }

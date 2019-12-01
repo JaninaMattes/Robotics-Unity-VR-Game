@@ -4,38 +4,27 @@ using UnityEngine;
 
 public class SonarCreator : MonoBehaviour
 {
-    private SonarState state;
+    
     private Collision col = null;
-    Vector3 testvec = new Vector3(0.0f, 0.0f, 0.0f);
-
-    // Update is called once per frame
-    void Update()
-    {        
-      
-        // For debugging
-        if (col != null)
-        {
-            // Takes collission position and translates it into a ray
-            // which then can be projected into 3D space
-
-            var ray = Camera.main.ScreenPointToRay(col.contacts[0].point);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                // Overwrites the position of raycast with the following
-                state.SonarOrigin = hit.point;
-            }
-        }
-        else
-        {
-            Debug.Log("The collision object is empty.");
-        }
-    }
-
+    public Vector4 firstCollision;
+    public bool switchSonar = true;
+       
     void OnCollisionEnter(Collision collision)
     {
+        switchSonar = true;
         col = collision;
-        Debug.Log($"A collision has been detected and stored in object {col}");
+        ContactPoint contact = col.contacts[0];
+        firstCollision = contact.point;
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        switchSonar = false;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        switchSonar = false;
     }
 
 

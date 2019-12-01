@@ -43,7 +43,7 @@ public class SonarLaser : MonoBehaviour
 
     IEnumerator WaitSonarShot()
     {
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.5f);
         lr.enabled = false;
     }
 }

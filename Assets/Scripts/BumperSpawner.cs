@@ -6,15 +6,28 @@ public class BumperSpawner : MonoBehaviour
 {
     //Cube prefab
     public GameObject bumper;
-    public GameObject player;
     private Color alphaColor;
     private float timeToFade = 1.0f;
+    private static float life = 100.0f; 
 
+    /// <summary>
+    /// Load on start
+    /// </summary>
     public void Start()
     {
         alphaColor = bumper.GetComponent<MeshRenderer>().material.color;
         alphaColor.a = 0;
+        bumper.SetActive(false);
     }
+
+    /// <summary>
+    /// The Update function is called once per frame
+    /// </summary>
+    void Update()
+    {
+        
+    }
+
     /// <summary>
     /// On Collision Enter a new bumper object will be 
     /// instantiated and attached to the player.
@@ -24,6 +37,8 @@ public class BumperSpawner : MonoBehaviour
     {
         Vector3 contact = col.contacts[0].point;
         Instantiate(bumper, contact, Quaternion.identity);
+        bumper.SetActive(true);
+        // Debugging purpose
         Debug.Log("Object in contact on x = " 
             + contact.x + "y = " + contact.y + " z = " + contact.z);
     }

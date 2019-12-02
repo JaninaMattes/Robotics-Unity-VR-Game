@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿namespace VRTK.Examples
+{
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,25 +9,47 @@ public class StartLevel : MonoBehaviour
 {
     // Select the correct level index for a scene
     public int LevelIndex;
-    private Collision col = null;
-    private bool touched = false;
-    
-    // Update is called once per frame
-    void Update()
-    {
-        if (col != null) // TODO: Erweitern um onTouch VRTK
+    public VRTK_InteractableObject sceneChange;
+    public VRTK_InteractableObject laserGun;
+    public GameObject unLoad;
+
+         void Start()
         {
-            SceneManager.LoadScene(LevelIndex);
-        }       
-    }
+            sceneChange = this.GetComponent<VRTK_InteractableObject>();
+        }
+        protected virtual void OnEnable()
+        {
+            sceneChange = (sceneChange == null ? GetComponent<VRTK_InteractableObject>() : sceneChange);
 
-    void OnMouseDown()
-    {
-        SceneManager.LoadScene(LevelIndex);
-    }
+            if (sceneChange != null)
+            {
+                sceneChange.InteractableObjectUsed += InteractableObjectUsed;
+                sceneChange.InteractableObjectUnused += InteractableObjectUnused;
+            }
 
-    void OnCollisionEnter(Collision col)
-    {
-        col = col;
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (sceneChange != null)
+            {
+                sceneChange.InteractableObjectUsed -= InteractableObjectUsed;
+                sceneChange.InteractableObjectUnused -= InteractableObjectUnused;
+            }
+        }
+
+        protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+        {
+            if(laserGun.IsGrabbed() == false)
+            {
+                laserGun.gameObject.transform.SetParent(unLoad.transform);
+            }
+            SceneManager.LoadScene(LevelIndex, LoadSceneMode.Additive);
+            DestroyImmediate(unLoad);
+        }
+        protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
+        {
+
+        }
     }
 }

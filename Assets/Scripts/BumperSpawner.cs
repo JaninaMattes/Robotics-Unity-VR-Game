@@ -21,32 +21,24 @@ public class BumperSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// The Update function is called once per frame
-    /// </summary>
-    void Update()
-    {
-        
-    }
-
-    /// <summary>
     /// On Collision Enter a new bumper object will be 
     /// instantiated and attached to the player.
     /// </summary>
     /// <param name="col"></param>
     void OnCollisionEnter(Collision col)
     {
+        bumper.SetActive(true);
         Vector3 contact = col.contacts[0].point;
         Instantiate(bumper, contact, Quaternion.identity);
-        bumper.SetActive(true);
+        
         // Debugging purpose
         Debug.Log("Object in contact on x = " 
             + contact.x + "y = " + contact.y + " z = " + contact.z);
     }
 
     /// <summary>
-    /// OnCollisionExit as soon as the player does move
-    /// forward from the collided other object the bumper instance
-    /// will be faded out and deleted. 
+    /// OnCollisionExit is called if Collision with object
+    /// has ended and the bumper instance gets destroied. 
     /// </summary>
     /// <param name="collisionInfo"></param>
     void OnCollisionExit(Collision collisionInfo)
@@ -55,6 +47,7 @@ public class BumperSpawner : MonoBehaviour
             Color.Lerp(bumper.GetComponent<MeshRenderer>().
             material.color, alphaColor, timeToFade * Time.deltaTime);
         GameObject.Destroy(bumper);
+        // Debugging purpose
         Debug.Log("No longer in contact with " + collisionInfo.transform.name);
     }
 }

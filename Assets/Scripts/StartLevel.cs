@@ -12,11 +12,17 @@ public class StartLevel : MonoBehaviour
     public VRTK_InteractableObject sceneChange;
     public VRTK_InteractableObject laserGun;
     public GameObject unLoad;
+    private float timeElapsed; 
+    
+    // Allow a delay in loading
+    [SerializeField]
+    private float delayBeforeLoading = 5.0f;
 
          void Start()
         {
             sceneChange = this.GetComponent<VRTK_InteractableObject>();
         }
+
         protected virtual void OnEnable()
         {
             sceneChange = (sceneChange == null ? GetComponent<VRTK_InteractableObject>() : sceneChange);

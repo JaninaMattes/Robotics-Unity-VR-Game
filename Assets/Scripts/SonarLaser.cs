@@ -69,8 +69,6 @@
 
         }
 
-
-
         void Update()
         {
             sonarOrigin.w = Mathf.Min(sonarOrigin.w + (Time.deltaTime * speed), 1);

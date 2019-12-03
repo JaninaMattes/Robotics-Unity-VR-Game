@@ -40,7 +40,8 @@ public class BumperSpawner : MonoBehaviour
         {
             if (activeBumpers.Length < 1)
             {
-                Instantiate(bumperClone, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + Camera.main.transform.forward * distance, Quaternion.identity);
+                Instantiate(bumperClone, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + 
+                    Camera.main.transform.forward * distance, Quaternion.identity);
             }
         }
     }

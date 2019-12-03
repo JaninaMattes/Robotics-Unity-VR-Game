@@ -6,6 +6,12 @@ public class Bumper : MonoBehaviour
 {
     public Camera targetCamera;
 
+    private void Awake()
+    {
+        targetCamera = Camera.main;
+       // transform.LookAt(transform.position + targetCamera.transform.rotation * Vector3.left);
+    }
+
     /// <summary>
     /// Update func is called once per frame
     /// To transform the bumper object so that it 
@@ -13,7 +19,8 @@ public class Bumper : MonoBehaviour
     /// </summary>
     void Update()
     {
-        transform.LookAt(transform.position + targetCamera.transform.rotation * Vector3.left,
-        targetCamera.transform.rotation * Vector3.up);
+       transform.LookAt(transform.position + targetCamera.transform.rotation * Vector3.left);
     }
+
+    
 }

@@ -18,13 +18,13 @@ public class BumperSpawner : MonoBehaviour
     {
         activeBumpers = GameObject.FindGameObjectsWithTag("Bumper");
 
-        if (SceneManager.GetSceneAt(1).isLoaded)
+        if (SceneManager.GetSceneAt(0).isLoaded)
         {
-            this.GetComponent<Collider>().enabled = true;
+            this.GetComponent<Collider>().enabled = false;
         }
         else
         {
-            this.GetComponent<Collider>().enabled = false;
+            this.GetComponent<Collider>().enabled = true;
         }
 
     }

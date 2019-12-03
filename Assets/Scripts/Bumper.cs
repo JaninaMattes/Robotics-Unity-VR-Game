@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bumper : MonoBehaviour
 {
-    public Camera targetCamera;
+    private Camera targetCamera;
 
     private void Awake()
     {

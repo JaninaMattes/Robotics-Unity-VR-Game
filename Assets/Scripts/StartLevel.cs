@@ -14,8 +14,8 @@ public class StartLevel : MonoBehaviour
     public GameObject unLoad;
     private float timeElapsed;
  
-        // Allow a delay in loading
-        [SerializeField]
+    // Allow a delay in loading
+    [SerializeField]
     private float delayBeforeLoading = 5.0f;
 
          void Start()

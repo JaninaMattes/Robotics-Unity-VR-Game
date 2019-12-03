@@ -17,8 +17,8 @@ public class BumperSpawner : MonoBehaviour
     void Update()
     {
         activeBumpers = GameObject.FindGameObjectsWithTag("Bumper");
-
     }
+
     /// <summary>
     /// On Collision Enter a new bumper object will be 
     /// instantiated and attached to the player.
@@ -29,7 +29,7 @@ public class BumperSpawner : MonoBehaviour
         Vector3 contact = col.contacts[0].point;
         if (SceneManager.GetSceneAt(1).isLoaded)
         {
-            if (activeBumpers.Length < 1)
+            if (activeBumpers.Length == 0)
             {
                 Instantiate(bumperClone, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + 
                     Camera.main.transform.forward * distance, Quaternion.identity);
@@ -37,15 +37,26 @@ public class BumperSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fade object out over certain time.
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     IEnumerator FadeBumper(float duration)
     {
-        Material bumperM = bumperClone.GetComponent<Renderer>().material;
+        Material bumperM = bumperClone.GetComponent<Renderer>().sharedMaterial;
         float counter = 0;
+
         while (counter < duration)
         {
             counter += Time.deltaTime * fadeSpeed;
+            Debug.Log("Counter = " + counter);
             float rimPower = Mathf.Lerp(fadeStart, fadeEnd, counter / duration);
-            activeBumpers[0].GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+            Debug.Log("Rimpower = " + rimPower);
+            for (int i = 0; i < activeBumpers.Length; i++)
+            {
+                activeBumpers[i].GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+            }            
             yield return null;
         }
         if (counter == duration)
@@ -57,14 +68,16 @@ public class BumperSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Delete Bumper instance. 
+    /// </summary>
     void DestroyBumpers()
     {
-        //StartCoroutine(FadeBumper(durationTime)); Fade not working at the moment
+        StartCoroutine(FadeBumper(durationTime));  //TODO
         for (int i = 0; i < activeBumpers.Length; i++)
         {
-            Destroy(activeBumpers[i]);
+          Destroy(activeBumpers[i]);
         }
-
     }
 
     void OnCollisionExit(Collision collisionInfo)

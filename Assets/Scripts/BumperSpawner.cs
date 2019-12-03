@@ -4,10 +4,10 @@ public class BumperSpawner : MonoBehaviour
 {
     //Cube prefab
     public GameObject bumper;
-    public GameObject bumperClone;
-    public GameObject[] controllerobjects;
+    private GameObject bumperClone;
+    private GameObject[] controllerobjects;
     private Color alphaColor;
-    private float timeToFade = 1f;
+    private float timeToFade = 5f;
     private static float life = 100f; 
 
     /// <summary>
@@ -15,11 +15,13 @@ public class BumperSpawner : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        if (controllerobjects == null)
+        if (controllerobjects.Length == 0)
         {
             controllerobjects = GameObject.FindGameObjectsWithTag("Controller");
             Debug.Log("Retrieved controller objects = " + controllerobjects.Length);
         }
+
+        Debug.Log("Controller Objects old = " + controllerobjects.Length);
 
         alphaColor = bumper.GetComponent<MeshRenderer>().material.color;
         alphaColor.a = 0;
@@ -35,16 +37,17 @@ public class BumperSpawner : MonoBehaviour
     /// <param name="col"></param>
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject == controllerobjects[0])
-        {
-            bumper.SetActive(true);
-            Vector3 contact = col.contacts[0].point;
-            bumperClone = Instantiate(bumper, contact, Quaternion.identity);
+            if (col.gameObject == controllerobjects[0])
+            {
+                bumper.SetActive(true);
+                Vector3 contact = col.contacts[0].point;
+                contact.z = contact.z + 1; // TODO adjust  
+                bumperClone = Instantiate(bumper, contact, Quaternion.identity);
 
-            // Debugging purpose
-            Debug.Log("Collision - Object in contact on x = "
-                + contact.x + "y = " + contact.y + " z = " + contact.z);
-        }        
+                // Debugging purpose
+                Debug.Log("Collision - Object in contact on x = "
+                    + contact.x + "y = " + contact.y + " z = " + contact.z);
+            }                      
     }
 
     /// <summary>
@@ -58,6 +61,7 @@ public class BumperSpawner : MonoBehaviour
             Color.Lerp(bumper.GetComponent<MeshRenderer>().
             material.color, alphaColor, timeToFade * Time.deltaTime);
         bumper.SetActive(false);
+        controllerobjects = null;
 
         if (bumperClone != null)
         {

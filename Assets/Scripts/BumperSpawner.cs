@@ -1,33 +1,33 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class BumperSpawner : MonoBehaviour
 {
-    //Cube prefab
-    public GameObject bumper;
     public GameObject bumperClone;
-    public GameObject[] controllerobjects;
-    private Color alphaColor;
-    private float timeToFade = 1f;
-    private static float life = 100f; 
+    public float distance;
+    private GameObject[] activeBumpers;
+    public float fadeStart;
+    public float fadeEnd;
+    public float fadeSpeed;
+    public float durationTime;
+    public float rimPowerT;
 
-    /// <summary>
-    /// Load on start
-    /// </summary>
-    public void Start()
+    void Update()
     {
-        if (controllerobjects == null)
+        activeBumpers = GameObject.FindGameObjectsWithTag("Bumper");
+        
+        if (SceneManager.GetSceneAt(1).isLoaded)
         {
-            controllerobjects = GameObject.FindGameObjectsWithTag("Controller");
-            Debug.Log("Retrieved controller objects = " + controllerobjects.Length);
+            this.GetComponent<Collider>().enabled = true;
+        }
+        if (SceneManager.GetSceneAt(1).isLoaded == false)
+        {
+            this.GetComponent<Collider>().enabled = false;
         }
 
-        alphaColor = bumper.GetComponent<MeshRenderer>().material.color;
-        alphaColor.a = 0;
-        bumper.SetActive(false);
-        // Debugging purpose
-        Debug.Log("Set bumper active ");
     }
-
     /// <summary>
     /// On Collision Enter a new bumper object will be 
     /// instantiated and attached to the player.
@@ -35,36 +35,48 @@ public class BumperSpawner : MonoBehaviour
     /// <param name="col"></param>
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject == controllerobjects[0])
+        Vector3 contact = col.contacts[0].point;
+        if (SceneManager.GetSceneAt(1).isLoaded)
         {
-            bumper.SetActive(true);
-            Vector3 contact = col.contacts[0].point;
-            bumperClone = Instantiate(bumper, contact, Quaternion.identity);
-
-            // Debugging purpose
-            Debug.Log("Collision - Object in contact on x = "
-                + contact.x + "y = " + contact.y + " z = " + contact.z);
-        }        
+            if (activeBumpers.Length < 1)
+           {
+                Instantiate(bumperClone, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + Camera.main.transform.forward * distance, Quaternion.identity);
+            }
+        }         
     }
 
-    /// <summary>
-    /// OnCollisionExit is called if Collision with object
-    /// has ended and the bumper instance gets destroied. 
-    /// </summary>
-    /// <param name="collisionInfo"></param>
+    IEnumerator FadeBumper(float duration)
+    {
+        Material bumperM = bumperClone.GetComponent<Renderer>().material;
+        float counter = 0;
+        while (counter < duration)
+        {
+            counter += Time.deltaTime * fadeSpeed;
+            float rimPower = Mathf.Lerp(fadeStart, fadeEnd, counter / duration);
+            activeBumpers[0].GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+            yield return null;   
+        }
+     if(counter == duration)
+        {
+            for (int i = 0; i < activeBumpers.Length; i++)
+            {
+                Destroy(activeBumpers[i]);
+            }
+        }
+    }
+
+    void DestroyBumpers()
+    {
+        //StartCoroutine(FadeBumper(durationTime)); Fade not working at the moment
+        for (int i = 0; i < activeBumpers.Length; i++)
+        {
+            Destroy(activeBumpers[i]);
+        }
+
+    }
+  
     void OnCollisionExit(Collision collisionInfo)
     {
-        bumper.GetComponent<MeshRenderer>().material.color = 
-            Color.Lerp(bumper.GetComponent<MeshRenderer>().
-            material.color, alphaColor, timeToFade * Time.deltaTime);
-        bumper.SetActive(false);
-
-        if (bumperClone != null)
-        {
-            GameObject.Destroy(bumperClone);
-            Debug.Log("Gameobject is destroied");
-        }
-        // Debugging purpose
-        Debug.Log("No longer in contact with " + collisionInfo.transform.name);
+        Invoke("DestroyBumpers", 1.2f);
     }
 }

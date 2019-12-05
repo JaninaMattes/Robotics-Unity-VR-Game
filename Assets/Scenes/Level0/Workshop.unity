@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 310609941}
   - component: {fileID: 310609942}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LidarSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,10 +754,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ae0340be8d02340a56181350816583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dot: {fileID: 7889587208483352644, guid: 6c12c048c6afacd418d0d38d088df0b6, type: 3}
-  rows: 10
-  columns: 10
-  spacing: 2
+  dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
+  rows: 100
+  columns: 100
+  spacing: 1
+  lidarPistol: {fileID: 266207320}
 --- !u!1001 &311413848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4173,7 +4174,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 97c21643e5837214c9e7bdbf340b7abb,
         type: 3}
       propertyPath: m_Name
-      value: SonarPistol
+      value: LidarPistol
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 97c21643e5837214c9e7bdbf340b7abb,
         type: 3}

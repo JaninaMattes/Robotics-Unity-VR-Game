@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
+﻿namespace VRTK.Examples
+{
+    using System.Collections.Generic;
 using UnityEngine;
 
 public class LiDar : MonoBehaviour
 {
     public GameObject dot;
-    public int rows = 100;
+        private bool dotsActive = false;
+        public int rows = 100;
     public int columns = 100;
     public float spacing = 20.0f;
     private List<GameObject> dots = new List<GameObject>();
+    public VRTK_InteractableObject lidarPistol;
 
-    /// <summary>
-    /// Create mesh of dots for the LiDar shader.
-    /// </summary>
-    void Start()
+        /// <summary>
+        /// Create mesh of dots for the LiDar shader.
+        /// </summary>
+        void Start()
     {
         for (int i = 0; i < rows; i++)
         {
@@ -24,6 +28,39 @@ public class LiDar : MonoBehaviour
             }
         }
     }
+
+    protected virtual void OnEnable()
+    {
+            lidarPistol = (lidarPistol == null ? GetComponent<VRTK_InteractableObject>() : lidarPistol);
+
+        if (lidarPistol != null)
+        {
+                lidarPistol.InteractableObjectUsed += InteractableObjectUsed;
+                lidarPistol.InteractableObjectUnused += InteractableObjectUnused;
+        }
+
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (lidarPistol != null)
+        {
+                lidarPistol.InteractableObjectUsed -= InteractableObjectUsed;
+                lidarPistol.InteractableObjectUnused -= InteractableObjectUnused;
+        }
+    }
+
+
+    protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+    {
+            dotsActive = true;
+        }
+
+    protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
+    {
+            dotsActive = false;
+        }
+
     void Update()
     {
         // Bit shift the index of the layer (8) to get a bit mask
@@ -46,7 +83,14 @@ public class LiDar : MonoBehaviour
                     Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
                     Debug.DrawRay(transform.position, hitLocation, Color.yellow);
                     dot.transform.position = transform.position + hitLocation;
-                    dot.SetActive(true);
+                        if (dotsActive)
+                        {
+                            dot.SetActive(true);
+                        }
+                        else {
+                            dot.SetActive(false);
+
+                        }
                 }
                 else
                 {
@@ -56,4 +100,5 @@ public class LiDar : MonoBehaviour
             }
         }
     }
+}
 }

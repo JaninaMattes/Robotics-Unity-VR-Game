@@ -423,7 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160079729}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LaserOffset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310609941}
   - component: {fileID: 310609942}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LidarSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,6 +1577,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '---Player Controller------------'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824473283853445676, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824473283821556747, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4824473282340058144, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
         type: 3}
@@ -4185,6 +4195,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 97c21643e5837214c9e7bdbf340b7abb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6860895033569716450, guid: 97c21643e5837214c9e7bdbf340b7abb,
         type: 3}

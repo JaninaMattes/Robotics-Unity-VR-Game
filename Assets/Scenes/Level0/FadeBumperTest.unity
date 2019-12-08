@@ -619,11 +619,10 @@ MonoBehaviour:
   bumperClone: {fileID: 4874600068499633488, guid: 872b2f1ecaf113646ab8d9e2b28715c3,
     type: 3}
   distance: -0.1
-  fadeStart: 3
-  fadeEnd: 8
+  fadeDuration: 0
+  fadeStartValue: 0
+  fadeEndValue: 0
   fadeSpeed: 0.1
-  durationTime: 2
-  rimPowerT: 0
 --- !u!65 &184660552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -655,14 +654,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ca877eacca5ec4d90ba43abc670fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumperClone: {fileID: 4874600068499633488, guid: 872b2f1ecaf113646ab8d9e2b28715c3,
+  bumperClone: {fileID: 3004356236773590564, guid: 872b2f1ecaf113646ab8d9e2b28715c3,
     type: 3}
   distance: -0.1
-  fadeStart: 3
-  fadeEnd: 8
+  fadeDuration: 0
+  fadeStartValue: 0
+  fadeEndValue: 0
   fadeSpeed: 0.1
-  durationTime: 2
-  rimPowerT: 0
 --- !u!65 &214671186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3671,28 +3669,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
---- !u!1 &2042171323 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4874600068499633488, guid: 872b2f1ecaf113646ab8d9e2b28715c3,
-    type: 3}
-  m_PrefabInstance: {fileID: 637435658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2042171324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042171323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b374eb0e1cd4676498327c5de41d7e0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 5
-  fadeStartValue: 0.5
-  fadeEndValue: 8
-  fadeSpeed: 0.5
 --- !u!1 &2074547500 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 18e2266c302b4754eaf83a31e0260534,

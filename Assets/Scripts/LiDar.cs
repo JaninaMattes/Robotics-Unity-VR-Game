@@ -6,8 +6,10 @@ using UnityEngine;
 public class LiDar : MonoBehaviour
 {
     public GameObject dot;
-        private bool dotsActive = false;
-        public int rows = 100;
+    public Color colorStart;
+    public Color colorEnd;
+    private bool dotsActive = false;
+    public int rows = 100;
     public int columns = 100;
     public float spacing = 20.0f;
     private List<GameObject> dots = new List<GameObject>();
@@ -81,21 +83,25 @@ public class LiDar : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
                 {
                     Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
-                    Debug.DrawRay(transform.position, hitLocation, Color.yellow);
+                    // For debugging purpose to show rays Debug.DrawRay
+                    // Debug.DrawRay(transform.position, hitLocation, Color.yellow);
                     dot.transform.position = transform.position + hitLocation;
                         if (dotsActive)
                         {
+                            MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
+                            mesh.material.color = Color.Lerp(colorStart, colorEnd, hit.distance);
+                            Debug.Log("Color "+ mesh.material.color);
                             dot.SetActive(true);
                         }
                         else {
                             dot.SetActive(false);
-
                         }
                 }
                 else
                 {
-                    Debug.DrawRay(transform.position, transform.TransformDirection(direction) * 1000, Color.white);
-                    dot.SetActive(false);
+                        // For debugging purpose to show rays Debug.DrawRay
+                        // Debug.DrawRay(transform.position, transform.TransformDirection(direction) * 1000, Color.white);
+                        dot.SetActive(false);
                 }
             }
         }

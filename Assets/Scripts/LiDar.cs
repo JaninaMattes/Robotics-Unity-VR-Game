@@ -89,8 +89,9 @@ public class LiDar : MonoBehaviour
                         if (dotsActive)
                         {
                             MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
-                            mesh.material.color = Color.Lerp(colorStart, colorEnd, hit.distance);
-                            Debug.Log("Color "+ mesh.material.color);
+                            var lerp = Normalize(hit);
+                            mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
+                            Debug.Log("Color "+ mesh.material.color + "Lerp Math " + lerp);
                             dot.SetActive(true);
                         }
                         else {
@@ -106,5 +107,17 @@ public class LiDar : MonoBehaviour
             }
         }
     }
-}
+
+        /// <summary>
+        /// Bind an arbitrary number to values between 0 and 1
+        /// </summary>
+        /// <param name="hit"></param>
+        /// <returns></returns>
+        public float Normalize(RaycastHit hit)
+        {
+            //var lerp = Mathf.PingPong(hit.distance, 1);
+            var lerp = 1f - (1f / (1f + hit.distance)); 
+            return lerp;
+        }
+  }
 }

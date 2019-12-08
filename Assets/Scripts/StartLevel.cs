@@ -13,6 +13,7 @@
         public VRTK_InteractableObject laserGun;
         public GameObject unLoad;
         private float timeElapsed;
+        ManageScenes sceneManagement = new ManageScenes();
 
         // Allow a delay in loading
         [SerializeField]
@@ -20,7 +21,7 @@
 
         void Start()
         {
-            sceneChange = this.GetComponent<VRTK_InteractableObject>();
+            sceneChange = this.GetComponent<VRTK_InteractableObject>();       
         }
 
         protected virtual void OnEnable()
@@ -52,12 +53,7 @@
 
         protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
-            if (laserGun.IsGrabbed() == false)
-            {
-                laserGun.gameObject.transform.SetParent(unLoad.transform);
-            }
-            SceneManager.LoadScene(LevelIndex, LoadSceneMode.Additive);
-            DestroyImmediate(unLoad);
+            sceneManagement.LoadLevelAdditive(LevelIndex);
         }
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
         {

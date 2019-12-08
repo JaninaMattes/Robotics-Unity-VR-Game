@@ -12,11 +12,29 @@ public class BumperSpawner : MonoBehaviour
     public float fadeEndValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself.
     public float fadeSpeed;
     private GameObject[] activeBumpers;
+    public LightmapData[] lightmap_data;
+  
+
+     void Start()
+    {
+        lightmap_data = LightmapSettings.lightmaps;
+        
+    }
+
 
     void Update()
     {
         activeBumpers = GameObject.FindGameObjectsWithTag("Bumper");
-    }
+        //if(SceneManager.sceneCount > 1 )
+       // {
+          //  LightmapSettings.lightmaps = new LightmapData[] { };
+       // }
+       // else
+       //{
+           // LightmapSettings.lightmaps = lightmap_data;
+       // }
+}
+    
 
     /// <summary>
     /// On Collision Enter a new bumper object will be 

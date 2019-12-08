@@ -14,6 +14,8 @@ public class LiDar : MonoBehaviour
     public float spacing = 20.0f;
     private List<GameObject> dots = new List<GameObject>();
     public VRTK_InteractableObject lidarPistol;
+    private GameObject gridParent;
+     
 
         /// <summary>
         /// Create mesh of dots for the LiDar shader.
@@ -29,6 +31,7 @@ public class LiDar : MonoBehaviour
                 dots.Add(temp);
             }
         }
+            gridParent = GameObject.FindGameObjectWithTag("Grid");
     }
 
     protected virtual void OnEnable()
@@ -77,6 +80,7 @@ public class LiDar : MonoBehaviour
             for (int j = 0; j < columns; j++)
             {
                 GameObject dot = dots[i * rows + j];
+                dot.transform.SetParent(gridParent.transform);
                 Vector3 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
                 // Does the ray intersect any objects excluding the player layer

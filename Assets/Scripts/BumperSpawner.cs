@@ -2,36 +2,52 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using VRTK;
 
 public class BumperSpawner : MonoBehaviour
 {
+    // All gameobjects that can be used
     public GameObject bumper;
+    public GameObject groundPrefab;
+    // All settings for Bumper
     public float distance;
     public float fadeDuration;
     public float fadeStartValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself. The rimpower/color intensity is brightest at 0.5f
     public float fadeEndValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself.
     public float fadeSpeed;
-    public int sceneIndex; 
+    public int sceneIndex;
+    
     // store new GameObject instance
     private GameObject activeBumper;
     private Scene activeScene;
-    
+    private GameObject groundOrientation;
+    private Vector3 playerLocation;
+    private GameObject cameraRigTransform;
+
     // Called once per frame
     void Update()
     {
         activeScene = SceneManager.GetActiveScene();
         sceneIndex = activeScene.buildIndex;
         Debug.Log($"Active Scene Index {activeScene.buildIndex}");
+        // Retrieve Player Headset position
+        //playerLocation = OVRManager.tracker.GetPose().position;
+        cameraRigTransform = GameObject.Find("MainCamera");
+        playerLocation = cameraRigTransform.transform.position; //returns found VRSimulatorCameraRig if it is found
+        Debug.Log($"Player position {playerLocation}");
+
         // Check Scene index returns an integer value
         if (activeScene.buildIndex != 0)
         {
             // Activate Controller in Minigames
-            ActivateController(true);
+            ActivateCollider(true);
+            SetGroundOrientation();
         }
         else
         {
             // Deactivate Controller in Workshop
-            ActivateController(false);
+            ActivateCollider(false);
+            DestroyGround();
         }
     }
   
@@ -79,21 +95,56 @@ public class BumperSpawner : MonoBehaviour
         // Check if bumper instance is empty
         if(activeBumper != null)
         {
-            for(float i = 0; i < fadeDuration; i += Time.deltaTime * fadeSpeed)
+            float flag = 0; 
+            while(flag < fadeDuration)
             {
                 Debug.Log("Coroutine called ");
-                float rimPowerShader = Mathf.Lerp(fadeStartValue, fadeEndValue, i / fadeDuration); //Lerping the value of the rimpower between a given start- and endvalue
+                flag = Time.deltaTime * fadeSpeed;
+                float rimPowerShader = Mathf.Lerp(fadeStartValue, fadeEndValue, flag / fadeDuration); //Lerping the value of the rimpower between a given start- and endvalue
                 activeBumper.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPowerShader); // Set the RimPower of the Bumpers attached shader
                 yield return null; // needs to be placed where execution will be paused and resumed on the following frame
             }
-            // After while loop has faded bumper out call Destroy(Bumper)
-            Destroy(activeBumper);
-            Debug.Log("Bumper is destroied");
+            if(flag == fadeDuration)
+            {
+                // After while loop has faded bumper out call Destroy(Bumper)
+                Destroy(activeBumper);
+                Debug.Log("Bumper is destroied");
+            }            
         }
         else
         {
             Debug.Log("No bumper instance");
         }        
+    }
+    
+    /// <summary>
+    /// Activate the Collider of the associated Controller.
+    /// </summary>
+    /// <param name="enable"></param>
+    void ActivateCollider(bool enable)
+    {
+        // Set all Colliders inactive on the gameobjects
+        GetComponent<BoxCollider>().enabled = enable;
+        Debug.Log($"Set Collider {enable}");        
+    }
+
+    /// <summary>
+    /// Instanciate the ground orientation prefab and attach it to user
+    /// </summary>
+    /// <param name="enable"></param>
+    void SetGroundOrientation()
+    {
+        if (groundOrientation == null)
+        {
+            groundOrientation = Instantiate(groundPrefab, playerLocation, Quaternion.identity);
+            Debug.Log("Ground Orientation instance created.");
+        }
+        else
+        {
+           // groundOrientation.transform.position.x = playerLocation.transform.position.x;
+           // groundOrientation.transform.position.z = playerLocation.transform.position.x;
+           // groundOrientation.transform.position.y = 0.1f;
+        }
     }
 
     /// <summary>
@@ -104,11 +155,13 @@ public class BumperSpawner : MonoBehaviour
     {
         StartCoroutine("FadeBumper"); // Can be called by StartCoroutine from everywhere to start the IENumerator 
     }
-    
-    void ActivateController(bool enable)
+
+    /// <summary>
+    /// Delete instance of ground orientation prefab. 
+    /// </summary>
+    void DestroyGround()
     {
-        // Set all Colliders inactive on the gameobjects
-        GetComponent<BoxCollider>().enabled = enable;
-        Debug.Log($"Set Collider {enable}");        
+        Destroy(groundOrientation);
+        Debug.Log("Ground orientation prefab destroied");
     }
 }

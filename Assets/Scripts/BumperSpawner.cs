@@ -16,7 +16,7 @@ public class BumperSpawner : MonoBehaviour
     void Update()
     {
         activeBumpers = GameObject.FindGameObjectsWithTag("Bumper");
-    
+    }
 
     /// <summary>
     /// On Collision Enter a new bumper object will be 

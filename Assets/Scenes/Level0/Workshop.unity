@@ -463,13 +463,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ca877eacca5ec4d90ba43abc670fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumperClone: {fileID: 4874600068499633488, guid: 872b2f1ecaf113646ab8d9e2b28715c3,
-    type: 3}
+  bumper: {fileID: 8100338291076162690, guid: 356a08d27aadb9945966244baf0681b6, type: 3}
   distance: -0.1
-  fadeDuration: 0
-  fadeStartValue: 0
-  fadeEndValue: 0
+  fadeDuration: 2
+  fadeStartValue: 3
+  fadeEndValue: 8
   fadeSpeed: 0.1
+  sceneIndex: 0
 --- !u!65 &184660552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ BoxCollider:
   m_GameObject: {fileID: 184660550}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5706501, y: 0.16784656, z: 0.6750871}
   m_Center: {x: 0.041715384, y: 0.13637394, z: 0.09965336}
@@ -501,13 +501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ca877eacca5ec4d90ba43abc670fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumperClone: {fileID: 4874600068499633488, guid: 872b2f1ecaf113646ab8d9e2b28715c3,
-    type: 3}
+  bumper: {fileID: 8100338291076162690, guid: 356a08d27aadb9945966244baf0681b6, type: 3}
   distance: -0.1
-  fadeDuration: 0
-  fadeStartValue: 0
-  fadeEndValue: 0
+  fadeDuration: 2
+  fadeStartValue: 3
+  fadeEndValue: 8
   fadeSpeed: 0.1
+  sceneIndex: 0
 --- !u!65 &214671186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ BoxCollider:
   m_GameObject: {fileID: 214671184}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5706501, y: 0.16784656, z: 0.6750871}
   m_Center: {x: 0.041715384, y: 0.13637394, z: 0.09965336}
@@ -753,11 +753,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dot: {fileID: 8669846811823368256, guid: e7982820582c0034d88119b41f49e386, type: 3}
-  colorStart: {r: 0.9427508, g: 1, b: 0, a: 0}
-  colorEnd: {r: 0, g: 0.75245667, b: 1, a: 0}
-  rows: 10
-  columns: 10
-  spacing: 5
+  colorStart: {r: 1, g: 1, b: 0, a: 0}
+  colorEnd: {r: 0.035288375, g: 0.41798735, b: 0.5754717, a: 0}
+  rows: 50
+  columns: 50
+  spacing: 2
   lidarPistol: {fileID: 266207320}
 --- !u!1001 &311413848
 PrefabInstance:

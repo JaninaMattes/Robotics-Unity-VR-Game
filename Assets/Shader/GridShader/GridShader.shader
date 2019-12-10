@@ -1,17 +1,15 @@
-﻿
-Shader "Shader/GridShader/GridShaderTEST" {
+﻿Shader "Shader/GridShader/GridShader" {
 	Properties{
 		_GridThickness("Grid Thickness", Float) = 0.1
 		_GridSpacing("Grid Spacing", Float) = 0.5
 		_GridColour("Grid Colour", Color) = (0.5, 1.0, 1.0, 1.0)
 		_BaseColour("Base Colour", Color) = (0.0, 0.0, 0.0, 0.0)
-		_Radius("Sphere Radius", Range(0, 1)) = 0.0
+		_Radius("Sphere Radius", Range(1, 10)) = 0.0
 		_Position("Player Position", Vector) = (0, 0, 0, 0)
-		_Softness("Sphere Softness", Range(0,100)) = 0
 	}
 
 		SubShader{
-		Tags{ "RenderType" = "Opaque" "Queue" = "Transparent" }
+		Tags{ "Queue" = "Transparent" }
 		LOD 100
 
 		Pass{
@@ -35,7 +33,6 @@ Shader "Shader/GridShader/GridShaderTEST" {
 			//Spherical Mask
 			float4 _Position;
 			half _Radius;
-			half _Softness;
 
 			// Input into the vertex shader
 			struct vertexInput {
@@ -47,7 +44,7 @@ Shader "Shader/GridShader/GridShaderTEST" {
 				float4 pos : SV_POSITION;
 				float4 worldPos : TEXCOORD0;
 			};
-		
+
 			// VERTEX SHADER
 			vertexOutput vert(vertexInput input) {
 				vertexOutput output;
@@ -63,15 +60,12 @@ Shader "Shader/GridShader/GridShaderTEST" {
 
 			// FRAGMENT SHADER
 			float4 frag(vertexOutput input) : COLOR{
-			half d = distance(_Position, _Position);
-			// Black color
-			fixed3 black = fixed3(0, 0, 0);
-
-			half sum = saturate((d - _Radius) / -_Softness);
-			fixed4 lerpColor = lerp(fixed4(black, 1), _GridColour, sum);
+			fixed4 col = _GridColour;
 
 				if (frac(input.worldPos.x / _GridSpacing) < _GridThickness || frac(input.worldPos.z / _GridSpacing) < _GridThickness) {
-					return lerpColor;
+					// Create circle with _Radius value
+					col.a = _Radius - distance(input.worldPos, _Position);
+					return col;
 				}
 				else {
 					return _BaseColour;

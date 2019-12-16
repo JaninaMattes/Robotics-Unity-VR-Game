@@ -69,10 +69,9 @@
 
         }
 
-
-
         void Update()
         {
+            lr.SetPosition(0, transform.position);
             sonarOrigin.w = Mathf.Min(sonarOrigin.w + (Time.deltaTime * speed), 1);
             material.SetVector("_SonarOrigin", sonarOrigin);
         }

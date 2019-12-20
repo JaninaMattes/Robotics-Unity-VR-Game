@@ -4,7 +4,7 @@
 	Properties
 	{
 		_Color("Standard Color (RGB)", Color) = (1,1,1,1)
-		_PointColor("Point Color (RGB)", Color) = (1, 0, 0, 1)
+		_PointColor("Point Color (RGB)", Color) = (0, 0, 0, 1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_SonarDistance("Sonar Distance", Float) = 0
 		_SonarWidth("Sonar Width", Float) = 0.1

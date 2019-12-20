@@ -8,7 +8,7 @@ using UnityEngine;
 ///  
 /// </summary>
 
-public class ArraySimulator : MonoBehaviour
+public class AdvancedSonarSimulator : MonoBehaviour
 {
 
     public float radius; // Radius for the ring

@@ -1,4 +1,4 @@
-﻿Shader "Shader/SensorShader/SonarShader/Basic_Sonar_Unlit"
+﻿Shader "Shader/SensorShader/SonarShader/BasicSonarUnlit"
 {
 	// Unity properties
 	Properties

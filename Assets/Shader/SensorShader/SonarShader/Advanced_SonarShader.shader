@@ -53,15 +53,15 @@
 
 		void surf(Input IN, inout SurfaceOutputStandard o)
 	{
+		// Albedo comes from a texture tinted by color
+		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 		// passing an Array to make multiple SonarRings possible
 		fixed4 emissive = 0;
 		float3 objPos = mul(unity_WorldToObject, float4(IN.worldPos, 1)).xyz;
 		
 		for (int i = 0; i < _PointsSize; ++i) {
-			emissive += frac( 1.0 - max(0, (_Points[i].w * _ImpactSize) - distance(_Points[i].xyz, objPos.xyz)) / _ImpactSize) * (1 - _Points[i].w);
-		}
-
-		
+			emissive += max(0, frac( 1.0 - max(0, (_Points[i].w * _ImpactSize) - distance(_Points[i].xyz, objPos.xyz)) / _ImpactSize) * (1 - _Points[i].w));
+		}	
 
 		// By distracting the distance everything will be inverted
 		// The fourth component of the vector "w" measures the time to animate the sonar effect
@@ -71,9 +71,7 @@
 		// Create two distances
 		// float lowerDistance = distance - halfWidth;
 		// float upperDistance = distance + halfWidth;
-
-		// Albedo comes from a texture tinted by color
-		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+		
 		//fixed4 c = fixed4(pow(1 - (abs(distance) / halfWidth), 8),0, 0, 1);
 		// float ringStrength = pow(1 - (abs(distance) / halfWidth), 8)
 		//	* (lowerDistance < 0 && upperDistance > 0);

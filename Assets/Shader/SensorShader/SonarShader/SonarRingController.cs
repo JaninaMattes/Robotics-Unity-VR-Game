@@ -9,11 +9,13 @@ public class SonarRingController : MonoBehaviour
     private static readonly Vector4[] defaultEmptyVector = new Vector4[] { new Vector4(0, 0, 0, 0) };
     public Vector4[] points;
 
-    public Material shieldMaterial;
+    public Material sonarMaterial;
 
     // Use this for initialization
     void Start()
     {
+        // Max 50 Sonarrings can be created/rendered, 
+        // this is predefined in the array of the shader
         points = new Vector4[50];
     }
 
@@ -21,14 +23,14 @@ public class SonarRingController : MonoBehaviour
     void Update()
     {
 
-        shieldMaterial.SetInt("_PointsSize", points.Length);
-        if (points.Length <= 0)
+        sonarMaterial.SetInt("_PointsSize", points.Length);
+        if (points.Length <= 0) // Shader cant have zero values
         {
-            shieldMaterial.SetVectorArray("_Points", defaultEmptyVector);
+            sonarMaterial.SetVectorArray("_Points", defaultEmptyVector);
         }
         else
         {
-            shieldMaterial.SetVectorArray("_Points", points);
+            sonarMaterial.SetVectorArray("_Points", points);
         }
 
     }

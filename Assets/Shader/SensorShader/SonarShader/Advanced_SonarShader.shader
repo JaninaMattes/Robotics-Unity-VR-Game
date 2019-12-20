@@ -6,11 +6,10 @@
 		_Color("Color", Color) = (1,1,1,1)
 		_PointColor("Point Color (RGB)", Color) = (1, 0, 0, 1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness("Smoothness", Range(0,1)) = 0.5
-		_Metallic("Metallic", Range(0,1)) = 0.0
 		_SonarOrigin("Sonar Origin", Vector) = (0,0,0,0)
 		_SonarDistance("Sonar Distance", Float) = 0
 		_SonarWidth("Sonar Width", Float) = 0.1
+		_ImpactSize("Smoothness", Float) = 0.5 // Linear progression
 	}
 		SubShader
 	{
@@ -34,8 +33,6 @@
 	};
 
 	// Actual Shader properties
-	half _Glossiness;
-	half _Metallic;
 	fixed4 _Color;
 	fixed4 _SonarOrigin;
 	float _SonarDistance;
@@ -45,6 +42,7 @@
 	int _PointsSize;
 	fixed4 _Points[50]; // Max amount of Sonarpositions is 50
 	fixed4 _PointColor;
+	float _ImpactSize;
 
 	// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 	// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -59,9 +57,11 @@
 		fixed4 emissive = 0;
 		float3 objPos = mul(unity_WorldToObject, float4(IN.worldPos, 1)).xyz;
 		
-		for (int i = 0; i < _PointsSize; i++) {
-			emissive += max(0, 1 - distance(_Points[i].xyz, objPos.xyz));
+		for (int i = 0; i < _PointsSize; ++i) {
+			emissive += frac( 1.0 - max(0, (_Points[i].w * _ImpactSize) - distance(_Points[i].xyz, objPos.xyz)) / _ImpactSize) * (1 - _Points[i].w);
 		}
+
+		
 
 		// By distracting the distance everything will be inverted
 		// The fourth component of the vector "w" measures the time to animate the sonar effect
@@ -83,9 +83,8 @@
 
 		o.Albedo = c.rgb;
 		o.Emission = emissive * _PointColor;
-		// Metallic and smoothness come from slider variables
-		o.Metallic = _Metallic;
-		o.Smoothness = _Glossiness;
+		o.Metallic = 0;
+		o.Smoothness = 0;
 		o.Alpha = c.a;
 	}
 	ENDCG

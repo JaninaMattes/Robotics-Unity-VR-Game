@@ -6,19 +6,30 @@ using UnityEngine;
 public class SonarRingController : MonoBehaviour
 {
     // Passing Array
+    private static readonly Vector4[] defaultEmptyVector = new Vector4[] { new Vector4(0, 0, 0, 0) };
     public Vector4[] points;
-    public Material sonarMaterial;
 
-    // Start is called before the first frame update
+    public Material shieldMaterial;
+
+    // Use this for initialization
     void Start()
     {
-
+        points = new Vector4[50];
     }
 
     // Update is called once per frame
     void Update()
     {
-        sonarMaterial.SetInt("_PointsSize", points.Length);
-        sonarMaterial.SetVectorArray("_Points", points);
+
+        shieldMaterial.SetInt("_PointsSize", points.Length);
+        if (points.Length <= 0)
+        {
+            shieldMaterial.SetVectorArray("_Points", defaultEmptyVector);
+        }
+        else
+        {
+            shieldMaterial.SetVectorArray("_Points", points);
+        }
+
     }
 }

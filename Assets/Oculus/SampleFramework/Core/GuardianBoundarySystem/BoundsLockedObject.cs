@@ -37,8 +37,8 @@ public class BoundsLockedObject : MonoBehaviour
 
             for (int i = 0; i < boundaryPoints.Length; ++i)
             {
-                // Transforming the points to deal with the case where GuardianBoundaryDemoSettings.AllowRecenterYaw = false.
-                // The boundary points will be returned in the new tracking space, but we want to ignore the new orientation
+                // Transforming the sonarHits to deal with the case where GuardianBoundaryDemoSettings.AllowRecenterYaw = false.
+                // The boundary sonarHits will be returned in the new tracking space, but we want to ignore the new orientation
                 // and instead use our nicely axis-aligned original play area.
                 // If AllowRecenterYaw = true, trackingSpace will simply be the identity, so this is fine.
                 boundaryPoints[i] = m_enforcer.OrientToOriginalForward * boundaryPoints[i];

@@ -25,9 +25,9 @@ namespace VRTK
         public abstract Transform GetPlayArea();
 
         /// <summary>
-        /// The GetPlayAreaVertices method returns the points of the play area boundaries.
+        /// The GetPlayAreaVertices method returns the sonarHits of the play area boundaries.
         /// </summary>
-        /// <returns>A Vector3 array of the points in the scene that represent the play area boundaries.</returns>
+        /// <returns>A Vector3 array of the sonarHits in the scene that represent the play area boundaries.</returns>
         public abstract Vector3[] GetPlayAreaVertices();
 
         /// <summary>

@@ -33,7 +33,7 @@ public class GuardianBoundaryDisplay : MonoBehaviour
             LineRenderer lr = GetComponent<LineRenderer>();
             lr.positionCount = 0;
 
-            // Note that these points are returned in (the newly reoriented) tracking space.
+            // Note that these sonarHits are returned in (the newly reoriented) tracking space.
             // So rendering them correctly aligned with your guardian bounds in VR is
             // straightforward, and does not require additional transformations as long
             // as this is parented to the TrackingSpace node.

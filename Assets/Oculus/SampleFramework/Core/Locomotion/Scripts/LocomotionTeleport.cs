@@ -459,9 +459,9 @@ public class LocomotionTeleport : MonoBehaviour
 	}
 
 	/// <summary>
-	/// The AimData contains data provided by the Aim Handler which represents the final set of points
+	/// The AimData contains data provided by the Aim Handler which represents the final set of sonarHits
 	/// that were used for aiming the teleport. This is provided to the AimVisual for rendering an aim effect.
-	/// Note that the set of points provided here can be different from the points used by the Aim Handler to 
+	/// Note that the set of sonarHits provided here can be different from the sonarHits used by the Aim Handler to 
 	/// determine the teleport destination. For instance, the aim handler might use a very long line segment
 	/// for an aim laser but would provide a shorter line segment in the AimData representing the line
 	/// from the player to the teleport destination.

@@ -270,7 +270,7 @@ public class SteamVR_SkyboxEditor : Editor
 								var V0M = Quaternion.Euler(theta0, midPhi, 0.0f) * Vector3.forward;
 								var V1M = Quaternion.Euler(theta1, midPhi, 0.0f) * Vector3.forward;
 
-								// intersection points for each of the above
+								// intersection sonarHits for each of the above
 								var P00 = V00 / Vector3.Dot(V00, N);
 								var P01 = V01 / Vector3.Dot(V01, N);
 								var P0M = V0M / Vector3.Dot(V0M, N);

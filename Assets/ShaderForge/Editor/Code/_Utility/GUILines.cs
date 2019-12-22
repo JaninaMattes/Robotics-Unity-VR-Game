@@ -187,7 +187,7 @@ namespace ShaderForge {
 
 				// Calculate new start/end positions!
 				// We want an S shape, which essentially is two curves with a connected center
-				// Let's define the new points!
+				// Let's define the new sonarHits!
 
 
 				float midVert;

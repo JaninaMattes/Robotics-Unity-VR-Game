@@ -2,24 +2,24 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
-    public class SonarLaser : MonoBehaviour
+    public class SonarLaserAdv : MonoBehaviour
     {
-
+        public float ringRadius;
         public VRTK_InteractableObject laserPistol;
-
-
-        private LineRenderer lr;
+        private LineRenderer lineRenderer;
         public Material material;
-        public Vector4 sonarOrigin = Vector4.one;
-        public float speed;
-        bool test = false;
+        public float sonarLifeTime;
+        public SonarLaserController controller = new SonarLaserController();
+        private List<Vector4> sonarOrigins;
 
         void Start()
         {
-            lr = GetComponent<LineRenderer>();
-            lr.enabled = false;
+            lineRenderer = GetComponent<LineRenderer>();
+            lineRenderer.enabled = false;
+            sonarOrigins = new List<Vector4>();
         }
 
         protected virtual void OnEnable()
@@ -46,20 +46,19 @@
 
         protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
-            lr.enabled = true;
+            lineRenderer.enabled = true;
             StartCoroutine(WaitSonarShot());
-            lr.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(0, transform.position);
             RaycastHit hit;
 
             if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                //if (hit.collider) Überprüfung ob getroffenes GameObject einen Collider hat / Auf Kollision überprüfen
-                //{
-                lr.SetPosition(1, hit.point);
-                sonarOrigin = hit.point;
-                //}
+                lineRenderer.SetPosition(1, hit.point);
+                var sonarOrigin = hit.point;
+                sonarOrigins.Add(new Vector4(sonarOrigin.x, sonarOrigin.y, sonarOrigin.z, 0));
+                Debug.Log($"Hit detected: x {sonarOrigin.x} y {sonarOrigin.y}");
             }
-            else lr.SetPosition(1, transform.forward * 5000);
+            else lineRenderer.SetPosition(1, transform.forward * 5000);
         }
 
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
@@ -69,15 +68,18 @@
 
         void Update()
         {
-            lr.SetPosition(0, transform.position);
-            sonarOrigin.w = Mathf.Min(sonarOrigin.w + (Time.deltaTime * speed), 1);
-            material.SetVector("_SonarOrigin", sonarOrigin);
+            lineRenderer.SetPosition(0, transform.position);
+            sonarOrigins = sonarOrigins
+               .Select(hit => new Vector4(hit.x, hit.y, hit.z, hit.w + (Time.deltaTime / sonarLifeTime)))
+               .Where(hit => hit.w <= 1).ToList(); // delete all invalid elements from list
+
+            controller.sonarHits = sonarOrigins.ToArray();            
         }
 
         IEnumerator WaitSonarShot()
         {
             yield return new WaitForSecondsRealtime(0.5f);
-            lr.enabled = false;
+            lineRenderer.enabled = false;
         }
     }
 

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AdvancedRadarMaterial
+  m_Name: AdvancedRadar
   m_Shader: {fileID: 4800000, guid: 3c5e40843f1fa764da46033d044e240d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -24,7 +24,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _ImpactSize: 0.5
+    - _Glossiness: 0.5
+    - _ImpactSize: 0.2
+    - _Metallic: 0
+    - _SonarDistance: 5
+    - _SonarWidth: 0.2
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _PointColor: {r: 1, g: 0, b: 0, a: 1}
+    - _PointColor: {r: 0, g: 1, b: 0.92414665, a: 1}
+    - _SonarOrigin: {r: 0, g: 0, b: 0, a: 0}

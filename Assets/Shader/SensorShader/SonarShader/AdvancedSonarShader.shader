@@ -52,7 +52,7 @@
 		void surf(Input IN, inout SurfaceOutputStandard o)
 	{
 		// Albedo comes from a texture tinted by color
-		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _PointColor;
 		float halfWidth = _SonarWidth * 0.5;
 		// Passing an Array to make multiple SonarRings possible
 		for (int i = 0; i < _PointsSize; ++i) {
@@ -66,7 +66,7 @@
 				* (lowerDistance < 0 && upperDistance > 0);
 			// As the sonar ring goes further away it should get dimmer and fade out
 			o.Albedo = ringStrength * c.rgb * (1 - _Points[i].w);
-			o.Emission = o.Albedo;
+			o.Emission += o.Albedo;
 		}
 
 		// o.Albedo = c.rgb;

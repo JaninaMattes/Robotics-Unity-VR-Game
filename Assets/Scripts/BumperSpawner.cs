@@ -32,7 +32,7 @@ public class BumperSpawner : MonoBehaviour
         Debug.Log($"Active Scene Index {activeScene.buildIndex}");
         // Retrieve Player Headset position
         //playerLocation = OVRManager.tracker.GetPose().position;
-        cameraRigTransform = GameObject.Find("MainCamera");
+        cameraRigTransform = GameObject.FindGameObjectWithTag("MainCamera");
         playerLocation = cameraRigTransform.transform.position; //returns found VRSimulatorCameraRig if it is found
         Debug.Log($"Player position {playerLocation}");
 

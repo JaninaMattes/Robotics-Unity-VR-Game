@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedMaterial
+  m_Name: RedGlowMaterial
   m_Shader: {fileID: 4800000, guid: b59fb1ef161cc6f4cb2270f37cb32f65, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
   m_LightmapFlags: 1
@@ -67,7 +67,7 @@ Material:
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 1.5
+    - _RimPower: 0.5
     - _SComp: 8
     - _SOp: 2
     - _SRef: 1
@@ -79,4 +79,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 0.18039216, b: 0, a: 1}
-    - _RimColor: {r: 1, g: 0, b: 0.2957449, a: 0}
+    - _RimColor: {r: 0.8113208, g: 0.078885615, b: 0.026788909, a: 0}

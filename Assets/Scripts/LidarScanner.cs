@@ -6,7 +6,7 @@ public class LidarScanner : MonoBehaviour
 {
     public LidarLaser laserLinePrefab;
 
-    [Range(1f, 50f)]
+    [Range(0f, 50f)]
     public float rotationFrequency;
     [SerializeField]
     public float scanArea;
@@ -56,7 +56,8 @@ public class LidarScanner : MonoBehaviour
         }
 
         scanArea = 360 * rotationFrequency * Time.fixedDeltaTime; //Fixed rotation speed to match physics updates
-        int numOfPoints = (int)(laserChannels * (360 / scanArea)); //Number of points rendered at any given time ste[
+        int numOfPoints = (int)(laserChannels * (360 / scanArea)); //Number of points rendered at any given time
+        Debug.Log($"Number of points rendered {numOfPoints}");
         lidarDataDict = new LidarScannerData(numOfPoints);
         rotation = new Vector3(0, scanArea, 0);
     }
@@ -83,7 +84,6 @@ public class LidarScanner : MonoBehaviour
         spawn.transform.localPosition = transform.position;
         spawn.transform.localRotation = Quaternion.Euler(tiltAngle);
         spawn.transform.parent = gameObject.transform;
-
         return spawn;
     }
 

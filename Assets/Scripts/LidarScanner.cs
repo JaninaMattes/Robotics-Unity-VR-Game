@@ -15,9 +15,9 @@ public class LidarScanner : MonoBehaviour
     public LidarScannerData lidarDataDict;
 
     //Data obtained from HDL-64E S3 Velodine Lidar spec sheet.
-    const float verticalAngularRes = 0.4f;
+    const float verticalAngularRes = 0.9f;
     const int laserChannels = 64;
-    const float verticalStartPoint = -5f;
+    const float verticalStartPoint = -20f;
 
     private Transform transform;
     private LidarLaser[] laserArray;

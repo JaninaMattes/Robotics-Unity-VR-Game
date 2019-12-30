@@ -756,13 +756,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ae0340be8d02340a56181350816583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dot: {fileID: 8669846811823368256, guid: e7982820582c0034d88119b41f49e386, type: 3}
-  colorStart: {r: 1, g: 1, b: 0, a: 0}
-  colorEnd: {r: 0.035288375, g: 0.41798735, b: 0.5754717, a: 0}
-  rows: 50
-  columns: 50
-  spacing: 2
+  dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
+  spacing: 1
   lidarPistol: {fileID: 266207320}
+  angle: 36
 --- !u!1001 &311413848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2626,6 +2623,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LidarPointCloud
       objectReference: {fileID: 0}
+    - target: {fileID: 1088995818697439788, guid: 7b9c476e33b27dc4ba64ac6cec1e7a6f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1088995818697439784, guid: 7b9c476e33b27dc4ba64ac6cec1e7a6f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3260,6 +3262,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7230587208582541622, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7230587208582541622, guid: bbaf49195b326404c836cb02be140514,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1435745037420900390, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
@@ -5831,6 +5843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LidarScanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3851249911716685122, guid: 3f1aca3044d3bdf42b836fbfde35f9e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3851249911716685126, guid: 3f1aca3044d3bdf42b836fbfde35f9e6,
         type: 3}

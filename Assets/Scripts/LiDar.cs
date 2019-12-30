@@ -6,9 +6,8 @@ using UnityEngine;
 public class LiDar : MonoBehaviour
 {
     public GameObject dot;
-    //public Color colorStart;
-    //public Color colorEnd;
-    private bool dotsActive = false;
+        //public Color colorStart;
+        //public Color colorEnd;
     private int rows = 400;
     private int columns = 400;
     private List<GameObject> dots = new List<GameObject>();
@@ -76,19 +75,27 @@ public class LiDar : MonoBehaviour
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
     {
             SetGrid();
-            dotsActive = true;
             ActivateLidar();
         }
 
     protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
-    {
-            dotsActive = false;
+    {  
         }
 
-    void ActivateLidar()
-    {
-        // Bit shift the index of the layer (8) to get a bit mask
-        int layerMask = 1 << 8;
+    void DeactivatePreviousLidar()
+        {
+            GameObject[] activeDots = GameObject.FindGameObjectsWithTag("GridDot");
+            foreach (GameObject g in activeDots)
+            {
+                g.SetActive(false);
+            }
+        }
+
+        void ActivateLidar()
+        {
+            DeactivatePreviousLidar();
+            // Bit shift the index of the layer (8) to get a bit mask
+            int layerMask = 1 << 8;
 
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
@@ -106,37 +113,25 @@ public class LiDar : MonoBehaviour
                
                 if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
                 {
-
                     Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
-
-                        Debug.DrawRay(transform.position, hitLocation, Color.red);
                         // For debugging purpose to show rays Debug.DrawRay
                         // Debug.DrawRay(transform.position, hitLocation, Color.yellow);
                         dot.transform.position = transform.position + hitLocation;
-                        if (dotsActive)
-                        {
                             //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
                             //var lerp = Normalize(hit);
                            // mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
                            // Debug.Log("Color "+ mesh.material.color + "Lerp Math " + lerp);
-                            dot.SetActive(true);
-                        }
-                        else {
-                            dot.SetActive(false);
-                        }
+                            dot.SetActive(true);    
                 }
-                else
-                {
-                        // For debugging purpose to show rays Debug.DrawRay
-                        // Debug.DrawRay(transform.position, transform.TransformDirection(direction) * 1000, Color.white);
+                    else
+                    {
                         dot.SetActive(false);
-                        
                     }
-                    
-                }
+            }
         }
     }
 
+         
         /// <summary>
         /// Bind an arbitrary number to values between 0 and 1
         /// </summary>

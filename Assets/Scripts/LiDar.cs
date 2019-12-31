@@ -3,8 +3,9 @@
     using System.Collections.Generic;
     using System.Collections;
     using UnityEngine;
+    using System;
 
-public class LiDar : MonoBehaviour
+    public class LiDar : MonoBehaviour
 {
     [Header("Lidar General Settings")]
     public VRTK_InteractableObject lidarPistol;
@@ -34,6 +35,11 @@ public class LiDar : MonoBehaviour
     public float spacing = 1.0f; //angle only correct if spacing set to 1.
     private float angleFactor;
     private const int maxRows = 400;
+
+    [Header("Color Setting")]
+    public Color errorColor = new Color(1, 0, 0); // default red
+    public Color startColor = new Color(0, 0, 0);
+    public Color endColor = new Color(0, 0, 0);
 
         /// <summary>
         /// Create mesh of dots for the LiDar shader.
@@ -115,6 +121,9 @@ public class LiDar : MonoBehaviour
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
         RaycastHit hit;
+        Renderer renderer;
+        Material material;
+        MeshRenderer mesh;
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -123,19 +132,27 @@ public class LiDar : MonoBehaviour
                 dot.transform.SetParent(gridParent.transform);
                 Vector3 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
-              
+                
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
-                {
+                {                        
                     Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
-                            // For debugging purpose to show rays Debug.DrawRay
-                            // Debug.DrawRay(transform.position, hitLocation, Color.yellow);
                     dot.transform.position = transform.position + hitLocation;
-                            //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
-                            //var lerp = Normalize(hit);
-                            // mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
-                            // Debug.Log("Color "+ mesh.material.color + "Lerp Math " + lerp);
-                    dot.SetActive(true);    
+                    // Calls the Renderer of the Collider that was hit
+                    renderer = hit.collider.GetComponent<Renderer>();
+                    // Calls the Material of the hit Renderer
+                    material = renderer.material;
+
+                    if (material.GetFloat("_Shininess") > 0)
+                    {
+                        mesh = dot.GetComponent<MeshRenderer>();
+                        mesh.material.color = errorColor;
+                    }
+
+                //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
+                //var lerp = Normalize(hit);
+                //mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
+                  dot.SetActive(true);    
                 }
                     else
                     {

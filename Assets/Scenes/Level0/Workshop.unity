@@ -752,7 +752,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310609940}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1ae0340be8d02340a56181350816583, type: 3}
   m_Name: 
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310609940}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f990ef5e385d440409732efdec7779e8, type: 3}
   m_Name: 
@@ -782,6 +782,10 @@ MonoBehaviour:
   lidarPistol: {fileID: 266207320}
   dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
   shotDelay: 0
+  enableDistanceColoring: 0
+  startColor: {r: 0.2637477, g: 1, b: 0, a: 1}
+  endColor: {r: 0.85518754, g: 1, b: 0, a: 1}
+  blendFactor: 1
   dotMaterial: {fileID: 2100000, guid: b43e5571a9fe23946bf3070cdfceb1b0, type: 2}
   fadeDuration: 3
   fadeSpeed: 1.5

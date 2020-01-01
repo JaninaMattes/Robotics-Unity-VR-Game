@@ -20,14 +20,19 @@ public class LiDar2 : MonoBehaviour
     [Tooltip("Delay/Break in seconds after previous shot")]
     [Range(0.0f, 20.0f)]
     public float shotDelay = 0.0f;
-    //public Color colorStart;
-    //public Color colorEnd;
     private int rows = 400;
     private int columns = 400;
     private List<GameObject> dots = new List<GameObject>();
     private GameObject gridParent;
     private bool allowShoot = true;
 
+    [Header("Lidar Color Settings (Over Distance)")]
+    public bool enableDistanceColoring = false;
+    public Color startColor;
+    public Color endColor;
+    [Range(0.1f, 3.0f)]
+    public float blendFactor = 1.0f;
+        
     [Header("Lidar Fade Settings")]
     public Material dotMaterial;
     [Range(0.1f, 10.0f)]
@@ -50,12 +55,17 @@ public class LiDar2 : MonoBehaviour
     public float metallicLimit = 0.0f;
     [Range(0.0f, 1.0f)]
     public float transparencyLimit = 0.0f;
-
+ 
         /// <summary>
         /// Create mesh of dots for the LiDar shader.
         /// </summary>
         void Start()
         {
+            if (dotMaterial != null)
+            {
+                dotMaterial.SetColor("_TintColor", startColor);
+            }
+
             for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -132,6 +142,8 @@ public class LiDar2 : MonoBehaviour
         layerMask = ~layerMask;
         RaycastHit hit;
         Renderer rend;
+        Color dotColor;
+        //MeshRenderer mesh;
             for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -140,21 +152,16 @@ public class LiDar2 : MonoBehaviour
                 dot.transform.SetParent(gridParent.transform);
                 Vector3 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
-              
+ 
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
                 {
                     rend = hit.transform.GetComponent<Renderer>();
+                    dotColor = dotMaterial.GetColor("_TintColor");
                     Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
-                            // For debugging purpose to show rays Debug.DrawRay
-                            // Debug.DrawRay(transform.position, hitLocation, Color.yellow);
                     dot.transform.position = transform.position + hitLocation;
                     //CheckMetallicValue(dot, hit, rend); Performance and Combination issues!
-                    CheckTransparencyValue(dot, hit, rend);
-                        //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
-                        //var lerp = Normalize(hit);
-                        // mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
-                        // Debug.Log("Color "+ mesh.material.color + "Lerp Math " + lerp);
+                    CheckTransparencyValue(dot, dotColor, hit, rend);
                     }
                     else
                     {
@@ -215,8 +222,15 @@ public class LiDar2 : MonoBehaviour
 
         //Check if hit object by raycast has a material, a collider and renderer. If true, color transparency value and AlbedoMap(mainTexture) transparency value at pixel get checked if set under the set transparencyLimit.
         //If so, the lidarParticle/dot at this ray hit get set active = false. Else it get set active = true (visible)
-        void CheckTransparencyValue(GameObject lidarParticle, RaycastHit hitInfo, Renderer hitRenderer)
+        void CheckTransparencyValue(GameObject lidarParticle, Color lidarPartColor, RaycastHit hitInfo, Renderer hitRenderer)
         {
+            if (enableDistanceColoring)
+            {
+                var lerp = Normalize(hitInfo);
+                lidarPartColor = Color.Lerp(dotMaterial.GetColor("_TintColor"), endColor, lerp);
+                lidarParticle.GetComponent<Renderer>().material.SetColor("_TintColor", lidarPartColor);
+            }
+
             if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
                 return;
 
@@ -252,7 +266,7 @@ public class LiDar2 : MonoBehaviour
         public float Normalize(RaycastHit hit)
         {
             //var lerp = Mathf.PingPong(hit.distance, 1);
-            var lerp = 1f - (1f / (1f + hit.distance)); 
+            var lerp = 1f - ((1f / (1f + hit.distance)) * blendFactor); 
             return lerp;
         }
   }

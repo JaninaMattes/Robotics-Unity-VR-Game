@@ -723,6 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310609941}
   - component: {fileID: 310609942}
+  - component: {fileID: 310609943}
   m_Layer: 8
   m_Name: LidarSpawn
   m_TagString: Untagged
@@ -766,6 +767,28 @@ MonoBehaviour:
   errorColor: {r: 1, g: 0, b: 0.25063038, a: 1}
   startColor: {r: 0.2265538, g: 1, b: 0, a: 1}
   endColor: {r: 0.49803922, g: 0.24704361, b: 1, a: 0}
+--- !u!114 &310609943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310609940}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f990ef5e385d440409732efdec7779e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lidarPistol: {fileID: 266207320}
+  dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
+  shotDelay: 0
+  dotMaterial: {fileID: 2100000, guid: b43e5571a9fe23946bf3070cdfceb1b0, type: 2}
+  fadeDuration: 3
+  fadeSpeed: 1.5
+  angle: 60
+  spacing: 1
+  metallicLimit: 0
+  transparencyLimit: 0.5
 --- !u!1001 &311413848
 PrefabInstance:
   m_ObjectHideFlags: 0

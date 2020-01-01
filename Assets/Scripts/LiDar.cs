@@ -124,6 +124,7 @@
         Renderer renderer;
         Material material;
         MeshRenderer mesh;
+        Color setColor;
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -142,22 +143,22 @@
                     renderer = hit.collider.GetComponent<Renderer>();
                     // Calls the Material of the hit Renderer
                     material = renderer.material;
+                    mesh = dot.GetComponent<MeshRenderer>();
 
-                    if (material.GetFloat("_Shininess") > 0)
-                    {
-                        mesh = dot.GetComponent<MeshRenderer>();
-                        mesh.material.SetColor("_TintColor", errorColor);
-                    }
+                        if (material.GetFloat("_Shininess") > 0)
+                        {
+                            setColor = errorColor;
+                        }
                         else
                         {
-                            mesh = dot.GetComponent<MeshRenderer>();
-                            mesh.material.SetColor("_TintColor", startColor);
+                            setColor = startColor;
                         }
+                        mesh.material.SetColor("_TintColor", setColor);
 
-                //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
-                //var lerp = Normalize(hit);
-                //mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
-                  dot.SetActive(true);    
+                        //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
+                        //var lerp = Normalize(hit);
+                        //mesh.material.color = Color.Lerp(colorStart, colorEnd, lerp);
+                        dot.SetActive(true);    
                 }
                     else
                     {

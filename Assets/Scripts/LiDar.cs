@@ -146,8 +146,13 @@
                     if (material.GetFloat("_Shininess") > 0)
                     {
                         mesh = dot.GetComponent<MeshRenderer>();
-                        mesh.material.color = errorColor;
+                        mesh.material.SetColor("_TintColor", errorColor);
                     }
+                        else
+                        {
+                            mesh = dot.GetComponent<MeshRenderer>();
+                            mesh.material.SetColor("_TintColor", startColor);
+                        }
 
                 //MeshRenderer mesh = dot.GetComponent<MeshRenderer>();
                 //var lerp = Normalize(hit);

@@ -19,7 +19,7 @@ samplerCUBE _Cube;
 
 fixed4 _Color;
 fixed4 _ReflectColor;
-half _Shininess;
+float _Shininess;
 
 struct Input {
 	float2 uv_MainTex;

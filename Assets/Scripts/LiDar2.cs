@@ -250,7 +250,7 @@ public class LiDar2 : MonoBehaviour
             {
                 lidarParticle.SetActive(false);
             }
-            else if ((hitRenderer.material.mainTexture != null) && (hitRenderer.material.mainTexture.isReadable))
+            /*else if ((hitRenderer.material.mainTexture != null) && (hitRenderer.material.mainTexture.isReadable))
             {
                 Texture2D tex = hitRenderer.material.mainTexture as Texture2D;
                 Vector2 pixelUV = hitInfo.textureCoord;
@@ -263,7 +263,7 @@ public class LiDar2 : MonoBehaviour
                 {
                     lidarParticle.SetActive(false);
                 }
-            }
+            }*/
             else {
                 lidarParticle.SetActive(true);
             }

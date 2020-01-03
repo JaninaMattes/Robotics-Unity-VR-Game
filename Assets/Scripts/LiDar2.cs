@@ -179,7 +179,19 @@ public class LiDar2 : MonoBehaviour
             {
                 flag += Time.deltaTime * fadeSpeed;
                 float alpha = Mathf.Lerp(alphaStart, alphaEnd, flag / fadeDuration);
-                dotMaterial.SetColor("_TintColor", new Color(dotMaterial.GetColor("_TintColor").r, dotMaterial.GetColor("_TintColor").g, dotMaterial.GetColor("_TintColor").b, alpha));
+                if (enableDistanceColoring)
+                {
+                    GameObject[] activeDots = GameObject.FindGameObjectsWithTag("GridDot");
+                    foreach (GameObject g in activeDots)
+                    {
+                        Material gMat = g.GetComponent<Renderer>().material;
+                        g.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(gMat.GetColor("_TintColor").r, gMat.GetColor("_TintColor").g, gMat.GetColor("_TintColor").b, alpha));
+                    }
+                }
+                else
+                {
+                    dotMaterial.SetColor("_TintColor", new Color(dotMaterial.GetColor("_TintColor").r, dotMaterial.GetColor("_TintColor").g, dotMaterial.GetColor("_TintColor").b, alpha));
+                }
                 //m.color = Color.Lerp(new Color(m.color.r, m.color.g, m.color.g, 1.0f), new Color(m.color.r, m.color.g, m.color.g, 0.0f), flag / fadeDuration); Used for standardshader, which accesses color variable.
                 yield return null;
             }

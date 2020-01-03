@@ -53,6 +53,7 @@ public class LiDar2 : MonoBehaviour
     private const int maxRows = 400;
 
     [Header("Lidar Limitation Settings")]
+    public bool enableLimitations = false;
     [Range(0.0f, 1f)]
     public float metallicLimit = 0.0f;
     [Range(0.0f, 1f)]
@@ -169,14 +170,17 @@ public class LiDar2 : MonoBehaviour
                 {
                     rend = hit.transform.GetComponent<Renderer>();
                     dotColor = dotMaterial.GetColor("_TintColor");
-                    
-                    //Lidar Limitation checks
-                    CheckTransparencyValue(dot, hit, rend);
-                        if (belowTransparencyLimit==false)
+
+                   //Lidar Limitation checks (if enabled in inspector)
+                    if (enableLimitations)
                         {
-                            CheckMetallicValue(dot, hit, rend, direction);
+                           CheckTransparencyValue(dot, hit, rend);
+                           if (belowTransparencyLimit == false)
+                           {
+                             CheckMetallicValue(dot, hit, rend, direction);
+                           }
                         }
-                   
+
                     // Coloring Grid over Distance
                    if (enableDistanceColoring)
                         {

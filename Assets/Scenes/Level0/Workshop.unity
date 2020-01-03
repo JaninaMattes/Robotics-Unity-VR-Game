@@ -783,15 +783,19 @@ MonoBehaviour:
   dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
   shotDelay: 0
   enableDistanceColoring: 0
-  startColor: {r: 0.2637477, g: 1, b: 0, a: 1}
-  endColor: {r: 0.85518754, g: 1, b: 0, a: 1}
+  startColor: {r: 0, g: 1, b: 1, a: 1}
+  endColor: {r: 0.9605979, g: 1, b: 0, a: 1}
   blendFactor: 1
+  enableFading: 1
   dotMaterial: {fileID: 2100000, guid: b43e5571a9fe23946bf3070cdfceb1b0, type: 2}
-  fadeDuration: 3
-  fadeSpeed: 1.5
+  fadeDuration: 4
+  fadeSpeed: 1.2
   angle: 60
   spacing: 1
-  metallicLimit: 0
+  metallicLimit: 0.5
+  glossinessLimit: 0.5
+  noiseOffsetMin: 0.907
+  noiseOffsetMax: 0.971
   transparencyLimit: 0.5
 --- !u!1001 &311413848
 PrefabInstance:
@@ -3735,7 +3739,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0986621a2b3959841b202c7554fe7419, type: 2}
+      objectReference: {fileID: 2100000, guid: 60b4d44b99973ea4e827c9c46613b856, type: 2}
     - target: {fileID: 7839584462639539456, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5939,6 +5943,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: magniTest
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 19a0505d408e9574194972680fd8759a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b02fbcb6e4b8d2d488f043cfdf20d6e6, type: 2}
     - target: {fileID: -4216859302048453862, guid: 19a0505d408e9574194972680fd8759a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5994,11 +6003,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: 19a0505d408e9574194972680fd8759a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b02fbcb6e4b8d2d488f043cfdf20d6e6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a0505d408e9574194972680fd8759a, type: 3}
 --- !u!1 &2146967023 stripped

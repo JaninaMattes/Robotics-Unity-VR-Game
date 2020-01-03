@@ -234,29 +234,28 @@ public class LiDar2 : MonoBehaviour
         void CheckMetallicValue(GameObject lidarParticle, RaycastHit hitInfo, Renderer hitRenderer, Vector3 direction)
         {
             Vector3 hitLocation = transform.TransformDirection(direction) * hitInfo.distance;
+            float randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
             //if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
-                //return;
+            //return;
 
-             if ((hitRenderer.material.GetFloat("_Metallic") > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
+            if ((hitRenderer.material.GetFloat("_Metallic") > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
             {
-                float randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
                 lidarParticle.transform.position = transform.position + (hitLocation * randomOffset);
-                //TODO: lidarParticle.transform.position an falscher Stelle anzeigen. Idee von Yannik
             }
-            /* else if ((hitRenderer.material.GetTexture("_MetallicGlossMap") != null) && (hitRenderer.material.GetTexture("_MetallicGlossMap").isReadable))
+             else if ((hitRenderer.material.GetTexture("_MetallicGlossMap") != null) && (hitRenderer.material.GetTexture("_MetallicGlossMap").isReadable))
              {
                  Texture2D tex = hitRenderer.material.GetTexture("_MetallicGlossMap") as Texture2D;
                  Vector2 pixelUV = hitInfo.textureCoord;
                  pixelUV.x *= tex.width;
                  pixelUV.y *= tex.height;
                  Color colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-                 float metallicAlpha = colorOfPixel.a;
-
-                 if (metallicAlpha > metallicLimit)
-                 {
-                     //TODO: lidarParticle.transform.position an falscher Stelle anzeigen. Idee von Yannik
-                 }
-             }*/
+                 //float smoothness = colorOfPixel.a;
+                 float metallic = colorOfPixel.r;
+                if((metallic > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
+                {
+                    lidarParticle.transform.position = transform.position + (hitLocation * randomOffset);
+                }
+             }
             else
             {
                 lidarParticle.transform.position = transform.position + hitLocation;

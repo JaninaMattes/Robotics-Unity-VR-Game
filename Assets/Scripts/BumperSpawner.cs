@@ -11,18 +11,11 @@ public class BumperSpawner : MonoBehaviour
     // All settings for Bumper
     public float distance;
     public int sceneIndex;
-    
+    public GameObject cameraRigTransform;
     // store new GameObject instance
     private GameObject activeBumper;
     private Scene activeScene;
     private Vector3 playerLocation;
-    private GameObject cameraRigTransform;
-
-    private void Awake()
-    {
-        // Retrieve player headset 
-        cameraRigTransform = GameObject.FindGameObjectWithTag("MainCamera");
-    }
     
     // Called once per frame
     void Update()
@@ -30,7 +23,8 @@ public class BumperSpawner : MonoBehaviour
         activeScene = SceneManager.GetActiveScene();
         sceneIndex = activeScene.buildIndex;
         // Retrieve Player Headset position
-        // playerLocation = OVRManager.tracker.GetPose().position;        
+        // playerLocation = OVRManager.tracker.GetPose().position;
+        //cameraRigTransform = GameObject.FindGameObjectWithTag("MainCamera");
         playerLocation = cameraRigTransform.transform.position; //returns found VRSimulatorCameraRig if it is found
 
         // Check Scene index returns an integer value

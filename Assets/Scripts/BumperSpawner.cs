@@ -43,7 +43,6 @@ public class BumperSpawner : MonoBehaviour
         {
             // Deactivate Controller in Workshop
             ActivateCollider(false);
-            DestroyGround();
         }
     }
   

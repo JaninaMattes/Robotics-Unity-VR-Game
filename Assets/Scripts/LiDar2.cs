@@ -53,7 +53,6 @@ public class LiDar2 : MonoBehaviour
     private const int maxRows = 400;
 
     [Header("Lidar Limitation Settings")]
-    public bool enableLimitations = false;
     [Range(0.0f, 1f)]
     public float metallicLimit = 0.0f;
     [Range(0.0f, 1f)]
@@ -172,15 +171,12 @@ public class LiDar2 : MonoBehaviour
                     dotColor = dotMaterial.GetColor("_TintColor");
 
                    //Lidar Limitation checks (if enabled in inspector)
-                    if (enableLimitations)
-                        {
                            CheckTransparencyValue(dot, hit, rend);
                            if (belowTransparencyLimit == false)
                            {
                              CheckMetallicValue(dot, hit, rend, direction);
                            }
-                        }
-
+                        
                     // Coloring Grid over Distance
                    if (enableDistanceColoring)
                         {
@@ -238,10 +234,10 @@ public class LiDar2 : MonoBehaviour
         void CheckMetallicValue(GameObject lidarParticle, RaycastHit hitInfo, Renderer hitRenderer, Vector3 direction)
         {
             Vector3 hitLocation = transform.TransformDirection(direction) * hitInfo.distance;
-            if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
-                return;
+            //if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
+                //return;
 
-            else if ((hitRenderer.material.GetFloat("_Metallic") > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
+             if ((hitRenderer.material.GetFloat("_Metallic") > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
             {
                 float randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
                 lidarParticle.transform.position = transform.position + (hitLocation * randomOffset);
@@ -272,10 +268,10 @@ public class LiDar2 : MonoBehaviour
         //If so, the lidarParticle/dot at this ray hit get set active = false. Else it get set active = true (visible)
         void CheckTransparencyValue(GameObject lidarParticle, RaycastHit hitInfo, Renderer hitRenderer)
         {
-            if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
-                return;
+            //if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
+               // return;
 
-            else if ((hitRenderer.material.GetColor("_Color").a < transparencyLimit) || (hitRenderer.material.color.a < transparencyLimit))
+             if ((hitRenderer.material.GetColor("_Color").a < transparencyLimit) || (hitRenderer.material.color.a < transparencyLimit))
             {
                 lidarParticle.SetActive(false);
                 belowTransparencyLimit = true;

@@ -7,14 +7,11 @@ using VRTK;
 public class BumperSpawner : MonoBehaviour
 {
     // All gameobjects that can be used
-    public GameObject bumper;
+    public GameObject circularBumper;
     public GameObject groundPrefab;
+
     // All settings for Bumper
     public float distance;
-    public float fadeDuration;
-    public float fadeStartValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself. The rimpower/color intensity is brightest at 0.5f
-    public float fadeEndValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself.
-    public float fadeSpeed;
     public int sceneIndex;
     
     // store new GameObject instance
@@ -31,10 +28,9 @@ public class BumperSpawner : MonoBehaviour
         sceneIndex = activeScene.buildIndex;
         Debug.Log($"Active Scene Index {activeScene.buildIndex}");
         // Retrieve Player Headset position
-        //playerLocation = OVRManager.tracker.GetPose().position;
+        // playerLocation = OVRManager.tracker.GetPose().position;
         cameraRigTransform = GameObject.FindGameObjectWithTag("MainCamera");
         playerLocation = cameraRigTransform.transform.position; //returns found VRSimulatorCameraRig if it is found
-        Debug.Log($"Player position {playerLocation}");
 
         // Check Scene index returns an integer value
         if (activeScene.buildIndex != 0)
@@ -65,9 +61,8 @@ public class BumperSpawner : MonoBehaviour
         {
             if (activeBumper == null)
             {
-                activeBumper = Instantiate(bumper, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + 
+                activeBumper = Instantiate(circularBumper, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + 
                                Camera.main.transform.forward * distance, Quaternion.identity);
-                Debug.Log("New bumper instance " + activeBumper);
             }
         }
     }
@@ -78,45 +73,12 @@ public class BumperSpawner : MonoBehaviour
     /// <param name="collisionInfo"></param>
     void OnCollisionExit(Collision collisionInfo)
     {
-        // Use reflection via Invoke 
-        Invoke("DestroyBumpers", 1.2f);
-    }
-
-    /// <summary>
-    /// Coroutines allow to use procedural animations or sequences of events over time
-    /// Otherwise functions need happen only within a single frame.
-    /// The function FadeBumper allows to fade the bumper object out over certain time.
-    /// </summary>
-    /// <param name="duration"></param>
-    /// <returns></returns>
-
-    IEnumerator FadeBumper()
-    {
-        // Check if bumper instance is empty
-        if(activeBumper != null)
+        if (activeBumper != null)
         {
-            float flag = 0; 
-            while(flag < fadeDuration)
-            {
-                Debug.Log("Coroutine called ");
-                flag = Time.deltaTime * fadeSpeed;
-                float rimPowerShader = Mathf.Lerp(fadeStartValue, fadeEndValue, flag / fadeDuration); //Lerping the value of the rimpower between a given start- and endvalue
-                activeBumper.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPowerShader); // Set the RimPower of the Bumpers attached shader
-                yield return null; // needs to be placed where execution will be paused and resumed on the following frame
-            }
-            if(flag == fadeDuration)
-            {
-                // After while loop has faded bumper out call Destroy(Bumper)
-                Destroy(activeBumper);
-                Debug.Log("Bumper is destroied");
-            }            
+            Destroy(activeBumper);
         }
-        else
-        {
-            Debug.Log("No bumper instance");
-        }        
     }
-    
+        
     /// <summary>
     /// Activate the Collider of the associated Controller.
     /// </summary>
@@ -124,8 +86,7 @@ public class BumperSpawner : MonoBehaviour
     void ActivateCollider(bool enable)
     {
         // Set all Colliders inactive on the gameobjects
-        GetComponent<BoxCollider>().enabled = enable;
-        Debug.Log($"Set Collider {enable}");        
+        GetComponent<BoxCollider>().enabled = enable;    
     }
 
     /// <summary>
@@ -137,7 +98,6 @@ public class BumperSpawner : MonoBehaviour
         if (groundOrientation == null)
         {
             groundOrientation = Instantiate(groundPrefab, playerLocation, Quaternion.identity);
-            Debug.Log("Ground Orientation instance created.");
         }
         else
         {
@@ -146,22 +106,12 @@ public class BumperSpawner : MonoBehaviour
            // groundOrientation.transform.position.y = 0.1f;
         }
     }
-
-    /// <summary>
-    /// Fade Bumper out by calling Coroutine 
-    /// and destroying the instance.
-    /// </summary>
-    void DestroyBumpers()
-    {
-        StartCoroutine("FadeBumper"); // Can be called by StartCoroutine from everywhere to start the IENumerator 
-    }
-
+    
     /// <summary>
     /// Delete instance of ground orientation prefab. 
     /// </summary>
     void DestroyGround()
     {
         Destroy(groundOrientation);
-        Debug.Log("Ground orientation prefab destroied");
     }
 }

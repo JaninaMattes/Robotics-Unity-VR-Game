@@ -152,8 +152,8 @@ public class LiDar2 : MonoBehaviour
         layerMask = ~layerMask;
 
         RaycastHit hit;
-        Renderer rend;
-        Color dotColor;
+        //Renderer rend;
+        //Color dotColor;
 
             for (int i = 0; i < rows; i++)
         {
@@ -163,10 +163,14 @@ public class LiDar2 : MonoBehaviour
                 dot.transform.SetParent(gridParent.transform);
                 Vector3 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
- 
+                    
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
                 {
+                        Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
+                        dot.transform.position = transform.position + hitLocation;
+                        dot.SetActive(true);
+                        /*
                     rend = hit.transform.GetComponent<Renderer>();
                     dotColor = dotMaterial.GetColor("_TintColor");
 
@@ -183,7 +187,7 @@ public class LiDar2 : MonoBehaviour
                             var lerp = Normalize(hit);
                             dotColor = Color.Lerp(dotMaterial.GetColor("_TintColor"), endColor, lerp);
                             dot.GetComponent<Renderer>().material.SetColor("_TintColor", dotColor);
-                        }
+                        }*/
                     }
                     else
                     {

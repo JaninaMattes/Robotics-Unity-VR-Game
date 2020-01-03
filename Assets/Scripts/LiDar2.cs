@@ -249,9 +249,9 @@ public class LiDar2 : MonoBehaviour
                  pixelUV.x *= tex.width;
                  pixelUV.y *= tex.height;
                  Color colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-                 //float smoothness = colorOfPixel.a;
+                 float smoothness = colorOfPixel.a;
                  float metallic = colorOfPixel.r;
-                if((metallic > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
+                if((metallic > metallicLimit) && (smoothness > glossinessLimit))
                 {
                     lidarParticle.transform.position = transform.position + (hitLocation * randomOffset);
                 }

@@ -58,9 +58,9 @@ public class LiDar2 : MonoBehaviour
     public float metallicLimit = 0.0f;
     [Range(0.0f, 1f)]
     public float glossinessLimit = 0.0f;
-    [Range(0.6f, 1f)]
+    [Range(0.6f, 1.5f)]
     public float noiseOffsetMin = 0.0f;
-    [Range(0.6f, 1f)]
+    [Range(0.6f, 1.5f)]
     public float noiseOffsetMax = 0.0f;
     [Range(0.0f, 1.0f)]
     public float transparencyLimit = 0.0f;
@@ -150,7 +150,7 @@ public class LiDar2 : MonoBehaviour
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
         RaycastHit hit;
-        Renderer rend;
+        Material rendMat;
         Color dotColor = dotMaterial.GetColor("_TintColor");
         GameObject dot;
         Vector3 direction;
@@ -177,32 +177,32 @@ public class LiDar2 : MonoBehaviour
                 {
                     randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
                     hitLocation = transform.TransformDirection(direction) * hit.distance;
-                    rend = hit.transform.GetComponent<Renderer>();
+                    rendMat = hit.transform.GetComponent<Renderer>().material;
 
-                        if (rend.material.color.a < transparencyLimit)
+                        if ((rendMat.HasProperty("_Color")) && (rendMat.color.a < transparencyLimit))
                         {
                             dotActive = false;     
                         }
-                        /*else if ((rend.material.GetFloat("_Metallic") > metallicLimit) && (rend.material.GetFloat("_Glossiness") > glossinessLimit))
+                        else if ((rendMat.HasProperty("_Metallic") && rendMat.HasProperty("_Glossiness")) && (rendMat.GetFloat("_Metallic") > metallicLimit) && (rendMat.GetFloat("_Glossiness") > glossinessLimit))
                         {
                             dot.transform.position = transform.position + (hitLocation * randomOffset);
                             dotActive = true;
-                        }*/
-                       /* else if ((rend.material.GetTexture("_MetallicGlossMap") != null) && (rend.material.GetTexture("_MetallicGlossMap").isReadable))
-                        {
-                            tex = rend.material.GetTexture("_MetallicGlossMap") as Texture2D;
-                            pixelUV = hit.textureCoord;
-                            pixelUV.x *= tex.width;
-                            pixelUV.y *= tex.height;
-                            colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-                            smoothness = colorOfPixel.a;
-                            metallic = colorOfPixel.r;
-                            if ((metallic > metallicLimit) && (smoothness > glossinessLimit))
-                            {
-                                dot.transform.position = transform.position + (hitLocation * randomOffset);
-                            }
-                            dotActive = true;
-                        }*/
+                        }
+                         else if ((rendMat.HasProperty("_MetallicGlossMap")) && (rendMat.GetTexture("_MetallicGlossMap") != null) && (rendMat.GetTexture("_MetallicGlossMap").isReadable))
+                         {
+                             tex = rendMat.GetTexture("_MetallicGlossMap") as Texture2D;
+                             pixelUV = hit.textureCoord;
+                             pixelUV.x *= tex.width;
+                             pixelUV.y *= tex.height;
+                             colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
+                             smoothness = colorOfPixel.a;
+                             metallic = colorOfPixel.r;
+                             if ((metallic > metallicLimit) && (smoothness > glossinessLimit))
+                             {
+                                 dot.transform.position = transform.position + (hitLocation * randomOffset);
+                             }
+                             dotActive = true;
+                         }
                         else
                         {
                             dot.transform.position = transform.position + hitLocation;

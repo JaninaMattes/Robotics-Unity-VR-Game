@@ -774,20 +774,20 @@ MonoBehaviour:
   lidarPistol: {fileID: 266207320}
   dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
   shotDelay: 0
-  enableDistanceColoring: 0
-  startColor: {r: 0, g: 1, b: 0.95960426, a: 1}
-  endColor: {r: 0.93651974, g: 1, b: 0, a: 1}
+  enableDistanceColoring: 1
+  startColor: {r: 0, g: 1, b: 0.9578202, a: 1}
+  endColor: {r: 0.9006772, g: 1, b: 0, a: 1}
   blendFactor: 1
   enableFading: 1
   dotMaterial: {fileID: 2100000, guid: b43e5571a9fe23946bf3070cdfceb1b0, type: 2}
-  fadeDuration: 5
-  fadeSpeed: 1.3
-  angle: 30
-  spacing: 1.4
+  fadeDuration: 3
+  fadeSpeed: 1.5
+  angle: 80
+  spacing: 0.5
   metallicLimit: 0.5
   glossinessLimit: 0.5
-  noiseOffsetMin: 0.913
-  noiseOffsetMax: 0.99
+  noiseOffsetMin: 0.892
+  noiseOffsetMax: 0.993
   transparencyLimit: 0.5
 --- !u!1001 &311413848
 PrefabInstance:
@@ -3984,7 +3984,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0986621a2b3959841b202c7554fe7419, type: 2}
+      objectReference: {fileID: 2100000, guid: 60b4d44b99973ea4e827c9c46613b856, type: 2}
     - target: {fileID: 7839584462639539456, guid: bbaf49195b326404c836cb02be140514,
         type: 3}
       propertyPath: m_StaticEditorFlags

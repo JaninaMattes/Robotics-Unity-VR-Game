@@ -37,6 +37,7 @@ public class LiDar2 : MonoBehaviour
     [Header("Lidar Fade Settings")]
     public bool enableFading = false;
     public Material dotMaterial;
+    private Color dotColor;
     [Range(0.1f, 10.0f)]
     public float fadeDuration;
     [Range(0.1f, 10.0f)]
@@ -64,7 +65,6 @@ public class LiDar2 : MonoBehaviour
     public float noiseOffsetMax = 0.0f;
     [Range(0.0f, 1.0f)]
     public float transparencyLimit = 0.0f;
-    private bool belowTransparencyLimit = false;
     
         /// <summary>
         /// Create mesh of dots for the LiDar shader.
@@ -86,7 +86,8 @@ public class LiDar2 : MonoBehaviour
             }
         }
             gridParent = GameObject.FindGameObjectWithTag("Grid");
-     }
+            dotColor = dotMaterial.GetColor("_TintColor");
+        }
 
         void SetGrid()
         {
@@ -151,7 +152,6 @@ public class LiDar2 : MonoBehaviour
         layerMask = ~layerMask;
         RaycastHit hit;
         Material rendMat;
-        Color dotColor = dotMaterial.GetColor("_TintColor");
         GameObject dot;
         Vector3 direction;
         Vector3 hitLocation;
@@ -163,7 +163,7 @@ public class LiDar2 : MonoBehaviour
         float metallic;
         bool dotActive = false;
 
-            for (int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {

@@ -10,14 +10,7 @@
         // Select the correct level index for a scene
         public int LevelIndex;
         public VRTK_InteractableObject sceneChange;
-        public VRTK_InteractableObject laserGun;
-        public GameObject unLoad;
-        private float timeElapsed;
         ManageScenes sceneManagement = new ManageScenes();
-
-        // Allow a delay in loading
-        [SerializeField]
-        private float delayBeforeLoading = 5.0f;
 
         void Start()
         {
@@ -55,6 +48,7 @@
         {
             sceneManagement.LoadLevelAdditive(LevelIndex);
         }
+
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
         {
 

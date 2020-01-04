@@ -11,9 +11,11 @@
         public int LevelIndex;
         public VRTK_InteractableObject sceneChange;
         private ManageScenes sceneManagement = new ManageScenes();
+        private GameObject stagingObjects;
 
         void Start()
         {
+            stagingObjects = GameObject.FindGameObjectWithTag("stage");
             sceneChange = this.GetComponent<VRTK_InteractableObject>();       
         }
 
@@ -45,6 +47,8 @@
 
         protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
+            LightmapSettings.lightmaps = null;
+            DestroyImmediate(stagingObjects);
             sceneManagement.LoadLevelAdditive(LevelIndex);
         }
 

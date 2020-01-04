@@ -9,10 +9,10 @@ public class ManageScenes : MonoBehaviour
     private Scene[] scenes;
 
     void Awake()
-    {
+    {     
         objectstoBeMoved.Add(gameObject);
     }
-  
+
     public void MoveObjectToScene(List<GameObject> g, Scene s)
     {
         for(int i = 0; i < g.Count; i++)
@@ -40,12 +40,11 @@ public class ManageScenes : MonoBehaviour
             scenes[i] = SceneManager.GetSceneAt(i);
             if(i < (scenes.Length - 1))
             {
-                if (scenes[i].isLoaded)
-                {
+              if (scenes[i].isLoaded)
+               {
                     UnLoadLevel(scenes[i]);
-                }
+               }
             }
-         
         }
 
         if (scenes[scenes.Length - 1].isLoaded)

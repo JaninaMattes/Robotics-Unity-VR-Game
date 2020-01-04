@@ -11,12 +11,16 @@ public class BumperSpawner : MonoBehaviour
     // All settings for Bumper
     public int sceneIndex;
     public GameObject cameraRigTransform;
+    public float distance = 0.2f;
     public float xRotation;
     public float yRotation;
+    public float xRotationT;
+    public float yRotationT;
     // store new GameObject instance
     private GameObject activeBumper;
     private Scene activeScene;
     private Vector3 playerLocation;
+    private Transform targetPosition;
 
     // Called once per frame
     void Update()
@@ -27,7 +31,6 @@ public class BumperSpawner : MonoBehaviour
         // playerLocation = OVRManager.tracker.GetPose().position;
         //cameraRigTransform = GameObject.FindGameObjectWithTag("MainCamera");
         playerLocation = cameraRigTransform.transform.position; //returns found VRSimulatorCameraRig if it is found
-
         // Check Scene index returns an integer value
         if (activeScene.buildIndex != 0)
         {
@@ -55,10 +58,22 @@ public class BumperSpawner : MonoBehaviour
         {
             if (activeBumper == null)
             {
+                targetPosition = cameraRigTransform.transform;
                 activeBumper = Instantiate(circularBumper, new Vector3(contact.x, contact.y, contact.z), Quaternion.identity);
-                activeBumper.transform.Rotate(90, 90, 1);
-                xRotation = activeBumper.transform.rotation.x;
-                yRotation = activeBumper.transform.rotation.y;
+                activeBumper.transform.Rotate(xRotation, yRotation, 0);
+                Vector3 lookPos = new Vector3(activeBumper.transform.position.x, 
+                                        targetPosition.position.y,
+                                        activeBumper.transform.position.z);
+                activeBumper.transform.LookAt(lookPos);                
+                // Check if the position of the player and bumper are approximately equal.
+                if (Vector3.Distance(activeBumper.transform.position, targetPosition.position) < 0.001f)
+                {                    
+                    // Swap the position
+                    targetPosition.position *= -1.0f;
+                }
+                activeBumper.transform.position = Vector3.MoveTowards(activeBumper.transform.position, targetPosition.position, distance);
+                xRotationT = activeBumper.transform.rotation.x;
+                yRotationT = activeBumper.transform.rotation.y;
             }
         }
     }

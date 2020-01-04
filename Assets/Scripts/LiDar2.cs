@@ -65,7 +65,21 @@ public class LiDar2 : MonoBehaviour
     public float noiseOffsetMax = 0.0f;
     [Range(0.0f, 1.0f)]
     public float transparencyLimit = 0.0f;
-    
+
+        //container for method ActivateLidar 
+        private RaycastHit hit;
+        private Material rendMat;
+        private GameObject dot2;
+        private Vector3 direction;
+        private Vector3 hitLocation;
+        private float randomOffset;
+        private Texture2D tex;
+        private Vector2 pixelUV;
+        private Color colorOfPixel;
+        private float smoothness;
+        private float metallic;
+        private bool dotActive = false;
+
         /// <summary>
         /// Create mesh of dots for the LiDar shader.
         /// </summary>
@@ -150,25 +164,13 @@ public class LiDar2 : MonoBehaviour
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
-        RaycastHit hit;
-        Material rendMat;
-        GameObject dot;
-        Vector3 direction;
-        Vector3 hitLocation;
-        float randomOffset;
-        Texture2D tex;
-        Vector2 pixelUV;
-        Color colorOfPixel;
-        float smoothness;
-        float metallic;
-        bool dotActive = false;
 
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
-                dot = dots[i * rows + j];
-                dot.transform.SetParent(gridParent.transform);
+                dot2 = dots[i * rows + j];
+                dot2.transform.SetParent(gridParent.transform);
                 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
                     
@@ -185,7 +187,7 @@ public class LiDar2 : MonoBehaviour
                         }
                         else if ((rendMat.HasProperty("_Metallic") && rendMat.HasProperty("_Glossiness")) && (rendMat.GetFloat("_Metallic") > metallicLimit) && (rendMat.GetFloat("_Glossiness") > glossinessLimit))
                         {
-                            dot.transform.position = transform.position + (hitLocation * randomOffset);
+                            dot2.transform.position = transform.position + (hitLocation * randomOffset);
                             dotActive = true;
                         }
                          else if ((rendMat.HasProperty("_MetallicGlossMap")) && (rendMat.GetTexture("_MetallicGlossMap") != null) && (rendMat.GetTexture("_MetallicGlossMap").isReadable))
@@ -199,30 +201,30 @@ public class LiDar2 : MonoBehaviour
                              metallic = colorOfPixel.r;
                              if ((metallic > metallicLimit) && (smoothness > glossinessLimit))
                              {
-                                 dot.transform.position = transform.position + (hitLocation * randomOffset);
+                                 dot2.transform.position = transform.position + (hitLocation * randomOffset);
                              }
                              dotActive = true;
                          }
                         else
                         {
-                            dot.transform.position = transform.position + hitLocation;
+                            dot2.transform.position = transform.position + hitLocation;
                             dotActive = true;
                         }
                         if (dotActive)
                         {
-                            dot.SetActive(true);
+                            dot2.SetActive(true);
                         }
                     // Coloring Grid over Distance
                    if (enableDistanceColoring)
                         {
                             var lerp = Normalize(hit);
                             dotColor = Color.Lerp(dotMaterial.GetColor("_TintColor"), endColor, lerp);
-                            dot.GetComponent<Renderer>().material.SetColor("_TintColor", dotColor);
+                            dot2.GetComponent<Renderer>().material.SetColor("_TintColor", dotColor);
                         }
                     }
                     else
                     {
-                    dot.SetActive(false);
+                    dot2.SetActive(false);
                     }
             }
         }

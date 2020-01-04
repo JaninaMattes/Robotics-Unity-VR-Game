@@ -69,9 +69,6 @@
 			o.Albedo = ringStrength * c.rgb * (1 - _Points[i].w);
 			o.Emission += o.Albedo;
 		}
-
-		// o.Albedo = c.rgb;
-		// o.Emission = emissive * _PointColor;
 		o.Metallic = 0;
 		o.Smoothness = 0;
 		o.Alpha = c.a;

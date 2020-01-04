@@ -9,14 +9,15 @@ public class BumperSpawner : MonoBehaviour
     // All gameobjects that can be used
     public GameObject circularBumper;
     // All settings for Bumper
-    public float distance;
     public int sceneIndex;
     public GameObject cameraRigTransform;
+    public float xRotation;
+    public float yRotation;
     // store new GameObject instance
     private GameObject activeBumper;
     private Scene activeScene;
     private Vector3 playerLocation;
-    
+
     // Called once per frame
     void Update()
     {
@@ -47,16 +48,17 @@ public class BumperSpawner : MonoBehaviour
     /// <param name="col"></param>
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Collission detected");
+        Debug.Log("# Collission detected");
         Vector3 contact = col.contacts[0].point;
         // Check the scene index
-        if (activeScene.buildIndex != 0)
+        if (activeScene.buildIndex > 0 && activeScene.buildIndex < 3)
         {
             if (activeBumper == null)
             {
-                activeBumper = Instantiate(circularBumper, new Vector3(contact.x, cameraRigTransform.transform.position.y - 0.7f, contact.z) +
-                               cameraRigTransform.transform.forward * distance, Quaternion.identity);
-                activeBumper.transform.LookAt(activeBumper.transform.position + cameraRigTransform.transform.rotation * Vector3.left);
+                activeBumper = Instantiate(circularBumper, new Vector3(contact.x, contact.y, contact.z), Quaternion.identity);
+                activeBumper.transform.Rotate(90, 90, 1);
+                xRotation = activeBumper.transform.rotation.x;
+                yRotation = activeBumper.transform.rotation.y;
             }
         }
     }

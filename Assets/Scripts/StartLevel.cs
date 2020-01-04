@@ -10,7 +10,7 @@
         // Select the correct level index for a scene
         public int LevelIndex;
         public VRTK_InteractableObject sceneChange;
-        ManageScenes sceneManagement = new ManageScenes();
+        private ManageScenes sceneManagement = new ManageScenes();
 
         void Start()
         {
@@ -29,7 +29,6 @@
                 sceneChange.InteractableObjectTouched += InteractableObjectTouched;
                 sceneChange.InteractableObjectUntouched += InteractableObjectUntouched;
             }
-
         }
 
         protected virtual void OnDisable()

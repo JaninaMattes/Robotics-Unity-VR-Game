@@ -25,6 +25,7 @@ public class LiDar2 : MonoBehaviour
     private List<GameObject> dots = new List<GameObject>();
     private GameObject gridParent;
     private bool allowShoot = true;
+    private float rayLength = 50.0f;
 
     [Header("Lidar Color Settings (Over Distance)")]
     public bool enableDistanceColoring = false;
@@ -64,8 +65,7 @@ public class LiDar2 : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float transparencyLimit = 0.0f;
     private bool belowTransparencyLimit = false;
-
-
+    
         /// <summary>
         /// Create mesh of dots for the LiDar shader.
         /// </summary>
@@ -119,7 +119,6 @@ public class LiDar2 : MonoBehaviour
         }
     }
 
-
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
     {
             SetGrid();
@@ -150,44 +149,76 @@ public class LiDar2 : MonoBehaviour
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
-
         RaycastHit hit;
-        //Renderer rend;
-        //Color dotColor;
+        Renderer rend;
+        Color dotColor = dotMaterial.GetColor("_TintColor");
+        GameObject dot;
+        Vector3 direction;
+        Vector3 hitLocation;
+        float randomOffset;
+        Texture2D tex;
+        Vector2 pixelUV;
+        Color colorOfPixel;
+        float smoothness;
+        float metallic;
+        bool dotActive = false;
 
             for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
-                GameObject dot = dots[i * rows + j];
+                dot = dots[i * rows + j];
                 dot.transform.SetParent(gridParent.transform);
-                Vector3 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
+                direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
                     
                 // Does the ray intersect any objects excluding the player layer
-                if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, rayLength, layerMask))
                 {
-                        Vector3 hitLocation = transform.TransformDirection(direction) * hit.distance;
-                        dot.transform.position = transform.position + hitLocation;
-                        dot.SetActive(true);
-                        /*
+                    randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
+                    hitLocation = transform.TransformDirection(direction) * hit.distance;
                     rend = hit.transform.GetComponent<Renderer>();
-                    dotColor = dotMaterial.GetColor("_TintColor");
 
-                   //Lidar Limitation checks (if enabled in inspector)
-                           CheckTransparencyValue(dot, hit, rend);
-                           if (belowTransparencyLimit == false)
-                           {
-                             CheckMetallicValue(dot, hit, rend, direction);
-                           }
-                        
+                        if (rend.material.color.a < transparencyLimit)
+                        {
+                            dotActive = false;     
+                        }
+                        /*else if ((rend.material.GetFloat("_Metallic") > metallicLimit) && (rend.material.GetFloat("_Glossiness") > glossinessLimit))
+                        {
+                            dot.transform.position = transform.position + (hitLocation * randomOffset);
+                            dotActive = true;
+                        }*/
+                       /* else if ((rend.material.GetTexture("_MetallicGlossMap") != null) && (rend.material.GetTexture("_MetallicGlossMap").isReadable))
+                        {
+                            tex = rend.material.GetTexture("_MetallicGlossMap") as Texture2D;
+                            pixelUV = hit.textureCoord;
+                            pixelUV.x *= tex.width;
+                            pixelUV.y *= tex.height;
+                            colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
+                            smoothness = colorOfPixel.a;
+                            metallic = colorOfPixel.r;
+                            if ((metallic > metallicLimit) && (smoothness > glossinessLimit))
+                            {
+                                dot.transform.position = transform.position + (hitLocation * randomOffset);
+                            }
+                            dotActive = true;
+                        }*/
+                        else
+                        {
+                            dot.transform.position = transform.position + hitLocation;
+                            dotActive = true;
+                        }
+                        if (dotActive)
+                        {
+                            dot.SetActive(true);
+                        }
                     // Coloring Grid over Distance
                    if (enableDistanceColoring)
                         {
                             var lerp = Normalize(hit);
                             dotColor = Color.Lerp(dotMaterial.GetColor("_TintColor"), endColor, lerp);
                             dot.GetComponent<Renderer>().material.SetColor("_TintColor", dotColor);
-                        }*/
+                        }
                     }
                     else
                     {
@@ -231,72 +262,6 @@ public class LiDar2 : MonoBehaviour
         void EnableShooting()
         {
             allowShoot = true;
-        }
-
-        //Check if hit object by raycast has a material, a collider and renderer. If true, Metallic Value and MetallicGlossMap value at pixel get checked if exceeding the set metalliclimit.
-        //lidarParticle/dot at this ray hit get set active afterwards.
-        void CheckMetallicValue(GameObject lidarParticle, RaycastHit hitInfo, Renderer hitRenderer, Vector3 direction)
-        {
-            Vector3 hitLocation = transform.TransformDirection(direction) * hitInfo.distance;
-            float randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
-            //if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
-            //return;
-
-            if ((hitRenderer.material.GetFloat("_Metallic") > metallicLimit) && (hitRenderer.material.GetFloat("_Glossiness") > glossinessLimit))
-            {
-                lidarParticle.transform.position = transform.position + (hitLocation * randomOffset);
-            }
-             else if ((hitRenderer.material.GetTexture("_MetallicGlossMap") != null) && (hitRenderer.material.GetTexture("_MetallicGlossMap").isReadable))
-             {
-                 Texture2D tex = hitRenderer.material.GetTexture("_MetallicGlossMap") as Texture2D;
-                 Vector2 pixelUV = hitInfo.textureCoord;
-                 pixelUV.x *= tex.width;
-                 pixelUV.y *= tex.height;
-                 Color colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-                 float smoothness = colorOfPixel.a;
-                 float metallic = colorOfPixel.r;
-                if((metallic > metallicLimit) && (smoothness > glossinessLimit))
-                {
-                    lidarParticle.transform.position = transform.position + (hitLocation * randomOffset);
-                }
-             }
-            else
-            {
-                lidarParticle.transform.position = transform.position + hitLocation;
-            }
-                 lidarParticle.SetActive(true);
-        }
-
-        //Check if hit object by raycast has a material, a collider and renderer. If true, color transparency value and AlbedoMap(mainTexture) transparency value at pixel get checked if set under the set transparencyLimit.
-        //If so, the lidarParticle/dot at this ray hit get set active = false. Else it get set active = true (visible)
-        void CheckTransparencyValue(GameObject lidarParticle, RaycastHit hitInfo, Renderer hitRenderer)
-        {
-            //if (hitRenderer == null || hitRenderer.sharedMaterial == null || hitRenderer.GetComponent<Collider>() == null)
-               // return;
-
-             if ((hitRenderer.material.GetColor("_Color").a < transparencyLimit) || (hitRenderer.material.color.a < transparencyLimit))
-            {
-                lidarParticle.SetActive(false);
-                belowTransparencyLimit = true;
-            }
-            /*else if ((hitRenderer.material.mainTexture != null) && (hitRenderer.material.mainTexture.isReadable))
-            {
-                Texture2D tex = hitRenderer.material.mainTexture as Texture2D;
-                Vector2 pixelUV = hitInfo.textureCoord;
-                pixelUV.x *= tex.width;
-                pixelUV.y *= tex.height;
-                Color colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-                float transparency = colorOfPixel.a;
-
-                if (transparency < transparencyLimit)
-                {
-                    lidarParticle.SetActive(false);
-                }
-            }*/
-            else {
-                //lidarParticle.SetActive(true);
-                belowTransparencyLimit = false;
-            }
         }
 
         /// <summary>

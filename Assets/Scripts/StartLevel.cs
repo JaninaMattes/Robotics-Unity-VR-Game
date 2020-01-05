@@ -10,11 +10,13 @@
         // Select the correct level index for a scene
         public int LevelIndex;
         public VRTK_InteractableObject sceneChange;
-        private ManageScenes sceneManagement = new ManageScenes();
+        private ManageScenes sceneManagement;
         private GameObject stagingObjects;
+        public string sceneLoadingName;
 
         void Start()
         {
+            sceneManagement = GameObject.FindGameObjectWithTag("ScenMgr").GetComponent<ManageScenes>();
             stagingObjects = GameObject.FindGameObjectWithTag("stage");
             sceneChange = this.GetComponent<VRTK_InteractableObject>();       
         }
@@ -47,9 +49,11 @@
 
         protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
-            LightmapSettings.lightmaps = null;
+            //LightmapSettings.lightmaps = null;
             DestroyImmediate(stagingObjects);
-            sceneManagement.LoadLevelAdditive(LevelIndex);
+            sceneManagement.sceneLoadingName = sceneLoadingName;
+            sceneManagement.levelInd = LevelIndex;
+            sceneManagement.loadLevel= true;
         }
 
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)

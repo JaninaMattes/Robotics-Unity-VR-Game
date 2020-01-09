@@ -18,10 +18,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.04
+    value: 0.05
   threshold:
     overrideState: 1
-    value: 1
+    value: 1.2
   softKnee:
     overrideState: 0
     value: 0.5
@@ -30,10 +30,10 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 1
-    value: 8.98
+    value: 5.43
   anamorphicRatio:
     overrideState: 0
-    value: 0
+    value: 1
   color:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1

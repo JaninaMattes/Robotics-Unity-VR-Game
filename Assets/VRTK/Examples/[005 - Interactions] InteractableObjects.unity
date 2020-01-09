@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028364, g: 0.225714, b: 0.30692267, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -936,17 +936,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 677265007}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The gun can be grabbed with a secondary controller which will control
-        the direction the gun is pointing.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1036,6 +1025,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The gun can be grabbed with a secondary controller which will control
+        the direction the gun is pointing.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -2541,11 +2541,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.22
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: cloneNewOnUnsnap
@@ -2580,6 +2575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -2894,6 +2894,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111361421}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &112759381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112759382}
+  m_Layer: 0
+  m_Name: TrackerAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112759382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112759381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1326236392}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &114171464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,17 +3251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 348185304}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Artificial based controllables are pre-defined interactable objects that
-        simulate controls without using any physics
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3321,6 +3340,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Artificial based controllables are pre-defined interactable objects that
+        simulate controls without using any physics
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -3853,11 +3883,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 50988132}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Object that only reacts to a near touch and touch of the controller
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3947,6 +3972,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Object that only reacts to a near touch and touch of the controller
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -4767,52 +4797,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220648974}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &220711616
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1742116804236106, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 220711617}
-  - component: {fileID: 220711618}
-  m_Layer: 0
-  m_Name: controller_right
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &220711617
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4871833046324550, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220711616}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 1.221, z: 0.282}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072069591}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &220711618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114763421436745384, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220711616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &221669415
 GameObject:
   m_ObjectHideFlags: 0
@@ -4905,67 +4889,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221669415}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &223502111
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1393133905834602, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 223502114}
-  - component: {fileID: 223502113}
-  - component: {fileID: 223502112}
-  m_Layer: 0
-  m_Name: OVRCameraRig
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &223502112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114474757664791164, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223502111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &223502113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114111760783626224, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223502111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &223502114
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4271775972028544, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223502111}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 491330803}
-  m_Father: {fileID: 1500158667}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &227445186
 GameObject:
   m_ObjectHideFlags: 0
@@ -6176,22 +6099,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1882687243}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The Artificial Rotator can also be used to create wheels that can be
-        rotated passed a maximum of 359 degrees to create valve type controls.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6286,6 +6193,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The Artificial Rotator can also be used to create wheels that can be
+        rotated passed a maximum of 359 degrees to create valve type controls.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -7247,11 +7170,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: validObjectListPolicy
@@ -7286,6 +7204,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -7985,22 +7908,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1838780476}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The Artificial Rotator can directly replace the Physics Rotator to achieve
-        similar outcomes such as a chest.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8095,6 +8002,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The Artificial Rotator can directly replace the Physics Rotator to achieve
+        similar outcomes such as a chest.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -8267,17 +8190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1042313268}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The lighter has a different left hand and right hand snap handle so the
-        item is grabbed differently base on hand.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8367,6 +8279,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The lighter has a different left hand and right hand snap handle so the
+        item is grabbed differently base on hand.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -9249,17 +9172,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1690019166}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: This object will scrub through an animation timeline when the object
-        is grabbed and the controller is moved away from the grab origin point.
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9354,6 +9266,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: This object will scrub through an animation timeline when the object
+        is grabbed and the controller is moved away from the grab origin point.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -10409,16 +10332,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1548670591}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: A collection of interactable objects that use custom joints.
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10513,6 +10426,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: A collection of interactable objects that use custom joints.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -10909,22 +10832,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1849708296}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: An Artificial Rotator can be used to simulate a lever by changing the
-        rotation of the object without the need for a physics joint.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11019,6 +10926,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: An Artificial Rotator can be used to simulate a lever by changing the
+        rotation of the object without the need for a physics joint.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -11170,6 +11093,114 @@ MonoBehaviour:
   hideDirectionIndicatorOnHover: 1
   snapToRotation: 0
   teleporter: {fileID: 0}
+--- !u!1 &416489722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416489723}
+  - component: {fileID: 416489725}
+  - component: {fileID: 416489724}
+  m_Layer: 0
+  m_Name: LocalAvatar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416489723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416489722}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1450688408}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &416489724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416489722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac27124318cf8e84aa7350c2ac1cdb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mode: 0
+--- !u!114 &416489725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416489722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f3402a2ea5bff4880c0313515240cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oculusUserID: 0
+  Driver: {fileID: 416489724}
+  EnableBody: 1
+  EnableHands: 1
+  EnableBase: 0
+  EnableExpressive: 1
+  RecordPackets: 1
+  UseSDKPackets: 1
+  PacketSettings:
+    UpdateRate: 0.033333335
+  StartWithControllers: 1
+  FirstPersonLayer:
+    layerIndex: 0
+  ThirdPersonLayer:
+    layerIndex: 0
+  ShowFirstPerson: 1
+  ShowThirdPerson: 0
+  LevelOfDetail: 5
+  UseTransparentRenderQueue: 1
+  Monochrome_SurfaceShader: {fileID: 4800000, guid: 73f67c4e7bf718b4385aa6b1f8a06591,
+    type: 3}
+  Monochrome_SurfaceShader_SelfOccluding: {fileID: 4800000, guid: 69f342b79d37541489919a19cfd8a924,
+    type: 3}
+  Monochrome_SurfaceShader_PBS: {fileID: 4800000, guid: 5e52aa58207bbf24d8eb8ec969e9ae88,
+    type: 3}
+  Skinshaded_SurfaceShader_SingleComponent: {fileID: 4800000, guid: 36b8b481cf607814a8cec318f0148d63,
+    type: 3}
+  Skinshaded_VertFrag_SingleComponent: {fileID: 4800000, guid: c26fc51e445dcfd4db09305d861dc11c,
+    type: 3}
+  Skinshaded_VertFrag_CombinedMesh: {fileID: 4800000, guid: 37d2b8298f61cd2469465fc36108675d,
+    type: 3}
+  Skinshaded_Expressive_SurfaceShader_SingleComponent: {fileID: 4800000, guid: 93b478e926e46654889c1c20f87f253f,
+    type: 3}
+  Skinshaded_Expressive_VertFrag_SingleComponent: {fileID: 4800000, guid: 2fe0ac0c2373ab143a6f21314b785d7d,
+    type: 3}
+  Skinshaded_Expressive_VertFrag_CombinedMesh: {fileID: 4800000, guid: 0600fe59b0c043344affd1d1368b9ef2,
+    type: 3}
+  Loader_VertFrag_CombinedMesh: {fileID: 4800000, guid: 822f5e641dc5dd54ca9555b727b3277f,
+    type: 3}
+  EyeLens: {fileID: 4800000, guid: 8392f54e79937ed4bb1b692a143dc02b, type: 3}
+  ControllerShader: {fileID: 4800000, guid: 28729c6ae5a33b04cb2f7956f3f3fc01, type: 3}
+  CanOwnMicrophone: 1
+  EnableLaughter: 1
+  MouthAnchor: {fileID: 0}
+  LeftHandCustomPose: {fileID: 0}
+  RightHandCustomPose: {fileID: 0}
+  AssetsDoneLoading:
+    m_PersistentCalls:
+      m_Calls: []
+  VoiceAmplitude: 0
+  EnableMouthVertexAnimation: 0
 --- !u!1001 &423609466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12516,22 +12547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1672838788}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Simple dials can also be simulated with the Physics Rotator. They are
-        limited to being rotated between 0 and 359 degrees.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12626,6 +12641,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Simple dials can also be simulated with the Physics Rotator. They are
+        limited to being rotated between 0 and 359 degrees.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -13192,44 +13223,6 @@ Transform:
   m_Father: {fileID: 397202340}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &491330802
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1775902103382610, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 491330803}
-  m_Layer: 0
-  m_Name: TrackingSpace
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &491330803
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4758972402355632, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491330802}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1851642583}
-  - {fileID: 510409716}
-  - {fileID: 1202744036}
-  - {fileID: 1476750428}
-  - {fileID: 693838676}
-  - {fileID: 1566608571}
-  m_Father: {fileID: 223502114}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &500814443
 GameObject:
   m_ObjectHideFlags: 0
@@ -13310,11 +13303,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: validObjectListPolicy
@@ -13349,6 +13337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -13507,93 +13500,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505377495}
   m_Mesh: {fileID: 4300000, guid: 7ecbc4e55964e9e42bcc68d8c7a526e7, type: 3}
---- !u!1 &510409715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1339326505452912, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 510409716}
-  - component: {fileID: 510409718}
-  - component: {fileID: 510409717}
-  m_Layer: 0
-  m_Name: CenterEyeAnchor
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &510409716
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4758672569105370, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510409715}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 491330803}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &510409717
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 20066930844247714, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510409715}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.1
-  far clip plane: 1000
-  field of view: 90
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &510409718
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 81767270338865542, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510409715}
-  m_Enabled: 1
 --- !u!1 &511475429
 GameObject:
   m_ObjectHideFlags: 0
@@ -13724,11 +13630,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 868780961}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The flying saucer can only be grabbed with the left controller
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13819,6 +13720,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The flying saucer can only be grabbed with the left controller
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &514929212 stripped
@@ -13886,11 +13792,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: highlightObjectPrefab
@@ -13921,6 +13822,11 @@ PrefabInstance:
       propertyPath: validObjectListPolicy
       value: 
       objectReference: {fileID: 517351970}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
 --- !u!4 &517351968 stripped
@@ -15651,11 +15557,11 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 1178460573}
   - {fileID: 1500158668}
-  - {fileID: 1243035853}
-  - {fileID: 1304472947}
   - {fileID: 1122313605}
+  - {fileID: 1304472947}
+  - {fileID: 1243035853}
+  - {fileID: 1178460573}
   excludeTargetGroups: 1a0000001b000000
   persistOnLoad: 0
 --- !u!4 &587475395
@@ -15682,7 +15588,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 587475393}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbd363faecdfb6d4da2d9cdab9de34f8, type: 3}
   m_Name: 
@@ -15888,19 +15794,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1044140691}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: 'This cube becomes a child of the controller GameObject when it is grabbed.
-
-
-        The object will not collide with non-rigidbody objects.'
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15995,6 +15888,19 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: 'This cube becomes a child of the controller GameObject when it is grabbed.
+
+
+        The object will not collide with non-rigidbody objects.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -16135,17 +16041,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1189215723}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Grab mechanics attach objects to the controllers using a variety of different
-        techniques
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16235,6 +16130,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Grab mechanics attach objects to the controllers using a variety of different
+        techniques
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -17078,17 +16984,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 690621971}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: This is a standard interactable object that can be grabbed with the pointer
-        when pointer interacts with objects is true.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17178,6 +17073,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: This is a standard interactable object that can be grabbed with the pointer
+        when pointer interacts with objects is true.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -18335,38 +18241,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692832354}
   m_CullTransparentMesh: 0
---- !u!1 &693838675
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1110550208464046, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 693838676}
-  m_Layer: 0
-  m_Name: LeftHandAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &693838676
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4600020958057136, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693838675}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 491330803}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697126003
 GameObject:
   m_ObjectHideFlags: 0
@@ -18814,19 +18688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1217845471}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: '<b>Hold Button To Use = false</b>
-
-        means the pointer will only activate the use action when the pointer is toggled
-        on and off.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18916,6 +18777,19 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>Hold Button To Use = false</b>
+
+        means the pointer will only activate the use action when the pointer is toggled
+        on and off.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -20583,12 +20457,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1140629017}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Object that can be grabbed at the specific precise point the controller
-        touches it at
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20678,6 +20546,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Object that can be grabbed at the specific precise point the controller
+        touches it at
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -20967,11 +20841,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: validObjectListPolicy
@@ -21006,6 +20875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -21766,6 +21640,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyGunOne
       objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.675
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903645856747160, guid: 8d1ca14cc1fa29b4bb278968b222ab11,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114137974055116386, guid: 8d1ca14cc1fa29b4bb278968b222ab11,
         type: 3}
       propertyPath: sdkOverrides.Array.size
@@ -22009,47 +21924,6 @@ PrefabInstance:
     - target: {fileID: 114137974055116386, guid: 8d1ca14cc1fa29b4bb278968b222ab11,
         type: 3}
       propertyPath: sdkOverrides.Array.data[6].scale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.675
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.825
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 114903645856747160, guid: 8d1ca14cc1fa29b4bb278968b222ab11,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -23918,22 +23792,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 176366790}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: This snap drop zone attaches a valid cube with a spring joint so it can
-        be affected by physics when the cube is snapped.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24028,6 +23886,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: This snap drop zone attaches a valid cube with a spring joint so it can
+        be affected by physics when the cube is snapped.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -24782,6 +24656,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &925532069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925532070}
+  m_Layer: 0
+  m_Name: RightControllerAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925532070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925532069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1285864245}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928295928
 GameObject:
   m_ObjectHideFlags: 0
@@ -26320,6 +26224,89 @@ Transform:
   m_Father: {fileID: 1705588647}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &993084978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 993084979}
+  - component: {fileID: 993084981}
+  - component: {fileID: 993084980}
+  m_Layer: 0
+  m_Name: CenterEyeAnchor
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993084979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993084978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1326236392}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &993084980
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993084978}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.1
+  far clip plane: 1000
+  field of view: 90
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &993084981
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993084978}
+  m_Enabled: 1
 --- !u!1 &996592771
 GameObject:
   m_ObjectHideFlags: 0
@@ -26509,17 +26496,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2043056493}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Interactable objects can be automatically oriented on grab using a snap
-        handle
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26609,6 +26585,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Interactable objects can be automatically oriented on grab using a snap
+        handle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -26703,52 +26690,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &1010221348
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1375291503359348, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1010221349}
-  - component: {fileID: 1010221350}
-  m_Layer: 0
-  m_Name: hand_right
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1010221349
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4953634456866504, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010221348}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 1.221, z: 0.282}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072069591}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1010221350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114695205490156356, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010221348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1011075186
 GameObject:
   m_ObjectHideFlags: 0
@@ -26834,22 +26775,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081241218}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Doors are another use of a Physics Rotator where the door is hinged around
-        a specific point and can either be swung in both directions or only one.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26944,6 +26869,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Doors are another use of a Physics Rotator where the door is hinged around
+        a specific point and can either be swung in both directions or only one.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -28420,6 +28361,16 @@ PrefabInstance:
       propertyPath: pinkyAxisButton
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114963189862696322, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: controllerType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114963189862696322, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: mirrorModel
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afec65f27dcd2c74cba31fc61eea61e6, type: 3}
 --- !u!1 &1050729483
@@ -28460,23 +28411,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1496185332}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: An Artificial Slider can be used to simulate sliders that are not affected
-        by physics and require no rigidbody, meaning they're great for attaching to
-        other interactable objects.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28571,6 +28505,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: An Artificial Slider can be used to simulate sliders that are not affected
+        by physics and require no rigidbody, meaning they're great for attaching to
+        other interactable objects.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -28699,6 +28650,101 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 575800307}
     m_Modifications:
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224435910559421880, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -28715,101 +28761,6 @@ PrefabInstance:
       propertyPath: m_FontData.m_VerticalOverflow
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224435910559421880, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 600
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1066790049 stripped
@@ -28825,20 +28776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 264411241}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: 'This cube uses a fixed joint to attach the object rigidbody to the controller
-        rigidbody.
-
-
-        The object will automatically drop if the joint is broken.'
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28933,6 +28870,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: 'This cube uses a fixed joint to attach the object rigidbody to the controller
+        rigidbody.
+
+
+        The object will automatically drop if the joint is broken.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -28949,22 +28900,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2014618278}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: An Artificial Pusher uses no physics to simulate a button press and simply
-        listens for a collision from a controller.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29059,6 +28994,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: An Artificial Pusher uses no physics to simulate a button press and simply
+        listens for a collision from a controller.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -29823,11 +29774,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: highlightObjectPrefab
@@ -29858,6 +29804,11 @@ PrefabInstance:
       propertyPath: validObjectListPolicy
       value: 
       objectReference: {fileID: 1085596886}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
 --- !u!4 &1085596884 stripped
@@ -30900,20 +30851,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2034930079}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: 'This cube uses a spring joint to attach the object rigidbody to the
-        controller rigidbody.
-
-
-        The spring can be customised to control the springiness.'
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31008,6 +30945,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: 'This cube uses a spring joint to attach the object rigidbody to the
+        controller rigidbody.
+
+
+        The spring can be customised to control the springiness.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -36807,11 +36758,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1603204851}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The flying saucer can only be grabbed with the right controller
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36901,6 +36847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The flying saucer can only be grabbed with the right controller
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -38487,22 +38438,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1025775538}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Another example of a Physics Slider is to create a more compex sliding
-        object that can represent a drawer.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38597,6 +38532,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Another example of a Physics Slider is to create a more compex sliding
+        object that can represent a drawer.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -39217,83 +39168,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201801409}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1202744035
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1643698840114914, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1202744036}
-  - component: {fileID: 1202744037}
-  m_Layer: 0
-  m_Name: RightEyeAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1202744036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4630316858215360, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202744035}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 491330803}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1202744037
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 20799704398026686, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202744035}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 2
-  m_HDR: 0
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1001 &1206716014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39353,11 +39227,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: validObjectListPolicy
@@ -39392,6 +39261,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -39957,12 +39831,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 647486024}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Object that spins when being used regardless of whether it is grabbed
-        or not
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40052,6 +39920,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Object that spins when being used regardless of whether it is grabbed
+        or not
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -40212,6 +40086,11 @@ PrefabInstance:
         type: 3}
       propertyPath: pinkyAxisButton
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114963189862696322, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: controllerType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4064262928238702, guid: afec65f27dcd2c74cba31fc61eea61e6, type: 3}
       propertyPath: m_LocalScale.x
@@ -41074,23 +40953,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 761356275}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: A Physics Slider can simulate an object being slide across a specific
-        axis when it is grabbed. It can simulate slider bars that have a min and max
-        limit.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41185,6 +41047,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: A Physics Slider can simulate an object being slide across a specific
+        axis when it is grabbed. It can simulate slider bars that have a min and max
+        limit.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -41872,6 +41751,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278948311}
   m_Mesh: {fileID: 4300000, guid: 7ecbc4e55964e9e42bcc68d8c7a526e7, type: 3}
+--- !u!1 &1285864244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285864245}
+  m_Layer: 0
+  m_Name: RightHandAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285864245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285864244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 925532070}
+  m_Father: {fileID: 1326236392}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286167106
 GameObject:
   m_ObjectHideFlags: 0
@@ -41932,6 +41842,80 @@ MonoBehaviour:
   hideDirectionIndicatorOnHover: 1
   snapToRotation: 0
   teleporter: {fileID: 0}
+--- !u!1 &1287683251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287683252}
+  - component: {fileID: 1287683253}
+  m_Layer: 0
+  m_Name: RightEyeAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1287683252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287683251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1326236392}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1287683253
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287683251}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 2
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1001 &1291636914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41983,11 +41967,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.22
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: validObjectListPolicy
@@ -42017,6 +41996,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.a
       value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -42219,6 +42203,80 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292828113}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1293744488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1293744489}
+  - component: {fileID: 1293744490}
+  m_Layer: 0
+  m_Name: LeftEyeAnchor
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1293744489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293744488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1326236392}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1293744490
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293744488}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 1
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1304472945
 GameObject:
   m_ObjectHideFlags: 0
@@ -43024,12 +43082,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1249485805}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Object that can be grabbed and attached at the origin point via a fixed
-        joint to the controller
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -43119,6 +43171,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Object that can be grabbed and attached at the origin point via a fixed
+        joint to the controller
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -43382,6 +43440,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1326236391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1326236392}
+  m_Layer: 0
+  m_Name: TrackingSpace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1326236392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326236391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1293744489}
+  - {fileID: 993084979}
+  - {fileID: 1287683252}
+  - {fileID: 112759382}
+  - {fileID: 2118541705}
+  - {fileID: 1285864245}
+  m_Father: {fileID: 1450688408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327813759
 GameObject:
   m_ObjectHideFlags: 0
@@ -45200,19 +45294,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 456475421}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: '<b>Hold Button To Use = false</b>
-
-        First press of trigger activates the lightsaber and the second trigger press
-        deactivaes it.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45303,6 +45384,19 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>Hold Button To Use = false</b>
+
+        First press of trigger activates the lightsaber and the second trigger press
+        deactivaes it.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1378251619 stripped
@@ -45318,20 +45412,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 561244668}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: 'The cube tracks the controller via the Unity physics system.
-
-
-        The object will automatically drop if the controller goes too far away from
-        the object.'
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45426,6 +45506,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: 'The cube tracks the controller via the Unity physics system.
+
+
+        The object will automatically drop if the controller goes too far away from
+        the object.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -46465,6 +46559,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 224371738333264858, guid: 3d56870ea5ab696448e35ecae56a6c5e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 224339459913635852, guid: 3d56870ea5ab696448e35ecae56a6c5e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 224044212099514402, guid: 3d56870ea5ab696448e35ecae56a6c5e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 224044212099514402, guid: 3d56870ea5ab696448e35ecae56a6c5e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 114676128360407342, guid: 3d56870ea5ab696448e35ecae56a6c5e,
         type: 3}
       propertyPath: m_Text
@@ -46485,26 +46599,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_VerticalOverflow
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224044212099514402, guid: 3d56870ea5ab696448e35ecae56a6c5e,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 224044212099514402, guid: 3d56870ea5ab696448e35ecae56a6c5e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 224371738333264858, guid: 3d56870ea5ab696448e35ecae56a6c5e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 750
-      objectReference: {fileID: 0}
-    - target: {fileID: 224339459913635852, guid: 3d56870ea5ab696448e35ecae56a6c5e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 700
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d56870ea5ab696448e35ecae56a6c5e, type: 3}
@@ -46898,17 +46992,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1062936040}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Snap Drop Zones are pre-defined areas that Interactable Objects can be
-        dropped into
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46998,6 +47081,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Snap Drop Zones are pre-defined areas that Interactable Objects can be
+        dropped into
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -47509,17 +47603,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1340210776}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The fire extinguisher has two interactable objects, the base with a snap
-        handle and the sprayer without.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47610,6 +47693,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The fire extinguisher has two interactable objects, the base with a snap
+        handle and the sprayer without.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1440813026 stripped
@@ -47693,6 +47787,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74085b630a6759c40a07dcf3d57c5534, type: 3}
+--- !u!1 &1448529025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448529026}
+  m_Layer: 0
+  m_Name: LeftControllerAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448529026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448529025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2118541705}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1448832284
 GameObject:
   m_ObjectHideFlags: 0
@@ -47792,22 +47916,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644226762}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Another example of a Physics Rotator is to create a chest that can be
-        opened and closed by rotating around an offset hinge.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47903,6 +48011,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Another example of a Physics Rotator is to create a chest that can be
+        opened and closed by rotating around an offset hinge.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1449828042 stripped
@@ -47911,6 +48035,130 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1449828041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1450688407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450688408}
+  - component: {fileID: 1450688411}
+  - component: {fileID: 1450688410}
+  - component: {fileID: 1450688409}
+  m_Layer: 0
+  m_Name: OVRCameraRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450688408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450688407}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1326236392}
+  - {fileID: 416489723}
+  m_Father: {fileID: 1500158667}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1450688409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450688407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5178bc8574ce2bf4388e787a2e2af326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opMode: 1
+  resetHmdPoseOnRelease: 1
+  resetHmdPoseByMiddleMouseButton: 1
+  activateKeys: 3201000031010000
+  pitchKeys: 3401000033010000
+--- !u!114 &1450688410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450688407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e933e81d3c20c74ea6fdc708a67e3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queueAhead: 1
+  useRecommendedMSAALevel: 1
+  _monoscopic: 0
+  enableAdaptiveResolution: 0
+  minRenderScale: 0.7
+  maxRenderScale: 1
+  _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
+  _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
+  profilerTcpPort: 32419
+  expandMixedRealityCapturePropertySheet: 0
+  enableMixedReality: 0
+  compositionMethod: 0
+  extraHiddenLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
+  externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
+  capturingCameraDevice: 0
+  flipCameraFrameHorizontally: 0
+  flipCameraFrameVertically: 0
+  handPoseStateLatency: 0
+  sandwichCompositionRenderLatency: 0
+  sandwichCompositionBufferedFrames: 8
+  chromaKeyColor: {r: 0, g: 1, b: 0, a: 1}
+  chromaKeySimilarity: 0.6
+  chromaKeySmoothRange: 0.03
+  chromaKeySpillRange: 0.06
+  useDynamicLighting: 0
+  depthQuality: 1
+  dynamicLightingSmoothFactor: 8
+  dynamicLightingDepthVariationClampingValue: 0.001
+  virtualGreenScreenType: 0
+  virtualGreenScreenTopY: 10
+  virtualGreenScreenBottomY: -10
+  virtualGreenScreenApplyDepthCulling: 0
+  virtualGreenScreenDepthTolerance: 0.2
+  mrcActivationMode: 0
+  _trackingOriginType: 1
+  usePositionTracking: 1
+  useRotationTracking: 1
+  useIPDInPositionTracking: 1
+  resetTrackerOnLoad: 0
+  AllowRecenter: 1
+  _reorientHMDOnControllerRecenter: 1
+  LateControllerUpdate: 1
+--- !u!114 &1450688411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450688407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usePerEyeCameras: 0
+  useFixedUpdateForTracking: 0
+  disableEyeAnchorCameras: 0
 --- !u!1 &1451867526
 GameObject:
   m_ObjectHideFlags: 0
@@ -48081,11 +48329,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: highlightObjectPrefab
@@ -48116,6 +48359,11 @@ PrefabInstance:
       propertyPath: validObjectListPolicy
       value: 
       objectReference: {fileID: 1456721874}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
 --- !u!4 &1456721872 stripped
@@ -48503,17 +48751,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1319987071}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: This cube follows the controller by moving the transform and can have
-        the movement limted
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -48609,6 +48846,17 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: This cube follows the controller by moving the transform and can have
+        the movement limted
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1464536741 stripped
@@ -48624,17 +48872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 66611973}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Physics based controllables are pre-defined interactable objects that
-        simulate controls by utilising Unity physics
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -48724,6 +48961,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Physics based controllables are pre-defined interactable objects that
+        simulate controls by utilising Unity physics
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -49114,38 +49362,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474966823}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1476750427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1351675975515050, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1476750428}
-  m_Layer: 0
-  m_Name: TrackerAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1476750428
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4682400924984478, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476750427}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 491330803}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1477795900
 GameObject:
   m_ObjectHideFlags: 0
@@ -49383,17 +49599,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787304582}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Interactable objects can be near touched, touched, grabbed and used by
-        the controllers
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49483,6 +49688,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Interactable objects can be near touched, touched, grabbed and used by
+        the controllers
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -49580,11 +49796,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: highlightObjectPrefab
@@ -49640,6 +49851,11 @@ PrefabInstance:
       propertyPath: validHighlightColor.a
       value: 0.78431374
       objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
 --- !u!4 &1487372104 stripped
@@ -49693,22 +49909,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 511475430}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: A Physics Pusher can simulate a button as it receives external force
-        and is pushed towards the specified limits.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49803,6 +50003,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: A Physics Pusher can simulate a button as it receives external force
+        and is pushed towards the specified limits.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -49906,8 +50122,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 223502114}
-  - {fileID: 2072069591}
+  - {fileID: 1450688408}
   m_Father: {fileID: 691362391}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49925,12 +50140,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 0
-  actualBoundaries: {fileID: 223502111}
-  actualHeadset: {fileID: 510409715}
-  actualLeftController: {fileID: 693838675}
-  actualRightController: {fileID: 1566608570}
-  modelAliasLeftController: {fileID: 1954381364}
-  modelAliasRightController: {fileID: 220711616}
+  actualBoundaries: {fileID: 1450688407}
+  actualHeadset: {fileID: 993084978}
+  actualLeftController: {fileID: 2118541704}
+  actualRightController: {fileID: 1285864244}
+  modelAliasLeftController: {fileID: 0}
+  modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
@@ -49990,17 +50205,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1414076497}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Use these levers to toggle on whether the pointer can be used to grab/use
-        interactable objects from a distance.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50090,6 +50294,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Use these levers to toggle on whether the pointer can be used to grab/use
+        interactable objects from a distance.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -50914,6 +51129,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyGunTwo
       objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.120000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000001
+      objectReference: {fileID: 0}
     - target: {fileID: 114137974055116386, guid: 8d1ca14cc1fa29b4bb278968b222ab11,
         type: 3}
       propertyPath: sdkOverrides.Array.size
@@ -51153,54 +51416,6 @@ PrefabInstance:
         type: 3}
       propertyPath: sdkOverrides.Array.data[6].scale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.525
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.825
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.120000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.0000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.0000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284849433887702, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.0000001
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 33854560001682468, guid: 8d1ca14cc1fa29b4bb278968b222ab11, type: 3}
@@ -51777,22 +51992,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1589213}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: When a saucer is dropped into this snap drop zone, it will scale and
-        rotate to match the drop zone. The saucer can also only be dropped here.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51888,6 +52087,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: When a saucer is dropped into this snap drop zone, it will scale and
+        rotate to match the drop zone. The saucer can also only be dropped here.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1564006565 stripped
@@ -51896,38 +52111,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1564006564}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1566608570
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1110586285741402, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1566608571}
-  m_Layer: 0
-  m_Name: RightHandAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1566608571
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4560288991141386, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566608570}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 491330803}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1567356994
 GameObject:
   m_ObjectHideFlags: 0
@@ -52633,52 +52816,6 @@ Transform:
   m_Father: {fileID: 357759470}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1575315481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1722701074311530, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1575315482}
-  - component: {fileID: 1575315483}
-  m_Layer: 0
-  m_Name: hand_left
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1575315482
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4889921893676996, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575315481}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 1.221, z: 0.282}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072069591}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1575315483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114373959320931022, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575315481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1575727790
 GameObject:
   m_ObjectHideFlags: 0
@@ -53979,22 +54116,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1740469812}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: These snap drop zones will toggle on and off depending on what type of
-        object is touching the snap drop zone group.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -54089,6 +54210,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: These snap drop zones will toggle on and off depending on what type of
+        object is touching the snap drop zone group.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -55525,52 +55662,6 @@ Transform:
   m_Father: {fileID: 830973211}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!1 &1678904254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1206714244882790, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1678904255}
-  - component: {fileID: 1678904256}
-  m_Layer: 0
-  m_Name: base
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1678904255
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4564498621803982, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678904254}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072069591}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1678904256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114649600641092578, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678904254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1679389523
 GameObject:
   m_ObjectHideFlags: 0
@@ -56255,11 +56346,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.22
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: validObjectListPolicy
@@ -56289,6 +56375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: highlightColor.a
       value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
@@ -56637,22 +56728,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 957731680}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: '<b>Hold Button To Use = true</b>
-
-        Each press of the trigger fires.
-
-        <b>Use Only If Grabbed = true</b>
-
-        Only fires if the gun is grabbed.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -56742,6 +56817,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>Hold Button To Use = true</b>
+
+        Each press of the trigger fires.
+
+        <b>Use Only If Grabbed = true</b>
+
+        Only fires if the gun is grabbed.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -58403,17 +58494,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 858694833}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The cube will scale in the direction the secondary grabbing controller
-        is moved.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -58503,6 +58583,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The cube will scale in the direction the secondary grabbing controller
+        is moved.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -61083,83 +61174,6 @@ Transform:
   m_Father: {fileID: 1893120504}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &1851642582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1901972316895312, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1851642583}
-  - component: {fileID: 1851642584}
-  m_Layer: 0
-  m_Name: LeftEyeAnchor
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1851642583
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4013698107794924, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851642582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 491330803}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1851642584
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 20529173458586576, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851642582}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 1
-  m_HDR: 0
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &1853546324
 GameObject:
   m_ObjectHideFlags: 0
@@ -61349,52 +61363,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855288843}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1856493743
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1216619992091220, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1856493744}
-  - component: {fileID: 1856493745}
-  m_Layer: 0
-  m_Name: body
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1856493744
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4670499819828408, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856493743}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072069591}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1856493745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114688326393777118, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856493743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1856657109
 GameObject:
   m_ObjectHideFlags: 0
@@ -61632,22 +61600,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359539588}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Any Physics Slider can be replaced with an Artificial Slider to replicate
-        similar functionality but without a reliance on physics and rigidbodies.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61743,6 +61695,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Any Physics Slider can be replaced with an Artificial Slider to replicate
+        similar functionality but without a reliance on physics and rigidbodies.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1862890800 stripped
@@ -61758,17 +61726,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423291973}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The oar can be grabbed with a secondary controller which will control
-        the direction the oar is pointing.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61858,6 +61815,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The oar can be grabbed with a secondary controller which will control
+        the direction the oar is pointing.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -63638,20 +63606,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722227479}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: '<b>Hold Button To Grab = false</b>
-
-
-        This is a toggle grab, the first press/release of the grip button grabs the
-        object and the second press/release drops the object.'
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -63746,6 +63700,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>Hold Button To Grab = false</b>
+
+
+        This is a toggle grab, the first press/release of the grip button grabs the
+        object and the second press/release drops the object.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -64330,52 +64298,6 @@ Transform:
   m_Father: {fileID: 48365060}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1954381364
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1250676895609748, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1954381365}
-  - component: {fileID: 1954381366}
-  m_Layer: 0
-  m_Name: controller_left
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1954381365
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4475434658693846, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954381364}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 1.221, z: 0.282}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072069591}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954381366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114180607595303644, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954381364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1955596100
 GameObject:
   m_ObjectHideFlags: 0
@@ -64782,22 +64704,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1827857641}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Doors using the Artificial Rotator won't require physics or joints which
-        can sometimes reduce complexity especially for moving objects.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -64893,6 +64799,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Doors using the Artificial Rotator won't require physics or joints which
+        can sometimes reduce complexity especially for moving objects.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
 --- !u!224 &1968195401 stripped
@@ -64908,17 +64830,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1973343191}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Interactable objects can be affected in different ways by grabbing them
-        with the secondary controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65008,6 +64919,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Interactable objects can be affected in different ways by grabbing them
+        with the secondary controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -65807,19 +65729,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 751698498}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: 'This whirlygig has the
-
-        <b>Pointer Activates Use Action</b> set to true so hovering the pointer will
-        make it spin.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65909,6 +65818,19 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: 'This whirlygig has the
+
+        <b>Pointer Activates Use Action</b> set to true so hovering the pointer will
+        make it spin.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -65925,16 +65847,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 753546604}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The cube will uniformly scale when grabbed with the secondary controller.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -66024,6 +65936,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The cube will uniformly scale when grabbed with the secondary controller.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -66670,16 +66592,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1433256789}
     m_Modifications:
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: The pointer can interact with interactable objects in two different ways
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -66769,6 +66681,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: The pointer can interact with interactable objects in two different ways
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -68200,22 +68122,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 448797768}
     m_Modifications:
-    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_Text
-      value: Any cube or cylinder dropped into this snap drop zone will create a clone
-        of the snapped object when grabbed.
-      objectReference: {fileID: 0}
-    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
-        type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224861586572071280, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -68310,6 +68216,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 224175581045623504, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_Text
+      value: Any cube or cylinder dropped into this snap drop zone will create a clone
+        of the snapped object when grabbed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114642603537886326, guid: 55bcebf0300be464cb5f7ef8d78bb36d,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55bcebf0300be464cb5f7ef8d78bb36d, type: 3}
@@ -69057,196 +68979,6 @@ Transform:
   m_Father: {fileID: 743734330}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2072069590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1791101067106182, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2072069591}
-  - component: {fileID: 2072069595}
-  - component: {fileID: 2072069594}
-  - component: {fileID: 2072069593}
-  - component: {fileID: 2072069592}
-  m_Layer: 0
-  m_Name: LocalAvatar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2072069591
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4989592243606946, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072069590}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1678904255}
-  - {fileID: 1856493744}
-  - {fileID: 1575315482}
-  - {fileID: 1954381365}
-  - {fileID: 1010221349}
-  - {fileID: 220711617}
-  m_Father: {fileID: 1500158667}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2072069592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114484231635545336, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072069590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe5040c2eaa9ff147b80ded004191c67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToFollow: {fileID: 223502111}
-  gameObjectToChange: {fileID: 0}
-  followsPosition: 1
-  smoothsPosition: 0
-  maxAllowedPerFrameDistanceDifference: 0.003
-  followsRotation: 1
-  smoothsRotation: 0
-  maxAllowedPerFrameAngleDifference: 1.5
-  followsScale: 1
-  smoothsScale: 0
-  maxAllowedPerFrameSizeDifference: 0.003
-  _moment: 2
---- !u!114 &2072069593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114096357440350690, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072069590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!82 &2072069594
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 82764978597207420, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072069590}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!114 &2072069595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114597928558468572, guid: eb6748575a8fce346b19dff6cb1471ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072069590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2073056598
 GameObject:
   m_ObjectHideFlags: 0
@@ -69981,6 +69713,37 @@ Transform:
   m_Father: {fileID: 397202340}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2118541704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118541705}
+  m_Layer: 0
+  m_Name: LeftHandAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2118541705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118541704}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1448529026}
+  m_Father: {fileID: 1326236392}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119405421
 GameObject:
   m_ObjectHideFlags: 0
@@ -70393,11 +70156,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.075
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
         type: 3}
       propertyPath: highlightObjectPrefab
@@ -70428,6 +70186,11 @@ PrefabInstance:
       propertyPath: validObjectListPolicy
       value: 
       objectReference: {fileID: 2129620977}
+    - target: {fileID: 135000010323760288, guid: 5d323709f0cbd454196647d9d8f2dd84,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
 --- !u!4 &2129620975 stripped

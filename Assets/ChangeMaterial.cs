@@ -25,16 +25,20 @@ public class ChangeMaterial : MonoBehaviour
     protected int pas_sceneIndex = 0;
     protected string snapped_Tag;
     protected bool isSnapped = false;
+    protected int obj_Layer; 
 
     void Start()
     {
         GetScene();
         pas_sceneIndex = cur_Scene.buildIndex;
         renderer = (MeshRenderer[])Object.FindObjectsOfType(typeof(MeshRenderer));
+        obj_Layer = LayerMask.NameToLayer("SensorGear");
     }
     
     void Update()
     {
+        currentGameObjects = cur_Scene.GetRootGameObjects();
+        UpdateMaterial(sonar_1_Material);
         GetScene();
         GetSnappedObj();
          
@@ -92,7 +96,7 @@ public class ChangeMaterial : MonoBehaviour
                 UpdateMaterial(radar_1_Material);
                 break;
             case "CameraSensor":
-                //Revert Material .... 
+                //Revert Material .... TODO
                 break;
             default:
                 //
@@ -102,14 +106,12 @@ public class ChangeMaterial : MonoBehaviour
 
     private void UpdateMaterial(Material material)
     {
-        //foreach (renderer rend in renderer)
-        //{
-        //    rend.material = material;
-        //}
-        
-        foreach (GameObject obj in currentGameObjects)
+        foreach (Renderer rend in renderer)
         {
-           obj.transform.GetComponent<Renderer>().material = material;
+            foreach (GameObject obj in currentGameObjects)
+            {
+                if ((rend != null) && (obj.layer != obj_Layer)) { rend.material = material; }
+            }                    
         }
     }
 }

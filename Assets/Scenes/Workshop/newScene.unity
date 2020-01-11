@@ -4654,6 +4654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDropZone_Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010066341254, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
+      propertyPath: m_TagString
+      value: SnapDropZone
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013912359922, guid: 5d323709f0cbd454196647d9d8f2dd84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0922
@@ -9509,7 +9513,7 @@ GameObject:
   - component: {fileID: 791538782}
   m_Layer: 0
   m_Name: EditorHighlightObject
-  m_TagString: Untagged
+  m_TagString: SnapDropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19723,7 +19727,7 @@ GameObject:
   - component: {fileID: 1598127433}
   m_Layer: 8
   m_Name: LaserOffset
-  m_TagString: Untagged
+  m_TagString: LaserOffsetSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20819,7 +20823,7 @@ GameObject:
   - component: {fileID: 1669428102}
   m_Layer: 0
   m_Name: Cylinder1
-  m_TagString: Untagged
+  m_TagString: SnapDropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21362,8 +21366,8 @@ GameObject:
   - component: {fileID: 1727765150}
   - component: {fileID: 1727765149}
   m_Layer: 0
-  m_Name: Cylinder6
-  m_TagString: Untagged
+  m_Name: Cylinder_11
+  m_TagString: SnapDropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23230,7 +23234,7 @@ GameObject:
   - component: {fileID: 1847182044}
   m_Layer: 0
   m_Name: HighlightObject
-  m_TagString: Untagged
+  m_TagString: SnapDropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24120,6 +24124,7 @@ MonoBehaviour:
   sonar_2_Material: {fileID: 2100000, guid: 0986621a2b3959841b202c7554fe7419, type: 2}
   radar_1_Material: {fileID: 2100000, guid: 1bd52015def6f4e409a34692d5852aba, type: 2}
   lidar_1_Material: {fileID: 2100000, guid: 54959a8aeea205a4f8ccd732c2e6accf, type: 2}
+  _renderer: []
   currentSnappedObject: {fileID: 0}
   snapped_Tag: 
 --- !u!54 &1888258285
@@ -27654,7 +27659,7 @@ GameObject:
   - component: {fileID: 2133475623}
   m_Layer: 0
   m_Name: HighlightContainer
-  m_TagString: Untagged
+  m_TagString: SnapDropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

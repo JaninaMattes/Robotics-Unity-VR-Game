@@ -18,8 +18,8 @@ public class ChangeMaterials : MonoBehaviour
     [Tooltip("Lidar Material")]
     public Material lidar_1_Material; // Wichtig Texturen
 
-    protected Renderer[] _renderer;
-    protected Hashtable _matList = new Hashtable();
+    public Hashtable _matList = new Hashtable();
+    public Renderer[] _renderer;
     //protected GameObject[] currentGameObjects;
     public GameObject currentSnappedObject = null;
     protected Scene cur_Scene;
@@ -121,11 +121,11 @@ public class ChangeMaterials : MonoBehaviour
 
     private void ResetMaterial()
     {
-        foreach (Renderer _renderer in _renderer)
+        foreach (Renderer rend in _renderer)
         {
-            if (_renderer != null)
+            if (rend != null)
             {
-                _renderer.materials = _matList[_renderer] as Material[];
+                rend.materials = _matList[rend] as Material[];
             }
         }
     }
@@ -134,7 +134,7 @@ public class ChangeMaterials : MonoBehaviour
     {
         foreach (Renderer rend in _renderer)
         {
-            if (rend != null)
+            if (rend != null && rend.sharedMaterial != null)
             {
                 _matList.Add(rend, rend.sharedMaterial);
             }
@@ -143,19 +143,28 @@ public class ChangeMaterials : MonoBehaviour
 
     private void GetMeshRenderer()
     {
+        int j = 0;
         _renderer = GameObject.FindObjectsOfType<Renderer>();
+        Renderer[] result = new Renderer[_renderer.Length];        
+        for (var i = _renderer.Length - 1; i > -1; i--)
+        {
+            if (_renderer[i] != null)
+            {
+                result[j] = _renderer[i];
+                ++j;
+            }
+        }
+        _renderer = result;
         GetMaterials();
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Level Loaded");
-        Debug.Log(scene.name);
-        Debug.Log(mode);
-        if (scene.buildIndex != 0)
-        {
+       // if (scene.buildIndex != 0)
+        //{
             GetMeshRenderer();
-        }
+        //}
            
     }
 

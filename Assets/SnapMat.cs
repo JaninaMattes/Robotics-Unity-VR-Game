@@ -9,12 +9,13 @@ public class SnapMat : MonoBehaviour
     private Renderer[] _renderers;
     public Material changeMaterial;
     public VRTK_SnapDropZone dropZone;
-    public string test;
+    private LightmapData[] lightmapData;
     private string tag = null;
     private string compareTag = null;
 
     void Start()
     {
+        lightmapData = LightmapSettings.lightmaps;
         _renderers = GameObject.FindObjectsOfType<Renderer>();
         foreach (Renderer _renderer in _renderers)
         {
@@ -27,12 +28,15 @@ public class SnapMat : MonoBehaviour
 
     void Update()
     {
-        tag = dropZone.GetCurrentSnappedObject().tag;
-       
-        if (tag != null && tag != compareTag)
+        if (dropZone.GetCurrentSnappedObject() != null)
         {
-            SwitchCases(tag);
-            compareTag = tag;  
+            tag = dropZone.GetCurrentSnappedObject().tag;
+
+            if (tag != compareTag)
+            {
+                SwitchCases(tag);
+                compareTag = tag;
+            }
         }
 
     }
@@ -60,6 +64,7 @@ public class SnapMat : MonoBehaviour
 
     public void SetMaterial(Material mat)
     {
+        LightmapSettings.lightmaps = null;
         foreach (Renderer _renderer in _renderers)
         {
             
@@ -79,6 +84,7 @@ public class SnapMat : MonoBehaviour
 
     public void ResetMaterial()
     {
+        LightmapSettings.lightmaps = lightmapData;
         foreach (Renderer _renderer in _renderers)
         {
             if (_renderer != null)

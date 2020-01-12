@@ -23,7 +23,8 @@ public class ChangeMaterials : MonoBehaviour
     //protected GameObject[] currentGameObjects;
     public GameObject currentSnappedObject = null;
     protected Scene cur_Scene;
-    public string snapped_Tag;
+    public string snapped_Tag = null;
+    public string comp_Tag = null;
     protected bool isSnapped = false;
 
     void OnEnable()
@@ -41,21 +42,23 @@ public class ChangeMaterials : MonoBehaviour
 
     public void Start()
     {
-        GetScene();        
+        GetScene();       
     }
 
     public void Update()
     {
-        //currentGameObjects = cur_Scene.GetRootGameObjects();
-        //UpdateMaterial(sonar_1_Material);
         GetScene();
-        //GetMeshRenderer();
         GetSnappedObj();
 
-        if (isSnapped) //&& cur_Scene.buildIndex != 0)
+        if (isSnapped && cur_Scene.buildIndex != 0)
         {
-            // update the materials per Level
-            UpdateMaterial();
+            snapped_Tag = currentSnappedObject.tag;
+                if (snapped_Tag != comp_Tag)
+            {
+                // update the materials per Level
+                UpdateMaterial(snapped_Tag);
+            }
+            comp_Tag = snapped_Tag;
         }
     }
 
@@ -77,11 +80,8 @@ public class ChangeMaterials : MonoBehaviour
         }
     }
 
-    private void UpdateMaterial()
+    private void UpdateMaterial(string tag)
     {
-        Debug.Log("#######################");
-        snapped_Tag = snapZone.GetCurrentSnappedObject().tag;
-
         switch (snapped_Tag)
         {
             case "SonarSensor_1":
@@ -115,7 +115,17 @@ public class ChangeMaterials : MonoBehaviour
     {
         foreach (Renderer rend in _renderer)
         {
-          if (rend != null && rend.tag != "Controller") { rend.material = material; }  
+          if (rend != null && rend.tag != "Controller") // TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/ etc
+            {
+                Material[] m = rend.materials;
+
+                // TODO: Check if Material is Water/Glas for SonarShader
+                for (int i = 0; i < m.Length; i++)
+                {
+                    m[i] = material;
+                    rend.materials = m;
+                }
+            }  
         }
     }
 
@@ -134,38 +144,26 @@ public class ChangeMaterials : MonoBehaviour
     {
         foreach (Renderer rend in _renderer)
         {
-            if (rend != null && rend.sharedMaterial != null)
+            if (rend != null)
             {
-                _matList.Add(rend, rend.sharedMaterial);
+                _matList.Add(rend, rend.materials);
             }
         }
     }
 
     private void GetMeshRenderer()
     {
-        int j = 0;
         _renderer = GameObject.FindObjectsOfType<Renderer>();
-        Renderer[] result = new Renderer[_renderer.Length];        
-        for (var i = _renderer.Length - 1; i > -1; i--)
-        {
-            if (_renderer[i] != null)
-            {
-                result[j] = _renderer[i];
-                ++j;
-            }
-        }
-        _renderer = result;
         GetMaterials();
     }
 
-    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Level Loaded");
-       // if (scene.buildIndex != 0)
-        //{
+        if (scene.buildIndex != 0)
+        {
             GetMeshRenderer();
-        //}
-           
+        }           
     }
 
 }

@@ -146,7 +146,7 @@ public class LiDar2 : MonoBehaviour
 
     protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
     {  
-        }
+    }
 
     void DeactivateCurrentLidar()
         {

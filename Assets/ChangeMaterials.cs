@@ -17,14 +17,16 @@ public class ChangeMaterials : MonoBehaviour
     public Material radar_1_Material;
     [Tooltip("Lidar Material")]
     public Material lidar_1_Material; // Wichtig Texturen
-
-    public Hashtable _matList = new Hashtable();
-    public Renderer[] _renderer;
+    [Tooltip("Excluded Tag List")]
+    public List<string> excludeTags = new List<string>();
+    protected Hashtable _matList = new Hashtable();
+    protected Renderer[] _renderer;
+    protected List<string> exclude = new List<string>();
     //protected GameObject[] currentGameObjects;
-    public GameObject currentSnappedObject = null;
+    protected GameObject currentSnappedObject = null;
     protected Scene cur_Scene;
-    public string snapped_Tag = null;
-    public string comp_Tag = null;
+    protected string snapped_Tag = null;
+    protected string comp_Tag = null;
     protected bool isSnapped = false;
 
     void OnEnable()
@@ -42,7 +44,9 @@ public class ChangeMaterials : MonoBehaviour
 
     public void Start()
     {
-        GetScene();       
+        GetScene();
+        exclude = excludeTags;
+        // Kann beliebig erweitert werden
     }
 
     public void Update()
@@ -60,6 +64,11 @@ public class ChangeMaterials : MonoBehaviour
             }
             comp_Tag = snapped_Tag;
         }
+    }
+
+    public void ResetMaterial(GameObject gameObject)
+    {
+        ResetMaterialFor(gameObject);
     }
 
     private void GetScene()
@@ -113,9 +122,10 @@ public class ChangeMaterials : MonoBehaviour
 
     private void UpdateMaterial(Material material)
     {
+        LightmapSettings.lightmaps = null;
         foreach (Renderer rend in _renderer)
         {
-          if (rend != null && rend.tag != "Controller") // TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/ etc
+          if (rend != null && rend.tag != "Controller") // TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
             {
                 Material[] m = rend.materials;
 
@@ -136,6 +146,17 @@ public class ChangeMaterials : MonoBehaviour
             if (rend != null)
             {
                 rend.materials = _matList[rend] as Material[];
+            }
+        }
+    }
+
+    private void ResetMaterialFor(GameObject gameObject)
+    {
+        foreach (Renderer rend in _renderer)
+        {
+            if (rend != null)
+            {
+                rend.materials = _matList[gameObject.GetComponent<Renderer>()] as Material[];
             }
         }
     }

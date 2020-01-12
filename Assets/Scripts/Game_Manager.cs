@@ -9,8 +9,10 @@ public class Game_Manager : MonoBehaviour
     public int playerScore { get; set; }
     public int playerHealth { get; set; }
     // Machine Learning Simulation
-    public Dictionary<int, GameObject> learnedObj { get; set; }
-
+    protected Dictionary<int, GameObject> learnedObj = new Dictionary<int, GameObject>();
+    // Material Changer
+    protected Renderer[] _renderer;
+    protected Hashtable _matList = new Hashtable();
 
     private Game_Manager() { }
 
@@ -27,5 +29,35 @@ public class Game_Manager : MonoBehaviour
             }
             return _Instance;
         }
+    }
+
+    public void Set(Dictionary<int, GameObject> learnedObj)
+    {
+        this.learnedObj = learnedObj;
+    }
+
+    public void Set(Renderer[] _renderer)
+    {
+        this._renderer = _renderer;
+    }
+
+    public void Set(Hashtable _matList)
+    {
+        this._matList = _matList;
+    }
+
+    public Dictionary<int, GameObject> GetGameObjectd()
+    {
+        return this.learnedObj;
+    }
+
+    public Renderer[] GetRenderer()
+    {
+        return this._renderer;
+    }
+
+    public Hashtable GetMaterial()
+    {
+        return this._matList;
     }
 }

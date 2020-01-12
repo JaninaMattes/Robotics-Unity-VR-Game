@@ -19,8 +19,10 @@ public class ChangeMaterials : MonoBehaviour
     public Material lidar_1_Material; // Wichtig Texturen
     [Tooltip("Excluded Tag List")]
     public List<string> excludeTags = new List<string>();
-    protected Hashtable _matList = new Hashtable();
-    protected Renderer[] _renderer;
+
+    //protected Renderer[] _renderer;
+    //protected Hashtable _matList = new Hashtable();
+    // Private Properties
     protected List<string> exclude = new List<string>();
     //protected GameObject[] currentGameObjects;
     protected GameObject currentSnappedObject = null;
@@ -28,6 +30,8 @@ public class ChangeMaterials : MonoBehaviour
     protected string snapped_Tag = null;
     protected string comp_Tag = null;
     protected bool isSnapped = false;
+
+    protected Game_Manager controller = Game_Manager.Instance;
 
     void OnEnable()
     {
@@ -54,7 +58,7 @@ public class ChangeMaterials : MonoBehaviour
         GetScene();
         GetSnappedObj();
 
-        if (isSnapped && cur_Scene.buildIndex != 0)
+        if (isSnapped) //&& cur_Scene.buildIndex != 0)
         {
             snapped_Tag = currentSnappedObject.tag;
                 if (snapped_Tag != comp_Tag)
@@ -122,10 +126,10 @@ public class ChangeMaterials : MonoBehaviour
 
     private void UpdateMaterial(Material material)
     {
-        LightmapSettings.lightmaps = null;
-        foreach (Renderer rend in _renderer)
+        //LightmapSettings.lightmaps = null;
+        foreach (Renderer rend in controller.GetRenderer())
         {
-          if (rend != null && rend.tag != "Controller") // TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
+          if (rend != null && !exclude.Contains(rend.tag)) // TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
             {
                 Material[] m = rend.materials;
 
@@ -141,50 +145,51 @@ public class ChangeMaterials : MonoBehaviour
 
     private void ResetMaterial()
     {
-        foreach (Renderer rend in _renderer)
+        foreach (Renderer rend in controller.GetRenderer())
         {
             if (rend != null)
             {
-                rend.materials = _matList[rend] as Material[];
+                rend.materials = controller.GetMaterial()[rend] as Material[];
             }
         }
     }
 
     private void ResetMaterialFor(GameObject gameObject)
     {
-        foreach (Renderer rend in _renderer)
+        foreach (Renderer rend in controller.GetRenderer())
         {
             if (rend != null)
             {
-                rend.materials = _matList[gameObject.GetComponent<Renderer>()] as Material[];
+               rend.materials = controller.GetMaterial()[gameObject.GetComponent<Renderer>()] as Material[];
             }
         }
     }
 
     private void GetMaterials()
     {
-        foreach (Renderer rend in _renderer)
+        foreach (Renderer rend in controller.GetRenderer())
         {
             if (rend != null)
             {
-                _matList.Add(rend, rend.materials);
+                controller.GetMaterial().Add(rend, rend.materials);
             }
         }
     }
 
     private void GetMeshRenderer()
     {
-        _renderer = GameObject.FindObjectsOfType<Renderer>();
+        Renderer[] list = GameObject.FindObjectsOfType<Renderer>();
+        controller.Set(list);
         GetMaterials();
     }
 
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Level Loaded");
-        if (scene.buildIndex != 0)
-        {
+        //if (scene.buildIndex != 0)
+        //{
             GetMeshRenderer();
-        }           
+        //}           
     }
 
 }

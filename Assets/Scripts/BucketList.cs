@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using VRTK;
 
 [ExecuteInEditMode]
-public class BucketList : ChangeMaterials
+public class BucketList : MonoBehaviour
 {
     [Header("List of Interactable Objects")]
     public VRTK_InteractableObject bucketlist;
@@ -95,7 +95,7 @@ public class BucketList : ChangeMaterials
             gameObj.SetGameObject(gameObject);
             bucket_collection.Add(gameObject.tag, gameObj);
             //bucketlist set Checklist element of object with certain tag to true
-            base.ResetMaterial(gameObject); // TODO: Architektur - Design Pattern !!! 
+            //base.ResetMaterial(gameObject); // TODO: Architektur - Design Pattern !!! 
             //controller.learnedObj.Add();
             ++ controller.playerScore;
         } 

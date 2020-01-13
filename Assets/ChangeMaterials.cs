@@ -17,11 +17,12 @@ public class ChangeMaterials : MonoBehaviour
     public Material radar_1_Material;
     [Tooltip("Lidar Material")]
     public Material lidar_1_Material; // Wichtig Texturen
+    [Tooltip("Floor Grid Orientation Material")]
+    public Material gridorientation_Material;
+    public string gridorientation_Tag;
     [Tooltip("Excluded Tag List")]
     public List<string> excludeTags = new List<string>();
-
-    //protected Renderer[] _renderer;
-    //protected Hashtable _matList = new Hashtable();
+   
     // Private Properties
     protected List<string> exclude = new List<string>();
     //protected GameObject[] currentGameObjects;
@@ -31,6 +32,7 @@ public class ChangeMaterials : MonoBehaviour
     protected string comp_Tag = null;
     protected bool isSnapped = false;
 
+    // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
 
     void OnEnable()
@@ -129,16 +131,25 @@ public class ChangeMaterials : MonoBehaviour
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in controller.GetRenderer())
         {
-          if (rend != null && !exclude.Contains(rend.tag)) // TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
+          if (rend != null && !exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
             {
                 Material[] m = rend.materials;
-
-                // TODO: Check if Material is Water/Glas for SonarShader
-                for (int i = 0; i < m.Length; i++)
+                //Set grid orientation to floor
+                if (rend.tag == gridorientation_Tag)
                 {
-                    m[i] = material;
-                    rend.materials = m;
+                    //TODO: find Material that belongs to floor 
+                    //then set to = gridorientation_Material
                 }
+                else
+                {                 
+                    //TODO: Check if Material is Water/Glas for SonarShader
+                    for (int i = 0; i < m.Length; i++)
+                    {
+                        m[i] = material;
+                        rend.materials = m;
+                    }
+
+                }               
             }  
         }
     }

@@ -26,11 +26,7 @@ public class ChangeMaterials : MonoBehaviour
     // Private Properties
     protected List<string> exclude = new List<string>();
     //protected GameObject[] currentGameObjects;
-    protected GameObject currentSnappedObject = null;
     protected Scene cur_Scene;
-    protected string snapped_Tag = null;
-    protected string comp_Tag = null;
-    protected bool isSnapped = false;
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -39,6 +35,8 @@ public class ChangeMaterials : MonoBehaviour
     {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
+        snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
     }
 
     void OnDisable()
@@ -46,6 +44,8 @@ public class ChangeMaterials : MonoBehaviour
         //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as 
         //this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+        snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
+        snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
 
     public void Start()
@@ -58,18 +58,6 @@ public class ChangeMaterials : MonoBehaviour
     public void Update()
     {
         GetScene();
-        GetSnappedObj();
-
-        if (isSnapped) //&& cur_Scene.buildIndex != 0)
-        {
-            snapped_Tag = currentSnappedObject.tag;
-                if (snapped_Tag != comp_Tag)
-            {
-                // update the materials per Level
-                UpdateMaterial(snapped_Tag);
-            }
-            comp_Tag = snapped_Tag;
-        }
     }
 
     public void ResetMaterial(GameObject gameObject)
@@ -82,22 +70,19 @@ public class ChangeMaterials : MonoBehaviour
         cur_Scene = SceneManager.GetActiveScene();
     }
 
-    private void GetSnappedObj()
+    protected virtual void ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
     {
-        if (snapZone.GetCurrentSnappedObject() != null)
-        {
-            currentSnappedObject = snapZone.GetCurrentSnappedObject();
-            isSnapped = true;
-        }
-        else
-        {
-            isSnapped = false;
-        }
+        UpdateMaterial(snapZone.GetCurrentSnappedObject().tag);
+    }
+
+    protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
+    {
+         
     }
 
     private void UpdateMaterial(string tag)
     {
-        switch (snapped_Tag)
+        switch (tag)
         {
             case "SonarSensor_1":
                 //Update Material
@@ -128,12 +113,13 @@ public class ChangeMaterials : MonoBehaviour
 
     private void UpdateMaterial(Material material)
     {
+        Material[] m;
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in controller.GetRenderer())
         {
           if (rend != null && !exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
             {
-                Material[] m = rend.materials;
+                m = rend.materials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
@@ -146,8 +132,8 @@ public class ChangeMaterials : MonoBehaviour
                     for (int i = 0; i < m.Length; i++)
                     {
                         m[i] = material;
-                        rend.materials = m;
                     }
+                    rend.materials = m;
 
                 }               
             }  
@@ -202,5 +188,4 @@ public class ChangeMaterials : MonoBehaviour
             GetMeshRenderer();
         //}           
     }
-
 }

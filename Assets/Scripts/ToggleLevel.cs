@@ -12,13 +12,16 @@ public class ToggleLevel : MonoBehaviour
     [Tooltip("Level Index and Information")]
     public int WorkshopLevelIndex;
     public int LevelIndex;
-    public string sceneLoadingName;
-    public string sceneLoadingNameWorkshop;
+    public GameObject lidarGrid;
 
     protected bool isSnapped = false;
-    protected ManageScenes sceneManagement;
-    protected GameObject stagingObjects;
-   
+
+     void Awake()
+    {
+        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(lidarGrid);
+    }
+
     public void OnEnable()
     {
         snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
@@ -31,29 +34,16 @@ public class ToggleLevel : MonoBehaviour
         snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
 
-    public void Start()
-    {
-        stagingObjects = GameObject.FindGameObjectWithTag("stage");
-    }
-
-    public void Update()
-    {
-    }
-
     // Eventhandler
     protected virtual void ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
     {
         Debug.Log("Object snapped to DropZone");
-        sceneManagement.levelInd = LevelIndex;
-        sceneManagement.sceneLoadingName = sceneLoadingName;
-        sceneManagement.loadLevel = true;
+        SceneManager.LoadScene(LevelIndex);
     }
 
     protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
     {
         Debug.Log("Object unsnapped from DropZone");
-        sceneManagement.levelInd = WorkshopLevelIndex;
-        sceneManagement.sceneLoadingName = sceneLoadingNameWorkshop;
-        sceneManagement.loadLevel = true;
+        SceneManager.LoadScene(WorkshopLevelIndex);
     }
 }

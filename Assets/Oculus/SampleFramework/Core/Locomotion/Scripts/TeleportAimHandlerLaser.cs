@@ -20,7 +20,7 @@ public class TeleportAimHandlerLaser : TeleportAimHandler
 	public float Range = 100;
 
 	/// <summary>
-	/// Return the set of sonarHits that represent the aiming line.
+	/// Return the set of points that represent the aiming line.
 	/// </summary>
 	/// <param name="points"></param>
 	public override void GetPoints(List<Vector3> points)

@@ -772,7 +772,7 @@ namespace Valve.VR.InteractionSystem
 				meshAlphaPercent = Mathf.Lerp( 0.0f, 1.0f, deltaTime / meshFadeTime );
 			}
 
-			//Tint color for the teleport sonarHits
+			//Tint color for the teleport points
 			foreach ( TeleportMarkerBase teleportMarker in teleportMarkers )
 			{
 				teleportMarker.SetAlpha( fullTintAlpha * meshAlphaPercent, meshAlphaPercent );

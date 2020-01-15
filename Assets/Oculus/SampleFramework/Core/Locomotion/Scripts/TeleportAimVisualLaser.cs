@@ -74,9 +74,9 @@ public class TeleportAimVisualLaser : TeleportSupport
 		_lineRenderer.sharedMaterial.color = obj.TargetValid ? Color.green : Color.red;
 
 		var points = obj.Points;
-        //        Debug.Log("AimVisualLaser: count: " + sonarHits.Count);
+        //        Debug.Log("AimVisualLaser: count: " + points.Count);
         _lineRenderer.positionCount = points.Count;
-		//_lineRenderer.SetVertexCount(sonarHits.Count);
+		//_lineRenderer.SetVertexCount(points.Count);
 		for (int i = 0; i < points.Count; i++)
 		{
 			_lineRenderer.SetPosition(i, points[i]);

@@ -10,9 +10,9 @@ namespace Oculus.Platform.Samples.VrBoardGame
 	// 2) Player can place a power GamePiece on top of a normal piece
 	// 3) The board is full when all positions have a normal piece
 	// Player score is calculated as:
-	// 1) +10 sonarHits for each normal piece on the board
-	// 2) +10 sonarHits for each normal piece with 1 square of one of their power pieces
-	// 3) -10 sonarHits for each opponent normal piece within 1 square of their power pieces
+	// 1) +10 points for each normal piece on the board
+	// 2) +10 points for each normal piece with 1 square of one of their power pieces
+	// 3) -10 points for each opponent normal piece within 1 square of their power pieces
 	//
 	public class GameBoard : MonoBehaviour
 	{
@@ -157,10 +157,10 @@ namespace Oculus.Platform.Samples.VrBoardGame
 				{
 					if (m_pieces[x,y].piece != null)
 					{
-						// for each piece on the board, the player gets 10 sonarHits
+						// for each piece on the board, the player gets 10 points
 						m_scores[m_pieces[x,y].pieceOwner] += 10;
 
-						// for each power piece, the player gains or loses 10 sonarHits
+						// for each power piece, the player gains or loses 10 points
 						// based on the ownership of nearby pieces
 						if (m_pieces[x,y].powerPieceOwner >= 0)
 						{

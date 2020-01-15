@@ -5,8 +5,8 @@ using UnityEngine;
 public class GridOrientation : MonoBehaviour
 {
     public Material material;
-    public float floorDistance = 0.001f;
-    public Vector3 position;
+    public float floorDistance;
+    private Vector3 position;
 
     // Update is called once per frame
     void Update()

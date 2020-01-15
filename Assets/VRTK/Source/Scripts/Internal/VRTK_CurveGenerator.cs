@@ -1,6 +1,6 @@
 ﻿//====================================================================================
 //
-// Purpose: To generate a bezier curve between at least 4 sonarHits in space and draw
+// Purpose: To generate a bezier curve between at least 4 points in space and draw
 // a number of spheres across the generated curve
 //
 // This script is heavily based on the tutorial at: 

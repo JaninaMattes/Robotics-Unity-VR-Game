@@ -10,14 +10,17 @@
         // Select the correct level index for a scene
         public int LevelIndex;
         public VRTK_InteractableObject sceneChange;
-        private ManageScenes sceneManagement;
-        private GameObject stagingObjects;
-        public string sceneLoadingName;
+        public VRTK_InteractableObject laserGun;
+        public GameObject unLoad;
+        private float timeElapsed;
+        ManageScenes sceneManagement = new ManageScenes();
+
+        // Allow a delay in loading
+        [SerializeField]
+        private float delayBeforeLoading = 5.0f;
 
         void Start()
         {
-            sceneManagement = GameObject.FindGameObjectWithTag("ScenMgr").GetComponent<ManageScenes>();
-            stagingObjects = GameObject.FindGameObjectWithTag("stage");
             sceneChange = this.GetComponent<VRTK_InteractableObject>();       
         }
 
@@ -33,6 +36,7 @@
                 sceneChange.InteractableObjectTouched += InteractableObjectTouched;
                 sceneChange.InteractableObjectUntouched += InteractableObjectUntouched;
             }
+
         }
 
         protected virtual void OnDisable()
@@ -49,13 +53,8 @@
 
         protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
         {
-            //LightmapSettings.lightmaps = null;
-            DestroyImmediate(stagingObjects);
-            sceneManagement.sceneLoadingName = sceneLoadingName;
-            sceneManagement.levelInd = LevelIndex;
-            sceneManagement.loadLevel= true;
+            sceneManagement.LoadLevelAdditive(LevelIndex);
         }
-
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
         {
 

@@ -66,13 +66,13 @@ namespace OculusSampleFramework
                 Collider collider = this.GetComponent<Collider>();
                 if (collider == null)
                 {
-				    throw new System.ArgumentException("Grabbables cannot have zero grab sonarHits and no collider -- please add a grab point or collider.");
+				    throw new System.ArgumentException("Grabbables cannot have zero grab points and no collider -- please add a grab point or collider.");
                 }
     
                 // Create a default grab point
                 m_grabPoints = new Collider[1] { collider };
 
-                // Grab sonarHits are doing double-duty as a way to identify submeshes that should be colored.
+                // Grab points are doing double-duty as a way to identify submeshes that should be colored.
                 // If unspecified, just color self.
                 m_meshRenderers = new MeshRenderer[1];
                 m_meshRenderers[0] = this.GetComponent<MeshRenderer>();

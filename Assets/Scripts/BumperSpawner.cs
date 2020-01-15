@@ -7,40 +7,47 @@ using VRTK;
 public class BumperSpawner : MonoBehaviour
 {
     // All gameobjects that can be used
-    public GameObject circularBumper;
+    public GameObject bumper;
+    public GameObject groundPrefab;
     // All settings for Bumper
+    public float distance;
+    public float fadeDuration;
+    public float fadeStartValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself. The rimpower/color intensity is brightest at 0.5f
+    public float fadeEndValue; // Has to be minimum 0.5f and maximum 8.0f, since this is defined as a range in the Hologramshader itself.
+    public float fadeSpeed;
     public int sceneIndex;
-    public GameObject cameraRigTransform;
-    public float distance = 0.2f;
-    public float xRotation;
-    public float yRotation;
-    public float xRotationT;
-    public float yRotationT;
+    
     // store new GameObject instance
     private GameObject activeBumper;
     private Scene activeScene;
+    private GameObject groundOrientation;
     private Vector3 playerLocation;
-    private Transform targetPosition;
+    private GameObject cameraRigTransform;
 
     // Called once per frame
     void Update()
     {
         activeScene = SceneManager.GetActiveScene();
         sceneIndex = activeScene.buildIndex;
+        Debug.Log($"Active Scene Index {activeScene.buildIndex}");
         // Retrieve Player Headset position
-        // playerLocation = OVRManager.tracker.GetPose().position;
-        //cameraRigTransform = GameObject.FindGameObjectWithTag("MainCamera");
+        //playerLocation = OVRManager.tracker.GetPose().position;
+        cameraRigTransform = GameObject.Find("MainCamera");
         playerLocation = cameraRigTransform.transform.position; //returns found VRSimulatorCameraRig if it is found
+        Debug.Log($"Player position {playerLocation}");
+
         // Check Scene index returns an integer value
         if (activeScene.buildIndex != 0)
         {
             // Activate Controller in Minigames
             ActivateCollider(true);
+            SetGroundOrientation();
         }
         else
         {
             // Deactivate Controller in Workshop
             ActivateCollider(false);
+            DestroyGround();
         }
     }
   
@@ -51,29 +58,16 @@ public class BumperSpawner : MonoBehaviour
     /// <param name="col"></param>
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("# Collission detected");
+        Debug.Log("Collission detected");
         Vector3 contact = col.contacts[0].point;
         // Check the scene index
-        if (activeScene.buildIndex > 0 && activeScene.buildIndex < 3)
+        if (activeScene.buildIndex != 0)
         {
             if (activeBumper == null)
             {
-                targetPosition = cameraRigTransform.transform;
-                activeBumper = Instantiate(circularBumper, new Vector3(contact.x, contact.y, contact.z), Quaternion.identity);
-                activeBumper.transform.Rotate(xRotation, yRotation, 0);
-                Vector3 lookPos = new Vector3(activeBumper.transform.position.x, 
-                                        targetPosition.position.y,
-                                        activeBumper.transform.position.z);
-                activeBumper.transform.LookAt(lookPos);                
-                // Check if the position of the player and bumper are approximately equal.
-                if (Vector3.Distance(activeBumper.transform.position, targetPosition.position) < 0.001f)
-                {                    
-                    // Swap the position
-                    targetPosition.position *= -1.0f;
-                }
-                activeBumper.transform.position = Vector3.MoveTowards(activeBumper.transform.position, targetPosition.position, distance);
-                xRotationT = activeBumper.transform.rotation.x;
-                yRotationT = activeBumper.transform.rotation.y;
+                activeBumper = Instantiate(bumper, new Vector3(contact.x, Camera.main.transform.position.y - 0.7f, contact.z) + 
+                               Camera.main.transform.forward * distance, Quaternion.identity);
+                Debug.Log("New bumper instance " + activeBumper);
             }
         }
     }
@@ -84,12 +78,45 @@ public class BumperSpawner : MonoBehaviour
     /// <param name="collisionInfo"></param>
     void OnCollisionExit(Collision collisionInfo)
     {
-        if (activeBumper != null)
-        {
-            Destroy(activeBumper);
-        }
+        // Use reflection via Invoke 
+        Invoke("DestroyBumpers", 1.2f);
     }
-        
+
+    /// <summary>
+    /// Coroutines allow to use procedural animations or sequences of events over time
+    /// Otherwise functions need happen only within a single frame.
+    /// The function FadeBumper allows to fade the bumper object out over certain time.
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+
+    IEnumerator FadeBumper()
+    {
+        // Check if bumper instance is empty
+        if(activeBumper != null)
+        {
+            float flag = 0; 
+            while(flag < fadeDuration)
+            {
+                Debug.Log("Coroutine called ");
+                flag = Time.deltaTime * fadeSpeed;
+                float rimPowerShader = Mathf.Lerp(fadeStartValue, fadeEndValue, flag / fadeDuration); //Lerping the value of the rimpower between a given start- and endvalue
+                activeBumper.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPowerShader); // Set the RimPower of the Bumpers attached shader
+                yield return null; // needs to be placed where execution will be paused and resumed on the following frame
+            }
+            if(flag == fadeDuration)
+            {
+                // After while loop has faded bumper out call Destroy(Bumper)
+                Destroy(activeBumper);
+                Debug.Log("Bumper is destroied");
+            }            
+        }
+        else
+        {
+            Debug.Log("No bumper instance");
+        }        
+    }
+    
     /// <summary>
     /// Activate the Collider of the associated Controller.
     /// </summary>
@@ -97,7 +124,44 @@ public class BumperSpawner : MonoBehaviour
     void ActivateCollider(bool enable)
     {
         // Set all Colliders inactive on the gameobjects
-        GetComponent<BoxCollider>().enabled = enable;    
+        GetComponent<BoxCollider>().enabled = enable;
+        Debug.Log($"Set Collider {enable}");        
     }
 
+    /// <summary>
+    /// Instanciate the ground orientation prefab and attach it to user
+    /// </summary>
+    /// <param name="enable"></param>
+    void SetGroundOrientation()
+    {
+        if (groundOrientation == null)
+        {
+            groundOrientation = Instantiate(groundPrefab, playerLocation, Quaternion.identity);
+            Debug.Log("Ground Orientation instance created.");
+        }
+        else
+        {
+           // groundOrientation.transform.position.x = playerLocation.transform.position.x;
+           // groundOrientation.transform.position.z = playerLocation.transform.position.x;
+           // groundOrientation.transform.position.y = 0.1f;
+        }
+    }
+
+    /// <summary>
+    /// Fade Bumper out by calling Coroutine 
+    /// and destroying the instance.
+    /// </summary>
+    void DestroyBumpers()
+    {
+        StartCoroutine("FadeBumper"); // Can be called by StartCoroutine from everywhere to start the IENumerator 
+    }
+
+    /// <summary>
+    /// Delete instance of ground orientation prefab. 
+    /// </summary>
+    void DestroyGround()
+    {
+        Destroy(groundOrientation);
+        Debug.Log("Ground orientation prefab destroied");
+    }
 }

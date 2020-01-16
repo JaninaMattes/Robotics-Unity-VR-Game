@@ -27,9 +27,10 @@ public class ToggleLevel : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(player);
-        DontDestroyOnLoad(lidarGrid);
+        if (player != null) { DontDestroyOnLoad(player); }
+        if (lidarGrid != null) { DontDestroyOnLoad(lidarGrid); }
     }
+
     void Start()
     {
         highlightColor = snapZone.highlightColor;

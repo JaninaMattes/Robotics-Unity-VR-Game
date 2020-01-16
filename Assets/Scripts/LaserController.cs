@@ -4,7 +4,7 @@ using UnityEngine;
 
 // For debugging purpose use ExecuteInEditMode
 [ExecuteInEditMode]
-public class SonarLaserController : MonoBehaviour
+public class LaserController : MonoBehaviour
 {
     // Passing Array
     private static readonly Vector4[] defaultEmptyVector = new Vector4[] { new Vector4(0, 0, 0, 0) };

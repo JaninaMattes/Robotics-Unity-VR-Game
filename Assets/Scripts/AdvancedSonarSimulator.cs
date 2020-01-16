@@ -15,7 +15,7 @@ public class AdvancedSonarSimulator : MonoBehaviour
     public float shotCooldown; 
     private float timer;
     private List<Vector4> hits; // LinkedList for adding and removing are better to be used
-    public SonarRingController controller = new SonarRingController();
+    public LaserController controller = new LaserController();
     public float sonarLifeTime;
 
     // Use this for initialization

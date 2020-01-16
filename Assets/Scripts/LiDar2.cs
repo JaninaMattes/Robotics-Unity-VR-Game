@@ -1,8 +1,7 @@
-﻿namespace VRTK.Examples
-{
-    using System.Collections.Generic;
-    using System.Collections;
-    using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
+using VRTK;
 
 //README !Important!
 //
@@ -278,4 +277,3 @@ public class LiDar2 : MonoBehaviour
             return lerp;
         }
   }
-}

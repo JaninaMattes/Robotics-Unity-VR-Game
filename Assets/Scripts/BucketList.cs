@@ -5,13 +5,15 @@ using TMPro;
 
 public class BucketList : MonoBehaviour
 {
+    //Nur für UI Anzeige (Test)
+    [Header("Checklist")]
+    public TextMeshProUGUI textUI;
+    public TextMeshProUGUI textUI2;
+    public GameObject bucketList;
+
     private Collider bucketCollider;
     private GameObject[] allGameObjects;
     private List<GameObject> bucketList = new List<GameObject>();
-
-    //Nur für UI Anzeige (Test)
-    public TextMeshProUGUI textUI;
-    public TextMeshProUGUI textUI2;
 
     void Start()
     {

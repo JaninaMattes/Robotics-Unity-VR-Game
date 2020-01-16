@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using VRTK;
 
 [ExecuteInEditMode]
@@ -222,8 +223,7 @@ public class ChangeMaterials : MonoBehaviour
             radar.enabled = true;
             radar.material = radar_1_Material;
         }
-        else { }
-        
+        else { }       
            
             laser_controller.enabled = true;
             // Lidar

@@ -61,9 +61,9 @@ public class ChangeMaterials : MonoBehaviour
         GetScene();
         exclude = excludeTags;
         // Kann beliebig erweitert werden
-        sonar2 = GetComponent<SonarLaserAdv>();
-        radar = GetComponent<RadarLaser>();
-        lidar = GetComponent<LiDar2>();
+        sonar2 = spawn.GetComponent<SonarLaserAdv>();
+        radar = spawn.GetComponent<RadarLaser>();
+        lidar = spawn.GetComponent<LiDar2>();
         laser_controller = spawn.GetComponent<SonarLaserController>();
     }
 
@@ -207,7 +207,11 @@ public class ChangeMaterials : MonoBehaviour
     }
 
     public void SetLaserScript(string sensor)
-    {              
+    {
+        laser_controller.enabled = true;
+        // Lidar
+        lidar.enabled = false;
+
         if (sensor == "SonarSensor_1") {
             // Sonar 
             //sonar1.enabled = true;
@@ -217,30 +221,28 @@ public class ChangeMaterials : MonoBehaviour
             // Sonar 
             sonar2.enabled = true;
             sonar2.material = sonar_2_Material;
+            radar.enabled = false;
         }
         else if (sensor == "RadarSensor") {
             // Sonar 
             radar.enabled = true;
             radar.material = radar_1_Material;
+            sonar2.enabled = false;
         }
-        else { }       
-           
-            laser_controller.enabled = true;
-            // Lidar
-            lidar.enabled = false;
+        else { }                 
     }
 
     public void SetLidarScript()
     {
         if (lidar.enabled = false)
-        {
-            // Lidar
-            lidar.enabled = true;
+        {           
             // Laser
             //sonar1.enabled = false;
             sonar2.enabled = false;
             radar.enabled = false;
             laser_controller.enabled = false;
+            // Lidar
+            lidar.enabled = true;
         }
     }
 }

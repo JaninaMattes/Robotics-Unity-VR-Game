@@ -40,7 +40,7 @@ public class AdvancedSonarSimulator : MonoBehaviour
                .Select(hit => new Vector4(hit.x, hit.y, hit.z, hit.w + (Time.deltaTime / sonarLifeTime)))
                .Where(hit => hit.w <= 1).ToList(); // delete all invalid from list
 
-        controller.points = hits.ToArray(); // hand the list over to shader controller
+        //controller.points = hits.ToArray(); // hand the list over to shader controller
     }
 
 }

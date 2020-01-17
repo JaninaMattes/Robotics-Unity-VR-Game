@@ -11,7 +11,7 @@ using VRTK;
         private LineRenderer lineRenderer;
         public Material material;
         public float sonarLifeTime;
-        public SonarLaserController controller = new SonarLaserController();
+        public LaserController controller = new LaserController();
         private List<Vector4> sonarOrigins;
 
         void Start()
@@ -30,8 +30,8 @@ using VRTK;
                 laserPistol.InteractableObjectUsed += InteractableObjectUsed;
                 laserPistol.InteractableObjectUnused += InteractableObjectUnused;
             }
-
-        }
+        controller.material = material;
+    }
 
         protected virtual void OnDisable()
         {

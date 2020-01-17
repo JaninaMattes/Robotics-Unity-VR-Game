@@ -10,7 +10,7 @@ public class LaserController : MonoBehaviour
     private static readonly Vector4[] defaultEmptyVector = new Vector4[] { new Vector4(0, 0, 0, 0) };
     public Vector4[] sonarHits; // for debugging
     public Material material;
-
+    public string test;
     // Use this for initialization
     void Start()
     {

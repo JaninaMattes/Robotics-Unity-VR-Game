@@ -9,7 +9,7 @@ public class BucketList : MonoBehaviour
     [Header("Checklist")]
     public TextMeshProUGUI textUI;
     public TextMeshProUGUI textUI2;
-    public GameObject bucketList;
+    public GameObject _bucketList;
 
     private Collider bucketCollider;
     private GameObject[] allGameObjects;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // For debugging purpose use ExecuteInEditMode
-[ExecuteInEditMode]
+
 public class LaserController : MonoBehaviour
 {
     // Passing Array

@@ -1,30 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BucketList : MonoBehaviour
 {
     //Nur für UI Anzeige (Test)
     [Header("Checklist")]
-    public TextMeshProUGUI textUI;
-    public TextMeshProUGUI textUI2;
-    public GameObject bucketList;
+    [Tooltip("Checklist Elements")]
+    public TextMeshProUGUI[] textElement;
+    public Image[] checkIcon;
+    public string[] textElements;
+    public GameObject checkList;
 
-    private Collider bucketCollider;
-    private GameObject[] allGameObjects;
-    private List<GameObject> bucketList = new List<GameObject>();
+    protected Collider bucketCollider;
+    protected GameObject[] allGameObjects;
+    protected List<GameObject> bucketList = new List<GameObject>();
 
-    void Start()
+    public void Start()
     {
         //Objekte die im Eimer erkannt werden sollen einem Array zuweisen (in diesem Fall ALLE GameObjekte die aktiv in der Szene sind zur Demonstration).
         allGameObjects = GameObject.FindObjectsOfType<GameObject>();
 
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
+
+        for(int i = 0; i < textElement.Length; i++)
+        {
+            textElement[i].text = textElements[i];
+            checkIcon[i].enable = false;
+        }
     }
 
-    void Update()
+    public void Update()
     {
         //Überprüfung aller GameObjekte im Array.
         //Befindet sich die Postion(in Unity immer der Mittelpunkt der geometrischen Form) eines GameObjekts innerhalb der Collider-Grenzen (collider.bounds) und das GameObjekt ist nicht der Eimer selbst(der Eimer befindet sich natürlich immer in den eigenen Collidergrenzen),
@@ -58,12 +68,12 @@ public class BucketList : MonoBehaviour
         }
 
         //Nur für UI Anzeige (Test)
-        textUI.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
-        textUI2.text = ListToText(bucketList);
+        //textElement.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
+        //checkIcon.text = ListToText(bucketList);
     }
 
     //Nur für UI Anzeige (Test)
-    private string ListToText(List<GameObject> list)
+    public string ListToText(List<GameObject> list)
     {
         string result = "";
         foreach (var listMember in list)

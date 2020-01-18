@@ -29,7 +29,7 @@ public class ChangeMaterials : MonoBehaviour
     public SonarLaserAdv sonar2;
     public RadarLaser radar;
     public LiDar2 lidar;
-    public SonarLaserController laser_controller;
+    public LaserController laser_controller;
 
     // Private Properties
     protected List<string> exclude = new List<string>();
@@ -64,7 +64,7 @@ public class ChangeMaterials : MonoBehaviour
         sonar2 = spawn.GetComponent<SonarLaserAdv>();
         radar = spawn.GetComponent<RadarLaser>();
         lidar = spawn.GetComponent<LiDar2>();
-        laser_controller = spawn.GetComponent<SonarLaserController>();
+        laser_controller = spawn.GetComponent<LaserController>();
     }
 
     public void Update()

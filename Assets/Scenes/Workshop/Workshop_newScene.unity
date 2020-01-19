@@ -21986,28 +21986,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789461236}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f990ef5e385d440409732efdec7779e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lidarActive: 0
   lidarPistol: {fileID: 1888258280}
   dot: {fileID: 2292595040950138287, guid: 7218896684d947a408ea68547876e7ba, type: 3}
   shotDelay: 0
   enableDistanceColoring: 0
-  startColor: {r: 0, g: 1, b: 0.060247898, a: 1}
-  endColor: {r: 1, g: 0, b: 0, a: 1}
+  startColor: {r: 0, g: 1, b: 0.9578202, a: 1}
+  endColor: {r: 0.9353051, g: 1, b: 0, a: 1}
   blendFactor: 1
   enableFading: 1
   dotMaterial: {fileID: 2100000, guid: b43e5571a9fe23946bf3070cdfceb1b0, type: 2}
-  fadeDuration: 1.17
-  fadeSpeed: 1.11
-  angle: 27
+  fadeDuration: 4
+  fadeSpeed: 2
+  angle: 90
   spacing: 1
-  metallicLimit: 0.467
-  glossinessLimit: 0.473
-  noiseOffsetMin: 0.6
-  noiseOffsetMax: 0.984
+  metallicLimit: 1
+  glossinessLimit: 1
+  noiseOffsetMin: 0.852
+  noiseOffsetMax: 0.994
   transparencyLimit: 0
 --- !u!114 &1789461239
 MonoBehaviour:

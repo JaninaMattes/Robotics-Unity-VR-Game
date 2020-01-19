@@ -1,20 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using UnityEngine;
-using VRTK;
+﻿namespace VRTK.Examples
+{
+    using System.Collections.Generic;
+    using System.Collections;
+    using UnityEngine;
 
-/*
-README !Important!
-
-The following scripts lidar via raycasting only works if the intended hit-gameobject has an attached collider.
-Gameobjects which shall be ignored by the raycast need to be set to Layer8.
-Fading only works if the dot materials shader is set to transparent.
-The script has to be applied on the gameobject, they ray shoots from, since this is the start point of the ray and transform.position for distance calculation of the lidar.
-Reading Textures attributes, such as Color is only possible if the textures import setting Read/Write is enabled! */
+//README !Important!
+//
+//The following scripts lidar via raycasting only works if the intended hit-gameobject has an attached collider.
+//Gameobjects which shall be ignored by the raycast need to be set to Layer8.
+//Fading only works if the dot materials shader is set to transparent.
+//The script has to be applied on the gameobject, they ray shoots from, since this is the start point of the ray and transform.position for distance calculation of the lidar.
+//Reading Textures attributes, such as Color is only possible if the textures import setting Read/Write is enabled! 
 
 public class LiDar2 : MonoBehaviour
 {
-    public bool lidarActive = false;
     [Header("Lidar General Settings")]
     public VRTK_InteractableObject lidarPistol;
     public GameObject dot;
@@ -86,10 +85,7 @@ public class LiDar2 : MonoBehaviour
         /// </summary>
         void Start()
         {
-             gridParent = GameObject.FindGameObjectWithTag("Grid");
-             dotColor = dotMaterial.GetColor("_TintColor");
-
-        if (dotMaterial != null)
+            if (dotMaterial != null)
             {
                 dotMaterial.SetColor("_TintColor", startColor);
             }
@@ -100,10 +96,11 @@ public class LiDar2 : MonoBehaviour
             {
                 GameObject temp = Instantiate(dot, transform.position, Quaternion.identity);
                 temp.name = "i : " + i + " , j : " + j;
-                temp.transform.SetParent(gridParent.transform);
                 dots.Add(temp);
             }
         }
+            gridParent = GameObject.FindGameObjectWithTag("Grid");
+            dotColor = dotMaterial.GetColor("_TintColor");
         }
 
         void SetGrid()
@@ -140,7 +137,7 @@ public class LiDar2 : MonoBehaviour
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
     {
             SetGrid();
-            if (allowShoot && lidarActive)
+            if (allowShoot)
             {
                 ActivateLidar();
                 allowShoot = false;
@@ -149,7 +146,6 @@ public class LiDar2 : MonoBehaviour
 
     protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
     {  
-
     }
 
     void DeactivateCurrentLidar()
@@ -174,11 +170,12 @@ public class LiDar2 : MonoBehaviour
             for (int j = 0; j < columns; j++)
             {
                 dot2 = dots[i * rows + j];
+                dot2.transform.SetParent(gridParent.transform);
                 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
                     
                 // Does the ray intersect any objects excluding the player layer
-                if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, rayLength, layerMask))
                 {
                     randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
                     hitLocation = transform.TransformDirection(direction) * hit.distance;
@@ -227,7 +224,7 @@ public class LiDar2 : MonoBehaviour
                     }
                     else
                     {
-                   dot2.SetActive(false);
+                    dot2.SetActive(false);
                     }
             }
         }
@@ -281,3 +278,4 @@ public class LiDar2 : MonoBehaviour
             return lerp;
         }
   }
+}

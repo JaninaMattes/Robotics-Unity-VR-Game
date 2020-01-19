@@ -61,15 +61,16 @@ using System.Collections;
 
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out HitInfo, 20.0f))
         {
-
-            hitObject = HitInfo.transform.gameObject;
-        }
-        else
-        {
-            hitObject = null;
-        }
+                if (HitInfo.transform.gameObject.CompareTag("CameraDetected"))
+                {
+                    hitObject = HitInfo.transform.gameObject;
+                }
+            else
+            {
+                hitObject = null;
+            }
         }
     }
-
+}
 
 

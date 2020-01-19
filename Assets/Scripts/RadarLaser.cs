@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using VRTK;
+﻿namespace VRTK.Examples
+{
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using UnityEngine;
 
     public class RadarLaser : MonoBehaviour
     {
@@ -11,7 +12,7 @@ using VRTK;
         private LineRenderer lineRenderer;
         public Material material;
         public float radarLifeTime;
-        public LaserController controller;
+        public RadarLaserController controller = new RadarLaserController();
         private List<Vector4> sonarOrigins;
 
         void Start()
@@ -19,7 +20,6 @@ using VRTK;
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.enabled = false;
             sonarOrigins = new List<Vector4>();
-            controller = new LaserController();
         }
 
         protected virtual void OnEnable()
@@ -31,7 +31,6 @@ using VRTK;
                 laserPistol.InteractableObjectUsed += InteractableObjectUsed;
                 laserPistol.InteractableObjectUnused += InteractableObjectUnused;
             }
-        controller.material = material;
 
         }
 
@@ -83,3 +82,5 @@ using VRTK;
             lineRenderer.enabled = false;
         }
     }
+
+}

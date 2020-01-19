@@ -16,11 +16,14 @@ public class BucketList : MonoBehaviour
     public string[] listContent;
     public GameObject checkList;
     [Tooltip("Color on Error")]
-    public Color red;
-    public Color white;
+    public Material red;
+    public Material white;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
+
+    // Debugging
+    public List<GameObject> _bucketList;
   
 
     // To change color by Coroutine Calls
@@ -36,6 +39,7 @@ public class BucketList : MonoBehaviour
     {
         //Objekte die im Eimer erkannt werden sollen einem Array zuweisen (in diesem Fall ALLE GameObjekte die aktiv in der Szene sind zur Demonstration).
         allGameObjects = GameObject.FindObjectsOfType<GameObject>();
+        FetchAllPositions();
 
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
@@ -74,6 +78,7 @@ public class BucketList : MonoBehaviour
                             controller.ResetMaterial(gameObj);
                             controller.Add(gameObj);                            
                             controller.AddPlayerScore();
+                            Debug.Log($"GameObject found {gameObj.tag}");
                         }
                         else{
                             if (!coroutineCalled)
@@ -86,7 +91,7 @@ public class BucketList : MonoBehaviour
                             else
                             {
                                 // Set color back to white
-                                GetComponent<SpriteRenderer>().color = white;
+                                checkList.GetComponent<Renderer>().material = white;
                             }
                         }
                     }                    
@@ -115,9 +120,16 @@ public class BucketList : MonoBehaviour
             colorchange = true;
         }
 
+        if(controller.GetBucketObjects().Count == listContent.Length){
+            // Game over
+            ResetPosition();
+        }
+
         //Nur für UI Anzeige (Test)
         //textElement.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
         //checkIcon.text = ListToText(bucketList);
+
+        _bucketList = controller.GetBucketObjects();
     }
 
     //Nur für UI Anzeige (Test)
@@ -131,6 +143,24 @@ public class BucketList : MonoBehaviour
         return result;
     }
 
+    public void FetchAllPositions(){
+        foreach(GameObject obj in allGameObjects){
+            controller.Add(obj.tag, obj.transform.position);
+        }
+    }
+
+    public void ResetPosition(){
+        List<GameObject> _bucketList = controller.GetBucketObjects();
+        Dictionary<string, Vector3> _originalPosition = controller.GetPosition();
+        foreach(GameObject obj in _bucketList){
+
+            foreach (KeyValuePair<string, Vector3> entry in _originalPosition)
+            {
+                obj.transform.position = entry.Value;
+            }               
+        }
+    }
+
     /// <summary>
     /// Adjust the color and flash up
     /// </summary>
@@ -140,9 +170,9 @@ public class BucketList : MonoBehaviour
         while (colorchange && errorBreak)
         {
             coroutineCalled = true;
-            GetComponent<SpriteRenderer>().color = red;
+            checkList.GetComponent<Renderer>().material = red;
             yield return new WaitForSeconds(0.3f);
-            GetComponent<SpriteRenderer>().color = white;
+            checkList.GetComponent<Renderer>().material = white;
             yield return new WaitForSeconds(0.3f);
         }
         coroutineCalled = false;

@@ -10,6 +10,7 @@ public class Game_Manager : MonoBehaviour
     protected int playerHealth = 0;
     // Machine Learning Simulation
     protected List<GameObject> _bucketList = new List<GameObject>();
+    protected Dictionary<string, Vector3> _originalPosition = new Dictionary<string, Vector3>();
     // Material Changer
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
@@ -31,6 +32,10 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
+    public void Set(Dictionary<string, Vector3> _originalPosition)
+    {
+        this._originalPosition = _originalPosition;
+    }
     public void Set(List<GameObject> _bucketList)
     {
         this._bucketList = _bucketList;
@@ -109,6 +114,15 @@ public class Game_Manager : MonoBehaviour
         return this.playerScore;
     }
 
+    public void Add(string tag, Vector3 _originalPosition)
+    {
+        this._originalPosition.Add(tag, _originalPosition);
+    }
+
+    public Dictionary<string, Vector3> GetPosition( )
+    {
+        return this._originalPosition;
+    }
     public void ResetMaterial(GameObject obj)
     {
         Renderer m_ObjectRenderer = obj.GetComponent<Renderer>();

@@ -31,6 +31,7 @@ using VRTK;
                 laserPistol.InteractableObjectUsed += InteractableObjectUsed;
                 laserPistol.InteractableObjectUnused += InteractableObjectUnused;
             }
+        controller.material = material;
 
         }
 

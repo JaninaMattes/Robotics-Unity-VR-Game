@@ -98,35 +98,63 @@ public class ChangeMaterials : MonoBehaviour
          {
              case "SonarSensor_1":
                  //Update Material
-                 UpdateMaterial(sonar_1_Material);                
+                 UpdateMaterial(sonar_1_Material);
+                 ActivateAllRenderer();
                  SetLaserScript(tag);
                  break;
              case "SonarSensor_2":
                  //Update Material
                  UpdateMaterial(sonar_2_Material);
+                 ActivateAllRenderer();
                  SetLaserScript(tag);
                  break;
              case "LidarSensor":
-                 //Update Material
-                 UpdateMaterial(lidar_1_Material);
+                //Update Material
+                //UpdateMaterial(lidar_1_Material);
+                 DeactivateAllRenderer();
                  SetLidarScript();
                  break;
              case "RadarSensor":
                  //Update Material
                  UpdateMaterial(radar_1_Material);
+                 ActivateAllRenderer();
                  SetLaserScript(tag);
                  break;
              case "CameraSensor":
                  //Revert Material
                  ResetMaterial();
-                 //TODO: Camerasensor
-                 break;
+                 ActivateAllRenderer();
+                //TODO: Camerasensor
+                break;
              default:
                  //If no other case found
                  ResetMaterial();
+                 ActivateAllRenderer();
                  break;
 
          }
+    }
+
+    private void DeactivateAllRenderer()
+    {
+        foreach (Renderer rend in controller.GetRenderer())
+        {
+            if (rend != null && !exclude.Contains(rend.tag))
+            {
+                rend.enabled = false;
+            }
+        }
+    }
+
+    private void ActivateAllRenderer()
+    {
+        foreach (Renderer rend in controller.GetRenderer())
+        {
+            if (rend != null && rend.tag != "LineRenderer")
+            {
+                rend.enabled = true;
+            }
+        }
     }
 
     private void UpdateMaterial(Material material)
@@ -210,7 +238,7 @@ public class ChangeMaterials : MonoBehaviour
     {
         laser_controller.enabled = true;
         // Lidar
-        lidar.enabled = false;
+        lidar.lidarActive = false;
 
         if (sensor == "SonarSensor_1") {
             // Sonar 
@@ -234,16 +262,15 @@ public class ChangeMaterials : MonoBehaviour
 
     public void SetLidarScript()
     {
-        if (lidar.enabled = false)
-        {           
-            // Laser
-            //sonar1.enabled = false;
-            sonar2.enabled = false;
-            radar.enabled = false;
-            laser_controller.enabled = false;
-            // Lidar
-            lidar.enabled = true;
-        }
+
+        // Laser
+        //sonar1.enabled = false;
+        sonar2.enabled = false;
+        radar.enabled = false;
+        laser_controller.enabled = false;
+        // Lidar
+        lidar.lidarActive = true;
+        
     }
 }
 

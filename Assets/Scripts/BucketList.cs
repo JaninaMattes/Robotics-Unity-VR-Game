@@ -16,7 +16,6 @@ public class BucketList : MonoBehaviour
     public string[] listContent;
     public GameObject checkList;
     [Tooltip("Color on Error")]
-
     public Color red;
     public Color white;
     public float colorChangetimer = 1f;

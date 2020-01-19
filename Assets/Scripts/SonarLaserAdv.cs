@@ -11,7 +11,7 @@ using VRTK;
         private LineRenderer lineRenderer;
         public Material material;
         public float sonarLifeTime;
-        public LaserController controller = new LaserController();
+        public LaserController controller;
         private List<Vector4> sonarOrigins;
 
         void Start()

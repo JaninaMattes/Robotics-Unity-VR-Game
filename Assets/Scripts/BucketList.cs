@@ -12,12 +12,26 @@ public class BucketList : MonoBehaviour
     [Tooltip("Checklist Elements")]
     public TextMeshProUGUI[] textElement;
     public Image[] checkIcon;
-    public string[] textElements;
+    public Image errorIcon;
+    public string[] listContent;
     public GameObject checkList;
+    [Tooltip("Color on Error")]
 
+    public Color red;
+    public Color white;
+    public float colorChangetimer = 1f;
+    public float errorTimer = 5f;
+    public float errorTimertotal = 5f;
+  
+
+    // To change color by Coroutine Calls
+    protected bool coroutineCalled = false;
     protected Collider bucketCollider;
     protected GameObject[] allGameObjects;
-    protected List<GameObject> bucketList = new List<GameObject>();
+    protected bool damagebreak = false;
+    protected bool colorchange = false;
+    // Controller 
+    Game_Manager controller = Game_Manager.Instance;
 
     public void Start()
     {
@@ -26,12 +40,14 @@ public class BucketList : MonoBehaviour
 
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
+        errorTimer = errorTimertotal;
 
         for(int i = 0; i < textElement.Length; i++)
         {
-            textElement[i].text = textElements[i];
-            checkIcon[i].enable = false;
+            textElement[i].text = listContent[i];
+            checkIcon[i].enabled = false;
         }
+        errorIcon.enabled = false;
     }
 
     public void Update()
@@ -51,20 +67,50 @@ public class BucketList : MonoBehaviour
             {
                 if (gameObj != gameObject)
                 {
-                    if (!bucketList.Contains(gameObj))
-                    {
-                        bucketList.Add(gameObj);
-                    }
+                    for(int i = 0; i < listContent.Length; ++i){
+                        // Gameobject Tag und gelistete Tags müssen übereinstimmen
+                        if (!controller.GetBucketObjects().Contains(gameObj) && gameObj.tag == listContent[i])
+                        {
+                            controller.Add(gameObj);
+                            checkIcon[i].enabled = true;
+                        }
+                        else{
+                            if (!coroutineCalled)
+                            {
+                                errorIcon.enabled = true;
+                                // Change color to red
+                                StartCoroutine("FlashColor");
+                            }
+                            else
+                            {
+                                // Set color back to white
+                                GetComponent<SpriteRenderer>().color = white;
+                            }
+                        }
+                    }                    
                 }
             }
 
             else
             {
-                if (bucketList.Contains(gameObj))
+                if (controller.GetBucketObjects().Contains(gameObj))
                 {
-                    bucketList.Remove(gameObj);
+                    controller.Remove(gameObj);
                 }
             }
+        }
+
+        if (errorTimer <= 0)
+        {
+            damagebreak = false;
+            colorchange = false;
+            errorTimer = errorTimertotal;
+        }
+
+        if (damagebreak)
+        {
+            errorTimer -= 1 * Time.deltaTime;
+            colorchange = true;
         }
 
         //Nur für UI Anzeige (Test)
@@ -81,5 +127,24 @@ public class BucketList : MonoBehaviour
             result += "-" + " " + listMember.name + "\n";
         }
         return result;
+    }
+
+    /// <summary>
+    /// Adjust the color and flash up
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator FlashColor()
+    {
+        while (colorchange && damagebreak)
+        {
+            coroutineCalled = true;
+            GetComponent<SpriteRenderer>().color = red;
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<SpriteRenderer>().color = white;
+            yield return new WaitForSeconds(0.3f);
+        }
+        coroutineCalled = false;
+        // set icon back
+        errorIcon.enabled = false;
     }
 }

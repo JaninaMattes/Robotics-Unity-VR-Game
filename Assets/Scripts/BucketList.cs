@@ -28,7 +28,7 @@ public class BucketList : MonoBehaviour
     protected bool coroutineCalled = false;
     protected Collider bucketCollider;
     protected GameObject[] allGameObjects;
-    protected bool damagebreak = false;
+    protected bool errorBreak = false;
     protected bool colorchange = false;
     // Controller 
     Game_Manager controller = Game_Manager.Instance;
@@ -71,8 +71,10 @@ public class BucketList : MonoBehaviour
                         // Gameobject Tag und gelistete Tags müssen übereinstimmen
                         if (!controller.GetBucketObjects().Contains(gameObj) && gameObj.tag == listContent[i])
                         {
-                            controller.Add(gameObj);
                             checkIcon[i].enabled = true;
+                            controller.ResetMaterial(gameObj);
+                            controller.Add(gameObj);                            
+                            controller.AddPlayerScore();
                         }
                         else{
                             if (!coroutineCalled)
@@ -80,6 +82,7 @@ public class BucketList : MonoBehaviour
                                 errorIcon.enabled = true;
                                 // Change color to red
                                 StartCoroutine("FlashColor");
+                                controller.ReducePlayerScore();
                             }
                             else
                             {
@@ -102,12 +105,12 @@ public class BucketList : MonoBehaviour
 
         if (errorTimer <= 0)
         {
-            damagebreak = false;
+            errorBreak = false;
             colorchange = false;
             errorTimer = errorTimertotal;
         }
 
-        if (damagebreak)
+        if (errorBreak)
         {
             errorTimer -= 1 * Time.deltaTime;
             colorchange = true;
@@ -135,7 +138,7 @@ public class BucketList : MonoBehaviour
     /// <returns></returns>
     IEnumerator FlashColor()
     {
-        while (colorchange && damagebreak)
+        while (colorchange && errorBreak)
         {
             coroutineCalled = true;
             GetComponent<SpriteRenderer>().color = red;

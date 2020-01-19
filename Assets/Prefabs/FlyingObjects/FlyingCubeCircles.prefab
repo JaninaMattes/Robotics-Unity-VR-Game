@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 8354220614140519843}
   - component: {fileID: 6026530258960307988}
   - component: {fileID: 4846204627333509848}
-  - component: {fileID: 7943996372519814200}
-  - component: {fileID: -7375061432125622981}
+  - component: {fileID: 1641534197489319388}
   m_Layer: 0
   m_Name: FlyingCubeCircles
   m_TagString: Untagged
@@ -94,7 +93,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7943996372519814200
+--- !u!114 &1641534197489319388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,20 +111,8 @@ MonoBehaviour:
   speed: 0
   height: 0
   width: 0
-  amplitude: 1
+  amplitude: 0
   wavespeed: 0
   waveheight: 0
   tempPosition: {x: 0, y: 0, z: 0}
   startPosition_fixed: {x: 0, y: 0, z: 0}
---- !u!114 &-7375061432125622981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7824309349127862710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b7a8be974cdba4587bf55b0151628d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

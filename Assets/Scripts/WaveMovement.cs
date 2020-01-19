@@ -43,7 +43,7 @@ public class WaveMovement : MonoBehaviour
         wavespeed = 0.05f;
         waveheight = 0.8f;
 
-}
+    }
 
 // Update is called once per frame
 void FixedUpdate()

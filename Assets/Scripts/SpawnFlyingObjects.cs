@@ -26,36 +26,37 @@ public class SpawnFlyingObjects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    maxobjectNumber = 20;
+    maxobjectNumber = 60;
     //spawnedObjects = 0;
 
-    minPositionX = -40;
-    maxPositionX = 40;
+    minPositionX = -20;
+    maxPositionX = 20;
 
     minPositionY = 20;
     maxPositionY = 40;
 
-    minPositionZ = -40;
-    maxPositionZ = 40;
+    minPositionZ = -20;
+    maxPositionZ = 20;
 
-}
+    RandomSpawn();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnPosition.x = Random.Range(minPositionX, maxPositionX);
-        SpawnPosition.y = Random.Range(minPositionY, maxPositionY);
-        SpawnPosition.z = Random.Range(minPositionZ, maxPositionZ);
-
-        RandomSpawn();
     }
 
     void RandomSpawn()
     {
-        for (spawnedObjects = 0; spawnedObjects <= maxobjectNumber; spawnedObjects++) {
+        
+        for (spawnedObjects = 0; spawnedObjects < maxobjectNumber; spawnedObjects++) {
 
-        randomInt = Random.Range(0,spawnees.Length);
-        Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
+            SpawnPosition.x = Random.Range(minPositionX, maxPositionX);
+            SpawnPosition.y = Random.Range(minPositionY, maxPositionY);
+            SpawnPosition.z = Random.Range(minPositionZ, maxPositionZ);
+
+            randomInt = Random.Range(0,spawnees.Length);
+            Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
 
         }
     }

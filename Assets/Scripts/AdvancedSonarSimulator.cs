@@ -15,7 +15,7 @@ public class AdvancedSonarSimulator : MonoBehaviour
     public float shotCooldown; 
     private float timer;
     private List<Vector4> hits; // LinkedList for adding and removing are better to be used
-    public SonarRingController controller = new SonarRingController();
+    public LaserController controller = new LaserController();
     public float sonarLifeTime;
 
     // Use this for initialization
@@ -40,7 +40,7 @@ public class AdvancedSonarSimulator : MonoBehaviour
                .Select(hit => new Vector4(hit.x, hit.y, hit.z, hit.w + (Time.deltaTime / sonarLifeTime)))
                .Where(hit => hit.w <= 1).ToList(); // delete all invalid from list
 
-        controller.points = hits.ToArray(); // hand the list over to shader controller
+        controller.sonarHits = hits.ToArray(); // hand the list over to shader controller
     }
 
 }

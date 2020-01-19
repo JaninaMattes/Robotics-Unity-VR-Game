@@ -1,9 +1,8 @@
-﻿namespace VRTK.Examples
-{
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using VRTK; 
 
     public class SonarLaserAdv : MonoBehaviour
     {
@@ -12,7 +11,7 @@
         private LineRenderer lineRenderer;
         public Material material;
         public float sonarLifeTime;
-        public SonarLaserController controller = new SonarLaserController();
+        public LaserController controller = new LaserController();
         private List<Vector4> sonarOrigins;
 
         void Start()
@@ -31,8 +30,8 @@
                 laserPistol.InteractableObjectUsed += InteractableObjectUsed;
                 laserPistol.InteractableObjectUnused += InteractableObjectUnused;
             }
-
-        }
+            controller.material = material;
+    }
 
         protected virtual void OnDisable()
         {
@@ -82,5 +81,3 @@
             lineRenderer.enabled = false;
         }
     }
-
-}

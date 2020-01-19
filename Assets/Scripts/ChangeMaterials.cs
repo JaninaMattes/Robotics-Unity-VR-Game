@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using VRTK;
 
 [ExecuteInEditMode]
@@ -12,7 +13,7 @@ public class ChangeMaterials : MonoBehaviour
     [Header("Sensor Material")]
     [Tooltip("Sonar Materials")]
     public Material sonar_1_Material;
-    public Material sonar_2_Material;
+    public Material sonar_2_Material;    
     [Tooltip("Radar Material")]
     public Material radar_1_Material;
     [Tooltip("Lidar Material")]
@@ -22,7 +23,14 @@ public class ChangeMaterials : MonoBehaviour
     public string gridorientation_Tag;
     [Tooltip("Excluded Tag List")]
     public List<string> excludeTags = new List<string>();
-   
+    [Tooltip("Spawn")]
+    public GameObject spawn;
+    //public SonarLaser sonar1;
+    public SonarLaserAdv sonar2;
+    public RadarLaser radar;
+    public LiDar2 lidar;
+    public LaserController laser_controller;
+
     // Private Properties
     protected List<string> exclude = new List<string>();
     //protected GameObject[] currentGameObjects;
@@ -53,6 +61,10 @@ public class ChangeMaterials : MonoBehaviour
         GetScene();
         exclude = excludeTags;
         // Kann beliebig erweitert werden
+        sonar2 = spawn.GetComponent<SonarLaserAdv>();
+        radar = spawn.GetComponent<RadarLaser>();
+        lidar = spawn.GetComponent<LiDar2>();
+        laser_controller = spawn.GetComponent<LaserController>();
     }
 
     public void Update()
@@ -82,32 +94,66 @@ public class ChangeMaterials : MonoBehaviour
 
     private void UpdateMaterial(string tag)
     {
-        switch (tag)
+         switch (tag)
+         {
+             case "SonarSensor_1":
+                 //Update Material
+                 UpdateMaterial(sonar_1_Material);
+                 ActivateAllRenderer();
+                 SetLaserScript(tag);
+                 break;
+             case "SonarSensor_2":
+                 //Update Material
+                 UpdateMaterial(sonar_2_Material);
+                 ActivateAllRenderer();
+                 SetLaserScript(tag);
+                 break;
+             case "LidarSensor":
+                //Update Material
+                //UpdateMaterial(lidar_1_Material);
+                 DeactivateAllRenderer();
+                 SetLidarScript();
+                 break;
+             case "RadarSensor":
+                 //Update Material
+                 UpdateMaterial(radar_1_Material);
+                 ActivateAllRenderer();
+                 SetLaserScript(tag);
+                 break;
+             case "CameraSensor":
+                 //Revert Material
+                 ResetMaterial();
+                 ActivateAllRenderer();
+                //TODO: Camerasensor
+                break;
+             default:
+                 //If no other case found
+                 ResetMaterial();
+                 ActivateAllRenderer();
+                 break;
+
+         }
+    }
+
+    private void DeactivateAllRenderer()
+    {
+        foreach (Renderer rend in controller.GetRenderer())
         {
-            case "SonarSensor_1":
-                //Update Material
-                UpdateMaterial(sonar_1_Material);
-                break;
-            case "SonarSensor_2":
-                //Update Material
-                UpdateMaterial(sonar_2_Material);
-                break;
-            case "LidarSensor":
-                //Update Material
-                UpdateMaterial(lidar_1_Material);
-                break;
-            case "RadarSensor":
-                //Update Material
-                UpdateMaterial(radar_1_Material);
-                break;
-            case "CameraSensor":
-                //Revert Material
-                ResetMaterial();
-                break;
-            default:
-                //If no other case found
-                ResetMaterial();
-                break;
+            if (rend != null && !exclude.Contains(rend.tag))
+            {
+                rend.enabled = false;
+            }
+        }
+    }
+
+    private void ActivateAllRenderer()
+    {
+        foreach (Renderer rend in controller.GetRenderer())
+        {
+            if (rend != null && rend.tag != "LineRenderer")
+            {
+                rend.enabled = true;
+            }
         }
     }
 
@@ -118,13 +164,12 @@ public class ChangeMaterials : MonoBehaviour
         foreach (Renderer rend in controller.GetRenderer())
         {
           if (rend != null && !exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
-            {
+           {
                 m = rend.materials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
-                    //TODO: find Material that belongs to floor 
-                    //then set to = gridorientation_Material
+                    rend.material = gridorientation_Material;
                 }
                 else
                 {                 
@@ -136,7 +181,7 @@ public class ChangeMaterials : MonoBehaviour
                     rend.materials = m;
 
                 }               
-            }  
+           }  
         }
     }
 
@@ -188,4 +233,45 @@ public class ChangeMaterials : MonoBehaviour
             GetMeshRenderer();
         //}           
     }
+
+    public void SetLaserScript(string sensor)
+    {
+        laser_controller.enabled = true;
+        // Lidar
+        lidar.lidarActive = false;
+
+        if (sensor == "SonarSensor_1") {
+            // Sonar 
+            //sonar1.enabled = true;
+            //sonar1.Material = sonar_1_Material;
+        }
+        else if (sensor == "SonarSensor_2") {
+            // Sonar 
+            sonar2.enabled = true;
+            sonar2.material = sonar_2_Material;
+            radar.enabled = false;
+        }
+        else if (sensor == "RadarSensor") {
+            // Sonar 
+            radar.enabled = true;
+            radar.material = radar_1_Material;
+            sonar2.enabled = false;
+        }
+        else { }                 
+    }
+
+    public void SetLidarScript()
+    {
+
+        // Laser
+        //sonar1.enabled = false;
+        sonar2.enabled = false;
+        radar.enabled = false;
+        laser_controller.enabled = false;
+        // Lidar
+        lidar.lidarActive = true;
+        
+    }
 }
+
+ 

@@ -6,10 +6,7 @@ public class UISelectionIndicator : MonoBehaviour {
 
 	    public PixelEffect pixelEffectGameObject; //Container to be able to access the GameObject wit hattached PixelEffect.cs, in which the hitObject value can be accessed.
 
-	    void Start () {
-        pixelEffectGameObject = GameObject.FindObjectOfType<PixelEffect>(); // Finding the GameObject with the PixelEffect.cs and setting it to the container.
-	    }
-
+	  
 	    void Update () {
 
         //If the hitObject has a value/gameObject set, the UI Image(red corners) and text get set active/visible

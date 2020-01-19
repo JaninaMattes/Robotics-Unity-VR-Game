@@ -6,10 +6,10 @@ public class Game_Manager : MonoBehaviour
 {
     private static Game_Manager _Instance = null;
     // Game score
-    public int playerScore { get; set; }
-    public int playerHealth { get; set; }
+    protected int playerScore = 0;
+    protected int playerHealth = 0;
     // Machine Learning Simulation
-    protected Dictionary<int, GameObject> learnedObj = new Dictionary<int, GameObject>();
+    protected List<GameObject> _bucketList = new List<GameObject>();
     // Material Changer
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
@@ -31,9 +31,9 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    public void Set(Dictionary<int, GameObject> learnedObj)
+    public void Set(List<GameObject> _bucketList)
     {
-        this.learnedObj = learnedObj;
+        this._bucketList = _bucketList;
     }
 
     public void Set(Renderer[] _renderer)
@@ -46,9 +46,18 @@ public class Game_Manager : MonoBehaviour
         this._matList = _matList;
     }
 
-    public Dictionary<int, GameObject> GetGameObjectd()
+    public void Add(GameObject _bucketList)
     {
-        return this.learnedObj;
+        this._bucketList.Add(_bucketList);
+    }
+
+    public void Remove(GameObject _bucketList){
+        this._bucketList.Remove(_bucketList);
+    }
+
+    public List<GameObject> GetBucketObjects()
+    {
+        return this._bucketList;
     }
 
     public Renderer[] GetRenderer()
@@ -59,5 +68,56 @@ public class Game_Manager : MonoBehaviour
     public Hashtable GetMaterial()
     {
         return this._matList;
+    }
+
+    public void SetPlayerHealth(int playerHealth){
+        this.playerHealth = playerHealth;
+    }
+
+    public void AddPlayerHealth(){
+        ++ this.playerHealth;
+    }
+
+    public void ReducePlayerHealth()
+    {
+        --this.playerHealth;
+    }
+
+    public int GetPlayerHealth()
+    {
+        return this.playerHealth;
+    }
+    public void SetPlayerScore(int playerScore)
+    {
+        this.playerScore = playerScore;
+    }
+
+    public void AddPlayerScore()
+    {
+        ++this.playerScore;
+    }
+
+
+    public void ReducePlayerScore()
+    {
+        --this.playerScore;
+    }
+
+
+    public int GetPlayerScore()
+    {
+        return this.playerScore;
+    }
+
+    public void ResetMaterial(GameObject obj)
+    {
+        Renderer m_ObjectRenderer = obj.GetComponent<Renderer>();
+        foreach (Renderer rend in _renderer)
+        {
+            if (rend != null && rend == m_ObjectRenderer)
+            {
+                rend.materials = _matList[rend] as Material[];
+            }
+        }
     }
 }

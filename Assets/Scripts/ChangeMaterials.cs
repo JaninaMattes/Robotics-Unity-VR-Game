@@ -150,7 +150,7 @@ public class ChangeMaterials : MonoBehaviour
     {
         foreach (Renderer rend in controller.GetRenderer())
         {
-            if (rend != null)
+            if (rend != null && rend.tag != "LineRenderer")
             {
                 rend.enabled = true;
             }
@@ -265,9 +265,9 @@ public class ChangeMaterials : MonoBehaviour
 
         // Laser
         //sonar1.enabled = false;
-        //sonar2.enabled = false;
-        //radar.enabled = false;
-        //laser_controller.enabled = false;
+        sonar2.enabled = false;
+        radar.enabled = false;
+        laser_controller.enabled = false;
         // Lidar
         lidar.lidarActive = true;
         

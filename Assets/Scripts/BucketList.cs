@@ -123,6 +123,7 @@ public class BucketList : MonoBehaviour
         if(controller.GetBucketObjects().Count == listContent.Length){
             // Game over
             ResetPosition();
+            //CleanUp();
         }
 
         //Nur für UI Anzeige (Test)
@@ -145,7 +146,10 @@ public class BucketList : MonoBehaviour
 
     public void FetchAllPositions(){
         foreach(GameObject obj in allGameObjects){
-            controller.Add(obj.tag, obj.transform.position);
+            for(int i = 0; i < listContent.Length; i++){
+                if (obj.tag == listContent[i])
+                    controller.Add(obj.tag, obj.transform.position);
+            }           
         }
     }
 
@@ -159,6 +163,10 @@ public class BucketList : MonoBehaviour
                 obj.transform.position = entry.Value;
             }               
         }
+    }
+
+    public void CleanUp(){
+        controller.CleanUp();
     }
 
     /// <summary>

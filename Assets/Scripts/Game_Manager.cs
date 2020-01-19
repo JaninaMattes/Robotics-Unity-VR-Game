@@ -114,14 +114,21 @@ public class Game_Manager : MonoBehaviour
         return this.playerScore;
     }
 
-    public void Add(string tag, Vector3 _originalPosition)
+    public void Add(string tag, Vector3 pos)
     {
-        this._originalPosition.Add(tag, _originalPosition);
+        this._originalPosition.Add(tag, pos);
     }
 
     public Dictionary<string, Vector3> GetPosition( )
     {
         return this._originalPosition;
+    }
+
+    public void CleanUp(){
+        Dictionary<string, Vector3> position = new Dictionary<string, Vector3>();
+        List < GameObject > list = new List<GameObject>();
+        _bucketList = list;
+        _originalPosition = position;
     }
     public void ResetMaterial(GameObject obj)
     {

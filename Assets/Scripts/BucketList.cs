@@ -81,6 +81,9 @@ public class BucketList : MonoBehaviour
                             Debug.Log($"GameObject found {gameObj.tag}");
                         }
                         else{
+                            // Set Gameobject back to it's original position
+                            ResetPosition(gameObj);
+
                             if (!coroutineCalled)
                             {
                                 errorIcon.enabled = true;
@@ -147,20 +150,39 @@ public class BucketList : MonoBehaviour
     public void FetchAllPositions(){
         foreach(GameObject obj in allGameObjects){
             for(int i = 0; i < listContent.Length; i++){
-                if (obj.tag == listContent[i])
-                    controller.Add(obj.tag, obj.transform.position);
+                if (obj.tag == listContent[i]){
+                    controller.AddPosition(obj, obj.transform.position);
+                } else{
+                    controller.Add(obj);
+                }
+                
             }           
         }
     }
 
+    public void ResetPosition(GameObject obj)
+    {
+        Dictionary<GameObject, Vector3> pos = controller.GetPositions();
+        foreach (KeyValuePair<GameObject, Vector3> entry in pos){
+            if (entry.Key == obj)
+            {
+                Debug.Log("Reset the position");
+                obj.transform.position = entry.Value;
+            }
+        }                   
+    }
+
     public void ResetPosition(){
         List<GameObject> _bucketList = controller.GetBucketObjects();
-        Dictionary<string, Vector3> _originalPosition = controller.GetPosition();
+        Dictionary<GameObject, Vector3> _originalPosition = controller.GetPosition();
         foreach(GameObject obj in _bucketList){
 
-            foreach (KeyValuePair<string, Vector3> entry in _originalPosition)
+            foreach (KeyValuePair<GameObject, Vector3> entry in _originalPosition)
             {
-                obj.transform.position = entry.Value;
+                if(obj == entry.Key){
+                    Debug.Log("Reset all the position");
+                    obj.transform.position = entry.Value;
+                }                
             }               
         }
     }

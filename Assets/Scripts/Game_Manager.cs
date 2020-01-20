@@ -10,7 +10,8 @@ public class Game_Manager : MonoBehaviour
     protected int playerHealth = 0;
     // Machine Learning Simulation
     protected List<GameObject> _bucketList = new List<GameObject>();
-    protected Dictionary<string, Vector3> _originalPosition = new Dictionary<string, Vector3>();
+    protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
+    protected Dictionary<GameObject, Vector3> _originalPositions = new Dictionary<GameObject, Vector3>();
     // Material Changer
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
@@ -32,7 +33,7 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    public void Set(Dictionary<string, Vector3> _originalPosition)
+    public void Set(Dictionary<GameObject, Vector3> _originalPosition)
     {
         this._originalPosition = _originalPosition;
     }
@@ -114,19 +115,28 @@ public class Game_Manager : MonoBehaviour
         return this.playerScore;
     }
 
-    public void Add(string tag, Vector3 pos)
+    public void AddPosition(GameObject obj, Vector3 pos)
     {
-        this._originalPosition.Add(tag, pos);
+        this._originalPosition.Add(obj, pos);
     }
 
-    public Dictionary<string, Vector3> GetPosition( )
+    public Dictionary<GameObject, Vector3> GetPosition( )
     {
         return this._originalPosition;
     }
 
+    public void AddPositions(GameObject obj)
+    {
+        this._originalPositions.Add(obj, obj.transform.position);
+    }
+
+    public Dictionary<GameObject, Vector3> GetPositions()
+    {
+        return this._originalPositions;
+    }
     public void CleanUp(){
-        Dictionary<string, Vector3> position = new Dictionary<string, Vector3>();
-        List < GameObject > list = new List<GameObject>();
+        Dictionary<GameObject, Vector3> position = null;
+        List <GameObject> list = null;
         _bucketList = list;
         _originalPosition = position;
     }

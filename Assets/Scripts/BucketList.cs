@@ -26,6 +26,7 @@ public class BucketList : MonoBehaviour
     public float errorTimertotal = 5f;
     [Tooltip("Return Speed")]
     public float speed = 1f;
+    public float fadingTime = 2f;
 
     // Debugging
     public List<GameObject> _bucketList;
@@ -35,8 +36,6 @@ public class BucketList : MonoBehaviour
     protected bool coroutineCalled = false;
     protected Collider bucketCollider;
     public GameObject[] allGameObjects;
-    protected bool errorBreak = false;
-    protected bool colorchange = false;
     protected IEnumerator moveCoroutine;
     // Controller 
     Game_Manager controller = Game_Manager.Instance;
@@ -92,18 +91,6 @@ public class BucketList : MonoBehaviour
             }
         }
 
-        if (errorTimer <= 0)
-        {
-            errorBreak = false;
-            colorchange = false;
-            errorTimer = errorTimertotal;
-        }
-
-        if (errorBreak)
-        {
-            errorTimer -= 1 * Time.deltaTime;
-            colorchange = true;
-        }
         //Nur für UI Anzeige (Test)
         //textElement.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
         //checkIcon.text = ListToText(bucketList);
@@ -170,13 +157,17 @@ public class BucketList : MonoBehaviour
     }
 
     /// <summary>
-    /// Adjust the color and flash up
+    /// Adjust the color and flash ups
     /// </summary>
     /// <returns></returns>
     IEnumerator FlashColor()
     {
-        while (colorchange && errorBreak)
+        float step = (fadingTime / 0.5f) * Time.fixedDeltaTime;
+        float t = 0;
+        while (t <= 1.0f)
         {
+            coroutineCalled = true;
+            t += step;
             coroutineCalled = true;
             checkList.GetComponent<Renderer>().material = red;
             yield return new WaitForSeconds(0.3f);
@@ -184,8 +175,6 @@ public class BucketList : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
         coroutineCalled = false;
-        // set icon back
-        errorIcon.enabled = false;
     }
 
     IEnumerator MoveFromTo(Transform objectToMove, Vector3 a, Vector3 b, float speed)

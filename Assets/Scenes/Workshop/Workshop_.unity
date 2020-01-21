@@ -18729,6 +18729,37 @@ Material:
     m_Colors:
     - _Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!1 &1564412185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6583909653798785535}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564412186}
+  m_Layer: 0
+  m_Name: LaserPistol_SnapZone (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564412186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6583909653798785535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564412185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6583909653798785536}
+  m_Father: {fileID: 2021807173}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &1564688926
 Material:
   serializedVersion: 6
@@ -18879,6 +18910,22 @@ Material:
     m_Colors:
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!1 &1569090551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6583909653798785535}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6583909653798785536}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!21 &1587658459
 Material:
   serializedVersion: 6
@@ -25122,7 +25169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1309542368}
-  - {fileID: 6583909653798785536}
+  - {fileID: 1564412186}
   - {fileID: 1056791251}
   - {fileID: 1754192069}
   - {fileID: 162912678}
@@ -28729,11 +28776,20 @@ PrefabInstance:
       objectReference: {fileID: 1545111964}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7f89320e4695a446900816ce14da724, type: 3}
---- !u!4 &6583909653798785536 stripped
+--- !u!4 &6583909653798785536
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 6583909653798785535}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569090551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1564412186}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8791746211399819965
 PrefabInstance:
   m_ObjectHideFlags: 0

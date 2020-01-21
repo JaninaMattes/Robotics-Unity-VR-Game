@@ -30,6 +30,8 @@ public class ToggleLevel : MonoBehaviour
     public float fadeOutDuration = 0;
     private bool objectExitedSnapDropZone = false;
 
+    // Singleton to controll all data used by various classes 
+    protected Game_Manager controller = Game_Manager.Instance;
 
     void Awake()
     {
@@ -68,11 +70,18 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Level Loaded");
         if(CheckForCurrentSnappedObject(this.snapZone))
         {
             DisableRenderer(GetCurrentSnappedObject(this.snapZone));
             UnFadeHeadset(this.fadeOutDuration);
         }
+        
+        if (scene.buildIndex != 0)
+        {
+            // Fetch all in scene 
+            controller.GetMeshRenderer();
+        }   
     }
 
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)

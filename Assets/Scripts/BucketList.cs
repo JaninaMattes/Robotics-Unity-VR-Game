@@ -7,13 +7,16 @@ using System;
 
 public class BucketList : MonoBehaviour
 {
+    [Header("Bucket")]
+    [Tooltip("Bucket")]
+    public GameObject bucket;
     //Nur für UI Anzeige (Test)
     [Header("Checklist")]
     [Tooltip("Checklist Elements")]
     public TextMeshProUGUI[] textElement;
     public Image[] checkIcon;
     public Image errorIcon;
-    public string[] listContent;
+    public string[] bucketListContent;
     public GameObject checkList;
     [Tooltip("Color on Error")]
     public Material red;
@@ -29,7 +32,7 @@ public class BucketList : MonoBehaviour
     // To change color by Coroutine Calls
     protected bool coroutineCalled = false;
     protected Collider bucketCollider;
-    protected GameObject[] allGameObjects;
+    public GameObject[] allGameObjects;
     protected bool errorBreak = false;
     protected bool colorchange = false;
     // Controller 
@@ -39,7 +42,7 @@ public class BucketList : MonoBehaviour
     {
         //Objekte die im Eimer erkannt werden sollen einem Array zuweisen (in diesem Fall ALLE GameObjekte die aktiv in der Szene sind zur Demonstration).
         allGameObjects = GameObject.FindObjectsOfType<GameObject>();
-        FetchAllPositions();
+        //FetchAllPositions();
 
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
@@ -47,7 +50,7 @@ public class BucketList : MonoBehaviour
 
         for(int i = 0; i < textElement.Length; i++)
         {
-            textElement[i].text = listContent[i];
+            textElement[i].text = bucketListContent[i];
             checkIcon[i].enabled = false;
         }
         errorIcon.enabled = false;
@@ -66,21 +69,23 @@ public class BucketList : MonoBehaviour
 
         foreach (GameObject gameObj in allGameObjects)
         {
-            if (bucketCollider.bounds.Contains(gameObj.transform.position))
+            Vector3 position = gameObj.transform.position;
+            if (bucketCollider.bounds.Contains(position))
             {
-                if (gameObj != gameObject)
+                if (gameObj != bucket)
                 {
-                    for(int i = 0; i < listContent.Length; ++i){
+                    Debug.Log($"#######");
                         // Gameobject Tag und gelistete Tags müssen übereinstimmen
-                        if (!controller.GetBucketObjects().Contains(gameObj) && gameObj.tag == listContent[i])
+                        if (!controller.GetBucketObjects().Contains(gameObj))
                         {
-                            checkIcon[i].enabled = true;
-                            controller.ResetMaterial(gameObj);
-                            controller.Add(gameObj);                            
+                            //checkIcon[i].enabled = true;
+                            //controller.ResetMaterial(gameObj);
+                            controller.AddToBucketList(gameObj);                            
                             controller.AddPlayerScore();
                             Debug.Log($"GameObject found {gameObj.tag}");
                         }
                         else{
+                        Debug.Log($"Already in Box {gameObj.tag}");
                             // Set Gameobject back to it's original position
                             ResetPosition(gameObj);
 
@@ -96,9 +101,9 @@ public class BucketList : MonoBehaviour
                                 // Set color back to white
                                 checkList.GetComponent<Renderer>().material = white;
                             }
-                        }
+                   
                     }                    
-                }
+               }
             }
 
             else
@@ -123,9 +128,9 @@ public class BucketList : MonoBehaviour
             colorchange = true;
         }
 
-        if(controller.GetBucketObjects().Count == listContent.Length){
+        if(controller.GetBucketObjects().Count == bucketListContent.Length){
             // Game over
-            ResetPosition();
+            ResetAllPositions();
             //CleanUp();
         }
 
@@ -149,11 +154,13 @@ public class BucketList : MonoBehaviour
 
     public void FetchAllPositions(){
         foreach(GameObject obj in allGameObjects){
-            for(int i = 0; i < listContent.Length; i++){
-                if (obj.tag == listContent[i]){
+            for(int i = 0; i < bucketListContent.Length; i++){
+                if (obj.tag == bucketListContent[i]){
+                    // Target objects
                     controller.AddPosition(obj, obj.transform.position);
                 } else{
-                    controller.Add(obj);
+                    // The other objects
+                    controller.AddPositions(obj);
                 }
                 
             }           
@@ -172,7 +179,7 @@ public class BucketList : MonoBehaviour
         }                   
     }
 
-    public void ResetPosition(){
+    public void ResetAllPositions(){
         List<GameObject> _bucketList = controller.GetBucketObjects();
         Dictionary<GameObject, Vector3> _originalPosition = controller.GetPosition();
         foreach(GameObject obj in _bucketList){

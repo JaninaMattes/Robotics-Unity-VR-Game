@@ -2392,11 +2392,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UNUSED-------Player Controller------------
       objectReference: {fileID: 0}
-    - target: {fileID: 5365326805130028224, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 614319886260817829, guid: 8a87c55ed124d474a9d7c1390f1712fd,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2532,6 +2527,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5365326805130028224, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5365326805266372311, guid: 8a87c55ed124d474a9d7c1390f1712fd,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2561,6 +2561,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365326803227467685, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365326803403071874, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Controller
       objectReference: {fileID: 0}
     - target: {fileID: 614319886409562678, guid: 8a87c55ed124d474a9d7c1390f1712fd,
         type: 3}
@@ -2592,6 +2602,47 @@ PrefabInstance:
       propertyPath: modelAliasRightController
       value: 
       objectReference: {fileID: 1969555826}
+    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: bumper
+      value: 
+      objectReference: {fileID: 3140481796557294452, guid: 503d1239310f97046b30c79dc0871529,
+        type: 3}
+    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: fadeDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: fadeStartValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614319886329808456, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: targetListPolicy
+      value: 
+      objectReference: {fileID: 1352052286}
+    - target: {fileID: 614319886329808454, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: targetListPolicy
+      value: 
+      objectReference: {fileID: 1352052286}
+    - target: {fileID: 5365326805178506689, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365326804348000883, guid: 8a87c55ed124d474a9d7c1390f1712fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Controller
+      objectReference: {fileID: 0}
     - target: {fileID: 614319888102231039, guid: 8a87c55ed124d474a9d7c1390f1712fd,
         type: 3}
       propertyPath: headSet
@@ -2632,16 +2683,6 @@ PrefabInstance:
       propertyPath: fadeHeadset
       value: 
       objectReference: {fileID: 1352052281}
-    - target: {fileID: 5365326804348000883, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: m_TagString
-      value: Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365326805178506689, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: m_TagString
-      value: Controller
-      objectReference: {fileID: 0}
     - target: {fileID: 614319886777186159, guid: 8a87c55ed124d474a9d7c1390f1712fd,
         type: 3}
       propertyPath: highlightObjectPrefab
@@ -2672,47 +2713,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 5365326803227467685, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: m_TagString
-      value: Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365326803403071874, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: m_TagString
-      value: Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: bumper
-      value: 
-      objectReference: {fileID: 3140481796557294452, guid: 503d1239310f97046b30c79dc0871529,
-        type: 3}
-    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: fadeDuration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 614319886959106565, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: fadeStartValue
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 614319886329808456, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: targetListPolicy
-      value: 
-      objectReference: {fileID: 1352052286}
-    - target: {fileID: 614319886329808454, guid: 8a87c55ed124d474a9d7c1390f1712fd,
-        type: 3}
-      propertyPath: targetListPolicy
-      value: 
-      objectReference: {fileID: 1352052286}
     m_RemovedComponents:
     - {fileID: 614319888102231039, guid: 8a87c55ed124d474a9d7c1390f1712fd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8a87c55ed124d474a9d7c1390f1712fd, type: 3}
@@ -2948,16 +2948,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: SonarSensor_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: SonarSensor_2
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3027,6 +3017,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: SonarSensor_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: SonarSensor_2
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -5740,16 +5740,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: RadarSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: RadarSensor
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5819,6 +5809,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: RadarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: RadarSensor
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -12460,21 +12460,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: LidarSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: LidarSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12545,16 +12530,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.05
       objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
-      propertyPath: holdButtonToGrab
-      value: 0
+      propertyPath: m_Name
+      value: LidarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: LidarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231671, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 49b4cc4e0a7abe240ae940eb92f8c10b, type: 2}
+    - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: holdButtonToGrab
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b600a94d74a36a3459f5ff16f4c50270, type: 3}
 --- !u!4 &1056791251 stripped
@@ -21451,16 +21451,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: SonarSensor_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: SonarSensor_1
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21530,6 +21520,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: SonarSensor_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: SonarSensor_1
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -23966,16 +23966,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: CameraSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: CameraSensor
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24045,6 +24035,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: CameraSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraSensor
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -25673,16 +25673,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 7595650530474497606, guid: 3a2d932b43ea6344793fdb0145f7385e,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f1c588d466328204ba1197c48f1cb94b, type: 2}
     - target: {fileID: 5767974960422501358, guid: 3a2d932b43ea6344793fdb0145f7385e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e94fd80d7b548ba4f99347d22226964f, type: 2}
+    - target: {fileID: 7595650530474497606, guid: 3a2d932b43ea6344793fdb0145f7385e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1c588d466328204ba1197c48f1cb94b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2d932b43ea6344793fdb0145f7385e, type: 3}
 --- !u!1 &2030662038 stripped

@@ -52,7 +52,7 @@ public class Game_Manager : MonoBehaviour
         this._matList = _matList;
     }
 
-    public void Add(GameObject _bucketList)
+    public void AddToBucketList(GameObject _bucketList)
     {
         this._bucketList.Add(_bucketList);
     }
@@ -117,7 +117,9 @@ public class Game_Manager : MonoBehaviour
 
     public void AddPosition(GameObject obj, Vector3 pos)
     {
-        this._originalPosition.Add(obj, pos);
+        if (!_originalPosition.ContainsKey(obj)){
+            this._originalPosition.Add(obj, pos);
+        }            
     }
 
     public Dictionary<GameObject, Vector3> GetPosition( )
@@ -127,19 +129,32 @@ public class Game_Manager : MonoBehaviour
 
     public void AddPositions(GameObject obj)
     {
-        this._originalPositions.Add(obj, obj.transform.position);
+        if (!_originalPosition.ContainsKey(obj))
+        {
+            this._originalPositions.Add(obj, obj.transform.position);
+        }        
     }
 
     public Dictionary<GameObject, Vector3> GetPositions()
     {
         return this._originalPositions;
     }
+    public void GetMeshRenderer()
+    {
+        Renderer[] list = GameObject.FindObjectsOfType<Renderer>();
+        Set(list);
+        GetMaterial();
+    }
+
     public void CleanUp(){
         Dictionary<GameObject, Vector3> position = null;
+        Dictionary<GameObject, Vector3> positions = null;
         List <GameObject> list = null;
         _bucketList = list;
         _originalPosition = position;
+        _originalPositions = positions;
     }
+
     public void ResetMaterial(GameObject obj)
     {
         Renderer m_ObjectRenderer = obj.GetComponent<Renderer>();

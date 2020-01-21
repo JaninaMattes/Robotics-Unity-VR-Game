@@ -23,6 +23,7 @@ public class WaveMovement : MonoBehaviour
     public float amplitude;
     public float wavespeed;
     public float waveheight;
+    private float randomdirection;
 
     //Globale Variablen
     public Vector3 tempPosition;
@@ -40,8 +41,10 @@ public class WaveMovement : MonoBehaviour
         width = UnityEngine.Random.Range(0f, 1f) * 10;
 
         amplitude = UnityEngine.Random.Range(0f, 1f) * 10;
-        wavespeed = 0.05f;
-        waveheight = 0.8f;
+        wavespeed = UnityEngine.Random.Range(-0.2f, 0.2f);
+        waveheight = UnityEngine.Random.Range(0.8f, 2f);
+
+        //randomdirection = UnityEngine.Random.Range(-1, 1);
 
     }
 
@@ -116,11 +119,13 @@ void FixedUpdate()
 
     void WaveHorizontalX()
     {
+        TimeCounter += Time.deltaTime;
+
         flag_circle = false; //Jakob
         flag_sin_hor = true; //Jakob
         flag_sin_vert = false; //Jakob
 
-        tempPosition.z = Mathf.Sin(Time.realtimeSinceStartup * waveheight) * amplitude;
+        tempPosition.z = Mathf.Sin(TimeCounter * waveheight) * amplitude;
         tempPosition.z = tempPosition.z + startPosition_fixed.z;
 
         tempPosition.x += wavespeed;

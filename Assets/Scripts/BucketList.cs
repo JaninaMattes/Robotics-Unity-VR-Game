@@ -16,7 +16,7 @@ public class BucketList : MonoBehaviour
     public TextMeshProUGUI[] textElement;
     public Image[] checkIcon;
     public Image errorIcon;
-    public string[] bucketListContent;
+    public List<string> bucketListContent;
     public GameObject checkList;
     [Tooltip("Color on Error")]
     public Material red;
@@ -24,6 +24,8 @@ public class BucketList : MonoBehaviour
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
+    [Tooltip("Return Speed")]
+    public float speed = 1f;
 
     // Debugging
     public List<GameObject> _bucketList;
@@ -35,6 +37,7 @@ public class BucketList : MonoBehaviour
     public GameObject[] allGameObjects;
     protected bool errorBreak = false;
     protected bool colorchange = false;
+    protected IEnumerator moveCoroutine;
     // Controller 
     Game_Manager controller = Game_Manager.Instance;
 
@@ -70,39 +73,13 @@ public class BucketList : MonoBehaviour
         foreach (GameObject gameObj in allGameObjects)
         {
             Vector3 position = gameObj.transform.position;
+
             if (bucketCollider.bounds.Contains(position))
             {
-                if (gameObj != bucket)
+                if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
                 {
                     Debug.Log($"#######");
-                        // Gameobject Tag und gelistete Tags müssen übereinstimmen
-                        if (!controller.GetBucketObjects().Contains(gameObj))
-                        {
-                            //checkIcon[i].enabled = true;
-                            //controller.ResetMaterial(gameObj);
-                            controller.AddToBucketList(gameObj);                            
-                            controller.AddPlayerScore();
-                            Debug.Log($"GameObject found {gameObj.tag}");
-                        }
-                        else{
-                        Debug.Log($"Already in Box {gameObj.tag}");
-                            // Set Gameobject back to it's original position
-                            ResetPosition(gameObj);
-
-                            if (!coroutineCalled)
-                            {
-                                errorIcon.enabled = true;
-                                // Change color to red
-                                StartCoroutine("FlashColor");
-                                controller.ReducePlayerScore();
-                            }
-                            else
-                            {
-                                // Set color back to white
-                                checkList.GetComponent<Renderer>().material = white;
-                            }
-                   
-                    }                    
+                    CheckGameObject(gameObj);                                         
                }
             }
 
@@ -127,13 +104,6 @@ public class BucketList : MonoBehaviour
             errorTimer -= 1 * Time.deltaTime;
             colorchange = true;
         }
-
-        if(controller.GetBucketObjects().Count == bucketListContent.Length){
-            // Game over
-            ResetAllPositions();
-            //CleanUp();
-        }
-
         //Nur für UI Anzeige (Test)
         //textElement.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
         //checkIcon.text = ListToText(bucketList);
@@ -154,48 +124,49 @@ public class BucketList : MonoBehaviour
 
     public void FetchAllPositions(){
         foreach(GameObject obj in allGameObjects){
-            for(int i = 0; i < bucketListContent.Length; i++){
-                if (obj.tag == bucketListContent[i]){
-                    // Target objects
-                    controller.AddPosition(obj, obj.transform.position);
-                } else{
-                    // The other objects
-                    controller.AddPositions(obj);
-                }
-                
-            }           
+        // Target objects
+        controller.AddPositions(obj);               
         }
     }
 
-    public void ResetPosition(GameObject obj)
-    {
-        Dictionary<GameObject, Vector3> pos = controller.GetPositions();
-        foreach (KeyValuePair<GameObject, Vector3> entry in pos){
-            if (entry.Key == obj)
+    public void CheckGameObject(GameObject gameObj){       
+            // Gameobject Tag und gelistete Tags müssen übereinstimmen
+            if (bucketListContent.Contains(gameObj.tag))
             {
-                Debug.Log("Reset the position");
-                obj.transform.position = entry.Value;
+                //checkIcon[i].enabled = true;
+                controller.ResetMaterial(gameObj);
+                controller.AddToBucketList(gameObj);
+                controller.AddPlayerScore();
+                Debug.Log($"GameObject found {gameObj.tag}");
             }
-        }                   
-    }
-
-    public void ResetAllPositions(){
-        List<GameObject> _bucketList = controller.GetBucketObjects();
-        Dictionary<GameObject, Vector3> _originalPosition = controller.GetPosition();
-        foreach(GameObject obj in _bucketList){
-
-            foreach (KeyValuePair<GameObject, Vector3> entry in _originalPosition)
+            else
             {
-                if(obj == entry.Key){
-                    Debug.Log("Reset all the position");
-                    obj.transform.position = entry.Value;
-                }                
-            }               
-        }
+                Debug.Log($"False object {gameObj.tag}");
+                // Set Gameobject back to it's original position
+                Vector3 position = controller.FindOriginalPos(gameObj);
+                MoveGameObjectTo(gameObj.transform, gameObj.transform.position, position, speed);              
+                if (!coroutineCalled)
+                {
+                    errorIcon.enabled = true;
+                    // Change color to red
+                    StartCoroutine("FlashColor");
+                    controller.ReducePlayerScore();
+                }
+                else
+                {
+                    // Set color back to white
+                    checkList.GetComponent<Renderer>().material = white;
+                }
+            }
     }
 
     public void CleanUp(){
         controller.CleanUp();
+    }
+
+    public void MoveGameObjectTo(Transform objectToMove, Vector3 a, Vector3 b, float speed){
+        moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
+        StartCoroutine(moveCoroutine);
     }
 
     /// <summary>
@@ -215,5 +186,19 @@ public class BucketList : MonoBehaviour
         coroutineCalled = false;
         // set icon back
         errorIcon.enabled = false;
+    }
+
+    IEnumerator MoveFromTo(Transform objectToMove, Vector3 a, Vector3 b, float speed)
+    {
+        Debug.Log($"Move Object");
+        float step = (speed / (a - b).magnitude) * Time.fixedDeltaTime;
+        float t = 0;
+        while (t <= 1.0f)
+        {
+            t += step; // Goes from 0 to 1, incrementing by step each time
+            objectToMove.position = Vector3.Lerp(a, b, t); // Move objectToMove closer to b
+            yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
+        }
+        objectToMove.position = b;
     }
 }

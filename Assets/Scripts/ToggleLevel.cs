@@ -79,6 +79,7 @@ public class ToggleLevel : MonoBehaviour
         
         if (scene.buildIndex != 0)
         {
+            Debug.Log("Meshes are called");
             // Fetch all in scene 
             controller.GetMeshRenderer();
         }   

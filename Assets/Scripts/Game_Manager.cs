@@ -10,7 +10,7 @@ public class Game_Manager : MonoBehaviour
     protected int playerHealth = 0;
     // Machine Learning Simulation
     protected List<GameObject> _bucketList = new List<GameObject>();
-    protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
+    //protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
     protected Dictionary<GameObject, Vector3> _originalPositions = new Dictionary<GameObject, Vector3>();
     // Material Changer
     protected Renderer[] _renderer;
@@ -33,16 +33,16 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
-    public void Set(Dictionary<GameObject, Vector3> _originalPosition)
+    public void Set(Dictionary<GameObject, Vector3> _originalPositions)
     {
-        this._originalPosition = _originalPosition;
+        this._originalPositions = _originalPositions;
     }
     public void Set(List<GameObject> _bucketList)
     {
         this._bucketList = _bucketList;
     }
 
-    public void Set(Renderer[] _renderer)
+    public void SetRenderer(Renderer[] _renderer)
     {
         this._renderer = _renderer;
     }
@@ -115,21 +115,9 @@ public class Game_Manager : MonoBehaviour
         return this.playerScore;
     }
 
-    public void AddPosition(GameObject obj, Vector3 pos)
-    {
-        if (!_originalPosition.ContainsKey(obj)){
-            this._originalPosition.Add(obj, pos);
-        }            
-    }
-
-    public Dictionary<GameObject, Vector3> GetPosition( )
-    {
-        return this._originalPosition;
-    }
-
     public void AddPositions(GameObject obj)
     {
-        if (!_originalPosition.ContainsKey(obj))
+        if (!_originalPositions.ContainsKey(obj))
         {
             this._originalPositions.Add(obj, obj.transform.position);
         }        
@@ -139,19 +127,30 @@ public class Game_Manager : MonoBehaviour
     {
         return this._originalPositions;
     }
+
+    public Vector3 FindOriginalPos(GameObject obj){
+
+        Vector3 position = new Vector3();
+        foreach (KeyValuePair<GameObject, Vector3> entry in _originalPositions)
+        {
+            if(obj == entry.Key){
+                position = entry.Value;
+            }
+        }
+        return position;
+    }
+
     public void GetMeshRenderer()
     {
         Renderer[] list = GameObject.FindObjectsOfType<Renderer>();
-        Set(list);
+        SetRenderer(list);
         GetMaterial();
     }
 
     public void CleanUp(){
-        Dictionary<GameObject, Vector3> position = null;
         Dictionary<GameObject, Vector3> positions = null;
         List <GameObject> list = null;
         _bucketList = list;
-        _originalPosition = position;
         _originalPositions = positions;
     }
 

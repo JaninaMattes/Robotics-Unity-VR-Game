@@ -12,18 +12,15 @@ using VRTK;
         public Material material;
         public float radarLifeTime;
         public LaserController controller;
-        private List<Vector4> sonarOrigins;
+        private List<Vector4> sonarOrigins = new List<Vector4>();
 
-        void Start()
-        {
-            lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.enabled = false;
-            sonarOrigins = new List<Vector4>();
-        }
 
         protected virtual void OnEnable()
         {
-            laserPistol = (laserPistol == null ? GetComponent<VRTK_InteractableObject>() : laserPistol);
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+
+        laserPistol = (laserPistol == null ? GetComponent<VRTK_InteractableObject>() : laserPistol);
 
             if (laserPistol != null)
             {

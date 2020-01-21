@@ -250,12 +250,14 @@ public class ChangeMaterials : MonoBehaviour
             sonar2.enabled = true;
             sonar2.material = sonar_2_Material;
             radar.enabled = false;
+            laser_controller.sonarHits = new Vector4[50];
         }
         else if (sensor == "RadarSensor") {
             // Sonar 
             radar.enabled = true;
             radar.material = radar_1_Material;
             sonar2.enabled = false;
+            laser_controller.sonarHits = new Vector4[50];
         }
         else { }                 
     }

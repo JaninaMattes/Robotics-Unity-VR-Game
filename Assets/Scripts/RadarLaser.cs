@@ -19,7 +19,6 @@ using VRTK;
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.enabled = false;
             sonarOrigins = new List<Vector4>();
-            controller = new LaserController();
         }
 
         protected virtual void OnEnable()

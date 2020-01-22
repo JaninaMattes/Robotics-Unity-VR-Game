@@ -23569,6 +23569,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   - component: {fileID: 10800000}
+  - component: {fileID: 4524414813090898528}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -23683,6 +23684,20 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &4524414813090898528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29014cd42b6d273408e0ceefd336c0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDuration: 1
+  maxDuration: 2
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0

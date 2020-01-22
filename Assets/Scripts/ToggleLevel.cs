@@ -29,14 +29,13 @@ public class ToggleLevel : MonoBehaviour
     [Range(0.0f, 10.0f)]
     public float fadeOutDuration = 0;
     private bool objectExitedSnapDropZone = false;
-    public Renderer[] debugRenderer;
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
 
     void Awake()
     {
-        foreach(GameObject objectToKeep in objectsToKeep)
+        foreach (GameObject objectToKeep in objectsToKeep)
         {
             DontDestroyOnLoad(objectToKeep);
         }
@@ -47,7 +46,6 @@ public class ToggleLevel : MonoBehaviour
     void Update()
     {
         CheckHeadsetsInScene();
-        debugRenderer = controller.GetRenderer();
     }
 
     public void OnEnable()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game_Manager : MonoBehaviour
+public class Game_Manager 
 {
     private static Game_Manager _Instance = null;
     // Game score
@@ -28,6 +28,7 @@ public class Game_Manager : MonoBehaviour
             if (_Instance == null)
             {
                 _Instance = new Game_Manager();
+               
             }
             return _Instance;
         }
@@ -164,8 +165,6 @@ public class Game_Manager : MonoBehaviour
     public void ResetMaterial(GameObject obj)
     {
         Renderer m_ObjectRenderer = obj.GetComponent<Renderer>();
-
-        Debug.Log("Kompiliert bis hier, danach nicht weiter, da _renderer leer ist. In ToggleLevel.cs wird der controller befüllt mit Renderern(funktioniert aber nur für die Instanz in ToggleLevel.cs NICHT für die BucketList.cs controller instanz) -> Es existieren 2 Instanzen");
 
         foreach (Renderer rend in _renderer)
         {

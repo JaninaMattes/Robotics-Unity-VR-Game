@@ -42,7 +42,7 @@ public class ChangeMaterials : MonoBehaviour
     void OnEnable()
     {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+       // SceneManager.sceneLoaded += OnLevelFinishedLoading;
         snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
         snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
     }
@@ -51,7 +51,7 @@ public class ChangeMaterials : MonoBehaviour
     {
         //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as 
         //this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+        // SceneManager.sceneLoaded -= OnLevelFinishedLoading;
         snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
         snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
@@ -216,22 +216,6 @@ public class ChangeMaterials : MonoBehaviour
                 controller.GetMaterial().Add(rend, rend.materials);
             }
         }
-    }
-
-    private void GetMeshRenderer()
-    {
-        Renderer[] list = GameObject.FindObjectsOfType<Renderer>();
-        controller.Set(list);
-        GetMaterials();
-    }
-
-    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("Level Loaded");
-        //if (scene.buildIndex != 0)
-        //{
-            GetMeshRenderer();
-        //}           
     }
 
     public void SetLaserScript(string sensor)

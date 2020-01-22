@@ -30,13 +30,17 @@ public class ToggleLevel : MonoBehaviour
     public float fadeOutDuration = 0;
     private bool objectExitedSnapDropZone = false;
 
+    // Singleton to controll all data used by various classes 
+    protected Game_Manager controller = Game_Manager.Instance;
 
     void Awake()
     {
-        foreach(GameObject objectToKeep in objectsToKeep)
+        foreach (GameObject objectToKeep in objectsToKeep)
         {
             DontDestroyOnLoad(objectToKeep);
         }
+
+        SetRendererList(this.controller);
     }
 
     void Update()
@@ -52,7 +56,7 @@ public class ToggleLevel : MonoBehaviour
         this.headSet.InteractableObjectUntouched += InteractableObjectUntouched;
         this.fadeHeadset.HeadsetFadeComplete += OnHeadsetFadeComplete;
         this.fadeHeadset.HeadsetUnfadeComplete += OnHeadsetUnfadeComplete;
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void OnDisable()
@@ -63,12 +67,14 @@ public class ToggleLevel : MonoBehaviour
         this.headSet.InteractableObjectUntouched -= InteractableObjectUntouched;
         this.fadeHeadset.HeadsetFadeComplete -= OnHeadsetFadeComplete;
         this.fadeHeadset.HeadsetUnfadeComplete -= OnHeadsetUnfadeComplete;
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(CheckForCurrentSnappedObject(this.snapZone))
+        SetRendererList(this.controller);
+
+        if (CheckForCurrentSnappedObject(this.snapZone))
         {
             DisableRenderer(GetCurrentSnappedObject(this.snapZone));
             UnFadeHeadset(this.fadeOutDuration);
@@ -113,7 +119,7 @@ public class ToggleLevel : MonoBehaviour
 
     private GameObject GetCurrentSnappedObject(VRTK_SnapDropZone snapDropZone)
     {
-        if (snapDropZone.GetCurrentSnappedObject() != null)
+        if (CheckForCurrentSnappedObject(this.snapZone))
         {
             return snapDropZone.GetCurrentSnappedObject();
         }
@@ -206,6 +212,12 @@ public class ToggleLevel : MonoBehaviour
         {
             Destroy(this.headsetsInScene[1]);
         }
+    }
+
+    private void SetRendererList(Game_Manager controller)
+    {
+        controller.GetMeshRenderer();
+        controller.SetMaterials(controller.GetRenderer());
     }
 
 }

@@ -30,7 +30,9 @@ public class BucketList : MonoBehaviour
 
     // Debugging
     public List<GameObject> _bucketList;
-  
+    public GameObject gameOb;
+    public Renderer[] debugRenderer;
+
 
     // To change color by Coroutine Calls
     protected bool coroutineCalled = false;
@@ -38,7 +40,7 @@ public class BucketList : MonoBehaviour
     public GameObject[] allGameObjects;
     protected IEnumerator moveCoroutine;
     // Controller 
-    Game_Manager controller = Game_Manager.Instance;
+    protected Game_Manager controller = Game_Manager.Instance;
 
     public void Start()
     {
@@ -60,6 +62,7 @@ public class BucketList : MonoBehaviour
 
     public void Update()
     {
+        debugRenderer = controller.GetRenderer();
         //Überprüfung aller GameObjekte im Array.
         //Befindet sich die Postion(in Unity immer der Mittelpunkt der geometrischen Form) eines GameObjekts innerhalb der Collider-Grenzen (collider.bounds) und das GameObjekt ist nicht der Eimer selbst(der Eimer befindet sich natürlich immer in den eigenen Collidergrenzen),
         // ...so wird dieses Objekt der Bucketliste hinzugefügt, falls es nicht schon in dieser vorhanden ist (Vermeidung von Redundanz).
@@ -78,6 +81,7 @@ public class BucketList : MonoBehaviour
                 if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
                 {
                     Debug.Log($"#######");
+                    
                     CheckGameObject(gameObj);                                         
                }
             }
@@ -120,9 +124,10 @@ public class BucketList : MonoBehaviour
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
             if (bucketListContent.Contains(gameObj.tag))
             {
-                //checkIcon[i].enabled = true;
-                controller.ResetMaterial(gameObj);
-                controller.AddToBucketList(gameObj);
+            
+            //checkIcon[i].enabled = true;
+            controller.AddToBucketList(gameObj);
+            controller.ResetMaterial(gameObj);
                 controller.AddPlayerScore();
                 Debug.Log($"GameObject found {gameObj.tag}");
             }

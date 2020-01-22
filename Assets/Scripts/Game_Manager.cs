@@ -47,9 +47,17 @@ public class Game_Manager : MonoBehaviour
         this._renderer = _renderer;
     }
 
-    public void Set(Hashtable _matList)
+    public void SetMaterials(Renderer[] renderer)
     {
-        this._matList = _matList;
+        this._matList = new Hashtable();
+
+        foreach (Renderer rend in renderer)
+        {
+            if (rend != null)
+            {
+                this._matList.Add(rend, rend.materials);
+            }
+        }
     }
 
     public void AddToBucketList(GameObject _bucketList)
@@ -144,7 +152,6 @@ public class Game_Manager : MonoBehaviour
     {
         Renderer[] list = GameObject.FindObjectsOfType<Renderer>();
         SetRenderer(list);
-        GetMaterial();
     }
 
     public void CleanUp(){
@@ -157,6 +164,9 @@ public class Game_Manager : MonoBehaviour
     public void ResetMaterial(GameObject obj)
     {
         Renderer m_ObjectRenderer = obj.GetComponent<Renderer>();
+
+        Debug.Log("Kompiliert bis hier, danach nicht weiter, da _renderer leer ist. In ToggleLevel.cs wird der controller befüllt mit Renderern(funktioniert aber nur für die Instanz in ToggleLevel.cs NICHT für die BucketList.cs controller instanz) -> Es existieren 2 Instanzen");
+
         foreach (Renderer rend in _renderer)
         {
             if (rend != null && rend == m_ObjectRenderer)

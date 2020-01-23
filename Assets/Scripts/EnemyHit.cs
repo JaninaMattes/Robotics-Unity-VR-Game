@@ -9,6 +9,10 @@ public class EnemyHit : MonoBehaviour
     public Material notHit;
 
     private bool _isHit = false;
+    private bool _isShot = false;
+
+    public GameObject replacement;
+    public GameObject PointCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -19,26 +23,31 @@ public class EnemyHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (_isHit)
         {
             GetComponent<Renderer>().material = hit;
         }
-        else
-        {
-            GetComponent<Renderer>().material = notHit;
-        }
 
-        if(OVRInput.Get(OVRInput.Button.One))
+        if (_isShot)
         {
             GetComponent<Renderer>().material = hitandshot;
+            //Debug.Log("Erschossen");
+
+            GameObject.Instantiate(replacement, transform.position, transform.rotation);
+            Destroy(gameObject);
+            GameObject.Instantiate(PointCounter, transform.position, transform.rotation);
+
+
         }
+
         else
         {
             GetComponent<Renderer>().material = notHit;
         }
 
         _isHit = false;
+        _isShot = false;
 
     }
 
@@ -46,5 +55,10 @@ public class EnemyHit : MonoBehaviour
     public void BeenHit()
     {
         _isHit = true;
+    }
+
+    public void BeenShot()
+    {
+        _isShot = true;
     }
 }

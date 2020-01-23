@@ -20,13 +20,25 @@ public class raycast_gunflyingobjects : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 100f, Color.red);
 
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection (Vector3.up), out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity) && OVRInput.Get(OVRInput.Button.One))
+        {
+            Debug.Log("erschossen");
+
+            hit.collider.gameObject.GetComponent<EnemyHit>().BeenShot();
+
+        }
+        else if (Physics.Raycast(transform.position, transform.TransformDirection (Vector3.up), out hit, Mathf.Infinity))
         {
             Debug.Log("getroffen");
 
             hit.collider.gameObject.GetComponent<EnemyHit>().BeenHit();
 
+            /*if (OVRInput.Get(OVRInput.Button.One))
+            {
+                hit.collider.gameObject.GetComponent<EnemyHit>().BeenShot();
+                Debug.Log("Erschossen");*/
         }
+
 
 
 

@@ -8,7 +8,7 @@ using VRTK;
 [ExecuteInEditMode]
 public class ChangeMaterials : MonoBehaviour {
     [Header ("Snapdrop Zone Prefab")]
-    public VRTK_SnapDropZone snapZone;
+    //public VRTK_SnapDropZone snapZone;
     [Header ("Sensor Material")]
     [Tooltip ("Sonar Materials")]
     public Material sonar_1_Material;
@@ -36,22 +36,23 @@ public class ChangeMaterials : MonoBehaviour {
     void OnEnable () {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
         // SceneManager.sceneLoaded += OnLevelFinishedLoading;
-        snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
-        snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
+        //snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
+        //snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
     }
 
     void OnDisable () {
         //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as 
         //this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
         // SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-        snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
-        snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
+        //snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
+        //snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
 
     public void Start () {
         GetScene ();
         controller.SetExcludeTag (excludeTags);
         controller.SetGridOrientationTag (gridorientation_Tag);
+        controller.SetGridOrientationMaterial (gridorientation_Material);
         // Kann beliebig erweitert werden
         controller.SetSonar (spawn.GetComponent<SonarLaserAdv> ());
         controller.SetRadar (spawn.GetComponent<RadarLaser> ());
@@ -76,9 +77,9 @@ public class ChangeMaterials : MonoBehaviour {
         cur_Scene = SceneManager.GetActiveScene ();
     }
 
-    protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
-        UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
-    }
+     //protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
+     //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
+    //}
 
     protected virtual void ObjectUnsnappedFromDropZone (object sender, SnapDropZoneEventArgs e) {
 
@@ -120,9 +121,9 @@ public class ChangeMaterials : MonoBehaviour {
         controller.UpdateMaterial (material);
     }
 
-    private void UpdateMaterial (string tag) {
-        controller.UpdateMaterial (tag);
-    }
+    // private void UpdateMaterial (string tag) {
+    //    controller.UpdateMaterial (tag);
+    //}
 
     public void SetLidarScript () {
         controller.SetLidarScript ();

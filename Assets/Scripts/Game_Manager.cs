@@ -1,0 +1,1 @@
+﻿The namespace '<global namespace>' already contains a definition 

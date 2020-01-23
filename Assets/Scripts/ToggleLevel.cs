@@ -38,8 +38,11 @@ public class ToggleLevel : MonoBehaviour {
         foreach (GameObject objectToKeep in objectsToKeep) {
             DontDestroyOnLoad (objectToKeep);
         }
-
         SetRendererList (this.controller);
+        // Tags need to be:
+        // "SonarSensor_1" "SonarSensor_2" 
+        // "LidarSensor" "RadarSensor" "CameraSensor"
+        CheckSnapUpdateMaterial ();
     }
 
     void Update () {
@@ -68,10 +71,10 @@ public class ToggleLevel : MonoBehaviour {
 
     public void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
         SetRendererList (this.controller);
-
-        if (CheckForCurrentSnappedObject (this.snapZonePatrone)) {
-            controller.UpdateMaterial (GetCurrentSnappedObject (this.snapZonePatrone).tag);
-        }
+        // Tags need to be:
+        // "SonarSensor_1" "SonarSensor_2" 
+        // "LidarSensor" "RadarSensor" "CameraSensor"
+        CheckSnapUpdateMaterial ();
 
         if (CheckForCurrentSnappedObject (this.snapZone)) {
             DisableRenderer (GetCurrentSnappedObject (this.snapZone));
@@ -183,4 +186,9 @@ public class ToggleLevel : MonoBehaviour {
         controller.SetMaterials (controller.GetRenderer ());
     }
 
+    private void CheckSnapUpdateMaterial () {
+        if (CheckForCurrentSnappedObject (this.snapZonePatrone)) {
+            controller.UpdateMaterial (GetCurrentSnappedObject (this.snapZonePatrone).tag);
+        }
+    }
 }

@@ -70,16 +70,17 @@ public class ToggleLevel : MonoBehaviour {
     }
 
     public void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
-        SetRendererList (this.controller);
-        // Tags need to be:
-        // "SonarSensor_1" "SonarSensor_2" 
-        // "LidarSensor" "RadarSensor" "CameraSensor"
-        CheckSnapUpdateMaterial ();
+     
 
         if (CheckForCurrentSnappedObject (this.snapZone)) {
             DisableRenderer (GetCurrentSnappedObject (this.snapZone));
             UnFadeHeadset (this.fadeOutDuration);
         }
+        SetRendererList (this.controller);
+        // Tags need to be:
+        // "SonarSensor_1" "SonarSensor_2" 
+        // "LidarSensor" "RadarSensor" "CameraSensor"
+        CheckSnapUpdateMaterial ();
     }
 
     protected virtual void OnHeadsetFadeComplete (object sender, HeadsetFadeEventArgs a) {

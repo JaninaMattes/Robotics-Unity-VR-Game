@@ -41,7 +41,7 @@ public class Game_Manager {
     protected LiDar2 _lidar ;
     protected LaserController _laser_controller ;
 
-    protected List<string> exclude = new List<string> ();
+    protected List<string> _exclude = new List<string> ();
     protected string gridorientation_Tag;
 
     public void SetGridOrientationTag (string gridorientation_Tag) {
@@ -52,10 +52,10 @@ public class Game_Manager {
         return gridorientation_Tag;
     }
     public void SetExcludeTag (List<string> exclude) {
-        exclude = exclude;
+        _exclude = exclude;
     }
     public List<string> GetExcludeTag () {
-        return exclude;
+        return _exclude;
     }
 
     public void SetSonar (SonarLaserAdv sonar) {
@@ -276,7 +276,7 @@ public class Game_Manager {
 
     public void DeactivateAllRenderer () {
         foreach (Renderer rend in GetRenderer ()) {
-            if (rend != null && !exclude.Contains (rend.tag)) {
+            if (rend != null && !_exclude.Contains (rend.tag)) {
                 rend.enabled = false;
             }
         }
@@ -286,7 +286,7 @@ public class Game_Manager {
         Material[] m;
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in GetRenderer ()) {
-            if (rend != null && !exclude.Contains (rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
+            if (rend != null && !_exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
             {
                 m = rend.materials;
                 //Set grid orientation to floor

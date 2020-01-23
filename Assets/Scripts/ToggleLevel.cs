@@ -4,52 +4,52 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VRTK;
 
-public class ToggleLevel : MonoBehaviour
-{  
+public class ToggleLevel : MonoBehaviour {
 
-    [Header("Level Index")]
+    [Header ("Level Index")]
     public int WorkshopLevelIndex;
     public int LevelIndex;
 
-    [Header("Do not Destroy On Load")]
-    public List<GameObject> objectsToKeep = new List<GameObject>();
+    [Header ("Do not Destroy On Load")]
+    public List<GameObject> objectsToKeep = new List<GameObject> ();
 
-    [Header("Snapdrop Zone Prefab")]
+    [Header ("Snapdrop Zone Prefab")]
     public VRTK_SnapDropZone snapZone;
 
-    [Header("VR Headset")]
+    [Header ("VR Headset")]
     public VRTK_InteractableObject headSet;
     private GameObject[] headsetsInScene;
 
-    [Header("Level Fade Transition")]
+    [Header ("Level Fade Transition")]
     public VRTK_HeadsetFade fadeHeadset;
     public Color fadeColor;
-    [Range(0.0f, 10.0f)]
+    [Range (0.0f, 10.0f)]
     public float fadeDuration = 0;
-    [Range(0.0f, 10.0f)]
+    [Range (0.0f, 10.0f)]
     public float fadeOutDuration = 0;
     private bool objectExitedSnapDropZone = false;
+    [Header ("Snapdrop Zone Prefab Patrone")]
+    public VRTK_SnapDropZone snapZonePatrone;
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
 
-    void Awake()
-    {
-        foreach (GameObject objectToKeep in objectsToKeep)
-        {
-            DontDestroyOnLoad(objectToKeep);
+    void Awake () {
+        foreach (GameObject objectToKeep in objectsToKeep) {
+            DontDestroyOnLoad (objectToKeep);
         }
-
-        SetRendererList(this.controller);
+        SetRendererList (this.controller);
+        // Tags need to be:
+        // "SonarSensor_1" "SonarSensor_2" 
+        // "LidarSensor" "RadarSensor" "CameraSensor"
+        CheckSnapUpdateMaterial ();
     }
 
-    void Update()
-    {
-        CheckHeadsetsInScene();
+    void Update () {
+        CheckHeadsetsInScene ();
     }
 
-    public void OnEnable()
-    {
+    public void OnEnable () {
         this.snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
         this.snapZone.ObjectExitedSnapDropZone += ObjectExitedSnapDropZone;
         this.headSet.InteractableObjectTouched += InteractableObjectTouched;
@@ -59,8 +59,7 @@ public class ToggleLevel : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void OnDisable()
-    {
+    public void OnDisable () {
         this.snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
         this.snapZone.ObjectExitedSnapDropZone -= ObjectExitedSnapDropZone;
         this.headSet.InteractableObjectTouched -= InteractableObjectTouched;
@@ -70,154 +69,127 @@ public class ToggleLevel : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        SetRendererList(this.controller);
+    public void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
+     
 
-        if (CheckForCurrentSnappedObject(this.snapZone))
-        {
-            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
-            UnFadeHeadset(this.fadeOutDuration);
+        if (CheckForCurrentSnappedObject (this.snapZone)) {
+            DisableRenderer (GetCurrentSnappedObject (this.snapZone));
+            UnFadeHeadset (this.fadeOutDuration);
         }
+        SetRendererList (this.controller);
+        // Tags need to be:
+        // "SonarSensor_1" "SonarSensor_2" 
+        // "LidarSensor" "RadarSensor" "CameraSensor"
+        CheckSnapUpdateMaterial ();
     }
 
-    protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
-    {
-        LoadLevel(this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
+    protected virtual void OnHeadsetFadeComplete (object sender, HeadsetFadeEventArgs a) {
+        LoadLevel (this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
     }
 
-    protected virtual void OnHeadsetUnfadeComplete(object sender, HeadsetFadeEventArgs a)
-    {
-        EnableCollider(GetCurrentSnappedObject(this.snapZone));
+    protected virtual void OnHeadsetUnfadeComplete (object sender, HeadsetFadeEventArgs a) {
+        EnableCollider (GetCurrentSnappedObject (this.snapZone));
     }
 
-    protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
-    {
-        EnableRenderer(GetCurrentSnappedObject(this.snapZone));
+    protected virtual void InteractableObjectTouched (object sender, InteractableObjectEventArgs e) {
+        EnableRenderer (GetCurrentSnappedObject (this.snapZone));
     }
 
-    protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
-    {
-        DisableRenderer(GetCurrentSnappedObject(this.snapZone));
+    protected virtual void InteractableObjectUntouched (object sender, InteractableObjectEventArgs e) {
+        DisableRenderer (GetCurrentSnappedObject (this.snapZone));
     }
 
-    protected virtual void ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
-    {
+    protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
         this.objectExitedSnapDropZone = false;
-        DisableCollider(GetCurrentSnappedObject(this.snapZone));
-        FadeHeadset(this.fadeColor, this.fadeDuration);    
+        DisableCollider (GetCurrentSnappedObject (this.snapZone));
+        FadeHeadset (this.fadeColor, this.fadeDuration);
     }
 
-    protected virtual void ObjectExitedSnapDropZone(object sender, SnapDropZoneEventArgs e)
-    {
+    protected virtual void ObjectExitedSnapDropZone (object sender, SnapDropZoneEventArgs e) {
         this.objectExitedSnapDropZone = true;
-        if(GetActiveSceneBuildIndex() == this.LevelIndex)
-        {
-            FadeHeadset(this.fadeColor, this.fadeDuration);
+        if (GetActiveSceneBuildIndex () == this.LevelIndex) {
+            FadeHeadset (this.fadeColor, this.fadeDuration);
         }
     }
 
-    private GameObject GetCurrentSnappedObject(VRTK_SnapDropZone snapDropZone)
-    {
-        if (CheckForCurrentSnappedObject(this.snapZone))
-        {
-            return snapDropZone.GetCurrentSnappedObject();
-        }
-        else
-        {
+    private GameObject GetCurrentSnappedObject (VRTK_SnapDropZone snapDropZone) {
+        if (CheckForCurrentSnappedObject (this.snapZone)) {
+            return snapDropZone.GetCurrentSnappedObject ();
+        } else {
             return null;
-        }  
+        }
     }
 
-    private bool CheckForCurrentSnappedObject(VRTK_SnapDropZone snapDropZone)
-    {
-        if(snapDropZone.GetCurrentSnappedObject() != null)
-        {
+    private bool CheckForCurrentSnappedObject (VRTK_SnapDropZone snapDropZone) {
+        if (snapDropZone.GetCurrentSnappedObject () != null) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    private int GetActiveSceneBuildIndex()
-    {
-        return SceneManager.GetActiveScene().buildIndex;
+    private int GetActiveSceneBuildIndex () {
+        return SceneManager.GetActiveScene ().buildIndex;
     }
 
-    private void LoadLevel(int levelIndex, int workShopIndex, bool objectExitedDropZone)
-    {
-        if((GetActiveSceneBuildIndex() == this.LevelIndex) && (objectExitedDropZone))
-        {
-            SceneManager.LoadScene(workShopIndex);
-        }
-        else if((GetActiveSceneBuildIndex() == this.WorkshopLevelIndex) && (objectExitedDropZone == false))
-        {
-            SceneManager.LoadScene(levelIndex);
-        }
-        else
-        {
+    private void LoadLevel (int levelIndex, int workShopIndex, bool objectExitedDropZone) {
+        if ((GetActiveSceneBuildIndex () == this.LevelIndex) && (objectExitedDropZone)) {
+            SceneManager.LoadScene (workShopIndex);
+        } else if ((GetActiveSceneBuildIndex () == this.WorkshopLevelIndex) && (objectExitedDropZone == false)) {
+            SceneManager.LoadScene (levelIndex);
+        } else {
             return;
         }
     }
 
-    private void EnableRenderer(GameObject snappedObject)
-    {
-        if(snappedObject != null)
-        {
-            snappedObject.GetComponent<Renderer>().enabled = true;
+    private void EnableRenderer (GameObject snappedObject) {
+        if (snappedObject != null) {
+            snappedObject.GetComponent<Renderer> ().enabled = true;
         }
     }
 
-    private void DisableRenderer(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Renderer>().enabled = false;
+    private void DisableRenderer (GameObject snappedObject) {
+        if (snappedObject != null) {
+            snappedObject.GetComponent<Renderer> ().enabled = false;
         }
     }
 
-    private void EnableCollider(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Collider>().enabled = true;
+    private void EnableCollider (GameObject snappedObject) {
+        if (snappedObject != null) {
+            snappedObject.GetComponent<Collider> ().enabled = true;
         }
     }
 
-    private void DisableCollider(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Collider>().enabled = false;
+    private void DisableCollider (GameObject snappedObject) {
+        if (snappedObject != null) {
+            snappedObject.GetComponent<Collider> ().enabled = false;
         }
     }
 
-    private void FadeHeadset(Color color, float fadeDuration)
-    {
-        this.fadeHeadset.Fade(color, fadeDuration);
+    private void FadeHeadset (Color color, float fadeDuration) {
+        this.fadeHeadset.Fade (color, fadeDuration);
     }
 
-    private void UnFadeHeadset(float fadeOutDuration)
-    {
-        this.fadeHeadset.Unfade(fadeOutDuration);
+    private void UnFadeHeadset (float fadeOutDuration) {
+        this.fadeHeadset.Unfade (fadeOutDuration);
     }
 
-    private void CheckHeadsetsInScene()
-    {
-       this.headsetsInScene = GameObject.FindGameObjectsWithTag("Headset");
+    private void CheckHeadsetsInScene () {
+        this.headsetsInScene = GameObject.FindGameObjectsWithTag ("Headset");
 
-        if (this.headsetsInScene.Length > 1)
-        {
-            Destroy(this.headsetsInScene[1]);
+        if (this.headsetsInScene.Length > 1) {
+            Destroy (this.headsetsInScene[1]);
         }
     }
 
-    private void SetRendererList(Game_Manager controller)
-    {
-        controller.GetMeshRenderer();
-        controller.SetMaterials(controller.GetRenderer());
+    private void SetRendererList (Game_Manager controller) {
+        controller.GetMeshRenderer ();
+        controller.SetMaterials (controller.GetRenderer ());
     }
 
+    private void CheckSnapUpdateMaterial () {
+        if (CheckForCurrentSnappedObject (this.snapZonePatrone)) {
+            controller.UpdateMaterial (GetCurrentSnappedObject (this.snapZonePatrone).tag);
+        }
+    }
 }

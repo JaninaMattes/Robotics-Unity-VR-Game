@@ -1,183 +1,130 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using VRTK;
 
-public class Game_Manager
-{
-    private static Game_Manager _Instance = null;
-    // Game score
-    protected int playerScore = 0;
-    protected int playerHealth = 0;
-    // Machine Learning Simulation
-    protected List<GameObject> _bucketList = new List<GameObject>();
-    //protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
-    protected Dictionary<GameObject, Vector3> _originalPositions = new Dictionary<GameObject, Vector3>();
-    // Material Changer
-    protected Renderer[] _renderer;
-    protected Hashtable _matList = new Hashtable();
+[ExecuteInEditMode]
+public class ChangeMaterials : MonoBehaviour {
+    [Header ("Snapdrop Zone Prefab")]
+    public VRTK_SnapDropZone snapZone;
+    [Header ("Sensor Material")]
+    [Tooltip ("Sonar Materials")]
+    public Material sonar_1_Material;
+    public Material sonar_2_Material;
+    [Tooltip ("Radar Material")]
+    public Material radar_1_Material;
+    [Tooltip ("Lidar Material")]
+    public Material lidar_1_Material; // Wichtig Texturen
+    [Tooltip ("Floor Grid Orientation Material")]
+    public Material gridorientation_Material;
+    public string gridorientation_Tag;
+    [Tooltip ("Excluded Tag List")]
+    public List<string> excludeTags = new List<string> ();
+    [Tooltip ("Spawn")]
+    public GameObject spawn;
 
-    private Game_Manager() { }
+    // Private Properties
+    protected Material[] materials = new Material[3];
+    //protected GameObject[] currentGameObjects;
+    protected Scene cur_Scene;
 
-    /// <summary>
-    /// Singleton Pattern to restrict instantiation
-    /// </summary>
-    public static Game_Manager Instance
-    {
-        get
-        {
-            if (_Instance == null)
-            {
-                _Instance = new Game_Manager();
+    // Singleton to controll all data used by various classes 
+    protected Game_Manager controller = Game_Manager.Instance;
 
-            }
-            return _Instance;
-        }
+    void OnEnable () {
+        //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
+        // SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
+        snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
     }
 
-    public void Set(Dictionary<GameObject, Vector3> _originalPositions)
-    {
-        this._originalPositions = _originalPositions;
-    }
-    public void Set(List<GameObject> _bucketList)
-    {
-        this._bucketList = _bucketList;
-    }
-
-    public void SetRenderer(Renderer[] _renderer)
-    {
-        this._renderer = _renderer;
+    void OnDisable () {
+        //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as 
+        //this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
+        // SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+        snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
+        snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
 
-    public void SetMaterials(Renderer[] renderer)
-    {
-        this._matList = new Hashtable();
-
-        foreach (Renderer rend in renderer)
-        {
-            if (rend != null)
-            {
-                this._matList.Add(rend, rend.materials);
-            }
-        }
+    public void Start () {
+        GetScene ();
+        controller.SetExcludeTag (excludeTags);
+        controller.SetGridOrientationTag (gridorientation_Tag);
+        // Kann beliebig erweitert werden
+        controller.SetSonar (spawn.GetComponent<SonarLaserAdv> ());
+        controller.SetRadar (spawn.GetComponent<RadarLaser> ());
+        controller.SetLidar (spawn.GetComponent<LiDar2> ());
+        controller.SetLaserController (spawn.GetComponent<LaserController> ());
+        // Material setzen
+        materials[0] = sonar_1_Material;
+        materials[1] = sonar_2_Material;
+        materials[2] = radar_1_Material;
+        controller.SetAllMaterials (materials);
     }
 
-    public void AddToBucketList(GameObject _bucketList)
-    {
-        this._bucketList.Add(_bucketList);
+    public void Update () {
+        GetScene ();
     }
 
-    public void Remove(GameObject _bucketList)
-    {
-        this._bucketList.Remove(_bucketList);
+    public void ResetMaterial (GameObject gameObject) {
+        ResetMaterialFor (gameObject);
     }
 
-    public List<GameObject> GetBucketObjects()
-    {
-        return this._bucketList;
+    private void GetScene () {
+        cur_Scene = SceneManager.GetActiveScene ();
     }
 
-    public Renderer[] GetRenderer()
-    {
-        return this._renderer;
+    protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
+        UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
     }
 
-    public Hashtable GetMaterial()
-    {
-        return this._matList;
+    protected virtual void ObjectUnsnappedFromDropZone (object sender, SnapDropZoneEventArgs e) {
+
     }
 
-    public void SetPlayerHealth(int playerHealth)
-    {
-        this.playerHealth = playerHealth;
+    private void DeactivateAllRenderer () {
+        controller.DeactivateAllRenderer ();
     }
 
-    public void AddPlayerHealth()
-    {
-        ++this.playerHealth;
+    private void ResetMaterial () {
+        controller.ResetMaterial ();
     }
 
-    public void ReducePlayerHealth()
-    {
-        --this.playerHealth;
-    }
-
-    public int GetPlayerHealth()
-    {
-        return this.playerHealth;
-    }
-    public void SetPlayerScore(int playerScore)
-    {
-        this.playerScore = playerScore;
-    }
-
-    public void AddPlayerScore()
-    {
-        ++this.playerScore;
-    }
-
-
-    public void ReducePlayerScore()
-    {
-        --this.playerScore;
-    }
-
-
-    public int GetPlayerScore()
-    {
-        return this.playerScore;
-    }
-
-    public void AddPositions(GameObject obj)
-    {
-        if (!_originalPositions.ContainsKey(obj))
-        {
-            this._originalPositions.Add(obj, obj.transform.position);
-        }
-    }
-
-    public Dictionary<GameObject, Vector3> GetPositions()
-    {
-        return this._originalPositions;
-    }
-
-    public Vector3 FindOriginalPos(GameObject obj)
-    {
-
-        Vector3 position = new Vector3();
-        foreach (KeyValuePair<GameObject, Vector3> entry in _originalPositions)
-        {
-            if (obj == entry.Key)
-            {
-                position = entry.Value;
+    private void ResetMaterialFor (GameObject gameObject) {
+        foreach (Renderer rend in controller.GetRenderer ()) {
+            if (rend != null) {
+                rend.materials = controller.GetMaterial () [gameObject.GetComponent<Renderer> ()] as Material[];
             }
         }
-        return position;
     }
 
-    public void GetMeshRenderer()
-    {
-        Renderer[] list = GameObject.FindObjectsOfType<Renderer>();
-        SetRenderer(list);
-    }
-
-    public void CleanUp()
-    {
-        Dictionary<GameObject, Vector3> positions = null;
-        List<GameObject> list = null;
-        _bucketList = list;
-        _originalPositions = positions;
-    }
-
-    public void ResetMaterial(GameObject obj)
-    {
-        Renderer m_ObjectRenderer = obj.GetComponent<Renderer>();
-
-        foreach (Renderer rend in _renderer)
-        {
-            if (rend != null && rend == m_ObjectRenderer)
-            {
-                rend.materials = _matList[rend] as Material[];
+    private void GetMaterials () {
+        foreach (Renderer rend in controller.GetRenderer ()) {
+            if (rend != null) {
+                controller.GetMaterial ().Add (rend, rend.materials);
             }
         }
+    }
+
+    private void ActivateAllRenderer () {
+        controller.ActivateAllRenderer ();
+    }
+
+    private void SetLaserScript (string sensor) {
+        controller.SetLaserScript (sensor);
+    }
+
+    private void UpdateMaterial (Material material) {
+        controller.UpdateMaterial (material);
+    }
+
+    private void UpdateMaterial (string tag) {
+        controller.UpdateMaterial (tag);
+    }
+
+    public void SetLidarScript () {
+        controller.SetLidarScript ();
     }
 }

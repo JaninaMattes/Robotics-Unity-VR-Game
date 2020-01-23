@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VRTK;
 
+/// <summary>
+/// Singleton Design Pattern
+/// </summary>
 public class Game_Manager {
     private static Game_Manager _Instance = null;
     // Game score
@@ -37,13 +40,17 @@ public class Game_Manager {
 
     //public SonarLaser sonar1;
     protected SonarLaserAdv _sonar2;
-    protected RadarLaser _radar ;
-    protected LiDar2 _lidar ;
-    protected LaserController _laser_controller ;
+    protected RadarLaser _radar;
+    protected LiDar2 _lidar;
+    protected LaserController _laser_controller;
 
     protected List<string> _exclude = new List<string> ();
     protected string gridorientation_Tag;
 
+    /// <summary>
+    /// Gett and Setter  
+    /// </summary>
+    /// <param name="gridorientation_Tag"></param>
     public void SetGridOrientationTag (string gridorientation_Tag) {
         gridorientation_Tag = gridorientation_Tag;
     }
@@ -51,6 +58,15 @@ public class Game_Manager {
     public string GetGridOrientationTag () {
         return gridorientation_Tag;
     }
+
+    public void SetGridOrientationMaterial (Material gridorientation_Materialg) {
+        gridorientation_Material = gridorientation_Material;
+    }
+
+    public Material GetGridOrientationMaterial () {
+        return gridorientation_Material;
+    }
+
     public void SetExcludeTag (List<string> exclude) {
         _exclude = exclude;
     }
@@ -194,13 +210,6 @@ public class Game_Manager {
         SetRenderer (list);
     }
 
-    public void CleanUp () {
-        Dictionary<GameObject, Vector3> positions = null;
-        List<GameObject> list = null;
-        _bucketList = list;
-        _originalPositions = positions;
-    }
-
     public void ResetMaterial (GameObject obj) {
         Renderer m_ObjectRenderer = obj.GetComponent<Renderer> ();
 
@@ -255,7 +264,7 @@ public class Game_Manager {
                 //Revert Material
                 ResetMaterial ();
                 ActivateAllRenderer ();
-                //TODO: Camerasensor
+                SetCameraPixelScript ();
                 break;
             default:
                 //If no other case found
@@ -286,14 +295,15 @@ public class Game_Manager {
         Material[] m;
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in GetRenderer ()) {
-            if (rend != null && !_exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
+            if (rend != null && !_exclude.Contains (rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
             {
                 m = rend.materials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag) {
                     rend.material = gridorientation_Material;
-                } else {
-                    //TODO: Check if Material is Water/Glas for SonarShader
+                }
+                // TODO: Limitation for Sonar
+                else {
                     for (int i = 0; i < m.Length; i++) {
                         m[i] = material;
                     }
@@ -337,6 +347,17 @@ public class Game_Manager {
         _laser_controller.enabled = false;
         // Lidar
         _lidar.lidarActive = true;
+    }
+
+    public void SetCameraPixelScript () {
+        // TODO
+    }
+
+    public void CleanUp () {
+        Dictionary<GameObject, Vector3> positions = null;
+        List<GameObject> list = null;
+        _bucketList = list;
+        _originalPositions = positions;
     }
 
 }

@@ -32,7 +32,7 @@ public class LaserProjectile : MonoBehaviour
     void Hit()
     {
         Debug.Log("Boom Hit");
-        Instantiate(explosionPrefab, gameObject.transform.position-rb.velocity.normalized*0.2f, Quaternion.identity);
+        Instantiate(explosionPrefab, gameObject.transform.position-rb.velocity.normalized*0.1f, Quaternion.identity);
         Destroy(gameObject);
     }
 

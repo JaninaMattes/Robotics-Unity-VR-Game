@@ -75,9 +75,7 @@ public class BucketList : MonoBehaviour
             if (bucketCollider.bounds.Contains(position))
             {
                 if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
-                {
-                    Debug.Log($"#######");
-                    
+                {                    
                     CheckGameObject(gameObj);                                         
                }
             }

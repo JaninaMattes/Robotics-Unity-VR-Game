@@ -7,7 +7,7 @@ using VRTK;
 public class ToggleLevel : MonoBehaviour {
 
     public int DebuggingLevel;
-
+ 
     [Header ("Level Index")]
     public int WorkshopLevelIndex;
     public int LevelIndex;
@@ -29,6 +29,9 @@ public class ToggleLevel : MonoBehaviour {
     public float fadeDuration = 0;
     [Range (0.0f, 10.0f)]
     public float fadeOutDuration = 0;
+    [Header ("Player and position")]
+    public GameObject playerController;
+    public Vector3 position = new Vector3 (-1.0f, 0.1f, 0.5f);
     private bool objectExitedSnapDropZone = false;
     [Header ("Snapdrop Zone Prefab Patrone")]
     public VRTK_SnapDropZone snapZonePatrone;
@@ -43,11 +46,6 @@ public class ToggleLevel : MonoBehaviour {
         foreach (GameObject objectToKeep in objectsToKeep) {
             DontDestroyOnLoad (objectToKeep);
         }
-        SetRendererList (this.controller);
-        // Tags need to be:
-        // "SonarSensor_1" "SonarSensor_2" 
-        // "LidarSensor" "RadarSensor" "CameraSensor"
-        CheckSnapUpdateMaterial ();
     }
 
     void Update () {
@@ -81,11 +79,14 @@ public class ToggleLevel : MonoBehaviour {
             DisableRenderer (GetCurrentSnappedObject (this.snapZone));
             UnFadeHeadset (this.fadeOutDuration);
         }
-        SetRendererList (this.controller);
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
-        CheckSnapUpdateMaterial ();
+        if (scene.buildIndex != 0 && scene.buildIndex != 1) {
+            Debug.Log ("###############");
+            SetRendererList (this.controller);
+            CheckSnapUpdateMaterial ();
+        }
     }
 
     protected virtual void OnHeadsetFadeComplete (object sender, HeadsetFadeEventArgs a) {
@@ -199,6 +200,7 @@ public class ToggleLevel : MonoBehaviour {
 
     private void CheckSnapUpdateMaterial () {
         if (CheckForCurrentSnappedObject (this.snapZonePatrone)) {
+            Debug.Log ($"Found Object: {GetCurrentSnappedObject (this.snapZonePatrone).tag}");
             controller.UpdateMaterial (GetCurrentSnappedObject (this.snapZonePatrone).tag);
         }
     }

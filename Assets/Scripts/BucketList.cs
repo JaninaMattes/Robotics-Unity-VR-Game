@@ -11,22 +11,35 @@ public class BucketList : MonoBehaviour
     [Tooltip("Bucket")]
     public GameObject bucket;
     //Nur für UI Anzeige (Test)
-    [Header("Checklist")]
-    [Tooltip("Checklist Elements")]
-    public TextMeshProUGUI[] textElement;
-    public Image[] checkIcon;
-    public Image errorIcon;
+    //[Header("Checklist")]
+    //[Tooltip("Checklist Elements")]
+   // public TextMeshProUGUI[] textElement;
+    //public Image[] checkIcon;
+    //public Image errorIcon;
     public List<string> bucketListContent;
     public GameObject checkList;
     [Tooltip("Color on Error")]
-    public Material red;
-    public Material white;
+    //public Material red;
+    //public Material white;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
     [Tooltip("Return Speed")]
     public float speed = 1f;
     public float fadingTime = 2f;
+
+    [Header("Bucket Check - Excluded Tags")]
+    public List<string> excludeTags = new List<string>();
+
+    [Header("UI Checklist")]
+    public Image UIDefault;
+    public Image UIError;
+    public TextMeshProUGUI checkListHeader;
+    public TextMeshProUGUI checklistItems;
+    public TextMeshProUGUI errorText;
+    public List<RawImage> checkMarks = new List<RawImage>();
+    private int textCounter = 0;
+
 
     // Debugging
     public List<GameObject> _bucketList;
@@ -49,12 +62,12 @@ public class BucketList : MonoBehaviour
         bucketCollider = GetComponent<Collider>();
         errorTimer = errorTimertotal;
 
-        for(int i = 0; i < textElement.Length; i++)
+        /*for(int i = 0; i < textElement.Length; i++)
         {
             textElement[i].text = bucketListContent[i];
             checkIcon[i].enabled = false;
         }
-        errorIcon.enabled = false;
+        errorIcon.enabled = false;*/
     }
 
     public void Update()
@@ -118,30 +131,32 @@ public class BucketList : MonoBehaviour
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
             if (bucketListContent.Contains(gameObj.tag))
             {
-            
             //checkIcon[i].enabled = true;
             controller.AddToBucketList(gameObj);
             controller.ResetMaterial(gameObj);
-                controller.AddPlayerScore();
-                Debug.Log($"GameObject found {gameObj.tag}");
+            controller.AddPlayerScore();
+            Debug.Log($"GameObject found {gameObj.tag}");
+            SetDefaultUIText(gameObj);
+
             }
             else
             {
+            if (!excludeTags.Contains(gameObj.tag)) { 
                 Debug.Log($"False object {gameObj.tag}");
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
-                MoveGameObjectTo(gameObj.transform, gameObj.transform.position, position, speed);              
+                MoveGameObjectTo(gameObj.transform, gameObj.transform.position, position, speed);
                 if (!coroutineCalled)
                 {
-                    errorIcon.enabled = true;
-                    // Change color to red
+                    DisableDefaultUI();
                     StartCoroutine("FlashColor");
                     controller.ReducePlayerScore();
+                }
                 }
                 else
                 {
                     // Set color back to white
-                    checkList.GetComponent<Renderer>().material = white;
+                    //checkList.GetComponent<Renderer>().material = white;
                 }
             }
     }
@@ -168,11 +183,15 @@ public class BucketList : MonoBehaviour
             coroutineCalled = true;
             t += step;
             coroutineCalled = true;
-            checkList.GetComponent<Renderer>().material = red;
+            EnableErrorUI();
+            //checkList.GetComponent<Renderer>().material = red;
             yield return new WaitForSeconds(0.3f);
-            checkList.GetComponent<Renderer>().material = white;
+            //checkList.GetComponent<Renderer>().material = white;
+            DisableErrorUI();
             yield return new WaitForSeconds(0.3f);
         }
+        DisableErrorUI();
+        EnableDefaultUI();
         coroutineCalled = false;
     }
 
@@ -189,4 +208,49 @@ public class BucketList : MonoBehaviour
         }
         objectToMove.position = b;
     }
+
+
+    // UI Checklist activation / deactivation & Itemtext setup
+
+    private void EnableErrorUI()
+    {
+        UIError.enabled = true;
+        errorText.enabled = true;
+    }
+
+    private void DisableErrorUI()
+    {
+        UIError.enabled = false;
+        errorText.enabled = false;
+    }
+
+    private void  SetDefaultUIText(GameObject gameObj)
+    {
+        checklistItems.enabled = true;
+        checklistItems.text += gameObj.name.ToString() + "\n";
+        textCounter++;
+        for(int i = 0; i < textCounter; i++)
+        {
+            checkMarks[i].enabled = true;
+        }
+    }
+
+    private void EnableDefaultUI()
+    {
+        UIDefault.enabled = true;
+        checklistItems.enabled = true;
+        checkListHeader.enabled = true;
+    }
+
+    private void DisableDefaultUI()
+    {
+        UIDefault.enabled = false;
+        checklistItems.enabled = false;
+        checkListHeader.enabled = false;
+        foreach(RawImage checkmark in checkMarks)
+        {
+            checkmark.enabled = false;
+        }
+    }
+
 }

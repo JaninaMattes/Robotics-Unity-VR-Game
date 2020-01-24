@@ -35,8 +35,11 @@ public class ToggleLevel : MonoBehaviour
     public VRTK_SnapDropZone snapZonePatrone;
     protected IEnumerator asyncLoadCoroutine;
 
+    [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
     public Vector3 startPosition;
+    private GameObject lookAt;
+
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
 
@@ -77,7 +80,8 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        cameraRig.transform.position = startPosition;
+        SetPlayerPosition();
+        
         if (CheckForCurrentSnappedObject(this.snapZone))
         {
             DisableRenderer(GetCurrentSnappedObject(this.snapZone));
@@ -117,6 +121,7 @@ public class ToggleLevel : MonoBehaviour
     {
         this.objectExitedSnapDropZone = false;
         DisableCollider(GetCurrentSnappedObject(this.snapZone));
+        DisableRenderer(GetCurrentSnappedObject(this.snapZone));
         FadeHeadset(this.fadeColor, this.fadeDuration);
     }
 
@@ -276,4 +281,13 @@ public class ToggleLevel : MonoBehaviour
             DebuggingLevel = SceneManager.GetActiveScene().buildIndex;
         }
     }
+
+    private void SetPlayerPosition()
+    {
+        lookAt = GameObject.FindGameObjectWithTag("CheckListCanvas");
+        cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+        cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+
+    }
+
 }

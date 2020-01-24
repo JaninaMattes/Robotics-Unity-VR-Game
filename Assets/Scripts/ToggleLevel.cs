@@ -6,6 +6,8 @@ using VRTK;
 
 public class ToggleLevel : MonoBehaviour {
 
+    public int DebuggingLevel;
+
     [Header ("Level Index")]
     public int WorkshopLevelIndex;
     public int LevelIndex;
@@ -30,7 +32,10 @@ public class ToggleLevel : MonoBehaviour {
     private bool objectExitedSnapDropZone = false;
     [Header ("Snapdrop Zone Prefab Patrone")]
     public VRTK_SnapDropZone snapZonePatrone;
+    protected IEnumerator asyncLoadCoroutine;
 
+    public GameObject cameraRig;
+    public Vector3 startPosition;
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
 
@@ -71,7 +76,7 @@ public class ToggleLevel : MonoBehaviour {
 
     public void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
      
-
+        cameraRig.transform.position = startPosition;
         if (CheckForCurrentSnappedObject (this.snapZone)) {
             DisableRenderer (GetCurrentSnappedObject (this.snapZone));
             UnFadeHeadset (this.fadeOutDuration);
@@ -134,9 +139,14 @@ public class ToggleLevel : MonoBehaviour {
 
     private void LoadLevel (int levelIndex, int workShopIndex, bool objectExitedDropZone) {
         if ((GetActiveSceneBuildIndex () == this.LevelIndex) && (objectExitedDropZone)) {
-            SceneManager.LoadScene (workShopIndex);
+            Debug.Log("0.0 LOAD LEVEL ################");
+            // Allow async loading of the scene on background thread
+            LoadTheSceneAsync(workShopIndex);
+            //SceneManager.LoadScene (workShopIndex);
         } else if ((GetActiveSceneBuildIndex () == this.WorkshopLevelIndex) && (objectExitedDropZone == false)) {
-            SceneManager.LoadScene (levelIndex);
+            Debug.Log("0.1 LOAD LEVEL ################");
+            LoadTheSceneAsync(levelIndex);
+           // SceneManager.LoadScene (levelIndex);
         } else {
             return;
         }
@@ -190,6 +200,33 @@ public class ToggleLevel : MonoBehaviour {
     private void CheckSnapUpdateMaterial () {
         if (CheckForCurrentSnappedObject (this.snapZonePatrone)) {
             controller.UpdateMaterial (GetCurrentSnappedObject (this.snapZonePatrone).tag);
+        }
+    }
+
+    public void LoadTheSceneAsync(int workShopIndex)
+    {
+        Debug.Log(" 1 LOAD LEVEL ################");
+        asyncLoadCoroutine = LoadSceneAsync(workShopIndex);
+        StartCoroutine(asyncLoadCoroutine);
+    }
+
+    private IEnumerator LoadSceneAsync(int workShopIndex)
+    {
+        Debug.Log($"2 Level Index{workShopIndex}");
+        // The Application loads the Scene in the background as the current Scene runs.
+        // This is particularly good for creating loading screens.
+        // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
+        // a sceneBuildIndex of 1 as shown in Build Settings.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(workShopIndex);
+       
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        if(asyncLoad.isDone){
+            DebuggingLevel = SceneManager.GetActiveScene().buildIndex;
         }
     }
 }

@@ -339,4 +339,33 @@ public class Game_Manager {
         _lidar.lidarActive = true;
     }
 
+    /// <summary>
+    /// Interactions with Player controller
+    /// 0 = right vibration
+    /// 1= left vibration
+    /// 2 = both
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="AC"></param>
+    /**
+    public void vibrateController(int i, AudioClip AC){
+         switch (i){
+             case 0:
+                 //outputs vibration to right controller
+                 OVRHaptics.Channels[0].Preempt(new OVRHapticsClip(AC));
+             break;
+             case 1:
+                 //outputs vibration to left controller
+                 OVRHaptics.Channels[1].Preempt(new OVRHapticsClip(AC));
+                 break;
+             case 2:
+                 //outputs vibration to left controller
+                 OVRHaptics.Channels[0].Preempt(new OVRHapticsClip(AC));
+                 OVRHaptics.Channels[1].Preempt(new OVRHapticsClip(AC));
+                 break;
+         }
+        
+     }
+    */
+
 }

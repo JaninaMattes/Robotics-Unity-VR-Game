@@ -125,14 +125,11 @@ public class BucketList : MonoBehaviour
             controller.AddToBucketList(gameObj);
             controller.ResetMaterial(gameObj);
                 controller.AddPlayerScore();
-                Debug.Log($"GameObject found {gameObj.tag}");
             }
             else if (!bucketListContent.Contains(gameObj.tag) && gameObj.tag != "Controller")
             {
-                Debug.Log($"False object {gameObj.tag}");
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
-                Debug.Log($"False object {position}");
                 delayCoroutine= DelayAndMove(gameObj, gameObj.transform.position, position, speed);
                 StartCoroutine(delayCoroutine);
 
@@ -189,7 +186,6 @@ public class BucketList : MonoBehaviour
 
     public IEnumerator MoveFromTo(GameObject objectToMove, Vector3 a, Vector3 b, float speed)
     {
-        Debug.Log($"Move Object");
         float step = (speed / (a - b).magnitude) * Time.fixedDeltaTime;
         float t = 0;
         // Move out of bucket by finding the centre of bucket and then move up straight

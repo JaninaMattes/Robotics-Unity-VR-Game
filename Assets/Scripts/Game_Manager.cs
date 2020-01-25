@@ -227,7 +227,6 @@ public class Game_Manager
     {
         if (!_originalPositions.ContainsKey(hashCode))
         {
-            Debug.Log($"Object Pos Added: {position} + Object Hash: {hashCode}");
             this._originalPositions.Add(hashCode, position);
         }
     }
@@ -246,7 +245,6 @@ public class Game_Manager
             if (obj.GetHashCode() == entry.Key)
             {
                 position = entry.Value;
-                Debug.Log($"Object Pos: {position}");
             }
         }
         return position;
@@ -365,7 +363,6 @@ public class Game_Manager
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
-                    Debug.Log($"Floor Material exchanged for {rend.tag}");
                     rend.material = gridorientation_Material;
                 }
                 // TODO: Limitation for Sonar

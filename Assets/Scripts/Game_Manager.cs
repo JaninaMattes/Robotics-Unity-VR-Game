@@ -35,7 +35,7 @@ public class Game_Manager
     // Machine Learning Simulation
     protected List<GameObject> _bucketList = new List<GameObject>();
     //protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
-    protected Dictionary<GameObject, Vector3> _originalPositions = new Dictionary<GameObject, Vector3>();
+    protected Dictionary<int, Vector3> _originalPositions = new Dictionary<int, Vector3>();
     // Material Changer
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
@@ -118,7 +118,7 @@ public class Game_Manager
         return _laser_controller;
     }
 
-    public void Set(Dictionary<GameObject, Vector3> _originalPositions)
+    public void Set(Dictionary<int, Vector3> _originalPositions)
     {
         this._originalPositions = _originalPositions;
     }
@@ -223,15 +223,16 @@ public class Game_Manager
         return this.playerScore;
     }
 
-    public void AddPositions(GameObject obj)
+    public void AddPositions(int hashCode, Vector3 position)
     {
-        if (!_originalPositions.ContainsKey(obj))
+        if (!_originalPositions.ContainsKey(hashCode))
         {
-            this._originalPositions.Add(obj, obj.transform.position);
+            Debug.Log($"Object Pos Added: {position} + Object Hash: {hashCode}");
+            this._originalPositions.Add(hashCode, position);
         }
     }
 
-    public Dictionary<GameObject, Vector3> GetPositions()
+    public Dictionary<int, Vector3> GetPositions()
     {
         return this._originalPositions;
     }
@@ -240,11 +241,12 @@ public class Game_Manager
     {
 
         Vector3 position = new Vector3();
-        foreach (KeyValuePair<GameObject, Vector3> entry in _originalPositions)
+        foreach (KeyValuePair<int, Vector3> entry in _originalPositions)
         {
-            if (obj == entry.Key)
+            if (obj.GetHashCode() == entry.Key)
             {
                 position = entry.Value;
+                Debug.Log($"Object Pos: {position}");
             }
         }
         return position;
@@ -374,7 +376,6 @@ public class Game_Manager
                         m[i] = material;
                     }
                     rend.materials = m;
-
                 }
             }
         }
@@ -429,7 +430,7 @@ public class Game_Manager
 
     public void CleanUp()
     {
-        Dictionary<GameObject, Vector3> positions = null;
+        Dictionary<int, Vector3> positions = null;
         List<GameObject> list = null;
         _bucketList = list;
         _originalPositions = positions;

@@ -45,7 +45,7 @@ public class BucketList : MonoBehaviour
     {
         //Objekte die im Eimer erkannt werden sollen einem Array zuweisen (in diesem Fall ALLE GameObjekte die aktiv in der Szene sind zur Demonstration).
         allGameObjects = GameObject.FindObjectsOfType<GameObject>();
-        //FetchAllPositions();
+        FetchAllPositions();
 
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
@@ -111,8 +111,8 @@ public class BucketList : MonoBehaviour
 
     public void FetchAllPositions(){
         foreach(GameObject obj in allGameObjects){
-        // Target objects
-        controller.AddPositions(obj);               
+            // Target objects
+            controller.AddPositions(obj.GetHashCode(), obj.transform.position);               
         }
     }
 
@@ -133,8 +133,10 @@ public class BucketList : MonoBehaviour
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
                 Debug.Log($"False object {position}");
-                delayCoroutine= MoveFromTo(gameObj.transform, gameObj.transform.position, position, speed);
-            if (!coroutineCalled)
+                delayCoroutine= DelayAndMove(gameObj, gameObj.transform.position, position, speed);
+                StartCoroutine(delayCoroutine);
+
+                if (!coroutineCalled)
                 {
                     errorIcon.enabled = true;
                     // Change color to red
@@ -146,7 +148,7 @@ public class BucketList : MonoBehaviour
                     // Set color back to white
                     checkList.GetComponent<Renderer>().material = white;
                 }
-            }
+            }       
     }
 
     public void CleanUp(){
@@ -174,24 +176,37 @@ public class BucketList : MonoBehaviour
         coroutineCalled = false;
     }
 
-    private IEnumerator DelayAndMove(Transform objectToMove, Vector3 a, Vector3 b, float speed)
+    private IEnumerator DelayAndMove(GameObject objectToMove, Vector3 a, Vector3 b, float speed)
     {
         yield return new WaitForSeconds(beginingDelay);
+        // Make invisible
+        objectToMove.GetComponent<Renderer>().enabled = false;
+        objectToMove.GetComponent<Collider>().enabled = false;
         moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
-        StartCoroutine(moveCoroutine);     // Add it here after the delay 
+        // After the delay do..
+        StartCoroutine(moveCoroutine); 
     }
 
-    public IEnumerator MoveFromTo(Transform objectToMove, Vector3 a, Vector3 b, float speed)
+    public IEnumerator MoveFromTo(GameObject objectToMove, Vector3 a, Vector3 b, float speed)
     {
         Debug.Log($"Move Object");
         float step = (speed / (a - b).magnitude) * Time.fixedDeltaTime;
         float t = 0;
+        // Move out of bucket by finding the centre of bucket and then move up straight
+        objectToMove.transform.position = new Vector3(
+            this.GetComponent<Renderer>().bounds.center.x,
+            this.GetComponent<Renderer>().bounds.center.y + 1.0f,
+            this.GetComponent<Renderer>().bounds.center.z);
+        // Move gradiently back 
         while (t <= 1.0f)
         {
             t += step; // Goes from 0 to 1, incrementing by step each time
-            objectToMove.position = Vector3.Lerp(a, b, t); // Move objectToMove closer to b
+            objectToMove.transform.position = Vector3.Lerp(a, b, t); // Move objectToMove closer to b
             yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
         }
-        objectToMove.position = b;
+        objectToMove.transform.position = b;
+        // Set visible
+        objectToMove.GetComponent<Renderer>().enabled = true;
+        objectToMove.GetComponent<Collider>().enabled = true;
     }
 }

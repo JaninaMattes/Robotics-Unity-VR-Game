@@ -4,23 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using VRTK;
 
 public class BucketList : MonoBehaviour
 {
     [Header("Bucket")]
     [Tooltip("Bucket")]
     public GameObject bucket;
-    //Nur für UI Anzeige (Test)
-    //[Header("Checklist")]
-    //[Tooltip("Checklist Elements")]
-   // public TextMeshProUGUI[] textElement;
-    //public Image[] checkIcon;
-    //public Image errorIcon;
     public List<string> bucketListContent;
     public GameObject checkList;
     [Tooltip("Color on Error")]
-    //public Material red;
-    //public Material white;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
@@ -33,18 +26,16 @@ public class BucketList : MonoBehaviour
 
     [Header("UI Checklist")]
     public Image UIDefault;
-    public Image UIError;
     public TextMeshProUGUI checkListHeader;
-    public TextMeshProUGUI checklistItems;
-    public TextMeshProUGUI errorText;
-    public List<RawImage> checkMarks = new List<RawImage>();
+    public List<GameObject> checkedObjects= new List<GameObject>();
     private int textCounter = 0;
+    public Color defaultColor;
+    public Color errorColor;
+    public string invalidText;
+    public string checkListHeaderText;
+    public VerticalLayoutGroup backgroundTransparent;
+    public VerticalLayoutGroup backgroundDefault;
 
-
-    // Debugging
-    public List<GameObject> _bucketList;
-
-    // To change color by Coroutine Calls
     protected bool coroutineCalled = false;
     protected Collider bucketCollider;
     public GameObject[] allGameObjects;
@@ -61,13 +52,6 @@ public class BucketList : MonoBehaviour
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
         errorTimer = errorTimertotal;
-
-        /*for(int i = 0; i < textElement.Length; i++)
-        {
-            textElement[i].text = bucketListContent[i];
-            checkIcon[i].enabled = false;
-        }
-        errorIcon.enabled = false;*/
     }
 
     public void Update()
@@ -102,22 +86,6 @@ public class BucketList : MonoBehaviour
             }
         }
 
-        //Nur für UI Anzeige (Test)
-        //textElement.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
-        //checkIcon.text = ListToText(bucketList);
-
-        _bucketList = controller.GetBucketObjects();
-    }
-
-    //Nur für UI Anzeige (Test)
-    public string ListToText(List<GameObject> list)
-    {
-        string result = "";
-        foreach (var listMember in list)
-        {
-            result += "-" + " " + listMember.name + "\n";
-        }
-        return result;
     }
 
     public void FetchAllPositions(){
@@ -131,7 +99,7 @@ public class BucketList : MonoBehaviour
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
             if (bucketListContent.Contains(gameObj.tag))
             {
-            //checkIcon[i].enabled = true;
+            gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
             controller.AddToBucketList(gameObj);
             controller.ResetMaterial(gameObj);
             controller.AddPlayerScore();
@@ -184,9 +152,7 @@ public class BucketList : MonoBehaviour
             t += step;
             coroutineCalled = true;
             EnableErrorUI();
-            //checkList.GetComponent<Renderer>().material = red;
             yield return new WaitForSeconds(0.3f);
-            //checkList.GetComponent<Renderer>().material = white;
             DisableErrorUI();
             yield return new WaitForSeconds(0.3f);
         }
@@ -209,48 +175,63 @@ public class BucketList : MonoBehaviour
         objectToMove.position = b;
     }
 
-
+    /// <summary>
+    /// UI Canvas
+    /// </summary>
     // UI Checklist activation / deactivation & Itemtext setup
 
     private void EnableErrorUI()
     {
-        UIError.enabled = true;
-        errorText.enabled = true;
+        UIDefault.color = errorColor;
+        UIDefault.enabled = true;
+        checkListHeader.text = invalidText;
+        checkListHeader.enabled = true;
     }
 
     private void DisableErrorUI()
     {
-        UIError.enabled = false;
-        errorText.enabled = false;
+        UIDefault.enabled = false;
+        checkListHeader.enabled = false;
     }
 
     private void  SetDefaultUIText(GameObject gameObj)
     {
-        checklistItems.enabled = true;
-        checklistItems.text += gameObj.name.ToString() + "\n";
+        checkedObjects[textCounter].GetComponent<TextMeshProUGUI>().text = gameObj.name.ToString();
+        checkedObjects[textCounter].SetActive(true);
+        ForceCanvasUpdate();
         textCounter++;
-        for(int i = 0; i < textCounter; i++)
-        {
-            checkMarks[i].enabled = true;
-        }
     }
 
     private void EnableDefaultUI()
     {
+        checkListHeader.text = checkListHeaderText;
+        UIDefault.color = defaultColor;
         UIDefault.enabled = true;
-        checklistItems.enabled = true;
         checkListHeader.enabled = true;
+        for (int i = 0; i < textCounter; i++)
+        {
+
+            checkedObjects[i].SetActive(true);
+        }
+        ForceCanvasUpdate();
     }
 
     private void DisableDefaultUI()
     {
-        UIDefault.enabled = false;
-        checklistItems.enabled = false;
-        checkListHeader.enabled = false;
-        foreach(RawImage checkmark in checkMarks)
-        {
-            checkmark.enabled = false;
-        }
+        foreach (GameObject checkedObject in checkedObjects) { 
+
+            checkedObject.SetActive(false);
+    }  
+
+    }
+
+    private void ForceCanvasUpdate()
+    {
+        Canvas.ForceUpdateCanvases();
+        backgroundTransparent.enabled = false;
+        backgroundDefault.enabled = false;
+        backgroundTransparent.enabled = true;
+        backgroundDefault.enabled = true;
     }
 
 }

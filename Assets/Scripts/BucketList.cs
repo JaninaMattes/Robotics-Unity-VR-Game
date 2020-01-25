@@ -4,23 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using VRTK;
 
 public class BucketList : MonoBehaviour
 {
+
     [Header("Bucket")]
     [Tooltip("Bucket")]
     public GameObject bucket;
-    //Nur für UI Anzeige (Test)
-    [Header("Checklist")]
-    [Tooltip("Checklist Elements")]
-    public TextMeshProUGUI[] textElement;
-    public Image[] checkIcon;
-    public Image errorIcon;
     public List<string> bucketListContent;
-    public GameObject checkList;
-    [Tooltip("Color on Error")]
-    public Material red;
-    public Material white;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
@@ -29,13 +21,22 @@ public class BucketList : MonoBehaviour
     public float fadingTime = 2f;
     public float beginingDelay = 1.0f;
 
-    // Debugging
-    public List<GameObject> _bucketList;
+    [Header("UI Checklist")]
+    public Image UIDefault;
+    public TextMeshProUGUI checkListHeader;
+    public List<GameObject> checkedObjects = new List<GameObject>();
+    private int textCounter = 0;
+    public Color defaultColor;
+    public Color errorColor;
+    public string invalidText;
+    public string checkListHeaderText;
+    public VerticalLayoutGroup backgroundTransparent;
+    public VerticalLayoutGroup backgroundDefault;
 
     // To change color by Coroutine Calls
     protected bool coroutineCalled = false;
     protected Collider bucketCollider;
-    public GameObject[] allGameObjects;
+    private GameObject[] allGameObjects;
     protected IEnumerator moveCoroutine;
     protected IEnumerator delayCoroutine;
     // Controller 
@@ -50,13 +51,6 @@ public class BucketList : MonoBehaviour
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
         errorTimer = errorTimertotal;
-
-        for(int i = 0; i < textElement.Length; i++)
-        {
-            textElement[i].text = bucketListContent[i];
-            checkIcon[i].enabled = false;
-        }
-        errorIcon.enabled = false;
     }
 
     public void Update()
@@ -90,23 +84,6 @@ public class BucketList : MonoBehaviour
                 }
             }
         }
-
-        //Nur für UI Anzeige (Test)
-        //textElement.text = "Anzahl Objekte im Eimer" + "\n" + bucketList.Count.ToString();
-        //checkIcon.text = ListToText(bucketList);
-
-        _bucketList = controller.GetBucketObjects();
-    }
-
-    //Nur für UI Anzeige (Test)
-    public string ListToText(List<GameObject> list)
-    {
-        string result = "";
-        foreach (var listMember in list)
-        {
-            result += "-" + " " + listMember.name + "\n";
-        }
-        return result;
     }
 
     public void FetchAllPositions(){
@@ -120,11 +97,11 @@ public class BucketList : MonoBehaviour
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
             if (bucketListContent.Contains(gameObj.tag))
             {
-            
-            //checkIcon[i].enabled = true;
+            gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
             controller.AddToBucketList(gameObj);
             controller.ResetMaterial(gameObj);
-                controller.AddPlayerScore();
+            controller.AddPlayerScore();
+            SetDefaultUIText(gameObj);
             }
             else if (!bucketListContent.Contains(gameObj.tag) && gameObj.tag != "Controller")
             {
@@ -135,15 +112,9 @@ public class BucketList : MonoBehaviour
 
                 if (!coroutineCalled)
                 {
-                    errorIcon.enabled = true;
-                    // Change color to red
+                    DisableDefaultUI();
                     StartCoroutine("FlashColor");
                     controller.ReducePlayerScore();
-                }
-                else
-                {
-                    // Set color back to white
-                    checkList.GetComponent<Renderer>().material = white;
                 }
             }       
     }
@@ -165,11 +136,13 @@ public class BucketList : MonoBehaviour
             coroutineCalled = true;
             t += step;
             coroutineCalled = true;
-            checkList.GetComponent<Renderer>().material = red;
+            EnableErrorUI();
             yield return new WaitForSeconds(0.3f);
-            checkList.GetComponent<Renderer>().material = white;
+            DisableErrorUI();
             yield return new WaitForSeconds(0.3f);
         }
+        DisableErrorUI();
+        EnableDefaultUI();
         coroutineCalled = false;
     }
 
@@ -205,4 +178,67 @@ public class BucketList : MonoBehaviour
         objectToMove.GetComponent<Renderer>().enabled = true;
         objectToMove.GetComponent<Collider>().enabled = true;
     }
+
+    /// <summary>
+    /// UI Canvas
+    /// </summary>
+    // UI Checklist activation / deactivation & Itemtext setup
+
+    private void EnableErrorUI()
+    {
+        UIDefault.color = errorColor;
+        UIDefault.enabled = true;
+        checkListHeader.text = invalidText;
+        checkListHeader.enabled = true;
+    }
+
+    private void DisableErrorUI()
+    {
+        UIDefault.enabled = false;
+        checkListHeader.enabled = false;
+    }
+
+    private void SetDefaultUIText(GameObject gameObj)
+    {
+        checkedObjects[textCounter].GetComponent<TextMeshProUGUI>().text = gameObj.name.ToString();
+        checkedObjects[textCounter].SetActive(true);
+        ForceCanvasUpdate();
+        textCounter++;
+    }
+
+    private void EnableDefaultUI()
+    {
+        checkListHeader.text = checkListHeaderText;
+        UIDefault.color = defaultColor;
+        UIDefault.enabled = true;
+        checkListHeader.enabled = true;
+        for (int i = 0; i < textCounter; i++)
+        {
+
+            checkedObjects[i].SetActive(true);
+        }
+        ForceCanvasUpdate();
+    }
+
+    private void DisableDefaultUI()
+    {
+        foreach (GameObject checkedObject in checkedObjects)
+        {
+
+            checkedObject.SetActive(false);
+        }
+
+    }
+
+    private void ForceCanvasUpdate()
+    {
+        Canvas.ForceUpdateCanvases();
+        backgroundTransparent.enabled = false;
+        backgroundDefault.enabled = false;
+        backgroundTransparent.enabled = true;
+        backgroundDefault.enabled = true;
+    }
+
 }
+
+

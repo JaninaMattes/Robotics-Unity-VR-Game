@@ -129,7 +129,6 @@ public class ChangeMaterials : MonoBehaviour
     }
 
     private void ActivateAllRenderer()
-    private void ActivateAllRenderer()
     {
         controller.ActivateAllRenderer();
     }

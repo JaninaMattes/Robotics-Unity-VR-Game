@@ -27,6 +27,7 @@ public class BucketList : MonoBehaviour
     [Tooltip("Return Speed")]
     public float speed = 1f;
     public float fadingTime = 2f;
+    public float beginingDelay = 1.0f;
 
     // Debugging
     public List<GameObject> _bucketList;
@@ -36,6 +37,7 @@ public class BucketList : MonoBehaviour
     protected Collider bucketCollider;
     public GameObject[] allGameObjects;
     protected IEnumerator moveCoroutine;
+    protected IEnumerator delayCoroutine;
     // Controller 
     protected Game_Manager controller = Game_Manager.Instance;
 
@@ -125,13 +127,14 @@ public class BucketList : MonoBehaviour
                 controller.AddPlayerScore();
                 Debug.Log($"GameObject found {gameObj.tag}");
             }
-            else
+            else if (!bucketListContent.Contains(gameObj.tag) && gameObj.tag != "Controller")
             {
                 Debug.Log($"False object {gameObj.tag}");
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
-                MoveGameObjectTo(gameObj.transform, gameObj.transform.position, position, speed);              
-                if (!coroutineCalled)
+                Debug.Log($"False object {position}");
+                delayCoroutine= MoveFromTo(gameObj.transform, gameObj.transform.position, position, speed);
+            if (!coroutineCalled)
                 {
                     errorIcon.enabled = true;
                     // Change color to red
@@ -148,11 +151,6 @@ public class BucketList : MonoBehaviour
 
     public void CleanUp(){
         controller.CleanUp();
-    }
-
-    public void MoveGameObjectTo(Transform objectToMove, Vector3 a, Vector3 b, float speed){
-        moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
-        StartCoroutine(moveCoroutine);
     }
 
     /// <summary>
@@ -176,7 +174,14 @@ public class BucketList : MonoBehaviour
         coroutineCalled = false;
     }
 
-    IEnumerator MoveFromTo(Transform objectToMove, Vector3 a, Vector3 b, float speed)
+    private IEnumerator DelayAndMove(Transform objectToMove, Vector3 a, Vector3 b, float speed)
+    {
+        yield return new WaitForSeconds(beginingDelay);
+        moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
+        StartCoroutine(moveCoroutine);     // Add it here after the delay 
+    }
+
+    public IEnumerator MoveFromTo(Transform objectToMove, Vector3 a, Vector3 b, float speed)
     {
         Debug.Log($"Move Object");
         float step = (speed / (a - b).magnitude) * Time.fixedDeltaTime;

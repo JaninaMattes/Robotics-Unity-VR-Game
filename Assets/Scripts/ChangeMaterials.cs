@@ -18,6 +18,8 @@ public class ChangeMaterials : MonoBehaviour
     public Material radar_1_Material;
     [Tooltip("Lidar Material")]
     public Material lidar_1_Material; // Wichtig Texturen
+    [Tooltip("Black Material")]
+    public Material black_Material;
     [Tooltip("Floor Grid Orientation Material")]
     public Material gridorientation_Material;
     public string gridorientation_Tag;
@@ -27,7 +29,7 @@ public class ChangeMaterials : MonoBehaviour
     public GameObject spawn;
 
     // Private Properties
-    protected Material[] materials = new Material[3];
+    protected Material[] materials = new Material[4];
     //protected GameObject[] currentGameObjects;
     protected Scene cur_Scene;
 
@@ -66,6 +68,7 @@ public class ChangeMaterials : MonoBehaviour
         materials[0] = sonar_1_Material;
         materials[1] = sonar_2_Material;
         materials[2] = radar_1_Material;
+        materials[3] = black_Material;
         controller.SetAllMaterials(materials);
     }
 

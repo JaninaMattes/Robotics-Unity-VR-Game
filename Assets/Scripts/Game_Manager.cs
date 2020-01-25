@@ -57,7 +57,7 @@ public class Game_Manager
     /// <param name="gridorientation_Tag"></param>
     public void SetGridOrientationTag(string gridorientation_Tag)
     {
-        gridorientation_Tag = gridorientation_Tag;
+        this.gridorientation_Tag = gridorientation_Tag;
     }
 
     public string GetGridOrientationTag()
@@ -65,9 +65,9 @@ public class Game_Manager
         return gridorientation_Tag;
     }
 
-    public void SetGridOrientationMaterial(Material gridorientation_Materialg)
+    public void SetGridOrientationMaterial(Material material)
     {
-        gridorientation_Material = gridorientation_Material;
+        this.gridorientation_Material = material;
     }
 
     public Material GetGridOrientationMaterial()
@@ -322,7 +322,7 @@ public class Game_Manager
                 break;
             default:
                 //If no other case found
-                UpdateMaterial(_allMaterials[1]);
+                UpdateMaterial(_allMaterials[3]);
                 ActivateAllRenderer();                
                 break;
 
@@ -363,6 +363,7 @@ public class Game_Manager
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
+                    Debug.Log($"Floor Material exchanged for {rend.tag}");
                     rend.material = gridorientation_Material;
                 }
                 // TODO: Limitation for Sonar

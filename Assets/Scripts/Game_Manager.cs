@@ -376,6 +376,7 @@ public class Game_Manager
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
+                    Debug.Log("Floor material set");
                     rend.material = gridorientation_Material;
                 }
                 // TODO: Limitation for Sonar

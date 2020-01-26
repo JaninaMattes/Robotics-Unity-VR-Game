@@ -91,14 +91,7 @@ public class ToggleLevel : MonoBehaviour
             SetRendererList(this.controller);
             //Debugging
             DebuggingRenderer = controller.GetRenderer();
-            CheckSnapUpdateMaterial();
-            controller.SetLight(scene.buildIndex);
-
-            // Setup all lights due to no unlit materials
-            bool lightsOn = false;
-            if (GetCurrentSnappedObject(this.snapZone).tag == "CameraSensor") { lightsOn = true; }
-            Debug.Log("Lights ON" + lightsOn);
-            controller.ToggleLight(scene.buildIndex, lightsOn);
+            CheckSnapUpdateMaterial();            
         }
 
         if (CheckForCurrentSnappedObject(this.snapZone))
@@ -253,8 +246,11 @@ public class ToggleLevel : MonoBehaviour
 
     private void CheckSnapUpdateMaterial()
     {
+        bool lightsOn = false;
+
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
         {
+            Debug.Log("Material Updated");
             controller.SetLight(SceneManager.GetActiveScene().buildIndex);
             controller.UpdateMaterial(GetCurrentSnappedObject(this.snapZonePatrone).tag);
         }
@@ -263,6 +259,10 @@ public class ToggleLevel : MonoBehaviour
             controller.SetLight(SceneManager.GetActiveScene().buildIndex);
             controller.UpdateMaterial("default");
         }
+        // Setup all lights due to no unlit materials        
+        if (GetCurrentSnappedObject(this.snapZone).tag == "CameraSensor") { lightsOn = true; }
+        Debug.Log("Lights ON" + lightsOn);
+        controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightsOn);
     }
 
     public void LoadTheSceneAsync(int workShopIndex)

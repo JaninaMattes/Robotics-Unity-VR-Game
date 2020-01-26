@@ -300,6 +300,7 @@ public class Game_Manager
     /// <param name="tag"></param>
     public void UpdateMaterial(string tag)
     {
+        Debug.Log("Update material" + tag);
         switch (tag)
         {
             case "SonarSensor_1":

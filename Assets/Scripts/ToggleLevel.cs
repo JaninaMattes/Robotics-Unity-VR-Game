@@ -8,6 +8,7 @@ public class ToggleLevel : MonoBehaviour
 {
 
     public int DebuggingLevel;
+    public Renderer[] DebuggingRenderer;
 
     [Header("Level Index")]
     public int WorkshopLevelIndex;
@@ -80,13 +81,16 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SetPlayerPosition();
+        Debug.Log("########## LEVEL Loaded ##########" + scene.buildIndex);
+        SetPlayerPosition(scene.buildIndex);
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
         if (scene.buildIndex != 0 && scene.buildIndex != 1)
         {
             SetRendererList(this.controller);
+            //Debugging
+            DebuggingRenderer = controller.GetRenderer();
             CheckSnapUpdateMaterial();
             controller.SetLight(scene.buildIndex);
 
@@ -287,11 +291,37 @@ public class ToggleLevel : MonoBehaviour
         }
     }
 
-    private void SetPlayerPosition()
+    private void SetPlayerPosition(int buildIndex)
     {
-        lookAt = GameObject.FindGameObjectWithTag("CheckListCanvas");
-        cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
-        cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+        switch (buildIndex)
+        {
+            case 0:
+                lookAt = GameObject.FindGameObjectWithTag("Robo");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break; 
 
+            case 1:
+                lookAt = GameObject.FindGameObjectWithTag("SelectLevel2");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break;
+
+            case 2:
+                lookAt = GameObject.FindGameObjectWithTag("Pilz");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break;
+
+            case 3:
+                // Kitchen with checklist
+                lookAt = GameObject.FindGameObjectWithTag("CheckListCanvas");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break;
+
+            default:
+                break;
+        }
     }
 }

@@ -50,6 +50,8 @@ public class Game_Manager
 
     protected List<string> _exclude = new List<string>();
     protected string gridorientation_Tag;
+    // Toggle light in the rooms per material
+    protected GameObject[] _lightGameObjects = new GameObject[2];
 
     /// <summary>
     /// Gett and Setter  
@@ -221,6 +223,16 @@ public class Game_Manager
     public int GetPlayerScore()
     {
         return this.playerScore;
+    }
+
+    public void SetLights(GameObject[] lights)
+    {
+        _lightGameObjects = lights;
+    }
+
+    public GameObject[] GetLights()
+    {
+        return _lightGameObjects;
     }
 
     public void AddPositions(int hashCode, Vector3 position)
@@ -418,6 +430,42 @@ public class Game_Manager
         _laser_controller.enabled = false;
         // Lidar
         _lidar.lidarActive = true;
+    }
+
+    public void SetLight(int level)
+    {
+        Debug.Log("Set Light" + level);
+        switch (level)
+        {
+            case 2:
+                _lightGameObjects = GameObject.FindGameObjectsWithTag("ForestLight");
+                break;
+            case 3:
+                _lightGameObjects = GameObject.FindGameObjectsWithTag("KitchenLight");
+                Debug.Log(_lightGameObjects[0]);
+                Debug.Log(_lightGameObjects[1]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ToggleLight(int level, bool active)
+    {
+        Debug.Log("Switch Light");
+        switch (level)
+        {
+            case 2:
+                _lightGameObjects[0].SetActive(active);
+                _lightGameObjects[1].SetActive(active);
+                break;
+            case 3:
+                _lightGameObjects[0].SetActive(active);
+                _lightGameObjects[1].SetActive(active);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetCameraPixelScript()

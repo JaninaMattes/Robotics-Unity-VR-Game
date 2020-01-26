@@ -38,7 +38,7 @@ public class ToggleLevel : MonoBehaviour
     [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
     public Vector3 startPosition;
-    private GameObject lookAt;
+    private GameObject lookAt;    
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -81,12 +81,6 @@ public class ToggleLevel : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SetPlayerPosition();
-
-        if (CheckForCurrentSnappedObject(this.snapZone))
-        {
-            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
-            UnFadeHeadset(this.fadeOutDuration);
-        }
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
@@ -94,7 +88,20 @@ public class ToggleLevel : MonoBehaviour
         {
             SetRendererList(this.controller);
             CheckSnapUpdateMaterial();
+            controller.SetLight(scene.buildIndex);
+
+            // Setup all lights due to no unlit materials
+            bool lightsOn = false;
+            if (GetCurrentSnappedObject(this.snapZone).tag == "CameraSensor") { lightsOn = true; }
+            Debug.Log("Lights ON" + lightsOn);
+            controller.ToggleLight(scene.buildIndex, lightsOn);
         }
+
+        if (CheckForCurrentSnappedObject(this.snapZone))
+        {
+            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
+            UnFadeHeadset(this.fadeOutDuration);
+        }       
     }
 
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
@@ -167,14 +174,12 @@ public class ToggleLevel : MonoBehaviour
     {
         if ((GetActiveSceneBuildIndex() == this.LevelIndex) && (objectExitedDropZone))
         {
-            Debug.Log("0.0 LOAD LEVEL ################");
             // Allow async loading of the scene on background thread
             LoadTheSceneAsync(workShopIndex);
             //SceneManager.LoadScene (workShopIndex);
         }
         else if ((GetActiveSceneBuildIndex() == this.WorkshopLevelIndex) && (objectExitedDropZone == false))
         {
-            Debug.Log("0.1 LOAD LEVEL ################");
             LoadTheSceneAsync(levelIndex);
             // SceneManager.LoadScene (levelIndex);
         }
@@ -246,24 +251,24 @@ public class ToggleLevel : MonoBehaviour
     {
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
         {
+            controller.SetLight(SceneManager.GetActiveScene().buildIndex);
             controller.UpdateMaterial(GetCurrentSnappedObject(this.snapZonePatrone).tag);
         }
         else
         {
+            controller.SetLight(SceneManager.GetActiveScene().buildIndex);
             controller.UpdateMaterial("default");
         }
     }
 
     public void LoadTheSceneAsync(int workShopIndex)
     {
-        Debug.Log(" 1 LOAD LEVEL ################");
         asyncLoadCoroutine = LoadSceneAsync(workShopIndex);
         StartCoroutine(asyncLoadCoroutine);
     }
 
     private IEnumerator LoadSceneAsync(int workShopIndex)
     {
-        Debug.Log($"2 Level Index{workShopIndex}");
         // The Application loads the Scene in the background as the current Scene runs.
         // This is particularly good for creating loading screens.
         // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has

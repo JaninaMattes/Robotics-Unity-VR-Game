@@ -32,6 +32,8 @@ public class ChangeMaterials : MonoBehaviour
     protected Material[] materials = new Material[4];
     //protected GameObject[] currentGameObjects;
     protected Scene cur_Scene;
+    // Toggle light in the rooms per material
+    protected GameObject[] lightGameObjects;
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;

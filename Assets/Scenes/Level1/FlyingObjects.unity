@@ -1455,14 +1455,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: naturePack_132
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.407
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -188.7
@@ -1518,6 +1510,14 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
       propertyPath: m_LocalScale.z
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.407
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3db1eada31268aa43a1af90cb59a87e3, type: 3}
@@ -3172,8 +3172,8 @@ GameObject:
   - component: {fileID: 587906846}
   - component: {fileID: 587906845}
   m_Layer: 0
-  m_Name: Point Light (1)
-  m_TagString: Untagged
+  m_Name: PointLight_FObj1
+  m_TagString: ForestLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9221,8 +9221,8 @@ GameObject:
   - component: {fileID: 1771382436}
   - component: {fileID: 1771382435}
   m_Layer: 0
-  m_Name: Point Light (2)
-  m_TagString: Untagged
+  m_Name: PointLight_FObj2
+  m_TagString: ForestLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -21,6 +21,8 @@ public class SpawnFlyingObjects : MonoBehaviour
     public int maxPositionZ;
 
     public Vector3 SpawnPosition;
+    // controller Instanz
+    protected Game_Manager controller = Game_Manager.Instance;
 
 
     // Start is called before the first frame update
@@ -48,7 +50,9 @@ public class SpawnFlyingObjects : MonoBehaviour
 
     void RandomSpawn()
     {
-        
+        Renderer[] spawns = new Renderer[spawnees.Length];
+        int i = 0;
+
         for (spawnedObjects = 0; spawnedObjects < maxobjectNumber; spawnedObjects++) {
 
             SpawnPosition.x = Random.Range(minPositionX, maxPositionX);
@@ -59,5 +63,15 @@ public class SpawnFlyingObjects : MonoBehaviour
             Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
 
         }
+        // Update all materials after new objects are spawned
+        controller.GetMeshRenderer();        
+        foreach (GameObject obj in spawnees)
+        {
+            obj.name = (string) obj.name + i;
+            spawns[i] = obj.GetComponent<Renderer>();
+            i++;
+        }            
+        controller.SetMaterials(spawns);
+        controller.UpdateMaterial(controller.GetSnappedPatrone());
     }
 }

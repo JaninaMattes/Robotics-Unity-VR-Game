@@ -52,6 +52,8 @@ public class Game_Manager
     protected string gridorientation_Tag;
     // Toggle light in the rooms per material
     protected GameObject[] _lightGameObjects = new GameObject[2];
+    // Gun Objects
+    protected string _patrone;
 
     /// <summary>
     /// Gett and Setter  
@@ -340,6 +342,16 @@ public class Game_Manager
                 break;
 
         }
+    }
+
+    public void SetSnappedPatrone(string patrone)
+    {
+        _patrone = patrone;
+    }
+
+    public string GetSnappedPatrone()
+    {
+       return this._patrone;
     }
 
     public void ActivateAllRenderer()

@@ -251,8 +251,10 @@ public class ToggleLevel : MonoBehaviour
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
         {
             Debug.Log("Material Updated");
+            string patrone = GetCurrentSnappedObject(this.snapZonePatrone).tag;
             controller.SetLight(SceneManager.GetActiveScene().buildIndex);
-            controller.UpdateMaterial(GetCurrentSnappedObject(this.snapZonePatrone).tag);
+            controller.SetSnappedPatrone(patrone);
+            controller.UpdateMaterial(patrone);
         }
         else
         {

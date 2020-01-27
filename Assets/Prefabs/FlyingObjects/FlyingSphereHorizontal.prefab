@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 960753674854211230}
   - component: {fileID: 8077703122005621210}
   - component: {fileID: 253366463133679476}
+  - component: {fileID: -2825167801179985522}
   m_Layer: 0
   m_Name: FlyingSphereHorizontal
   m_TagString: Untagged
@@ -116,3 +117,19 @@ MonoBehaviour:
   waveheight: 0
   tempPosition: {x: 0, y: 0, z: 0}
   startPosition_fixed: {x: 0, y: 0, z: 0}
+--- !u!114 &-2825167801179985522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177585550491944173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823a4d32f2c6e654eb1523ae21544a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 7009046508538157809, guid: e52e9bb4a8577f84d9ab36b46dffed1a,
+    type: 3}
+  relation: 1
+  scoreValue: 10

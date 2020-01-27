@@ -42,18 +42,28 @@ public class JuicerRocket : MonoBehaviour
 
     }
 
-    private void Update()
+    public void Ignite()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!engaged)
         {
-            if (!engaged)
-            {
-                funkenParticleSystem.gameObject.SetActive(true);
-                Invoke("EngageRocket", startTimer);
-                Invoke("DisengageRocket", startTimer + duration);
-            }
+            funkenParticleSystem.gameObject.SetActive(true);
+            Invoke("EngageRocket", startTimer);
+            Invoke("DisengageRocket", startTimer + duration);
         }
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        if (!engaged)
+    //        {
+    //            funkenParticleSystem.gameObject.SetActive(true);
+    //            Invoke("EngageRocket", startTimer);
+    //            Invoke("DisengageRocket", startTimer + duration);
+    //        }
+    //    }
+    //}
 
     // Update is called once per frame
     void FixedUpdate()

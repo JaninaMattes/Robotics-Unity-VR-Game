@@ -231,7 +231,7 @@ MonoBehaviour:
   force: 4
   torqueStrength: 0.005
   startTimer: 1
-  duration: 1
+  duration: 5
   timeUntilExplosion: 1
 --- !u!1001 &833234818571365140
 PrefabInstance:
@@ -310,6 +310,41 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4159207447299776048, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 21.335012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159207447299776048, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 21.335012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159207447299776048, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 21.335012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
+        type: 3}
+      propertyPath: CollisionModule.quality
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4159207447281425266, guid: bf1d734233f4f4d25b6343cd77da61ba,
         type: 3}
       propertyPath: lengthInSec
@@ -359,41 +394,6 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSizeZ.minMaxState
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447299776048, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 21.335012
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447299776048, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 21.335012
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447299776048, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 21.335012
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159207447281425264, guid: bf1d734233f4f4d25b6343cd77da61ba,
-        type: 3}
-      propertyPath: CollisionModule.quality
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf1d734233f4f4d25b6343cd77da61ba, type: 3}

@@ -36,12 +36,12 @@ public class WaveMovement : MonoBehaviour
         startPosition_fixed = transform.position;
         tempPosition = transform.position;
 
-        speed = UnityEngine.Random.Range(0f, 1f);
+        speed = UnityEngine.Random.Range(0f, 0.1f);
         height = UnityEngine.Random.Range(0f, 1f) * 10;
         width = UnityEngine.Random.Range(0f, 1f) * 10;
 
         amplitude = UnityEngine.Random.Range(0f, 1f) * 10;
-        wavespeed = UnityEngine.Random.Range(-0.2f, 0.2f);
+        wavespeed = UnityEngine.Random.Range(-0.1f, 0.1f);
         waveheight = UnityEngine.Random.Range(0.8f, 2f);
 
         //randomdirection = UnityEngine.Random.Range(-1, 1);
@@ -105,7 +105,7 @@ void FixedUpdate()
         flag_sin_hor = false; //Jakob
         flag_sin_vert = false; //Jakob
         
-        TimeCounter += Time.deltaTime * speed;
+        TimeCounter += Time.deltaTime * speed * 2;
         tempPosition.x = Mathf.Sin(TimeCounter) * height;
         tempPosition.x = tempPosition.x + startPosition_fixed.x;
 
@@ -119,7 +119,7 @@ void FixedUpdate()
 
     void WaveHorizontalX()
     {
-        TimeCounter += Time.deltaTime;
+        TimeCounter += Time.deltaTime * speed;
 
         flag_circle = false; //Jakob
         flag_sin_hor = true; //Jakob
@@ -133,7 +133,7 @@ void FixedUpdate()
 
         transform.position = tempPosition;
 
-        if (tempPosition.x >= 60 || tempPosition.x <= -60)
+        if (tempPosition.x >= 10 || tempPosition.x <= -10)
         {
             wavespeed = wavespeed * -1;
             amplitude = UnityEngine.Random.Range(0f, 1f) * 10;
@@ -148,7 +148,7 @@ void FixedUpdate()
         flag_sin_vert = true; //Jakob
 
 
-        TimeCounter += Time.deltaTime; 
+        TimeCounter += Time.deltaTime * speed; 
 
         tempPosition.y = Mathf.Sin(TimeCounter * waveheight) * amplitude;
         tempPosition.y = tempPosition.y + startPosition_fixed.y;
@@ -158,7 +158,7 @@ void FixedUpdate()
 
         transform.position = tempPosition;
 
-        if (tempPosition.z >= 60 || tempPosition.z <= -60)
+        if (tempPosition.z >= 10 || tempPosition.z <= -10)
         {
             wavespeed = wavespeed * -1;
             amplitude = UnityEngine.Random.Range(0f, 1f) * 10;

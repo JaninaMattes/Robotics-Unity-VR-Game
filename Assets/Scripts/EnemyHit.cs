@@ -4,61 +4,35 @@ using UnityEngine;
 
 public class EnemyHit : MonoBehaviour
 {
-    public Material hit;
-    public Material hitandshot;
-    public Material notHit;
+    public GameObject particleSystem;
 
-    private bool _isHit = false;
-    private bool _isShot = false;
-
-    public GameObject replacement;
-    public GameObject PointCounter;
-
-    // Start is called before the first frame update
-    void Start()
+    public enum Relation
     {
-        
+        Friend = 0,
+        Enemy = 1,
     }
 
-    // Update is called once per frame
-    void Update()
+    public Relation relation;
+
+    
+
+    public float scoreValue = 10;
+
+
+    public void Hit()
     {
-
-        if (_isHit)
+        ParticleSystem ps = Instantiate(particleSystem, gameObject.transform.position, gameObject.transform.rotation).GetComponent<ParticleSystem>();
+        var psMain = ps.main;
+        if (relation == Relation.Enemy)
         {
-            GetComponent<Renderer>().material = hit;
+            psMain.startColor = new Color(0.5f,0,0,1);
         }
-
-        if (_isShot)
-        {
-            GetComponent<Renderer>().material = hitandshot;
-            //Debug.Log("Erschossen");
-
-            GameObject.Instantiate(replacement, transform.position, transform.rotation);
-            Destroy(gameObject);
-            GameObject.Instantiate(PointCounter, transform.position, transform.rotation);
-
-
-        }
-
         else
         {
-            GetComponent<Renderer>().material = notHit;
+
         }
 
-        _isHit = false;
-        _isShot = false;
-
+        Destroy(gameObject);
     }
 
-
-    public void BeenHit()
-    {
-        _isHit = true;
-    }
-
-    public void BeenShot()
-    {
-        _isShot = true;
-    }
 }

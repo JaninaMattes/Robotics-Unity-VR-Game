@@ -42,10 +42,13 @@ public class Lasergun : MonoBehaviour
 
     bool laserReloaded = true;
 
+    MeshCollider meshCollider;
+
 
     private void Start()
     {
         EnergyUI();
+        meshCollider = gameObject.GetComponent<MeshCollider>();
     }
 
     private void OnEnable()
@@ -150,5 +153,15 @@ public class Lasergun : MonoBehaviour
         }
         //Debug.Log("Reloaded");
         laserReloaded = true;
+    }
+
+    public void TurnOffMeshcollider()
+    {
+        meshCollider.enabled = false;
+    }
+
+    public void TurnOnMeshcollider()
+    {
+        meshCollider.enabled = true;
     }
 }

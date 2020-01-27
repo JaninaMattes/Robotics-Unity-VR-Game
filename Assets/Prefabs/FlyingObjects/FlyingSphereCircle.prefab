@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8665749197853645617}
   - component: {fileID: 2542862737396659907}
   - component: {fileID: 3517589415629701399}
+  - component: {fileID: 301019195519604687}
   m_Layer: 0
   m_Name: FlyingSphereCircle
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5511411597983129759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.9439125, y: 0.51, z: 13.224052}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,3 +117,17 @@ MonoBehaviour:
   waveheight: 0
   tempPosition: {x: 0, y: 0, z: 0}
   startPosition_fixed: {x: 0, y: 0, z: 0}
+--- !u!114 &301019195519604687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511411597983129759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823a4d32f2c6e654eb1523ae21544a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 7009046508538157809, guid: e52e9bb4a8577f84d9ab36b46dffed1a,
+    type: 3}

@@ -8,43 +8,30 @@ public class SpawnFlyingObjects : MonoBehaviour
 
     int randomInt;
 
-    public int maxobjectNumber;
+    public int maxobjectNumber = 60;
     public int spawnedObjects;
 
-    public int minPositionX;
-    public int maxPositionX;
+    public int minPositionX = -20;
+    public int maxPositionX = 20;
 
-    public int minPositionY;
-    public int maxPositionY;
+    public int minPositionY = 20;
+    public int maxPositionY = 40;
 
-    public int minPositionZ;
-    public int maxPositionZ;
+    public int minPositionZ = -20;
+    public int maxPositionZ = 20;
 
     public Vector3 SpawnPosition;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-    maxobjectNumber = 60;
+    
     //spawnedObjects = 0;
-
-    minPositionX = -20;
-    maxPositionX = 20;
-
-    minPositionY = 20;
-    maxPositionY = 40;
-
-    minPositionZ = -20;
-    maxPositionZ = 20;
-
     RandomSpawn();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+  
 
     void RandomSpawn()
     {

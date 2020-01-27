@@ -26,8 +26,12 @@ public class LaserProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Scanner")
+        if (other.tag != "Scanner" && other.tag != "Munition")
         {
+            if (other.GetComponent<EnemyHit>())
+            {
+                other.GetComponent<EnemyHit>().Hit();
+            }
             Hit();
             //Debug.Log("Hit Object: " + other.name + " with Tag: "+ other.tag);
         }
@@ -37,6 +41,7 @@ public class LaserProjectile : MonoBehaviour
     {
         //Debug.Log("Boom!");
         Instantiate(explosionPrefab, gameObject.transform.position-rb.velocity.normalized*0.5f, Quaternion.identity);
+        
         Destroy(gameObject);
     }
 
@@ -45,12 +50,13 @@ public class LaserProjectile : MonoBehaviour
         float counter = 0;
         while (counter < timeTillAutoDestruction)
         {
-            Debug.Log(counter);
+            //Debug.Log(counter);
 
             counter += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        Destroy(gameObject);
+        Hit();
+        //Destroy(gameObject);
     }
 
 

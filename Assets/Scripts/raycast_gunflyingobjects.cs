@@ -24,14 +24,14 @@ public class raycast_gunflyingobjects : MonoBehaviour
         {
             Debug.Log("erschossen");
 
-            hit.collider.gameObject.GetComponent<EnemyHit>().BeenShot();
+            //hit.collider.gameObject.GetComponent<EnemyHit>().BeenShot();
 
         }
         else if (Physics.Raycast(transform.position, transform.TransformDirection (Vector3.up), out hit, Mathf.Infinity))
         {
             Debug.Log("getroffen");
 
-            hit.collider.gameObject.GetComponent<EnemyHit>().BeenHit();
+           // hit.collider.gameObject.GetComponent<EnemyHit>().BeenHit();
 
             /*if (OVRInput.Get(OVRInput.Button.One))
             {

@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Effects
 
             float multiplier = GetComponent<ParticleSystemMultiplier>().multiplier;
 
-            float r = 10*multiplier;
+            float r = 5*multiplier;
             var cols = Physics.OverlapSphere(transform.position, r);
             var rigidbodies = new List<Rigidbody>();
             foreach (var col in cols)
@@ -31,6 +31,13 @@ namespace UnityStandardAssets.Effects
             foreach (var rb in rigidbodies)
             {
                 rb.AddExplosionForce(explosionForce*multiplier, transform.position, r, 1*multiplier, ForceMode.Impulse);
+                if (rb.gameObject.tag == "Zuendbar")
+                {
+                   if (rb.gameObject.GetComponent<JuicerRocket>())
+                    {
+                        rb.gameObject.GetComponent<JuicerRocket>().Ignite();
+                    }
+                }
             }
         }
     }

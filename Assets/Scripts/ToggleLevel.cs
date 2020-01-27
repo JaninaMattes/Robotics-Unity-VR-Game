@@ -8,7 +8,6 @@ public class ToggleLevel : MonoBehaviour
 {
 
     public int DebuggingLevel;
-    public Renderer[] DebuggingRenderer;
 
     [Header("Level Index")]
     public int WorkshopLevelIndex;
@@ -90,8 +89,7 @@ public class ToggleLevel : MonoBehaviour
         if (scene.buildIndex != 0 && scene.buildIndex != 1)
         {
             SetRendererList(this.controller);
-            //Debugging
-            DebuggingRenderer = controller.GetRenderer();
+            controller.FindProbes();
             CheckSnapUpdateMaterial();            
         }
 
@@ -258,12 +256,14 @@ public class ToggleLevel : MonoBehaviour
         }
 
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
-        {                                  
+        {                                
+            Debug.Log("## Update Material");  
             controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
-            controller.UpdateMaterial(patrone);
+            controller.UpdateMaterial(patrone);            
         }
         else
         {
+            Debug.Log("## Update Material");
             controller.UpdateMaterial("default");
             controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
         }       

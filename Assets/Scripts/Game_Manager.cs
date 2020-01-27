@@ -37,6 +37,7 @@ public class Game_Manager
     //protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
     protected Dictionary<int, Vector3> _originalPositions = new Dictionary<int, Vector3>();
     // Material Changer
+    protected ReflectionProbe[] _reflectionProbes;
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
     protected Material[] _allMaterials;
@@ -244,6 +245,29 @@ public class Game_Manager
         return _lightGameObjects;
     }
 
+    public void FindProbes(){
+        _reflectionProbes = GameObject.FindObjectsOfType<ReflectionProbe>();
+    }
+
+    public ReflectionProbe[] GetProbes()
+    {
+        return this._reflectionProbes;
+    }
+
+    public void ToggleProbes(bool isOn){
+        foreach(Renderer probe in _renderer){
+            if(isOn)
+            { 
+             probe.reflectionProbeUsage = 1; 
+            }
+            else 
+            { 
+            probe.reflectionProbeUsage = 0; 
+            }                
+            Debug.Log("ReflectionProbe Usage enabeld " + isOn);
+        }
+    }
+
     public void AddPositions(int hashCode, Vector3 position)
     {
         if (!_originalPositions.ContainsKey(hashCode))
@@ -317,36 +341,41 @@ public class Game_Manager
                 UpdateMaterial(_allMaterials[0]);
                 ActivateAllRenderer();
                 SetLaserScript(tag);
+                ToggleProbes(false);
                 break;
             case "SonarSensor_2":
                 //Update Material
                 UpdateMaterial(_allMaterials[1]);
                 ActivateAllRenderer();
                 SetLaserScript(tag);
+                ToggleProbes(false);
                 break;
             case "LidarSensor":
                 //Update Material
                 //UpdateMaterial(lidar_1_Material);
                 DeactivateAllRenderer();
                 SetLidarScript();
+                ToggleProbes(false);
                 break;
             case "RadarSensor":
                 //Update Material
                 UpdateMaterial(_allMaterials[2]);
                 ActivateAllRenderer();
                 SetLaserScript(tag);
+                ToggleProbes(false);
                 break;
             case "CameraSensor":
                 //Revert Material
                 ResetMaterial();
                 ActivateAllRenderer();
                 SetCameraPixelScript();
-                Debug.Log("Update Camera Sensor");
+                ToggleProbes(true);
                 break;
             default:
                 //If no other case found
                 UpdateMaterial(_allMaterials[3]);
-                ActivateAllRenderer();                
+                ActivateAllRenderer();
+                ToggleProbes(false);               
                 break;
 
         }
@@ -390,16 +419,16 @@ public class Game_Manager
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in GetRenderer())
         {
-            if (rend != null && !_exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
+            if (rend != null && !_exclude.Contains(rend.tag)) 
             {
+                //TODO: Über auch über Layer definieren 
+                // --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc                
                 m = rend.materials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
-                    Debug.Log("Floor material set");
                     rend.material = gridorientation_Material;
                 }
-                // TODO: Limitation for Sonar
                 else
                 {
                     for (int i = 0; i < m.Length; i++)
@@ -408,9 +437,12 @@ public class Game_Manager
                     }
                     rend.materials = m;
                 }
+            }else{
+                Debug.Log("Excluded " + rend.tag);
             }
         }
     }
+
 
     public void SetLaserScript(string sensor)
     {

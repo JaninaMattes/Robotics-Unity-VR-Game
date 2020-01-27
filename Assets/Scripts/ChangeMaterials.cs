@@ -92,7 +92,6 @@ public class ChangeMaterials : MonoBehaviour
     protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
     //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
         controller.SetSnappedPatrone(snapZone.GetCurrentSnappedObject().tag);
-        Debug.Log("SNAPPED OBJECT GAME MANAGER" + snapZone.GetCurrentSnappedObject().tag);
     }
 
     protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
@@ -146,10 +145,6 @@ public class ChangeMaterials : MonoBehaviour
     {
         controller.UpdateMaterial(material);
     }
-
-    // private void UpdateMaterial (string tag) {
-    //    controller.UpdateMaterial (tag);
-    //}
 
     public void SetLidarScript()
     {

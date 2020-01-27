@@ -38,8 +38,10 @@ public class ToggleLevel : MonoBehaviour
 
     [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
+   
     public Vector3 startPosition;
-    private GameObject lookAt;    
+    private GameObject lookAt;
+
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -81,7 +83,6 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("########## LEVEL Loaded ##########" + scene.buildIndex);
         SetPlayerPosition(scene.buildIndex);
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
@@ -246,25 +247,26 @@ public class ToggleLevel : MonoBehaviour
 
     private void CheckSnapUpdateMaterial()
     {
-        bool lightsOn = false;
+        // Fetch light and set it
+        controller.SetLight(SceneManager.GetActiveScene().buildIndex);
+        string patrone = controller.GetSnappedPatrone();
+        bool lightOn = false;
+
+        if (patrone == "CameraSensor")
+        {
+           lightOn = true;
+        }
 
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
-        {
-            Debug.Log("Material Updated");
-            string patrone = GetCurrentSnappedObject(this.snapZonePatrone).tag;
-            controller.SetLight(SceneManager.GetActiveScene().buildIndex);
-            controller.SetSnappedPatrone(patrone);
+        {                                  
+            controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
             controller.UpdateMaterial(patrone);
         }
         else
         {
-            controller.SetLight(SceneManager.GetActiveScene().buildIndex);
             controller.UpdateMaterial("default");
-        }
-        // Setup all lights due to no unlit materials        
-        if (GetCurrentSnappedObject(this.snapZone).tag == "CameraSensor") { lightsOn = true; }
-        Debug.Log("Lights ON" + lightsOn);
-        controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightsOn);
+            controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
+        }       
     }
 
     public void LoadTheSceneAsync(int workShopIndex)

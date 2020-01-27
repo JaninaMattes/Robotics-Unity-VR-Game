@@ -9,7 +9,7 @@ using VRTK;
 public class ChangeMaterials : MonoBehaviour
 {
     [Header("Snapdrop Zone Prefab")]
-    //public VRTK_SnapDropZone snapZone;
+    public VRTK_SnapDropZone snapZone;
     [Header("Sensor Material")]
     [Tooltip("Sonar Materials")]
     public Material sonar_1_Material;
@@ -42,7 +42,7 @@ public class ChangeMaterials : MonoBehaviour
     {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
         // SceneManager.sceneLoaded += OnLevelFinishedLoading;
-        //snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
+        snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
         //snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
     }
 
@@ -51,7 +51,7 @@ public class ChangeMaterials : MonoBehaviour
         //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as 
         //this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
         // SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-        //snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
+        snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
         //snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
 
@@ -89,9 +89,11 @@ public class ChangeMaterials : MonoBehaviour
         cur_Scene = SceneManager.GetActiveScene();
     }
 
-    //protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
+    protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
     //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
-    //}
+        controller.SetSnappedPatrone(snapZone.GetCurrentSnappedObject().tag);
+        Debug.Log("SNAPPED OBJECT GAME MANAGER" + snapZone.GetCurrentSnappedObject().tag);
+    }
 
     protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
     {

@@ -44,7 +44,7 @@ public class SpawnFlyingObjects : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Awake()
     {
     }
 
@@ -63,15 +63,19 @@ public class SpawnFlyingObjects : MonoBehaviour
             Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
 
         }
-        // Update all materials after new objects are spawned
-        controller.GetMeshRenderer();        
+        /**
+        // Update all materials after new objects are spawned            
         foreach (GameObject obj in spawnees)
         {
-            obj.name = (string) obj.name + i;
+            obj.name = (string)obj.name + i;
             spawns[i] = obj.GetComponent<Renderer>();
             i++;
-        }            
+        }
+        controller.AddRenderer(spawns);
         controller.SetMaterials(spawns);
+        // Update material of all objects in this scene
         controller.UpdateMaterial(controller.GetSnappedPatrone());
+        **/
     }
+
 }

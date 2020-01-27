@@ -53,7 +53,7 @@ public class Game_Manager
     // Toggle light in the rooms per material
     protected GameObject[] _lightGameObjects = new GameObject[2];
     // Gun Objects
-    protected string _patrone;
+    protected string _patrone = "default";
 
     /// <summary>
     /// Gett and Setter  
@@ -129,6 +129,13 @@ public class Game_Manager
     public void Set(List<GameObject> _bucketList)
     {
         this._bucketList = _bucketList;
+    }
+
+    public void AddRenderer(Renderer[] _rend)
+    {
+        Renderer[] list = new Renderer[_renderer.Length + _rend.Length];
+        _renderer.CopyTo(list, 0);
+        _rend.CopyTo(list, _renderer.Length);
     }
 
     public void SetRenderer(Renderer[] _renderer)
@@ -334,6 +341,7 @@ public class Game_Manager
                 ResetMaterial();
                 ActivateAllRenderer();
                 SetCameraPixelScript();
+                Debug.Log("Update Camera Sensor");
                 break;
             default:
                 //If no other case found
@@ -466,7 +474,7 @@ public class Game_Manager
 
     public void ToggleLight(int level, bool active)
     {
-        Debug.Log("Switch Light");
+        Debug.Log("Switch Light " + active);
         switch (level)
         {
             case 2:

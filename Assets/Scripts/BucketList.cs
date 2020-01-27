@@ -32,6 +32,7 @@ public class BucketList : MonoBehaviour
     public string checkListHeaderText;
     public VerticalLayoutGroup backgroundTransparent;
     public VerticalLayoutGroup backgroundDefault;
+    private Hashtable listItems = new Hashtable();
 
     // To change color by Coroutine Calls
     protected bool coroutineCalled = false;
@@ -71,9 +72,9 @@ public class BucketList : MonoBehaviour
             if (bucketCollider.bounds.Contains(position))
             {
                 if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
-                {                    
-                    CheckGameObject(gameObj);                                         
-               }
+                {
+                    CheckGameObject(gameObj);
+                }
             }
 
             else
@@ -86,40 +87,48 @@ public class BucketList : MonoBehaviour
         }
     }
 
-    public void FetchAllPositions(){
-        foreach(GameObject obj in allGameObjects){
+    public void FetchAllPositions()
+    {
+        foreach (GameObject obj in allGameObjects)
+        {
             // Target objects
-            controller.AddPositions(obj.GetHashCode(), obj.transform.position);               
+            controller.AddPositions(obj.GetHashCode(), obj.transform.position);
         }
     }
 
-    public void CheckGameObject(GameObject gameObj){       
-            // Gameobject Tag und gelistete Tags müssen übereinstimmen
-            if (bucketListContent.Contains(gameObj.tag))
-            {
+    public void CheckGameObject(GameObject gameObj)
+    {
+        // Gameobject Tag und gelistete Tags müssen übereinstimmen
+        if (bucketListContent.Contains(gameObj.tag))
+        {
             gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
             controller.AddToBucketList(gameObj);
             controller.ResetMaterial(gameObj);
             controller.AddPlayerScore();
             SetDefaultUIText(gameObj);
-            }
-            else if (!bucketListContent.Contains(gameObj.tag) && gameObj.tag != "Controller")
-            {
-                // Set Gameobject back to it's original position
-                Vector3 position = controller.FindOriginalPos(gameObj);
-                delayCoroutine= DelayAndMove(gameObj, gameObj.transform.position, position, speed);
-                StartCoroutine(delayCoroutine);
+        }
+        else if (!bucketListContent.Contains(gameObj.tag) && !gameObj.transform.root.CompareTag("Player"))
+        {
+            // Set Gameobject back to it's original position
+            Vector3 position = controller.FindOriginalPos(gameObj);
+            delayCoroutine = DelayAndMove(gameObj, gameObj.transform.position, position, speed);
+            StartCoroutine(delayCoroutine);
 
-                if (!coroutineCalled)
-                {
-                    DisableDefaultUI();
-                    StartCoroutine("FlashColor");
-                    controller.ReducePlayerScore();
-                }
-            }       
+            if (!coroutineCalled)
+            {
+                StartCoroutine("FlashColor");
+                controller.ReducePlayerScore();
+            }
+            else if (coroutineCalled)
+            {
+                DisableDefaultUI();
+            }
+
+        }
     }
 
-    public void CleanUp(){
+    public void CleanUp()
+    {
         controller.CleanUp();
     }
 
@@ -154,7 +163,7 @@ public class BucketList : MonoBehaviour
         objectToMove.GetComponent<Collider>().enabled = false;
         moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
         // After the delay do..
-        StartCoroutine(moveCoroutine); 
+        StartCoroutine(moveCoroutine);
     }
 
     public IEnumerator MoveFromTo(GameObject objectToMove, Vector3 a, Vector3 b, float speed)
@@ -182,7 +191,7 @@ public class BucketList : MonoBehaviour
     /// <summary>
     /// UI Canvas
     /// </summary>
-    // UI Checklist activation / deactivation & Itemtext setup
+    // UI Checklist activation / deactivation & Itemtext setup - Dynamically adjusts depending on BucketContent
 
     private void EnableErrorUI()
     {
@@ -200,10 +209,15 @@ public class BucketList : MonoBehaviour
 
     private void SetDefaultUIText(GameObject gameObj)
     {
-        checkedObjects[textCounter].GetComponent<TextMeshProUGUI>().text = gameObj.name.ToString();
-        checkedObjects[textCounter].SetActive(true);
-        ForceCanvasUpdate();
-        textCounter++;
+        if (!listItems.ContainsKey(gameObj))
+        {
+            listItems.Add(gameObj, checkedObjects[textCounter]);
+            GameObject checkedObject = listItems[gameObj] as GameObject;
+            checkedObject.GetComponent<TextMeshProUGUI>().text = gameObj.name.ToString();
+            checkedObject.SetActive(true);
+            textCounter++;
+            ForceCanvasUpdate();
+        }
     }
 
     private void EnableDefaultUI()
@@ -212,22 +226,22 @@ public class BucketList : MonoBehaviour
         UIDefault.color = defaultColor;
         UIDefault.enabled = true;
         checkListHeader.enabled = true;
+
         for (int i = 0; i < textCounter; i++)
         {
-
             checkedObjects[i].SetActive(true);
         }
+
         ForceCanvasUpdate();
     }
 
     private void DisableDefaultUI()
     {
-        foreach (GameObject checkedObject in checkedObjects)
+        for (int i = 0; i < textCounter; i++)
         {
-
-            checkedObject.SetActive(false);
+            checkedObjects[i].SetActive(false);
         }
-
+        ForceCanvasUpdate();
     }
 
     private void ForceCanvasUpdate()
@@ -240,5 +254,3 @@ public class BucketList : MonoBehaviour
     }
 
 }
-
-

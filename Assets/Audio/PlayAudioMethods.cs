@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Collection of most important methods regading the AudioSource component
+/// Collection of most important methods regarding the AudioSource component
 /// Unity Docs AudioSource -> https://docs.unity3d.com/ScriptReference/AudioSource.html
 /// </summary>
 
@@ -37,6 +37,12 @@ public class PlayAudioMethods : MonoBehaviour
         this.audioSource.PlayDelayed(this.delayTime);
     }
 
+    //Plays the audioclip of the auioSource on Awake
+    private void PlayAudioSourceOnAwake()
+    {
+        this.audioSource.playOnAwake = true;
+    }
+
     //Plays an AudioClip, and scales the AudioSource volume by volumeScale.
     private void PlayAudioSourceOneShot()
     {
@@ -59,6 +65,37 @@ public class PlayAudioMethods : MonoBehaviour
     private void StopAudioSource()
     {
         this.audioSource.Stop();
+    }
+
+    //Mutes the AudioSource by setting Volume to 0
+    private void MuteAudioSource()
+    {
+        this.audioSource.mute = true;
+    }
+
+    //Unmutes the AudioSource by setting Volume back to the set volume.
+    private void UnmuteAudioSource()
+    {
+        this.audioSource.mute = false;
+    }
+
+    //Sets the audioSource to play the audioclip in loop
+    private void LoopAudioSource()
+    {
+        this.audioSource.loop = true;
+    }
+
+    //Returns true if the AudioSource is playing.
+    private bool IsAudioSourcePlaying()
+    {
+        if (this.audioSource.isPlaying)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //Plays an AudioClip at a given position in world space and automatically disposes it once the clip has finished playing (no garbage)

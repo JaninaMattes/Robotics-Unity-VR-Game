@@ -8,34 +8,51 @@ public class SpawnFlyingObjects : MonoBehaviour
 
     int randomInt;
 
-    public int maxobjectNumber = 60;
+    public int maxobjectNumber;
     public int spawnedObjects;
 
-    public int minPositionX = -20;
-    public int maxPositionX = 20;
+    public int minPositionX;
+    public int maxPositionX;
 
-    public int minPositionY = 20;
-    public int maxPositionY = 40;
+    public int minPositionY;
+    public int maxPositionY;
 
-    public int minPositionZ = -20;
-    public int maxPositionZ = 20;
+    public int minPositionZ;
+    public int maxPositionZ;
 
     public Vector3 SpawnPosition;
+    // controller Instanz
+    protected Game_Manager controller = Game_Manager.Instance;
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-    
+    maxobjectNumber = 60;
     //spawnedObjects = 0;
+
+    minPositionX = -20;
+    maxPositionX = 20;
+
+    minPositionY = 20;
+    maxPositionY = 40;
+
+    minPositionZ = -20;
+    maxPositionZ = 20;
+
     RandomSpawn();
     }
 
-  
+    // Update is called once per frame
+    void Awake()
+    {
+    }
 
     void RandomSpawn()
     {
-        
+        Renderer[] spawns = new Renderer[spawnees.Length];
+        int i = 0;
+
         for (spawnedObjects = 0; spawnedObjects < maxobjectNumber; spawnedObjects++) {
 
             SpawnPosition.x = Random.Range(minPositionX, maxPositionX);
@@ -46,5 +63,19 @@ public class SpawnFlyingObjects : MonoBehaviour
             Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
 
         }
+        /**
+        // Update all materials after new objects are spawned            
+        foreach (GameObject obj in spawnees)
+        {
+            obj.name = (string)obj.name + i;
+            spawns[i] = obj.GetComponent<Renderer>();
+            i++;
+        }
+        controller.AddRenderer(spawns);
+        controller.SetMaterials(spawns);
+        // Update material of all objects in this scene
+        controller.UpdateMaterial(controller.GetSnappedPatrone());
+        **/
     }
+
 }

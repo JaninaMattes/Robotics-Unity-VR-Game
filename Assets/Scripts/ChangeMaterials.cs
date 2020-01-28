@@ -9,7 +9,7 @@ using VRTK;
 public class ChangeMaterials : MonoBehaviour
 {
     [Header("Snapdrop Zone Prefab")]
-    //public VRTK_SnapDropZone snapZone;
+    public VRTK_SnapDropZone snapZone;
     [Header("Sensor Material")]
     [Tooltip("Sonar Materials")]
     public Material sonar_1_Material;
@@ -32,6 +32,8 @@ public class ChangeMaterials : MonoBehaviour
     protected Material[] materials = new Material[4];
     //protected GameObject[] currentGameObjects;
     protected Scene cur_Scene;
+    // Toggle light in the rooms per material
+    protected GameObject[] lightGameObjects;
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -40,7 +42,7 @@ public class ChangeMaterials : MonoBehaviour
     {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
         // SceneManager.sceneLoaded += OnLevelFinishedLoading;
-        //snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
+        snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
         //snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
     }
 
@@ -49,7 +51,7 @@ public class ChangeMaterials : MonoBehaviour
         //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as 
         //this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
         // SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-        //snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
+        snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
         //snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
     }
 
@@ -87,9 +89,10 @@ public class ChangeMaterials : MonoBehaviour
         cur_Scene = SceneManager.GetActiveScene();
     }
 
-    //protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
+    protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
     //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
-    //}
+        controller.SetSnappedPatrone(snapZone.GetCurrentSnappedObject().tag);
+    }
 
     protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
     {
@@ -142,10 +145,6 @@ public class ChangeMaterials : MonoBehaviour
     {
         controller.UpdateMaterial(material);
     }
-
-    // private void UpdateMaterial (string tag) {
-    //    controller.UpdateMaterial (tag);
-    //}
 
     public void SetLidarScript()
     {

@@ -17,7 +17,7 @@
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf Standard //fullforwardshadows
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
 		#include "UnityCG.cginc"
@@ -66,8 +66,8 @@
 			float ringStrength = pow(1 - (abs(distance) / halfWidth), 8)
 				* (lowerDistance < 0 && upperDistance > 0);
 			// As the sonar ring goes further away it should get dimmer and fade out
-			o.Albedo = ringStrength * c.rgb * (1 - _Points[i].w);
-			o.Emission += o.Albedo;
+			o.Albedo += ringStrength * c.rgb * (1 - _Points[i].w);
+			o.Emission = o.Albedo;
 		}
 		o.Metallic = 0;
 		o.Smoothness = 0;

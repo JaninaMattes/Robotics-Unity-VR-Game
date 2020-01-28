@@ -37,6 +37,7 @@ public class Game_Manager
     //protected Dictionary<GameObject, Vector3> _originalPosition = new Dictionary<GameObject, Vector3>();
     protected Dictionary<int, Vector3> _originalPositions = new Dictionary<int, Vector3>();
     // Material Changer
+    protected ReflectionProbe[] _reflectionProbes;
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
     protected Material[] _allMaterials;
@@ -50,6 +51,10 @@ public class Game_Manager
 
     protected List<string> _exclude = new List<string>();
     protected string gridorientation_Tag;
+    // Toggle light in the rooms per material
+    protected GameObject[] _lightGameObjects = new GameObject[2];
+    // Gun Objects
+    protected string _patrone = "default";
 
     /// <summary>
     /// Gett and Setter  
@@ -125,6 +130,13 @@ public class Game_Manager
     public void Set(List<GameObject> _bucketList)
     {
         this._bucketList = _bucketList;
+    }
+
+    public void AddRenderer(Renderer[] _rend)
+    {
+        Renderer[] list = new Renderer[_renderer.Length + _rend.Length];
+        _renderer.CopyTo(list, 0);
+        _rend.CopyTo(list, _renderer.Length);
     }
 
     public void SetRenderer(Renderer[] _renderer)
@@ -223,6 +235,34 @@ public class Game_Manager
         return this.playerScore;
     }
 
+    public void SetLights(GameObject[] lights)
+    {
+        _lightGameObjects = lights;
+    }
+
+    public GameObject[] GetLights()
+    {
+        return _lightGameObjects;
+    }
+
+    public void FindProbes(){
+        _reflectionProbes = GameObject.FindObjectsOfType<ReflectionProbe>();
+    }
+
+    public ReflectionProbe[] GetProbes()
+    {
+        return this._reflectionProbes;
+    }
+
+    public void ToggleProbes(bool isOn){
+        foreach(ReflectionProbe probe in _reflectionProbes){
+            if(probe.tag == "Controller"){
+                var cullMask =  probe.cullingMask;
+                probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible
+            }            
+        }
+    }
+
     public void AddPositions(int hashCode, Vector3 position)
     {
         if (!_originalPositions.ContainsKey(hashCode))
@@ -288,6 +328,7 @@ public class Game_Manager
     /// <param name="tag"></param>
     public void UpdateMaterial(string tag)
     {
+        Debug.Log("Update material" + tag);
         switch (tag)
         {
             case "SonarSensor_1":
@@ -295,38 +336,54 @@ public class Game_Manager
                 UpdateMaterial(_allMaterials[0]);
                 ActivateAllRenderer();
                 SetLaserScript(tag);
+                ToggleProbes(false);
                 break;
             case "SonarSensor_2":
                 //Update Material
                 UpdateMaterial(_allMaterials[1]);
                 ActivateAllRenderer();
                 SetLaserScript(tag);
+                ToggleProbes(false);
                 break;
             case "LidarSensor":
                 //Update Material
                 //UpdateMaterial(lidar_1_Material);
                 DeactivateAllRenderer();
                 SetLidarScript();
+                ToggleProbes(false);
                 break;
             case "RadarSensor":
                 //Update Material
                 UpdateMaterial(_allMaterials[2]);
                 ActivateAllRenderer();
                 SetLaserScript(tag);
+                ToggleProbes(false);
                 break;
             case "CameraSensor":
                 //Revert Material
                 ResetMaterial();
                 ActivateAllRenderer();
                 SetCameraPixelScript();
+                ToggleProbes(true);
                 break;
             default:
                 //If no other case found
                 UpdateMaterial(_allMaterials[3]);
-                ActivateAllRenderer();                
+                ActivateAllRenderer();
+                ToggleProbes(false);               
                 break;
 
         }
+    }
+
+    public void SetSnappedPatrone(string patrone)
+    {
+        _patrone = patrone;
+    }
+
+    public string GetSnappedPatrone()
+    {
+       return this._patrone;
     }
 
     public void ActivateAllRenderer()
@@ -357,15 +414,16 @@ public class Game_Manager
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in GetRenderer())
         {
-            if (rend != null && !_exclude.Contains(rend.tag)) //TODO: Über Layer definieren --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc
+            if (rend != null && !_exclude.Contains(rend.tag)) 
             {
+                //TODO: Über auch über Layer definieren 
+                // --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc                
                 m = rend.materials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
                     rend.material = gridorientation_Material;
                 }
-                // TODO: Limitation for Sonar
                 else
                 {
                     for (int i = 0; i < m.Length; i++)
@@ -374,9 +432,12 @@ public class Game_Manager
                     }
                     rend.materials = m;
                 }
+            }else{
+                Debug.Log("Excluded " + rend.tag);
             }
         }
     }
+
 
     public void SetLaserScript(string sensor)
     {
@@ -418,6 +479,42 @@ public class Game_Manager
         _laser_controller.enabled = false;
         // Lidar
         _lidar.lidarActive = true;
+    }
+
+    public void SetLight(int level)
+    {
+        Debug.Log("Set Light" + level);
+        switch (level)
+        {
+            case 2:
+                _lightGameObjects = GameObject.FindGameObjectsWithTag("ForestLight");
+                break;
+            case 3:
+                _lightGameObjects = GameObject.FindGameObjectsWithTag("KitchenLight");
+                Debug.Log(_lightGameObjects[0]);
+                Debug.Log(_lightGameObjects[1]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ToggleLight(int level, bool active)
+    {
+        Debug.Log("Switch Light " + active);
+        switch (level)
+        {
+            case 2:
+                _lightGameObjects[0].SetActive(active);
+                _lightGameObjects[1].SetActive(active);
+                break;
+            case 3:
+                _lightGameObjects[0].SetActive(active);
+                _lightGameObjects[1].SetActive(active);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetCameraPixelScript()

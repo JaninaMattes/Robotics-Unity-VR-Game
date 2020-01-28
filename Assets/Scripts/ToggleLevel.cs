@@ -38,8 +38,10 @@ public class ToggleLevel : MonoBehaviour
 
     [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
+   
     public Vector3 startPosition;
     private GameObject lookAt;
+
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -83,21 +85,23 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SetPlayerPosition();
-
-        if (CheckForCurrentSnappedObject(this.snapZone))
-        {
-            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
-            UnFadeHeadset(this.fadeOutDuration);
-        }
+        SetPlayerPosition(scene.buildIndex);
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
         if (scene.buildIndex != 0 && scene.buildIndex != 1)
         {
             SetRendererList(this.controller);
-            CheckSnapUpdateMaterial();
+            controller.FindProbes();
+            CheckSnapUpdateMaterial();        
+            ExchangeFloorTag();    
         }
+
+        if (CheckForCurrentSnappedObject(this.snapZone))
+        {
+            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
+            UnFadeHeadset(this.fadeOutDuration);
+        }       
     }
 
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
@@ -179,14 +183,12 @@ public class ToggleLevel : MonoBehaviour
     {
         if ((GetActiveSceneBuildIndex() == this.LevelIndex) && (objectExitedDropZone))
         {
-            Debug.Log("0.0 LOAD LEVEL ################");
             // Allow async loading of the scene on background thread
             LoadTheSceneAsync(workShopIndex);
             //SceneManager.LoadScene (workShopIndex);
         }
         else if ((GetActiveSceneBuildIndex() == this.WorkshopLevelIndex) && (objectExitedDropZone == false))
         {
-            Debug.Log("0.1 LOAD LEVEL ################");
             LoadTheSceneAsync(levelIndex);
             // SceneManager.LoadScene (levelIndex);
         }
@@ -256,26 +258,48 @@ public class ToggleLevel : MonoBehaviour
 
     private void CheckSnapUpdateMaterial()
     {
-        if (CheckForCurrentSnappedObject(this.snapZonePatrone))
+        // Fetch light and set it
+        controller.SetLight(SceneManager.GetActiveScene().buildIndex);
+        string patrone = controller.GetSnappedPatrone();
+        bool lightOn = false;
+
+        if (patrone == "CameraSensor")
         {
-            controller.UpdateMaterial(GetCurrentSnappedObject(this.snapZonePatrone).tag);
+           lightOn = true;
+        }
+
+        if (CheckForCurrentSnappedObject(this.snapZonePatrone))
+        {                                
+            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));  
+            controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
+            controller.UpdateMaterial(patrone);            
         }
         else
         {
+            Debug.Log("# DEfault Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
             controller.UpdateMaterial("default");
-        }
+            controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
+        }       
     }
 
     public void LoadTheSceneAsync(int workShopIndex)
     {
-        Debug.Log(" 1 LOAD LEVEL ################");
         asyncLoadCoroutine = LoadSceneAsync(workShopIndex);
         StartCoroutine(asyncLoadCoroutine);
     }
 
+    private void ExchangeFloorTag(){
+        Renderer[] _rend = controller.GetRenderer();
+        for(int i = 0; i < _rend.Length; i++){
+            if(_rend[i].tag == "Floor"){
+                _rend[i].tag = "IncludeTeleport";
+            }
+        }
+        controller.SetRenderer(_rend);
+    }
+
     private IEnumerator LoadSceneAsync(int workShopIndex)
     {
-        Debug.Log($"2 Level Index{workShopIndex}");
         // The Application loads the Scene in the background as the current Scene runs.
         // This is particularly good for creating loading screens.
         // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
@@ -294,11 +318,37 @@ public class ToggleLevel : MonoBehaviour
         }
     }
 
-    private void SetPlayerPosition()
+    private void SetPlayerPosition(int buildIndex)
     {
-        lookAt = GameObject.FindGameObjectWithTag("CheckListCanvas");
-        cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
-        cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+        switch (buildIndex)
+        {
+            case 0:
+                lookAt = GameObject.FindGameObjectWithTag("Robo");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break; 
 
+            case 1:
+                lookAt = GameObject.FindGameObjectWithTag("SelectLevel2");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break;
+
+            case 2:
+                lookAt = GameObject.FindGameObjectWithTag("Pilz");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break;
+
+            case 3:
+                // Kitchen with checklist
+                lookAt = GameObject.FindGameObjectWithTag("CheckListCanvas");
+                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                break;
+
+            default:
+                break;
+        }
     }
 }

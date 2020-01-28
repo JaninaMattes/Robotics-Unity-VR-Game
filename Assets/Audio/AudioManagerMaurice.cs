@@ -9,7 +9,7 @@ using VRTK;
 //vrtkobjects each (if sound is needed) need an audiosource with an audioclip 
 //object with audiosource needs to be tagged 
 
-public class AudioManager : MonoBehaviour
+public class AudioManagerMaurice : MonoBehaviour
 {
     private VRTK_InteractableObject[] interactableObjects;
 

@@ -1,35 +1,89 @@
 fileFormatVersion: 2
 guid: 4eb211a9e7cf3954395be02ea604cca6
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Collider1
-    100004: Collider2
-    100006: Collider3
-    100008: Colliders
-    100010: Object079
-    400000: //RootNode
-    400002: Collider1
-    400004: Collider2
-    400006: Collider3
-    400008: Colliders
-    400010: Object079
-    2100000: No Name
-    2300000: //RootNode
-    2300002: Collider1
-    2300004: Collider2
-    2300006: Collider3
-    2300008: Object079
-    3300000: //RootNode
-    3300002: Collider1
-    3300004: Collider2
-    3300006: Collider3
-    3300008: Object079
-    4300000: Object079
-    4300002: Collider1
-    4300004: Collider2
-    4300006: Collider3
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Collider1
+  - first:
+      1: 100004
+    second: Collider2
+  - first:
+      1: 100006
+    second: Collider3
+  - first:
+      1: 100008
+    second: Colliders
+  - first:
+      1: 100010
+    second: Object079
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Collider1
+  - first:
+      4: 400004
+    second: Collider2
+  - first:
+      4: 400006
+    second: Collider3
+  - first:
+      4: 400008
+    second: Colliders
+  - first:
+      4: 400010
+    second: Object079
+  - first:
+      21: 2100000
+    second: No Name
+  - first:
+      23: 2300000
+    second: //RootNode
+  - first:
+      23: 2300002
+    second: Collider1
+  - first:
+      23: 2300004
+    second: Collider2
+  - first:
+      23: 2300006
+    second: Collider3
+  - first:
+      23: 2300008
+    second: Object079
+  - first:
+      33: 3300000
+    second: //RootNode
+  - first:
+      33: 3300002
+    second: Collider1
+  - first:
+      33: 3300004
+    second: Collider2
+  - first:
+      33: 3300006
+    second: Collider3
+  - first:
+      33: 3300008
+    second: Object079
+  - first:
+      43: 4300000
+    second: Object079
+  - first:
+      43: 4300002
+    second: Collider1
+  - first:
+      43: 4300004
+    second: Collider2
+  - first:
+      43: 4300006
+    second: Collider3
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -64,6 +118,8 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -71,27 +127,32 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -101,6 +162,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

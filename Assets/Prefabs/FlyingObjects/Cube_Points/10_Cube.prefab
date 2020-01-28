@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1472353951486076684}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2, y: 1.6630001, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 1687287922283659828}
   - {fileID: 4218198438232943015}
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd3f73b657f7a458d3bef5da3e37b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeTillDestroy: 2
 --- !u!1001 &118356396151454381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,11 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8751965071730895405}
     m_Modifications:
-    - target: {fileID: 4580017736135088764, guid: 3361a5cc70361634cb4c217c090611a4,
-        type: 3}
-      propertyPath: m_Name
-      value: 0_Cube
-      objectReference: {fileID: 0}
     - target: {fileID: 768709283084417396, guid: 3361a5cc70361634cb4c217c090611a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -186,6 +182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580017736135088764, guid: 3361a5cc70361634cb4c217c090611a4,
+        type: 3}
+      propertyPath: m_Name
+      value: 0_Cube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3361a5cc70361634cb4c217c090611a4, type: 3}

@@ -90,7 +90,8 @@ public class ToggleLevel : MonoBehaviour
         {
             SetRendererList(this.controller);
             controller.FindProbes();
-            CheckSnapUpdateMaterial();            
+            CheckSnapUpdateMaterial();        
+            ExchangeFloorTag();    
         }
 
         if (CheckForCurrentSnappedObject(this.snapZone))
@@ -257,13 +258,13 @@ public class ToggleLevel : MonoBehaviour
 
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
         {                                
-            Debug.Log("## Update Material");  
+            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));  
             controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
             controller.UpdateMaterial(patrone);            
         }
         else
         {
-            Debug.Log("## Update Material");
+            Debug.Log("# DEfault Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
             controller.UpdateMaterial("default");
             controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
         }       
@@ -273,6 +274,16 @@ public class ToggleLevel : MonoBehaviour
     {
         asyncLoadCoroutine = LoadSceneAsync(workShopIndex);
         StartCoroutine(asyncLoadCoroutine);
+    }
+
+    private void ExchangeFloorTag(){
+        Renderer[] _rend = controller.GetRenderer();
+        for(int i = 0; i < _rend.Length; i++){
+            if(_rend[i].tag == "Floor"){
+                _rend[i].tag = "IncludeTeleport";
+            }
+        }
+        controller.SetRenderer(_rend);
     }
 
     private IEnumerator LoadSceneAsync(int workShopIndex)

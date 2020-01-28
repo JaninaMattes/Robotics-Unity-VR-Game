@@ -255,16 +255,11 @@ public class Game_Manager
     }
 
     public void ToggleProbes(bool isOn){
-        foreach(Renderer probe in _renderer){
-            if(isOn)
-            { 
-             probe.reflectionProbeUsage = 1; 
-            }
-            else 
-            { 
-            probe.reflectionProbeUsage = 0; 
-            }                
-            Debug.Log("ReflectionProbe Usage enabeld " + isOn);
+        foreach(ReflectionProbe probe in _reflectionProbes){
+            if(probe.tag == "Controller"){
+                var cullMask =  probe.cullingMask;
+                probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible
+            }            
         }
     }
 

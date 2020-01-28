@@ -6,6 +6,9 @@ public class EnemyHit : MonoBehaviour
 {
     public GameObject particleSystem;
 
+    public ScoringSystem scoringSystem;
+
+
     public enum Relation
     {
         Friend = 0,
@@ -16,7 +19,13 @@ public class EnemyHit : MonoBehaviour
 
     
 
-    public float scoreValue = 10;
+    public int scoreValue = 10;
+
+
+    private void Start()
+    {
+        scoringSystem = FindObjectOfType<ScoringSystem>();
+    }
 
 
     public void Hit()
@@ -26,10 +35,11 @@ public class EnemyHit : MonoBehaviour
         if (relation == Relation.Enemy)
         {
             psMain.startColor = new Color(0.5f,0,0,1);
+            scoringSystem.SubtractLocalScore(scoreValue);
         }
         else
         {
-
+            scoringSystem.AddLocalScore(scoreValue);
         }
 
         Destroy(gameObject);

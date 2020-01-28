@@ -15,6 +15,10 @@ public class EnemyHit : MonoBehaviour
 
     public GameObject score50Text;
 
+    public GameObject scorePlusText;
+
+    public GameObject scoreMinusText;
+
     public Material scoreMatBlau;
 
     public Material scoreMatRot;
@@ -88,6 +92,10 @@ public class EnemyHit : MonoBehaviour
                     break;
             }
 
+            GameObject vorzeichen = Instantiate(scoreMinusText, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+
+            vorzeichen.transform.parent = scoreText.transform;
+
             //Vector3 dir = scoreText.transform.position - activeCameraRig.transform.position;
             scoreText.transform.LookAt(activeCameraRig.transform);
 
@@ -131,6 +139,10 @@ public class EnemyHit : MonoBehaviour
                     scoreText = Instantiate(score50Text, gameObject.transform.position, gameObject.transform.rotation);
                     break;
             }
+
+            GameObject vorzeichen = Instantiate(scorePlusText, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+
+            vorzeichen.transform.parent = scoreText.transform;
 
             scoreText.transform.LookAt(activeCameraRig.transform);
 

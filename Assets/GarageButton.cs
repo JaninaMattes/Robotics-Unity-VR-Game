@@ -11,36 +11,29 @@ public class GarageButton : MonoBehaviour
         public float speed;
         Vector3 StartpositionTor;
         public Vector3 EndpositionTor;
-        public AudioSource voiceOver;
-        public AudioClip[] allAudioClips;
-        public Dictionary<string, AudioClip> allClips = new Dictionary<string, AudioClip>();
-    private AudioClip currentClip;
+
+
 
     public GameObject TorButtonIcon;
+    public GameObject FuseBoxDeckelIcon;
     float Audiolength;
+    public VoiceOverFolder voiceOverFolder;
 
 
 
     private void Start()
     {
-        SetDictionairyAudioClips(this.allAudioClips);
         StartpositionTor = Garagentor.transform.position;
         Invoke("EndlichZuhause", 3f);
-
-        //PlayAudioClipDelayed("endlich_wieder_zuhause", 2);
     }
-
-    private void Update()
-    {
-
-    }
-
 
     private void EndlichZuhause()
     {
-        PlayAudioClipDelayed("endlich_wieder_zuhause");
+        voiceOverFolder.PlayAudioClipDelayed("endlich_wieder_zuhause",0);
 
-        Audiolength = currentClip.length;
+        
+
+        Audiolength = voiceOverFolder.currentClip.length;
 
         Invoke("IconEinblendung", Audiolength);
     }
@@ -48,27 +41,6 @@ public class GarageButton : MonoBehaviour
     private void IconEinblendung()
     {
         TorButtonIcon.SetActive(true);
-    }
-
-    private void SetDictionairyAudioClips(AudioClip[] audioClips)
-    {
-        foreach(AudioClip audioClip in allAudioClips)
-        {
-            if(audioClip != null)
-            {
-                allClips.Add(audioClip.name, audioClip);
-            }
-        }
-    }
-
-
-
-    public void PlayAudioClipDelayed(string audioClip)
-    {
-            AudioClip clip = allClips[audioClip] as AudioClip;
-            currentClip = clip;
-            voiceOver.clip = clip;
-            voiceOver.Play();
     }
 
     private void OnEnable()
@@ -96,7 +68,8 @@ public class GarageButton : MonoBehaviour
         TorButtonIcon.SetActive(false);
 
 
-
+        voiceOverFolder.PlayAudioClipDelayed("ich_seh_nichts", 2f);
+        FuseBoxDeckelIcon.SetActive(true);
     }
 
     private void Slider_MinLimitReached(object sender, ControllableEventArgs e)

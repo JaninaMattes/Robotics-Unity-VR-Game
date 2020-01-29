@@ -153,7 +153,7 @@ Transform:
   - {fileID: 1597636637}
   - {fileID: 971937065}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &52519310
 PrefabInstance:
@@ -286,6 +286,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 52519310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &52519312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000012880271118, guid: 5d323709f0cbd454196647d9d8f2dd84,
+    type: 3}
+  m_PrefabInstance: {fileID: 52519310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa31935730602684ca098655260a7c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &119386714
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +471,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378113849
 GameObject:
@@ -767,7 +779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &956578731
 GameObject:
@@ -1377,6 +1389,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763ccde8c6c37b049b9d5f6689b8526e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapZone: {fileID: 52519312}
+  sonar_1_Material: {fileID: 2100000, guid: feba9dae79a6da64081837d09308ccc8, type: 2}
+  sonar_2_Material: {fileID: 2100000, guid: 0986621a2b3959841b202c7554fe7419, type: 2}
+  radar_1_Material: {fileID: 2100000, guid: 1bd52015def6f4e409a34692d5852aba, type: 2}
+  lidar_1_Material: {fileID: 2100000, guid: 54959a8aeea205a4f8ccd732c2e6accf, type: 2}
 --- !u!1 &1364883065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1594,7 @@ Transform:
   - {fileID: 1330593109}
   - {fileID: 52519311}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1570577255
 GameObject:

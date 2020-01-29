@@ -122,6 +122,28 @@ public class BucketList : MonoBehaviour
 
     public void CheckGameObject(GameObject gameObj)
     {
+<<<<<<< HEAD
+        // Gameobject Tag und gelistete Tags müssen übereinstimmen
+        if (bucketListContent.Contains(gameObj.tag))
+        {
+            gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
+            controller.AddToBucketList(gameObj);
+            controller.ResetMaterial(gameObj);
+            controller.AddPlayerScore(score);
+            SetDefaultUIText(gameObj);
+        }
+        else if (!bucketListContent.Contains(gameObj.tag) && !gameObj.transform.root.CompareTag("Player"))
+        {
+            // Set Gameobject back to it's original position
+            Vector3 position = controller.FindOriginalPos(gameObj);
+            delayCoroutine = DelayAndMove(gameObj, gameObj.transform.position, position, speed);
+            StartCoroutine(delayCoroutine);
+
+            if (!coroutineCalled)
+            {
+                StartCoroutine("FlashColor");
+                controller.ReducePlayerScore(score);
+=======
         for(int i = 0; i < checkListObjects.Length; i++){
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
             if (checkListObjects[i].tag == gameObj.tag && !controller.GetBucketObjects().Contains(gameObj))
@@ -132,6 +154,7 @@ public class BucketList : MonoBehaviour
                 controller.SetPlayerScore(playerScore);
                 //SetDefaultUIText(gameObj);
                 EnableUICheck(gameObj);
+>>>>>>> origin/Feature_FixHeadset
             }
             else if (checkListObjects[i].tag != gameObj.tag && !gameObj.transform.root.CompareTag("Player"))
             {
@@ -143,7 +166,7 @@ public class BucketList : MonoBehaviour
                 if (!coroutineCalled)
                 {
                     StartCoroutine("FlashColor");
-                    controller.ReducePlayerScore(score);
+                    controller.ReducePlayerScore();
                 }
                 else if (coroutineCalled)
                 {

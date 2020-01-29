@@ -5,6 +5,8 @@ using UnityEngine;
 public class StartGameOnHit : MonoBehaviour
 {
     public ScoringSystem scoringSystem;
+    public GameObject startText;
+    bool started;
 
     private void Start()
     {
@@ -13,14 +15,21 @@ public class StartGameOnHit : MonoBehaviour
 
     public void StartGameAndScore()
     {
-        scoringSystem.startGame();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Target")
+        if (!started)
         {
-            Physics.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider>(),true);
+            scoringSystem.startGame();
+            startText.SetActive(false);
+            started = true;
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Target")
+    //    {
+    //        Debug.Log("Eigener Collider: " + gameObject.GetComponent<Collider>().tag);
+    //        Debug.Log("Fremder Collider: " + collision.collider.tag);
+    //        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(),collision.collider,true);
+    //    }
+    //}
 }

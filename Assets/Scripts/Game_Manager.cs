@@ -139,7 +139,7 @@ public class Game_Manager
         //Filter for null vallues
         for (int i = 0; i < _rend.Length; i++) {
             cleanList.Add(_rend[i]);
-            Debug.Log("Add Renderer " + _rend[i]);
+            //Debug.Log("Add Renderer " + _rend[i]);
         }
         cleanList.RemoveAll(x => x == null);
         this._renderer = _renderer.Concat(cleanList.ToArray()).ToArray<Renderer>();
@@ -152,7 +152,7 @@ public class Game_Manager
         for (int i = 0; i < _rend.Length; i++)
         {
             cleanList.Add(_rend[i]);
-            Debug.Log("Add Renderer " + _rend[i]);
+            //Debug.Log("Add Renderer " + _rend[i]);
         }
         cleanList.RemoveAll(x => x == null);
         this._renderer = cleanList.ToArray();
@@ -432,7 +432,7 @@ public class Game_Manager
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in GetRenderer())
         {
-            Debug.Log(rend.ToString());
+            //Debug.Log(rend.ToString());
             if (rend != null && !_exclude.Contains(rend.tag))
             {
                 //TODO: Über auch über Layer definieren 

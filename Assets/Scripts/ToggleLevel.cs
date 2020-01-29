@@ -34,7 +34,6 @@ public class ToggleLevel : MonoBehaviour
     [Header("Snapdrop Zone Prefab Patrone")]
     public VRTK_SnapDropZone snapZonePatrone;
     protected IEnumerator asyncLoadCoroutine;
-    private bool unsnapped = false;
 
     [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
@@ -48,6 +47,9 @@ public class ToggleLevel : MonoBehaviour
 
     void Awake()
     {
+
+        SetRendererList(this.controller);
+        //CheckSnapUpdateMaterial();
         foreach (GameObject objectToKeep in objectsToKeep)
         {
             DontDestroyOnLoad(objectToKeep);
@@ -62,7 +64,6 @@ public class ToggleLevel : MonoBehaviour
     public void OnEnable()
     {
         this.snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
-        this.snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
         this.snapZone.ObjectExitedSnapDropZone += ObjectExitedSnapDropZone;
         this.headSet.InteractableObjectTouched += InteractableObjectTouched;
         this.headSet.InteractableObjectUntouched += InteractableObjectUntouched;
@@ -74,7 +75,6 @@ public class ToggleLevel : MonoBehaviour
     public void OnDisable()
     {
         this.snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
-        this.snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
         this.snapZone.ObjectExitedSnapDropZone -= ObjectExitedSnapDropZone;
         this.headSet.InteractableObjectTouched -= InteractableObjectTouched;
         this.headSet.InteractableObjectUntouched -= InteractableObjectUntouched;
@@ -107,7 +107,6 @@ public class ToggleLevel : MonoBehaviour
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
     {
         LoadLevel(this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
-        this.unsnapped = false;
     }
 
     protected virtual void OnHeadsetUnfadeComplete(object sender, HeadsetFadeEventArgs a)
@@ -127,18 +126,10 @@ public class ToggleLevel : MonoBehaviour
 
     protected virtual void ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
     {
-        if (this.unsnapped == false)
-        {
-            this.objectExitedSnapDropZone = false;
-            DisableCollider(GetCurrentSnappedObject(this.snapZone));
-            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
-            FadeHeadset(this.fadeColor, this.fadeDuration);
-        }
-    }
-
-    protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
-    {
-        this.unsnapped = true;
+        this.objectExitedSnapDropZone = false;
+        DisableCollider(GetCurrentSnappedObject(this.snapZone));
+        DisableRenderer(GetCurrentSnappedObject(this.snapZone));
+        FadeHeadset(this.fadeColor, this.fadeDuration);
     }
 
     protected virtual void ObjectExitedSnapDropZone(object sender, SnapDropZoneEventArgs e)

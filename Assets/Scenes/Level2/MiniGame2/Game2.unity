@@ -273,8 +273,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78da6b9537f1e14c8f2cda7aeadcc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textUI: {fileID: 0}
-  textUI2: {fileID: 0}
+  bucket: {fileID: 0}
+  bucketListContent: []
+  colorChangetimer: 1
+  errorTimer: 5
+  errorTimertotal: 5
+  speed: 1
+  fadingTime: 2
+  beginingDelay: 1
+  UIDefault: {fileID: 0}
+  checkListHeader: {fileID: 0}
+  checkedObjects: []
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  errorColor: {r: 0, g: 0, b: 0, a: 0}
+  invalidText: 
+  checkListHeaderText: 
+  backgroundTransparent: {fileID: 0}
+  backgroundDefault: {fileID: 0}
 --- !u!1 &95762077
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +494,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78da6b9537f1e14c8f2cda7aeadcc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textUI: {fileID: 0}
-  textUI2: {fileID: 0}
+  bucket: {fileID: 0}
+  bucketListContent: []
+  colorChangetimer: 1
+  errorTimer: 5
+  errorTimertotal: 5
+  speed: 1
+  fadingTime: 2
+  beginingDelay: 1
+  UIDefault: {fileID: 0}
+  checkListHeader: {fileID: 0}
+  checkedObjects: []
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  errorColor: {r: 0, g: 0, b: 0, a: 0}
+  invalidText: 
+  checkListHeaderText: 
+  backgroundTransparent: {fileID: 0}
+  backgroundDefault: {fileID: 0}
 --- !u!1 &372723169
 GameObject:
   m_ObjectHideFlags: 0

@@ -3097,7 +3097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390917941727309567}
   m_Layer: 0
-  m_Name: ______Player______
+  m_Name: ______Player (OLD)______
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3884,18 +3884,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14105c6eb5ad2c648ab6a04214fed6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapZone: {fileID: 424440780372100027}
+  DebuggingLevel: 0
   WorkshopLevelIndex: 0
   LevelIndex: 1
-  lidarGrid: {fileID: 0}
-  player: {fileID: 7418265560933673591}
+  objectsToKeep: []
+  snapZone: {fileID: 424440780372100027}
   headSet: {fileID: 0}
-  loadingScreen: {fileID: 8998547678391207534}
-  slider: {fileID: 4269687396947033671}
-  textProgress: {fileID: 5417543367425284150}
-  textLevel: {fileID: 6065406343982305735}
-  levelNameMinigame: Minigame
-  levelNameWorkshop: Workshop
+  fadeHeadset: {fileID: 0}
+  fadeColor: {r: 0, g: 0, b: 0, a: 0}
+  fadeDuration: 0
+  fadeOutDuration: 0
+  snapZonePatrone: {fileID: 0}
+  cameraRig: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &9082889932126122906
 GameObject:
   m_ObjectHideFlags: 0

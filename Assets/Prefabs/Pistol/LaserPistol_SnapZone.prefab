@@ -239,6 +239,7 @@ MonoBehaviour:
   sonar_2_Material: {fileID: 2100000, guid: 0986621a2b3959841b202c7554fe7419, type: 2}
   radar_1_Material: {fileID: 2100000, guid: 1bd52015def6f4e409a34692d5852aba, type: 2}
   lidar_1_Material: {fileID: 2100000, guid: 54959a8aeea205a4f8ccd732c2e6accf, type: 2}
+  black_Material: {fileID: 0}
   gridorientation_Material: {fileID: 2100000, guid: 30447bac04df5bd4db9351cf9805657c,
     type: 2}
   gridorientation_Tag: Floor
@@ -255,10 +256,6 @@ MonoBehaviour:
   - Headset
   - LineRenderer
   spawn: {fileID: 6583909652278809355}
-  sonar2: {fileID: 6583909652278809352}
-  radar: {fileID: 6583909652278809349}
-  lidar: {fileID: 6583909652278809353}
-  laser_controller: {fileID: 6583909652278809351}
 --- !u!1 &6583909652275296194
 GameObject:
   m_ObjectHideFlags: 0

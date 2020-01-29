@@ -12,7 +12,6 @@ public class BucketList : MonoBehaviour
     [Header("Bucket")]
     [Tooltip("Bucket")]
     public GameObject bucket;
-    public List<string> bucketListContent;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
@@ -21,13 +20,21 @@ public class BucketList : MonoBehaviour
     public float fadingTime = 2f;
     public float beginingDelay = 1.0f;
 
+    [Tooltip("Player Score Points")]
+    public int playerScore = 10;
+
     [Header("UI Checklist")]
     public Image UIDefault;
     public TextMeshProUGUI checkListHeader;
-    public List<GameObject> checkedObjects = new List<GameObject>();
-    private int textCounter = 0;
-    public Color defaultColor;
-    public Color errorColor;
+
+    [Tooltip("List Elements")]
+    public int max_size = 7;
+    public GameObject[] _checkListItems;
+    public GameObject[] _checkListContent;
+    public Color _defaultColor;
+    public Color _errorColor;
+    public Color _grey;
+    public Color _white;
     public string invalidText;
     public string checkListHeaderText;
     public VerticalLayoutGroup backgroundTransparent;
@@ -40,11 +47,11 @@ public class BucketList : MonoBehaviour
     private GameObject[] allGameObjects;
     protected IEnumerator moveCoroutine;
     protected IEnumerator delayCoroutine;
+    protected List<GameObject> checkListObjects;
+
+
     // Controller 
     protected Game_Manager controller = Game_Manager.Instance;
-
-    //Score
-    public int score = 10;
 
     public void Start()
     {
@@ -55,6 +62,12 @@ public class BucketList : MonoBehaviour
         //Den Collider(MeshCollider) des Eimers einer Variable zuweisen.
         bucketCollider = GetComponent<Collider>();
         errorTimer = errorTimertotal;
+
+        checkListObjects = new GameObject<GameObject>();
+        // Fill List with random gameobjects
+        SelectRandomObjects();
+        // Create UI
+        CreateDefaultUIText();
     }
 
     public void Update()
@@ -70,12 +83,13 @@ public class BucketList : MonoBehaviour
 
         foreach (GameObject gameObj in allGameObjects)
         {
-            if(gameObj != null){
+            if (gameObj != null)
+            {
                 Vector3 position = gameObj.transform.position;
 
                 if (bucketCollider.bounds.Contains(position))
                 {
-                    if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
+                    if (gameObj != bucket && !gameObj.transform.root.CompareTag("Player"))
                     {
                         CheckGameObject(gameObj);
                     }
@@ -88,8 +102,8 @@ public class BucketList : MonoBehaviour
                         controller.Remove(gameObj);
                     }
                 }
-            }           
-            
+            }
+
         }
     }
 
@@ -104,32 +118,58 @@ public class BucketList : MonoBehaviour
 
     public void CheckGameObject(GameObject gameObj)
     {
-        // Gameobject Tag und gelistete Tags müssen übereinstimmen
-        if (bucketListContent.Contains(gameObj.tag))
-        {
-            gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
-            controller.AddToBucketList(gameObj);
-            controller.ResetMaterial(gameObj);
-            controller.AddPlayerScore(score);
-            SetDefaultUIText(gameObj);
+        foreach(GameObject obj in checkListObjects){
+            //Gameobject Tag und gelistete Tags müssen übereinstimmen
+            if (obj.tag = gameObj && !controller.GetBucketObjects().Contains(gameObj))
+            {
+                gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
+
+                controller.AddToBucketList(gameObj);
+                controller.ResetMaterial(gameObj);
+                controller.SetPlayerScore(playerScore);
+
+                // Enable on GUI
+                EnableUICheck(gameObj);
+            }
+            else
+            {
+                // Set Gameobject back to it's original position
+                Vector3 position = controller.FindOriginalPos(gameObj);
+                delayCoroutine = DelayAndMove(gameObj, gameObj.transform.position, position, speed);
+                StartCoroutine(delayCoroutine);
+
+                if (!coroutineCalled)
+                {
+                    StartCoroutine("FlashColor");
+                    controller.ReducePlayerScore(playerScore);
+                }
+                else if (coroutineCalled)
+                {
+                    DisableDefaultUI();
+                }
+
+            }
         }
-        else if (!bucketListContent.Contains(gameObj.tag) && !gameObj.transform.root.CompareTag("Player"))
+    }
+
+    /// <summary>
+    /// Add random elements to list.
+    /// </summary>
+    private void SelectRandomObjects()
+    {
+        int i = 0;
+        var length = this._checkListContent.Length - 1;
+        while (i < max_size)
         {
-            // Set Gameobject back to it's original position
-            Vector3 position = controller.FindOriginalPos(gameObj);
-            delayCoroutine = DelayAndMove(gameObj, gameObj.transform.position, position, speed);
-            StartCoroutine(delayCoroutine);
-
-            if (!coroutineCalled)
+            int index = UnityEngine.Random.Range(i, length);
+            // Select object  
+            GameObject obj = _checkListContent[index];
+            if (checkListObjects[i] != obj) //TODO austauschen
             {
-                StartCoroutine("FlashColor");
-                controller.ReducePlayerScore(score);
+                checkListObjects[i] = obj;
+                Debug.Log("Add Object to Checklist: " + obj.tag);
+                i++;
             }
-            else if (coroutineCalled)
-            {
-                DisableDefaultUI();
-            }
-
         }
     }
 
@@ -165,11 +205,16 @@ public class BucketList : MonoBehaviour
     {
         yield return new WaitForSeconds(beginingDelay);
         // Make invisible
-        objectToMove.GetComponent<Renderer>().enabled = false;
-        objectToMove.GetComponent<Collider>().enabled = false;
-        moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
-        // After the delay do..
-        StartCoroutine(moveCoroutine);
+        // Check if all is contained
+        if (objectToMove.GetComponent<Renderer>() != null && objectToMove.GetComponent<Collider>() != null)
+        {
+
+            objectToMove.GetComponent<Renderer>().enabled = false;
+            objectToMove.GetComponent<Collider>().enabled = false;
+            moveCoroutine = MoveFromTo(objectToMove, a, b, speed);
+            // After the delay do..
+            StartCoroutine(moveCoroutine);
+        }
     }
 
     public IEnumerator MoveFromTo(GameObject objectToMove, Vector3 a, Vector3 b, float speed)
@@ -177,15 +222,16 @@ public class BucketList : MonoBehaviour
         float step = (speed / (a - b).magnitude) * Time.fixedDeltaTime;
         float t = 0;
         // Move out of bucket by finding the centre of bucket and then move up straight
-        objectToMove.transform.position = new Vector3(
+        Vector3 pos = new Vector3(
             this.GetComponent<Renderer>().bounds.center.x,
-            this.GetComponent<Renderer>().bounds.center.y + 1.0f,
+            this.GetComponent<Renderer>().bounds.center.y + 1.50f,
             this.GetComponent<Renderer>().bounds.center.z);
+        objectToMove.transform.position = pos;
         // Move gradiently back 
         while (t <= 1.0f)
         {
             t += step; // Goes from 0 to 1, incrementing by step each time
-            objectToMove.transform.position = Vector3.Lerp(a, b, t); // Move objectToMove closer to b
+            objectToMove.transform.position = Vector3.Lerp(pos, b, t); // Move objectToMove closer to b
             yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
         }
         objectToMove.transform.position = b;
@@ -201,7 +247,7 @@ public class BucketList : MonoBehaviour
 
     private void EnableErrorUI()
     {
-        UIDefault.color = errorColor;
+        UIDefault.color = _errorColor;
         UIDefault.enabled = true;
         checkListHeader.text = invalidText;
         checkListHeader.enabled = true;
@@ -213,15 +259,24 @@ public class BucketList : MonoBehaviour
         checkListHeader.enabled = false;
     }
 
-    private void SetDefaultUIText(GameObject gameObj)
+    private void EnableUICheck(GameObject gameObj)
     {
-        if (!listItems.ContainsKey(gameObj))
+        for (int i = 0; i < max_size; i++)
         {
-            listItems.Add(gameObj, checkedObjects[textCounter]);
-            GameObject checkedObject = listItems[gameObj] as GameObject;
-            checkedObject.GetComponent<TextMeshProUGUI>().text = gameObj.name.ToString();
-            checkedObject.SetActive(true);
-            textCounter++;
+            if(_checkListItems[i].GetComponent<TextMeshProUGUI>().text == gameObj.tag){
+                _checkListItems[i].transform.GetChild(0).GetComponent<RawImage>().color = _white;
+                ForceCanvasUpdate();
+            }            
+        }
+    }
+    private void CreateDefaultUIText()
+    {
+
+        for (int i = 0; i < max_size; i++)
+        {
+            _checkListItems[i].GetComponent<TextMeshProUGUI>().text = _checkListContent[i].tag;
+            _checkListItems[i].SetActive(true);
+            _checkListItems[i].transform.GetChild(0).GetComponent<RawImage>().color = _grey;
             ForceCanvasUpdate();
         }
     }
@@ -229,13 +284,13 @@ public class BucketList : MonoBehaviour
     private void EnableDefaultUI()
     {
         checkListHeader.text = checkListHeaderText;
-        UIDefault.color = defaultColor;
+        UIDefault.color = _defaultColor;
         UIDefault.enabled = true;
         checkListHeader.enabled = true;
 
-        for (int i = 0; i < textCounter; i++)
+        for (int i = 0; i < max_size; i++)
         {
-            checkedObjects[i].SetActive(true);
+            _checkListItems[i].SetActive(true);
         }
 
         ForceCanvasUpdate();
@@ -243,9 +298,9 @@ public class BucketList : MonoBehaviour
 
     private void DisableDefaultUI()
     {
-        for (int i = 0; i < textCounter; i++)
+        for (int i = 0; i < max_size; i++)
         {
-            checkedObjects[i].SetActive(false);
+            _checkListItems[i].SetActive(false);
         }
         ForceCanvasUpdate();
     }

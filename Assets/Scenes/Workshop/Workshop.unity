@@ -2537,16 +2537,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: SonarSensor_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: SonarSensor_2
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2616,6 +2606,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: SonarSensor_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: SonarSensor_2
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -5562,16 +5562,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: RadarSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: RadarSensor
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5641,6 +5631,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: RadarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: RadarSensor
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -12382,21 +12382,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: LidarSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: LidarSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12467,16 +12452,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.05
       objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
-      propertyPath: holdButtonToGrab
-      value: 0
+      propertyPath: m_Name
+      value: LidarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: LidarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231671, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ec65efbd9e3900f4a88915a8f47b9cf8, type: 2}
+    - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: holdButtonToGrab
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b600a94d74a36a3459f5ff16f4c50270, type: 3}
 --- !u!4 &1056791251 stripped
@@ -22152,16 +22152,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: SonarSensor_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: SonarSensor_1
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22231,6 +22221,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: SonarSensor_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: SonarSensor_1
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
@@ -24635,17 +24635,17 @@ PrefabInstance:
       propertyPath: excludeTags.Array.data[0]
       value: RoboBelt
       objectReference: {fileID: 0}
+    - target: {fileID: 4339460153227672844, guid: 30449ef228491e448891363f5da9dbe3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4339460153459901104, guid: 30449ef228491e448891363f5da9dbe3,
         type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4339460153831277521, guid: 30449ef228491e448891363f5da9dbe3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339460153227672844, guid: 30449ef228491e448891363f5da9dbe3,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -24771,16 +24771,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2021807173}
     m_Modifications:
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_Name
-      value: CameraSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
-        type: 3}
-      propertyPath: m_TagString
-      value: CameraSensor
-      objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231664, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24850,6 +24840,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_Name
+      value: CameraSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182649222282231679, guid: b600a94d74a36a3459f5ff16f4c50270,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraSensor
       objectReference: {fileID: 0}
     - target: {fileID: 9182649222282231665, guid: b600a94d74a36a3459f5ff16f4c50270,
         type: 3}

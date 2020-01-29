@@ -41,6 +41,10 @@ public class ToggleLevel : MonoBehaviour
     public Vector3 startPosition;
     private GameObject lookAt;
 
+    GameObject rightControllerBasePointer;
+    GameObject leftControllerBasePointer;
+    GameObject OvrAvatarSDKManager;
+
 
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -54,6 +58,20 @@ public class ToggleLevel : MonoBehaviour
         {
             DontDestroyOnLoad(objectToKeep);
         }
+        Invoke("GetExtraOculusObjects", 0.5f);
+    }
+
+    public void GetExtraOculusObjects()
+    {
+        rightControllerBasePointer = GameObject.Find("[VRTK][AUTOGEN][RigthController][BasePointerRenderer_Origin_Smoothed]");
+        leftControllerBasePointer = GameObject.Find("[VRTK][AUTOGEN][LeftController][BasePointerRenderer_Origin_Smoothed]");
+        OvrAvatarSDKManager = GameObject.Find("OvrAvatarSDKManager");
+        rightControllerBasePointer.tag = "Player";
+        leftControllerBasePointer.tag = "Player";
+        OvrAvatarSDKManager.tag = "Player";
+        DontDestroyOnLoad(rightControllerBasePointer);
+        DontDestroyOnLoad(leftControllerBasePointer);
+        DontDestroyOnLoad(OvrAvatarSDKManager);
     }
 
     void Update()
@@ -223,12 +241,12 @@ public class ToggleLevel : MonoBehaviour
 
     private void FadeHeadset(Color color, float fadeDuration)
     {
-        this.fadeHeadset.Fade(color, fadeDuration);
+       // this.fadeHeadset.Fade(color, fadeDuration);
     }
 
     private void UnFadeHeadset(float fadeOutDuration)
     {
-        this.fadeHeadset.Unfade(fadeOutDuration);
+       // this.fadeHeadset.Unfade(fadeOutDuration);
     }
 
     private void CheckHeadsetsInScene()

@@ -14,6 +14,7 @@ public class LaserProjectile : MonoBehaviour
     public GameObject explosionPrefab;
 
     public float timeTillAutoDestruction=10;
+
     
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,15 @@ public class LaserProjectile : MonoBehaviour
         {
             if (other.GetComponent<EnemyHit>())
             {
-                other.GetComponent<EnemyHit>().Hit();
+                other.GetComponent<EnemyHit>().Hit(true);
+            }
+            if (other.GetComponent<ChangeSceneOnHit>())
+            {
+                other.GetComponent<ChangeSceneOnHit>().InvokeLoadScene();
+            }
+            if (other.GetComponent<StartGameOnHit>())
+            {
+                other.GetComponent<StartGameOnHit>().StartGameAndScore();
             }
             Hit();
             //Debug.Log("Hit Object: " + other.name + " with Tag: "+ other.tag);

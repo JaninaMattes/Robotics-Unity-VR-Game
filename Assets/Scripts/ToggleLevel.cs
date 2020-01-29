@@ -34,11 +34,10 @@ public class ToggleLevel : MonoBehaviour
     [Header("Snapdrop Zone Prefab Patrone")]
     public VRTK_SnapDropZone snapZonePatrone;
     protected IEnumerator asyncLoadCoroutine;
-    private bool unsnapped = false;
 
     [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
-   
+
     public Vector3 startPosition;
     private GameObject lookAt;
 
@@ -48,6 +47,9 @@ public class ToggleLevel : MonoBehaviour
 
     void Awake()
     {
+
+        SetRendererList(this.controller);
+        CheckSnapUpdateMaterial();
         foreach (GameObject objectToKeep in objectsToKeep)
         {
             DontDestroyOnLoad(objectToKeep);
@@ -62,7 +64,6 @@ public class ToggleLevel : MonoBehaviour
     public void OnEnable()
     {
         this.snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
-        this.snapZone.ObjectUnsnappedFromDropZone += ObjectUnsnappedFromDropZone;
         this.snapZone.ObjectExitedSnapDropZone += ObjectExitedSnapDropZone;
         this.headSet.InteractableObjectTouched += InteractableObjectTouched;
         this.headSet.InteractableObjectUntouched += InteractableObjectUntouched;
@@ -74,7 +75,6 @@ public class ToggleLevel : MonoBehaviour
     public void OnDisable()
     {
         this.snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
-        this.snapZone.ObjectUnsnappedFromDropZone -= ObjectUnsnappedFromDropZone;
         this.snapZone.ObjectExitedSnapDropZone -= ObjectExitedSnapDropZone;
         this.headSet.InteractableObjectTouched -= InteractableObjectTouched;
         this.headSet.InteractableObjectUntouched -= InteractableObjectUntouched;
@@ -93,21 +93,20 @@ public class ToggleLevel : MonoBehaviour
         {
             SetRendererList(this.controller);
             controller.FindProbes();
-            CheckSnapUpdateMaterial();        
-            ExchangeFloorTag();    
+            CheckSnapUpdateMaterial();
+            ExchangeFloorTag();
         }
 
         if (CheckForCurrentSnappedObject(this.snapZone))
         {
             DisableRenderer(GetCurrentSnappedObject(this.snapZone));
             UnFadeHeadset(this.fadeOutDuration);
-        }       
+        }
     }
 
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
     {
         LoadLevel(this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
-        this.unsnapped = false;
     }
 
     protected virtual void OnHeadsetUnfadeComplete(object sender, HeadsetFadeEventArgs a)
@@ -127,18 +126,10 @@ public class ToggleLevel : MonoBehaviour
 
     protected virtual void ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
     {
-        if (this.unsnapped == false)
-        {
-            this.objectExitedSnapDropZone = false;
-            DisableCollider(GetCurrentSnappedObject(this.snapZone));
-            DisableRenderer(GetCurrentSnappedObject(this.snapZone));
-            FadeHeadset(this.fadeColor, this.fadeDuration);
-        }
-    }
-
-    protected virtual void ObjectUnsnappedFromDropZone(object sender, SnapDropZoneEventArgs e)
-    {
-        this.unsnapped = true;
+        this.objectExitedSnapDropZone = false;
+        DisableCollider(GetCurrentSnappedObject(this.snapZone));
+        DisableRenderer(GetCurrentSnappedObject(this.snapZone));
+        FadeHeadset(this.fadeColor, this.fadeDuration);
     }
 
     protected virtual void ObjectExitedSnapDropZone(object sender, SnapDropZoneEventArgs e)
@@ -265,21 +256,21 @@ public class ToggleLevel : MonoBehaviour
 
         if (patrone == "CameraSensor")
         {
-           lightOn = true;
+            lightOn = true;
         }
 
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
-        {                                
-            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));  
+        {
+            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
             controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
-            controller.UpdateMaterial(patrone);            
+            controller.UpdateMaterial(patrone);
         }
         else
         {
             Debug.Log("# DEfault Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
             controller.UpdateMaterial("default");
             controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
-        }       
+        }
     }
 
     public void LoadTheSceneAsync(int workShopIndex)
@@ -288,10 +279,13 @@ public class ToggleLevel : MonoBehaviour
         StartCoroutine(asyncLoadCoroutine);
     }
 
-    private void ExchangeFloorTag(){
+    private void ExchangeFloorTag()
+    {
         Renderer[] _rend = controller.GetRenderer();
-        for(int i = 0; i < _rend.Length; i++){
-            if(_rend[i].tag == "Floor"){
+        for (int i = 0; i < _rend.Length; i++)
+        {
+            if (_rend[i].tag == "Floor")
+            {
                 _rend[i].tag = "IncludeTeleport";
             }
         }
@@ -326,7 +320,7 @@ public class ToggleLevel : MonoBehaviour
                 lookAt = GameObject.FindGameObjectWithTag("Robo");
                 cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
                 cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
-                break; 
+                break;
 
             case 1:
                 lookAt = GameObject.FindGameObjectWithTag("SelectLevel2");

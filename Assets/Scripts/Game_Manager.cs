@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VRTK;
+using System.Linq;
 
 /// <summary>
 /// Singleton Design Pattern
@@ -134,14 +135,27 @@ public class Game_Manager
 
     public void AddRenderer(Renderer[] _rend)
     {
-        Renderer[] list = new Renderer[_renderer.Length + _rend.Length];
-        _renderer.CopyTo(list, 0);
-        _rend.CopyTo(list, _renderer.Length);
+        List<Renderer> cleanList = new List<Renderer>();
+        //Filter for null vallues
+        for (int i = 0; i < _rend.Length; i++) {
+            cleanList.Add(_rend[i]);
+            //Debug.Log("Add Renderer " + _rend[i]);
+        }
+        cleanList.RemoveAll(x => x == null);
+        this._renderer = _renderer.Concat(cleanList.ToArray()).ToArray<Renderer>();
     }
 
-    public void SetRenderer(Renderer[] _renderer)
+    public void SetRenderer(Renderer[] _rend)
     {
-        this._renderer = _renderer;
+        List<Renderer> cleanList = new List<Renderer>();
+        //Filter for null vallues
+        for (int i = 0; i < _rend.Length; i++)
+        {
+            cleanList.Add(_rend[i]);
+            //Debug.Log("Add Renderer " + _rend[i]);
+        }
+        cleanList.RemoveAll(x => x == null);
+        this._renderer = cleanList.ToArray();
     }
 
     public void SetMaterials(Renderer[] renderer)
@@ -220,14 +234,14 @@ public class Game_Manager
         this.playerScore = playerScore;
     }
 
-    public void AddPlayerScore()
+    public void AddPlayerScore(int score)
     {
-        ++this.playerScore;
+        this.playerScore += score;
     }
 
-    public void ReducePlayerScore()
+    public void ReducePlayerScore(int score)
     {
-        --this.playerScore;
+        this.playerScore -= score;
     }
 
     public int GetPlayerScore()
@@ -245,7 +259,8 @@ public class Game_Manager
         return _lightGameObjects;
     }
 
-    public void FindProbes(){
+    public void FindProbes()
+    {
         _reflectionProbes = GameObject.FindObjectsOfType<ReflectionProbe>();
     }
 
@@ -254,12 +269,15 @@ public class Game_Manager
         return this._reflectionProbes;
     }
 
-    public void ToggleProbes(bool isOn){
-        foreach(ReflectionProbe probe in _reflectionProbes){
-            if(probe.tag == "Controller"){
-                var cullMask =  probe.cullingMask;
+    public void ToggleProbes(bool isOn)
+    {
+        foreach (ReflectionProbe probe in _reflectionProbes)
+        {
+            if (probe.tag == "Controller")
+            {
+                var cullMask = probe.cullingMask;
                 probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible
-            }            
+            }
         }
     }
 
@@ -370,7 +388,7 @@ public class Game_Manager
                 //If no other case found
                 UpdateMaterial(_allMaterials[3]);
                 ActivateAllRenderer();
-                ToggleProbes(false);               
+                ToggleProbes(false);
                 break;
 
         }
@@ -383,7 +401,7 @@ public class Game_Manager
 
     public string GetSnappedPatrone()
     {
-       return this._patrone;
+        return this._patrone;
     }
 
     public void ActivateAllRenderer()
@@ -414,15 +432,16 @@ public class Game_Manager
         //LightmapSettings.lightmaps = null;
         foreach (Renderer rend in GetRenderer())
         {
-            if (rend != null && !_exclude.Contains(rend.tag)) 
+            //Debug.Log(rend.ToString());
+            if (rend != null && !_exclude.Contains(rend.tag))
             {
                 //TODO: Über auch über Layer definieren 
                 // --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc                
-                m = rend.materials;
+                m = rend.sharedMaterials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
-                    rend.material = gridorientation_Material;
+                    rend.sharedMaterial = gridorientation_Material;
                 }
                 else
                 {
@@ -430,9 +449,11 @@ public class Game_Manager
                     {
                         m[i] = material;
                     }
-                    rend.materials = m;
+                    rend.sharedMaterials = m;
                 }
-            }else{
+            }
+            else
+            {
                 Debug.Log("Excluded " + rend.tag);
             }
         }

@@ -5,53 +5,66 @@ using UnityEngine;
 public class SpawnFlyingObjects : MonoBehaviour
 {
     public GameObject[] spawnees;
+    public GameObject[] spawnedObjectsArray;
 
     int randomInt;
 
-    public int maxobjectNumber;
+    Game_Manager gameManager = Game_Manager.Instance;
+
+    public List<string> excludeObj;
+
+    public int maxobjectNumber = 60;
     public int spawnedObjects;
 
-    public int minPositionX;
-    public int maxPositionX;
+    public int minPositionX = -20;
+    public int maxPositionX = 20;
 
-    public int minPositionY;
-    public int maxPositionY;
+    public int minPositionY = 20;
+    public int maxPositionY = 40;
 
-    public int minPositionZ;
-    public int maxPositionZ;
+    public int minPositionZ = -20;
+    public int maxPositionZ = 20;
 
     public Vector3 SpawnPosition;
-    // controller Instanz
-    protected Game_Manager controller = Game_Manager.Instance;
+
+    public Renderer[] spawnRenderer;
+
+    public Renderer[] getRendererArray;
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-    maxobjectNumber = 60;
-    //spawnedObjects = 0;
-
-    minPositionX = -20;
-    maxPositionX = 20;
-
-    minPositionY = 20;
-    maxPositionY = 40;
-
-    minPositionZ = -20;
-    maxPositionZ = 20;
-
-    RandomSpawn();
-    }
-
-    // Update is called once per frame
     void Awake()
     {
+        SpawnObjects();
     }
+    void Start()
+    {
+        StartCoroutine(DisableEnableObjects(false, 0.05f));
+    }
+
+    public IEnumerator DisableEnableObjects(bool active, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        foreach (GameObject spawnedObject in spawnedObjectsArray)
+        {
+            spawnedObject.SetActive(active);
+        }
+    }
+
+    public void SpawnObjects()
+    {
+        spawnedObjectsArray = new GameObject[maxobjectNumber];
+        //spawnedObjects = 0;
+        RandomSpawn();
+    }
+
+  
 
     void RandomSpawn()
     {
-        Renderer[] spawns = new Renderer[spawnees.Length];
-        int i = 0;
+        Debug.Log("RandomSpawn");
+        spawnRenderer = new Renderer[maxobjectNumber];
+   
 
         for (spawnedObjects = 0; spawnedObjects < maxobjectNumber; spawnedObjects++) {
 
@@ -60,22 +73,23 @@ public class SpawnFlyingObjects : MonoBehaviour
             SpawnPosition.z = Random.Range(minPositionZ, maxPositionZ);
 
             randomInt = Random.Range(0,spawnees.Length);
-            Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
+            spawnedObjectsArray[spawnedObjects]  =  Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
+            spawnRenderer[spawnedObjects] = spawnedObjectsArray[spawnedObjects].GetComponent<Renderer>();
+        }
 
-        }
-        /**
-        // Update all materials after new objects are spawned            
-        foreach (GameObject obj in spawnees)
-        {
-            obj.name = (string)obj.name + i;
-            spawns[i] = obj.GetComponent<Renderer>();
-            i++;
-        }
-        controller.AddRenderer(spawns);
-        controller.SetMaterials(spawns);
-        // Update material of all objects in this scene
-        controller.UpdateMaterial(controller.GetSnappedPatrone());
-        **/
+        
     }
 
+
+
+    public void DestroyAllSpawness()
+    {
+        foreach (GameObject spawnee in spawnedObjectsArray)
+        {
+            if (spawnee != null)
+            {
+                spawnee.GetComponent<EnemyHit>().Hit(false);
+            }
+        }
+    }
 }

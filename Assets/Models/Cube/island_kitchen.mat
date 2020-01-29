@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: islandmat
+  m_Name: island_kitchen
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 1
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: d8e5adc5733fa1e40bf220e7873f6904, type: 3}
+        m_Texture: {fileID: 2800000, guid: 91c6f51955f8e024e807a242fb9b869d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -36,19 +36,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: d591ad9a9c5603945907168e848f92df, type: 3}
+        m_Texture: {fileID: 2800000, guid: 387fadcac5b0505448e5ab90d42ebe1f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2bc1332547fb8b0478aa15aba2c2c78f, type: 3}
+        m_Texture: {fileID: 2800000, guid: e4208db244acf6e409f800576e92261b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 2bbef83f0d861474c9b08b1a00724880, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6e30c64fb6d19844a813670432eaa4b4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 6102cd544b63a624fac92b15767682e0, type: 3}
+        m_Texture: {fileID: 2800000, guid: e918e1d0cfb91d4458a83f2705acbe99, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -60,7 +60,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 0.816
+    - _GlossMapScale: 0.8
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
@@ -74,4 +74,4 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 2.297397, g: 2.297397, b: 2.297397, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

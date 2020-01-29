@@ -11,14 +11,53 @@ public class ScoringSystem : MonoBehaviour
     public Text countdownAnzeige;
 
     public float maxTimeToComplete = 180;
+
+    public SpawnFlyingObjects spawnFlyingObjects;
+
+    Game_Manager gameManager = Game_Manager.Instance;
+
     float remainingTime;
+
+    bool scoreLocked;
+
+    public Material[] sensorMaterials;
+
+    public GameObject restartTarget;
+    public GameObject quitTarget;
 
     private void Start()
     {
         UpdateScoreAnzeige();
         remainingTime = maxTimeToComplete;
-        //InvokeRepeating("Countdown",0f, 0.01f);
+        
+        scoreLocked = true;
+        restartTarget.SetActive(false);
+        quitTarget.SetActive(false);
+
+        gameManager.SetAllMaterials(sensorMaterials);
+
+        
+        float minutes = Mathf.Floor(remainingTime / 60);
+        float seconds = Mathf.RoundToInt(remainingTime % 60);
+        string minText = minutes.ToString();
+        string secText = Mathf.RoundToInt(seconds).ToString();
+
+        if (minutes < 10)
+        {
+            minText = "0" + minutes.ToString();
+        }
+        if (seconds < 10)
+        {
+            secText = "0" + Mathf.RoundToInt(seconds).ToString();
+        }
+    }
+
+    public void startGame()
+    {
+        scoreLocked = false;
         StartCoroutine(Countdown());
+        //spawnFlyingObjects.SpawnObjects();
+        StartCoroutine(spawnFlyingObjects.DisableEnableObjects(true, 0f));
     }
 
     void UpdateScoreAnzeige()
@@ -28,14 +67,20 @@ public class ScoringSystem : MonoBehaviour
 
     public void AddLocalScore(int points)
     {
-        localScore += points;
-        UpdateScoreAnzeige();
+        if (!scoreLocked)
+        {
+            localScore += points;
+            UpdateScoreAnzeige();
+        }
     }
 
     public void SubtractLocalScore(int points)
     {
-        localScore -= points;
-        UpdateScoreAnzeige();
+        if (!scoreLocked)
+        {
+            localScore -= points;
+            UpdateScoreAnzeige();
+        }
     }
 
     public int GetLocalScore()
@@ -66,7 +111,13 @@ public class ScoringSystem : MonoBehaviour
             countdownAnzeige.text = minText + ":" + secText;
             yield return new WaitForEndOfFrame();
         }
-            
+        countdownAnzeige.text = "00:00";
+        scoreLocked = true;
+        restartTarget.SetActive(true);
+        quitTarget.SetActive(true);
+        gameManager.AddPlayerScore(localScore);
+        spawnFlyingObjects.DestroyAllSpawness();
+
     }
 
 

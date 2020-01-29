@@ -65,87 +65,91 @@ public class EnemyHit : MonoBehaviour
     }
 
 
-    public void Hit()
+    public void Hit(bool useScoring)
     {
         ParticleSystem ps = Instantiate(particleSystem, gameObject.transform.position, gameObject.transform.rotation).GetComponent<ParticleSystem>();
         var psMain = ps.main;
         if (relation == Relation.Enemy)
         {
             psMain.startColor = new Color(0.5f,0,0,1);
-            scoringSystem.SubtractLocalScore((sbyte)scoreValue);
-
-            GameObject scoreText = null;
-
-            switch(scoreValue)
+            if (useScoring)
             {
-                case ScoreValue._10:
-                    //Spawn Text 10_Cube
-                    scoreText = Instantiate(score10Text, gameObject.transform.position, gameObject.transform.rotation);
-                    break;
-                case ScoreValue._25:
-                    //Spawn Text 25_Cube
-                    scoreText = Instantiate(score25Text, gameObject.transform.position, gameObject.transform.rotation);
-                    break;
-                case ScoreValue._50:
-                    //Spawn Text 50_Cube
-                    scoreText = Instantiate(score50Text, gameObject.transform.position, gameObject.transform.rotation);
-                    break;
-            }
+                scoringSystem.SubtractLocalScore((sbyte)scoreValue);
 
-            GameObject vorzeichen = Instantiate(scoreMinusText, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+                GameObject scoreText = null;
 
-            vorzeichen.transform.parent = scoreText.transform;
-
-            //Vector3 dir = scoreText.transform.position - activeCameraRig.transform.position;
-            scoreText.transform.LookAt(activeCameraRig.transform);
-
-            Transform[] children = scoreText.GetComponentsInChildren<Transform>();
-            foreach (Transform child in children)
-            {
-                if (child.GetComponent<MeshRenderer>() != null)
+                switch (scoreValue)
                 {
-                    child.GetComponent<MeshRenderer>().material = scoreMatRot;
+                    case ScoreValue._10:
+                        //Spawn Text 10_Cube
+                        scoreText = Instantiate(score10Text, gameObject.transform.position, gameObject.transform.rotation);
+                        break;
+                    case ScoreValue._25:
+                        //Spawn Text 25_Cube
+                        scoreText = Instantiate(score25Text, gameObject.transform.position, gameObject.transform.rotation);
+                        break;
+                    case ScoreValue._50:
+                        //Spawn Text 50_Cube
+                        scoreText = Instantiate(score50Text, gameObject.transform.position, gameObject.transform.rotation);
+                        break;
                 }
-    
-            }
-            
 
-            //for (int i = 0; i < scoreText.transform.childCount; i++)
-            //{
-            //    if (scoreText.transform.GetChild(i).GetComponent<MeshRenderer>() != null)
-            //    {
-            //        scoreText.transform.GetChild(i).GetComponent<MeshRenderer>().material = scoreMatRot;
-            //    }
-            //}
-       
+                GameObject vorzeichen = Instantiate(scoreMinusText, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+
+                vorzeichen.transform.parent = scoreText.transform;
+
+                //Vector3 dir = scoreText.transform.position - activeCameraRig.transform.position;
+                scoreText.transform.LookAt(activeCameraRig.transform);
+
+                Transform[] children = scoreText.GetComponentsInChildren<Transform>();
+                foreach (Transform child in children)
+                {
+                    if (child.GetComponent<MeshRenderer>() != null)
+                    {
+                        child.GetComponent<MeshRenderer>().material = scoreMatRot;
+                    }
+
+                }
+
+
+                //for (int i = 0; i < scoreText.transform.childCount; i++)
+                //{
+                //    if (scoreText.transform.GetChild(i).GetComponent<MeshRenderer>() != null)
+                //    {
+                //        scoreText.transform.GetChild(i).GetComponent<MeshRenderer>().material = scoreMatRot;
+                //    }
+                //}
+            }
         }
         else
         {
-            scoringSystem.AddLocalScore((sbyte)scoreValue);
-            GameObject scoreText = null;
-
-            switch (scoreValue)
+            if (useScoring)
             {
-                case ScoreValue._10:
-                    //Spawn Text 10_Cube
-                    scoreText = Instantiate(score10Text, gameObject.transform.position, gameObject.transform.rotation);
-                    break;
-                case ScoreValue._25:
-                    //Spawn Text 25_Cube
-                    scoreText = Instantiate(score25Text, gameObject.transform.position, gameObject.transform.rotation);
-                    break;
-                case ScoreValue._50:
-                    //Spawn Text 50_Cube
-                    scoreText = Instantiate(score50Text, gameObject.transform.position, gameObject.transform.rotation);
-                    break;
+                scoringSystem.AddLocalScore((sbyte)scoreValue);
+                GameObject scoreText = null;
+
+                switch (scoreValue)
+                {
+                    case ScoreValue._10:
+                        //Spawn Text 10_Cube
+                        scoreText = Instantiate(score10Text, gameObject.transform.position, gameObject.transform.rotation);
+                        break;
+                    case ScoreValue._25:
+                        //Spawn Text 25_Cube
+                        scoreText = Instantiate(score25Text, gameObject.transform.position, gameObject.transform.rotation);
+                        break;
+                    case ScoreValue._50:
+                        //Spawn Text 50_Cube
+                        scoreText = Instantiate(score50Text, gameObject.transform.position, gameObject.transform.rotation);
+                        break;
+                }
+
+                GameObject vorzeichen = Instantiate(scorePlusText, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+
+                vorzeichen.transform.parent = scoreText.transform;
+
+                scoreText.transform.LookAt(activeCameraRig.transform);
             }
-
-            GameObject vorzeichen = Instantiate(scorePlusText, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
-
-            vorzeichen.transform.parent = scoreText.transform;
-
-            scoreText.transform.LookAt(activeCameraRig.transform);
-
         }
 
         Destroy(gameObject);

@@ -43,6 +43,9 @@ public class BucketList : MonoBehaviour
     // Controller 
     protected Game_Manager controller = Game_Manager.Instance;
 
+    //Score
+    public int score = 10;
+
     public void Start()
     {
         //Objekte die im Eimer erkannt werden sollen einem Array zuweisen (in diesem Fall ALLE GameObjekte die aktiv in der Szene sind zur Demonstration).
@@ -104,7 +107,7 @@ public class BucketList : MonoBehaviour
             gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
             controller.AddToBucketList(gameObj);
             controller.ResetMaterial(gameObj);
-            controller.AddPlayerScore();
+            controller.AddPlayerScore(score);
             SetDefaultUIText(gameObj);
         }
         else if (!bucketListContent.Contains(gameObj.tag) && !gameObj.transform.root.CompareTag("Player"))
@@ -117,7 +120,7 @@ public class BucketList : MonoBehaviour
             if (!coroutineCalled)
             {
                 StartCoroutine("FlashColor");
-                controller.ReducePlayerScore();
+                controller.ReducePlayerScore(score);
             }
             else if (coroutineCalled)
             {

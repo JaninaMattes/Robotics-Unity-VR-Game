@@ -5,8 +5,13 @@ using UnityEngine;
 public class SpawnFlyingObjects : MonoBehaviour
 {
     public GameObject[] spawnees;
+    public GameObject[] spawnedObjectsArray;
 
     int randomInt;
+
+    Game_Manager gameManager = Game_Manager.Instance;
+
+    public List<string> excludeObj;
 
     public int maxobjectNumber = 60;
     public int spawnedObjects;
@@ -22,20 +27,45 @@ public class SpawnFlyingObjects : MonoBehaviour
 
     public Vector3 SpawnPosition;
 
+    public Renderer[] spawnRenderer;
+
+    public Renderer[] getRendererArray;
+
 
     // Start is called before the first frame update
     void Awake()
     {
-    
-    //spawnedObjects = 0;
-    RandomSpawn();
+        SpawnObjects();
+    }
+    void Start()
+    {
+        StartCoroutine(DisableEnableObjects(false, 0.05f));
+    }
+
+    public IEnumerator DisableEnableObjects(bool active, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        foreach (GameObject spawnedObject in spawnedObjectsArray)
+        {
+            spawnedObject.SetActive(active);
+        }
+    }
+
+    public void SpawnObjects()
+    {
+        spawnedObjectsArray = new GameObject[maxobjectNumber];
+        //spawnedObjects = 0;
+        RandomSpawn();
     }
 
   
 
     void RandomSpawn()
     {
-        
+        Debug.Log("RandomSpawn");
+        spawnRenderer = new Renderer[maxobjectNumber];
+   
+
         for (spawnedObjects = 0; spawnedObjects < maxobjectNumber; spawnedObjects++) {
 
             SpawnPosition.x = Random.Range(minPositionX, maxPositionX);
@@ -43,8 +73,23 @@ public class SpawnFlyingObjects : MonoBehaviour
             SpawnPosition.z = Random.Range(minPositionZ, maxPositionZ);
 
             randomInt = Random.Range(0,spawnees.Length);
-            Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
+            spawnedObjectsArray[spawnedObjects]  =  Instantiate(spawnees[randomInt], SpawnPosition, Quaternion.identity);
+            spawnRenderer[spawnedObjects] = spawnedObjectsArray[spawnedObjects].GetComponent<Renderer>();
+        }
 
+        
+    }
+
+
+
+    public void DestroyAllSpawness()
+    {
+        foreach (GameObject spawnee in spawnedObjectsArray)
+        {
+            if (spawnee != null)
+            {
+                spawnee.GetComponent<EnemyHit>().Hit(false);
+            }
         }
     }
 }

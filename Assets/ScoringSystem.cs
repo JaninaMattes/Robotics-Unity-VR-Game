@@ -50,6 +50,7 @@ public class ScoringSystem : MonoBehaviour
         {
             secText = "0" + Mathf.RoundToInt(seconds).ToString();
         }
+        countdownAnzeige.text = minText + ":" + secText;
     }
 
     public void startGame()

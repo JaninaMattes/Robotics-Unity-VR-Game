@@ -69,9 +69,12 @@ public class EnemyHit : MonoBehaviour
     {
         ParticleSystem ps = Instantiate(particleSystem, gameObject.transform.position, gameObject.transform.rotation).GetComponent<ParticleSystem>();
         var psMain = ps.main;
+        var psRenderer = ps.gameObject.GetComponent<ParticleSystemRenderer>();
         if (relation == Relation.Enemy)
         {
             psMain.startColor = new Color(0.5f,0,0,1);
+            psRenderer.mesh = Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
+
             if (useScoring)
             {
                 scoringSystem.SubtractLocalScore((sbyte)scoreValue);
@@ -123,6 +126,8 @@ public class EnemyHit : MonoBehaviour
         }
         else
         {
+            
+
             if (useScoring)
             {
                 scoringSystem.AddLocalScore((sbyte)scoreValue);

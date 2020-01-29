@@ -101,9 +101,9 @@ void FixedUpdate()
 
     void FlyingCircle()
     {
-        flag_circle = true; //Jakob
-        flag_sin_hor = false; //Jakob
-        flag_sin_vert = false; //Jakob
+        flag_circle = true;
+        flag_sin_hor = false;
+        flag_sin_vert = false;
         
         TimeCounter += Time.deltaTime * speed * 2;
         tempPosition.x = Mathf.Sin(TimeCounter) * height;
@@ -121,9 +121,9 @@ void FixedUpdate()
     {
         TimeCounter += Time.deltaTime * speed;
 
-        flag_circle = false; //Jakob
-        flag_sin_hor = true; //Jakob
-        flag_sin_vert = false; //Jakob
+        flag_circle = false;
+        flag_sin_hor = true;
+        flag_sin_vert = false;
 
         tempPosition.z = Mathf.Sin(TimeCounter * waveheight) * amplitude;
         tempPosition.z = tempPosition.z + startPosition_fixed.z;
@@ -143,9 +143,9 @@ void FixedUpdate()
 
     void WaveVerticalZ()
     {
-        flag_circle = false; //Jakob
-        flag_sin_hor = false; //Jakob
-        flag_sin_vert = true; //Jakob
+        flag_circle = false;
+        flag_sin_hor = false;
+        flag_sin_vert = true; 
 
 
         TimeCounter += Time.deltaTime * speed; 

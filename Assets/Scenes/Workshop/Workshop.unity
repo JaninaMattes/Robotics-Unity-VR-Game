@@ -2524,7 +2524,6 @@ GameObject:
   - component: {fileID: 148814033}
   - component: {fileID: 148814032}
   - component: {fileID: 148814034}
-  - component: {fileID: 148814035}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2600,22 +2599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f30f2c7b329e4c45854aa5ad1ed900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveheight: 0.01
-  speed: 1
-  cameras: []
---- !u!114 &148814035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148814030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe5040c2eaa9ff147b80ded004191c67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToFollow: {fileID: 1733128473}
+  gameObjectToFollow: {fileID: 0}
   gameObjectToChange: {fileID: 0}
   followsPosition: 0
   smoothsPosition: 0
@@ -2627,6 +2611,8 @@ MonoBehaviour:
   smoothsScale: 0
   maxAllowedPerFrameSizeDifference: 0.003
   _moment: 3
+  waveheight: 0.01
+  speed: 1
 --- !u!1001 &162912677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4304,6 +4290,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4824473283168754779, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: setups.Array.data[0]
+      value: 
+      objectReference: {fileID: 581597759}
+    - target: {fileID: 4824473283168754779, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: setups.Array.data[1]
+      value: 
+      objectReference: {fileID: 804270752}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
 --- !u!21 &328159836
@@ -7034,6 +7030,18 @@ RectTransform:
   m_AnchoredPosition: {x: 473.5, y: 377.5}
   m_SizeDelta: {x: 947, y: 755}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &581597759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2066543000, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 326521767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &590181067
 Material:
   serializedVersion: 6
@@ -9576,6 +9584,18 @@ Material:
     m_Colors:
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 27.857613, g: 24.22014, b: 18.52794, a: 0}
+--- !u!114 &804270752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4824473283354272847, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 326521767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &806623451
 Material:
   serializedVersion: 6
@@ -21535,12 +21555,6 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!1 &1733128473 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4824473282201687752, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
-    type: 3}
-  m_PrefabInstance: {fileID: 326521767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!21 &1733202060
 Material:
   serializedVersion: 6

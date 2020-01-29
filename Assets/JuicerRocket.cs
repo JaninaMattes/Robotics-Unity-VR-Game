@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class JuicerRocket : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class JuicerRocket : MonoBehaviour
     ParticleSystem sparkParticles;
     ParticleSystem smokeParticles;
 
+    VRTK_InteractableObject interactableRocket;
+
+    public AudioSource zuendschnur;
+    public AudioSource raketenstart;
 
     public float force = 10f;
     //public float noiseStrength = 1;
@@ -21,6 +26,8 @@ public class JuicerRocket : MonoBehaviour
     public float duration = 4;
     public float timeUntilExplosion = 1f;
 
+
+
     bool engaged;
 
    
@@ -28,6 +35,8 @@ public class JuicerRocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        interactableRocket = GetComponent<VRTK_InteractableObject>();
+
         smokeParticles = funkenParticleSystem.transform.GetChild(0).GetComponent<ParticleSystem>();
         sparkParticles = funkenParticleSystem.transform.GetChild(1).GetComponent<ParticleSystem>();
 
@@ -36,10 +45,37 @@ public class JuicerRocket : MonoBehaviour
         rb.centerOfMass.Set(0, 0.23f, 0);
 
         funkenParticleSystem.gameObject.SetActive(false);
+    }
 
+    private void OnEnable()
+    {
+        interactableRocket = (interactableRocket == null ? GetComponent<VRTK_InteractableObject>() : interactableRocket);
+        if (interactableRocket != null)
+        {
+            interactableRocket.InteractableObjectUsed += InteractableRocket_InteractableObjectUsed;
+            interactableRocket.InteractableObjectUnused += InteractableRocket_InteractableObjectUnused;
+        }
 
+    }
 
+    private void OnDisable()
+    {
+        interactableRocket = (interactableRocket == null ? GetComponent<VRTK_InteractableObject>() : interactableRocket);
+        if (interactableRocket != null)
+        {
+            interactableRocket.InteractableObjectUsed -= InteractableRocket_InteractableObjectUsed;
+            interactableRocket.InteractableObjectUnused -= InteractableRocket_InteractableObjectUnused;
+        }
+    }
 
+    private void InteractableRocket_InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
+    {
+
+    }
+
+    private void InteractableRocket_InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+    {
+        Ignite();
     }
 
     public void Ignite()
@@ -47,6 +83,7 @@ public class JuicerRocket : MonoBehaviour
         if (!engaged)
         {
             funkenParticleSystem.gameObject.SetActive(true);
+            zuendschnur.Play();
             Invoke("EngageRocket", startTimer);
             Invoke("DisengageRocket", startTimer + duration);
         }
@@ -84,6 +121,7 @@ public class JuicerRocket : MonoBehaviour
 
     void EngageRocket()
     {
+        raketenstart.Play();
         var sparkMain = sparkParticles.main;
         var sparkEmission = sparkParticles.emission;
 

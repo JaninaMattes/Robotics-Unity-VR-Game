@@ -49,7 +49,7 @@ public class ToggleLevel : MonoBehaviour
     {
 
         SetRendererList(this.controller);
-        CheckSnapUpdateMaterial();
+        //CheckSnapUpdateMaterial();
         foreach (GameObject objectToKeep in objectsToKeep)
         {
             DontDestroyOnLoad(objectToKeep);

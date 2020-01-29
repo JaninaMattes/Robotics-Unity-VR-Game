@@ -70,23 +70,26 @@ public class BucketList : MonoBehaviour
 
         foreach (GameObject gameObj in allGameObjects)
         {
-            Vector3 position = gameObj.transform.position;
+            if(gameObj != null){
+                Vector3 position = gameObj.transform.position;
 
-            if (bucketCollider.bounds.Contains(position))
-            {
-                if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
+                if (bucketCollider.bounds.Contains(position))
                 {
-                    CheckGameObject(gameObj);
+                    if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
+                    {
+                        CheckGameObject(gameObj);
+                    }
                 }
-            }
 
-            else
-            {
-                if (controller.GetBucketObjects().Contains(gameObj))
+                else
                 {
-                    controller.Remove(gameObj);
+                    if (controller.GetBucketObjects().Contains(gameObj))
+                    {
+                        controller.Remove(gameObj);
+                    }
                 }
-            }
+            }           
+            
         }
     }
 

@@ -269,15 +269,10 @@ public class Game_Manager
         return this._reflectionProbes;
     }
 
-    public void ToggleProbes(bool isOn)
-    {
-        foreach (ReflectionProbe probe in _reflectionProbes)
-        {
-            if (probe.tag == "Controller")
-            {
-                var cullMask = probe.cullingMask;
-                probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible
-            }
+    public void ToggleProbes(bool isOn){
+        foreach(ReflectionProbe probe in _reflectionProbes){
+                var cullMask =  probe.cullingMask;
+                probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible      
         }
     }
 
@@ -532,6 +527,9 @@ public class Game_Manager
             case 3:
                 _lightGameObjects[0].SetActive(active);
                 _lightGameObjects[1].SetActive(active);
+                _lightGameObjects[2].SetActive(active);
+                _lightGameObjects[3].SetActive(active);
+                _lightGameObjects[4].SetActive(active);
                 break;
             default:
                 break;

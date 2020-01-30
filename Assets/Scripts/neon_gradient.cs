@@ -7,6 +7,7 @@ public class neon_gradient : MonoBehaviour
 
     public float phaseOffset = 0.1f;
     public float phaseLength = 1f;
+    MeshRenderer meshRenderer;
     public Material[] materials;
 
     [ColorUsage(false,true)]
@@ -16,6 +17,7 @@ public class neon_gradient : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         //stdCol = materials[0].GetColor("_EmissionColor");
         //Debug.Log(stdCol);
     }
@@ -37,6 +39,6 @@ public class neon_gradient : MonoBehaviour
             Color newCol = stdCol * sinVal;
             materials[i].SetColor("_EmissionColor", newCol);
         }
-       // Debug.Log((Mathf.Sin((Time.time * phaseLength) + phaseOffset)+1)/2);
+       Debug.Log((Mathf.Sin((Time.time * phaseLength) + phaseOffset)+1)/2);
     }
 }

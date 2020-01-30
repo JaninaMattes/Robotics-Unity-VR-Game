@@ -109,14 +109,14 @@ public class ToggleLevel : MonoBehaviour
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
-        // if (scene.buildIndex != 0 && scene.buildIndex != 1)
-        //{
+         if (scene.buildIndex != 0 && scene.buildIndex != 1)
+        {
         Destroy(this.headsetObj);
             SetRendererList(this.controller);
             controller.FindProbes();
             CheckSnapUpdateMaterial();
             ExchangeFloorTag();
-       // }
+        }
 
      
     }
@@ -133,8 +133,10 @@ public class ToggleLevel : MonoBehaviour
 
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
     {
-      
-        LoadLevel(this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
+        if (this.headSet.IsGrabbed())
+        {
+            LoadLevel(this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
+        }
     }
 
     protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)

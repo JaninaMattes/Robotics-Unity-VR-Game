@@ -22,7 +22,7 @@ public class ToggleLevel : MonoBehaviour
     [Header("VR Headset")]
     public VRTK_InteractableObject headSet;
     public GameObject headsetObj;
-    private GameObject[] headsetsInScene;
+    private GameObject[] gunsInScene;
 
     [Header("Level Fade Transition")]
     public VRTK_HeadsetFade fadeHeadset;
@@ -78,7 +78,7 @@ public class ToggleLevel : MonoBehaviour
 
     void Update()
     {
-       
+        CheckGunsInScene();
     }
 
     public void OnEnable()
@@ -244,13 +244,13 @@ public class ToggleLevel : MonoBehaviour
        this.fadeHeadset.Unfade(fadeOutDuration);
     }
 
-    private void CheckHeadsetsInScene()
+    private void CheckGunsInScene()
     {
-        this.headsetsInScene = GameObject.FindGameObjectsWithTag("Headset");
+        this.gunsInScene = GameObject.FindGameObjectsWithTag("Scanner");
 
-        if (this.headsetsInScene.Length > 1)
+        if (this.gunsInScene.Length > 1)
         {
-            Destroy(this.headsetsInScene[1]);
+            Destroy(this.gunsInScene[1]);
         }
     }
 

@@ -16,6 +16,8 @@ public class ScoringSystem : MonoBehaviour
 
     Game_Manager gameManager = Game_Manager.Instance;
 
+    public AudioSource gamePlaySound;
+
     float remainingTime;
 
     bool scoreLocked;
@@ -55,6 +57,7 @@ public class ScoringSystem : MonoBehaviour
 
     public void startGame()
     {
+        gamePlaySound.Play();
         scoreLocked = false;
         StartCoroutine(Countdown());
         //spawnFlyingObjects.SpawnObjects();
@@ -118,7 +121,7 @@ public class ScoringSystem : MonoBehaviour
         quitTarget.SetActive(true);
         gameManager.AddPlayerScore(localScore);
         spawnFlyingObjects.DestroyAllSpawness();
-
+        gamePlaySound.Stop();
     }
 
 

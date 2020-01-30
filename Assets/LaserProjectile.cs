@@ -41,7 +41,7 @@ public class LaserProjectile : MonoBehaviour
                 other.GetComponent<StartGameOnHit>().StartGameAndScore();
             }
             Hit();
-            //Debug.Log("Hit Object: " + other.name + " with Tag: "+ other.tag);
+            Debug.Log("Hit Object: " + other.name + " with Tag: "+ other.tag);
         }
     }
 

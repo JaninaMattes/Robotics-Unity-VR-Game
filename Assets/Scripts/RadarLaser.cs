@@ -13,6 +13,8 @@ using VRTK;
         public float radarLifeTime;
         public LaserController laserController;
         private List<Vector4> sonarOrigins = new List<Vector4>();
+        public Color radarLineRenderer;
+        public Color radarLineRendererEnd;
 
     Game_Manager _controller = Game_Manager.Instance;
 
@@ -37,6 +39,8 @@ using VRTK;
         {
         if (laserPistol.IsGrabbed() && _controller.GetSnappedPatrone() == "RadarSensor")
         {
+            lineRenderer.startColor = radarLineRenderer;
+            lineRenderer.endColor = radarLineRendererEnd;
             lineRenderer.enabled = true;
             StartCoroutine(WaitSonarShot());
             lineRenderer.SetPosition(0, transform.position);

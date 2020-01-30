@@ -14,6 +14,8 @@ using VRTK;
         public LaserController controller;
         private List<Vector4> sonarOrigins = new List<Vector4>();
         Game_Manager _controller = Game_Manager.Instance;
+    public Color sonarLineRenderer;
+    public Color sonarLineRendererEnd;
 
 
     protected virtual void OnEnable()
@@ -35,6 +37,8 @@ using VRTK;
         {
         if (laserPistol.IsGrabbed() && _controller.GetSnappedPatrone() == "SonarSensor_2")
         {
+            lineRenderer.startColor = sonarLineRenderer;
+            lineRenderer.endColor = sonarLineRendererEnd;
             lineRenderer.enabled = true;
             StartCoroutine(WaitSonarShot());
             lineRenderer.SetPosition(0, transform.position);

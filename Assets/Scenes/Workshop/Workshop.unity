@@ -1834,6 +1834,18 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &110902183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4824473283354272847, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 326521767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &113650032
 Material:
   serializedVersion: 6
@@ -4223,7 +4235,34 @@ PrefabInstance:
       propertyPath: snapZonePatrone
       value: 
       objectReference: {fileID: 1602649546}
-    m_RemovedComponents: []
+    - target: {fileID: 4824473283168754779, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: setups.Array.data[0]
+      value: 
+      objectReference: {fileID: 1817784145}
+    - target: {fileID: 4824473283168754779, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: setups.Array.data[1]
+      value: 
+      objectReference: {fileID: 110902183}
+    - target: {fileID: 2146373094, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: targetListPolicy
+      value: 
+      objectReference: {fileID: 1792439816}
+    - target: {fileID: 2146373096, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: targetListPolicy
+      value: 
+      objectReference: {fileID: 1792439816}
+    - target: {fileID: 2146373096, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: headsetCollision
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146373096, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: headsetFade
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5701142300940445332, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
 --- !u!21 &328159836
 Material:
@@ -16838,6 +16877,76 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scanner_Gun_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769055, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: radarLineRenderer.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769055, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: radarLineRenderer.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769055, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: radarLineRendererEnd.r
+      value: 0.7591996
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769055, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: radarLineRendererEnd.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769055, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: radarLineRendererEnd.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769055, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: radarLineRendererEnd.a
+      value: 0.5647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRenderer.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRenderer.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRenderer.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRenderer.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRendererEnd.a
+      value: 0.6627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRendererEnd.r
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRendererEnd.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769042, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: sonarLineRendererEnd.b
+      value: 0.01969888
+      objectReference: {fileID: 0}
     - target: {fileID: 8359821579366270918, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16898,6 +17007,11 @@ PrefabInstance:
       propertyPath: defaultSnappedInteractableObject
       value: 
       objectReference: {fileID: 724084938}
+    - target: {fileID: 6126371565296769052, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
 --- !u!21 &1413879601
@@ -23578,6 +23692,18 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1792439816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 860467941, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 326521767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed2aa1a29b92ca4f84a26a5f6e9218b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1802343438
 Material:
   serializedVersion: 6
@@ -23926,6 +24052,18 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &1817784145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2066543000, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 326521767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1818966880
 Material:
   serializedVersion: 6

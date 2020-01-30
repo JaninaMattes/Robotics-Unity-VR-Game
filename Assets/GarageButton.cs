@@ -11,6 +11,7 @@ public class GarageButton : MonoBehaviour
         public float speed;
         Vector3 StartpositionTor;
         public Vector3 EndpositionTor;
+    AudioSource ButtonSound;
 
 
 
@@ -25,6 +26,7 @@ public class GarageButton : MonoBehaviour
     {
         StartpositionTor = Garagentor.transform.position;
         Invoke("EndlichZuhause", 3f);
+        ButtonSound= GetComponent<AudioSource>();
     }
 
     private void EndlichZuhause()
@@ -66,9 +68,10 @@ public class GarageButton : MonoBehaviour
         iTween.MoveTo(Garagentor, iTween.Hash("position", StartpositionTor + EndpositionTor, "speed", speed, "easetype", iTween.EaseType.easeOutBounce));
 
         TorButtonIcon.SetActive(false);
+        ButtonSound.Play();
 
 
-        voiceOverFolder.PlayAudioClipDelayed("ich_seh_nichts", 2f);
+        voiceOverFolder.PlayAudioClipDelayed("ich_mach_erstmal_das_licht_wieder_an", 2f);
         FuseBoxDeckelIcon.SetActive(true);
     }
 

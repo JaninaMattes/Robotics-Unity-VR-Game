@@ -10,16 +10,15 @@ public class FuseboxDeckel : MonoBehaviour
     public GameObject FuseBoxDeckelIcon;
     public GameObject FuseBoxHebelIcon;
     public GameObject FuseSicherungIcon;
+    public GameObject FuseSicherungSnap;
     public GameObject IconRadio;
 
 
     //--------Audio---------
     float Audiolength;
     public VoiceOverFolder voiceOverFolder;
-    //public VRTK_BaseControllable ; 
-    //public VRTK_BaseControllable;
 
-
+    bool wurdeBewegt;
 
     void Start()
     {
@@ -40,13 +39,12 @@ public class FuseboxDeckel : MonoBehaviour
 
     private void Rotator_ValueChanged(object sender, ControllableEventArgs e)
     {
-        //throw new System.NotImplementedException();
-
         FuseBoxDeckelIcon.SetActive(false);
-        FuseBoxHebelIcon.SetActive(true);
-
-
-        Debug.Log("ValueChanged");
+        if (!wurdeBewegt)
+        {
+            FuseBoxHebelIcon.SetActive(true);
+            wurdeBewegt = true;
+        }
     }
 
 

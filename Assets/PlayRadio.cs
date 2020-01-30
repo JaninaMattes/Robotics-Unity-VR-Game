@@ -15,6 +15,9 @@ public class PlayRadio : MonoBehaviour
     float Audiolength;
     public FuseboxDeckel fuseboxdeckel;
 
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,9 +91,9 @@ public class PlayRadio : MonoBehaviour
 
     private void AudioWinner()
     {
-        voiceOverFolder.PlayAudioClipDelayed("holetitel_trainieren_lidar", 4f);
+        voiceOverFolder.PlayAudioClipDelayed("holetitel_trainieren_lidar", 21f);
         Audiolength = voiceOverFolder.currentClip.length;
-        Invoke("IconSensor", Audiolength - 4f);
+        Invoke("IconSensor", 25f);
     }
 
     private void IconHeadset()

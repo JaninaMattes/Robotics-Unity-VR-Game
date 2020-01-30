@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using VRTK;
 
 public class Fusebox : MonoBehaviour
@@ -16,19 +17,27 @@ public class Fusebox : MonoBehaviour
     public GameObject Lever;
 
     public AudioSource SoundEffekt;
+    public AudioSource SoundEffektHebel;
+    //AudioSource Hebelsound;
     public FuseboxDeckel fuseboxdeckel;
     public VoiceOverFolder voiceOverFolder;
     float Audiolength;
 
     public VRTK_InteractableObject Sicherung;
-    public Renderer[] lightMaterials;
+    public Renderer[] lightRenderers;
     Color32[] emissionCol;
+    public GameObject[] lights;
+
+    public PostProcessVolume ppVolumeDark;
+
+    bool wurdeGespielt = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        DisableEmission();       
+        DisableEmission();  
+        //Hebelsound = GetComponent<AudioSource>();
     }
 
 
@@ -52,20 +61,28 @@ public class Fusebox : MonoBehaviour
             if (fuseStatus)
             {
                 circuitClosed = true;
+                SoundEffektHebel.Play();
+                fuseboxdeckel.FuseSicherungSnap.SetActive(false);
                 EnableEmission();
-                fuseboxdeckel.FuseBoxHebelIcon.SetActive(false);
+                Hebelicon();
                 voiceOverFolder.PlayAudioClipDelayed("es_ist_so_ruhig_hier", 6f);
                 Radioicon();
 
             }
             else
             {
+                SoundEffektHebel.Play();
                 DisableEmission();
                 SoundEffekt.Play();
                 Instantiate(Funken, funkenLocation.transform.position, funkenLocation.transform.rotation);
-                fuseboxdeckel.FuseBoxHebelIcon.SetActive(false);
-                //playHuch = true;
-                voiceOverFolder.PlayAudioClipDelayed("huch_sicherungkaputt_regal", 0.1f);
+                Hebelicon();
+
+                if (!wurdeGespielt)
+                {
+                    voiceOverFolder.PlayAudioClipDelayed("huch_sicherungkaputt_regal", 0.1f);
+                    wurdeGespielt = true;
+                }
+
                 Audiolength = voiceOverFolder.currentClip.length;
                 Invoke("Sicherungsicon",Audiolength);
 
@@ -76,6 +93,11 @@ public class Fusebox : MonoBehaviour
     private void Sicherungsicon()
     {
         fuseboxdeckel.FuseSicherungIcon.SetActive(true);
+    }
+
+    private void Hebelicon()
+    {
+        fuseboxdeckel.FuseBoxHebelIcon.SetActive(false);
     }
 
 
@@ -113,22 +135,56 @@ public class Fusebox : MonoBehaviour
     private void Sicherung_InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
     {
         fuseboxdeckel.FuseSicherungIcon.SetActive(false);
+        fuseboxdeckel.FuseSicherungSnap.SetActive(true);
     }
 
     void EnableEmission()
     {
-        for (int i = 0; i < lightMaterials.Length; i++)
+        
+        ppVolumeDark.weight = 0;
+        for (int i = 0; i < lightRenderers.Length; i++)
         {
-            lightMaterials[i].material.EnableKeyword("_EMISSION");
+            //for (int n = 0; n < lightRenderers[i].materials.Length; n++)
+            //{
+            //    lightRenderers[i].materials[n].EnableKeyword("_EMISSION");
+            //}
+            Material[] mats = lightRenderers[i].materials;
+            foreach (Material mat in mats)
+            {
+                Debug.Log("MatName: " + mat.name);
+                mat.EnableKeyword("_EMISSION");
+            }
+        }
+        for (int l = 0; l < lights.Length; l++)
+        {
+            lights[l].SetActive(true);
+
         }
     }
 
     void DisableEmission()
     {
-        for (int i = 0; i < lightMaterials.Length; i++)
+        for (int i = 0; i < lightRenderers.Length; i++)
         {
-            lightMaterials[i].material.DisableKeyword("_EMISSION");
+            Debug.Log(lightRenderers[i].name);
+            //for (int n = 0; n < lightRenderers[i].materials.Length; n++)
+            //{
+            //    lightRenderers[i].materials[n].DisableKeyword("_EMISSION");
+            //}
+            Material[] mats = lightRenderers[i].materials;
+            foreach (Material mat in mats)
+            {
+                Debug.Log("MatName: " + mat.name);
+                mat.DisableKeyword("_EMISSION");
+            }
         }
+
+        for (int l = 0; l < lights.Length; l++)
+        {
+            lights[l].SetActive(false);
+
+        }
+
     }
 
 }

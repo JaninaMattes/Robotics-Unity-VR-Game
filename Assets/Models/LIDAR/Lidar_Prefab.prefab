@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3286169297297809508}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ParticleCollisionPlane (1)
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,9 +41,15 @@ GameObject:
   - component: {fileID: 4245973111283750114}
   - component: {fileID: 5167806576448417492}
   - component: {fileID: 1480336105255031341}
-  m_Layer: 0
+  - component: {fileID: 724084935}
+  - component: {fileID: 724084939}
+  - component: {fileID: 724084934}
+  - component: {fileID: 724084936}
+  - component: {fileID: 724084937}
+  - component: {fileID: 724084938}
+  m_Layer: 11
   m_Name: Lidar_Prefab
-  m_TagString: Untagged
+  m_TagString: LidarSensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +122,131 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &724084935
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916451551021328113}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &724084939
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916451551021328113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14023344, y: 0.22934222, z: 0.098266564}
+  m_Center: {x: -0.000000007450581, y: -0.00000004842878, z: 0.049133282}
+--- !u!114 &724084934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916451551021328113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 0
+  durationOnTouch: 0
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 0
+  durationOnGrab: 0
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
+--- !u!114 &724084936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916451551021328113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &724084937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916451551021328113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec2ac476f2fc9a45a4e69712580a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 0
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+--- !u!114 &724084938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916451551021328113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 724084937}
+  secondaryGrabActionScript: {fileID: 724084936}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
 --- !u!1 &1978845532726642839
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,9 +258,9 @@ GameObject:
   - component: {fileID: 7721795696852136513}
   - component: {fileID: 7670155573794369266}
   - component: {fileID: 780253788833349454}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4888,9 +5019,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801798244521939434}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ParticleCollisionPlane (5)
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4918,7 +5049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5541010321156760410}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane Transform 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4948,9 +5079,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3293688366742133724}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ParticleCollisionPlane (3)
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4978,9 +5109,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 982395596023661126}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ParticleCollisionPlane (2)
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5008,9 +5139,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5975505708372569586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ParticleCollisionPlane (4)
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5038,9 +5169,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 147464996283030794}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ParticleCollisionPlane
-  m_TagString: Untagged
+  m_TagString: MuniParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

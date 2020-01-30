@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class Fusebox : MonoBehaviour
 {
@@ -17,78 +18,20 @@ public class Fusebox : MonoBehaviour
     public AudioSource SoundEffekt;
     public FuseboxDeckel fuseboxdeckel;
     public VoiceOverFolder voiceOverFolder;
-    private bool audiospielt=false;
-    private bool sicherungKaputt = false;
-    private bool huch = false;
-    private bool eineImRegal = false;
-    private bool playHuch = false;
-    private bool mistDieSicherung = false;
-    private bool invoke = true;
-    private bool invoke2 = true;
-    private bool invoke3 = true;
+    float Audiolength;
+
+    public VRTK_InteractableObject Sicherung;
+    public Renderer[] lightMaterials;
+    Color32[] emissionCol;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        DisableEmission();       
     }
 
-    private void Update()
-    {
-        /*if (voiceOverFolder.voiceOver.isPlaying)
-        {
-            audiospielt = true;
-        }
-        else
-        {
-            audiospielt = false;
-        }
 
-        if (playHuch && audiospielt == false)
-        {
-            voiceOverFolder.PlayAudioClipDelayed("da_ist_der_radar_sensor", 0.2f);
-            if (invoke)
-            {
-                Invoke("SetBool", 1.5f);
-                invoke = false;
-            }
-
-        }
-
-       else  if (playHuch == false)
-        {
-            voiceOverFolder.PlayAudioClipDelayed("test1", 1f);
-            if (invoke2)
-            {
-                Invoke("SetBool1", 4f);
-                invoke2 = false;
-            }
-
-        }
-
-        if (mistDieSicherung == false)
-        {
-            voiceOverFolder.PlayAudioClipDelayed("da_war_doch_noch_eine_im_regal", 2f);
-            fuseboxdeckel.FuseSicherungIcon.SetActive(true);
-
-        }
-        */
-    }
-
-    /*private void SetBool()
-    {
-        playHuch = false;
-    }
-
-    private void SetBool1()
-    {
-        mistDieSicherung = false;
-    }
-    private void SetBool2()
-    {
-        playHuch = false;
-    }*/
 
     public void SetSicherungTrue()
     {
@@ -109,18 +52,83 @@ public class Fusebox : MonoBehaviour
             if (fuseStatus)
             {
                 circuitClosed = true;
+                EnableEmission();
+                fuseboxdeckel.FuseBoxHebelIcon.SetActive(false);
+                voiceOverFolder.PlayAudioClipDelayed("es_ist_so_ruhig_hier", 6f);
+                Radioicon();
+
             }
             else
             {
+                DisableEmission();
                 SoundEffekt.Play();
                 Instantiate(Funken, funkenLocation.transform.position, funkenLocation.transform.rotation);
                 fuseboxdeckel.FuseBoxHebelIcon.SetActive(false);
                 //playHuch = true;
+                voiceOverFolder.PlayAudioClipDelayed("huch_sicherungkaputt_regal", 0.1f);
+                Audiolength = voiceOverFolder.currentClip.length;
+                Invoke("Sicherungsicon",Audiolength);
 
-               
             }
         }
     }
 
+    private void Sicherungsicon()
+    {
+        fuseboxdeckel.FuseSicherungIcon.SetActive(true);
+    }
+
+
+    private void Radioicon()
+    {
+        fuseboxdeckel.IconRadio.SetActive(true);
+    }
+
+
+    private void OnEnable()
+    {
+        Sicherung = (Sicherung == null ? GetComponent<VRTK_InteractableObject>() : Sicherung);
+
+        if (Sicherung != null)
+        {
+            Sicherung.InteractableObjectGrabbed += Sicherung_InteractableObjectGrabbed; ;
+            Sicherung.InteractableObjectUngrabbed += Sicherung_InteractableObjectUngrabbed; ;
+        }
+    }
+
+
+    private void OnDisable()
+    {
+        if (Sicherung != null)
+        {
+            Sicherung.InteractableObjectGrabbed -= Sicherung_InteractableObjectGrabbed; ;
+            Sicherung.InteractableObjectUngrabbed -= Sicherung_InteractableObjectUngrabbed; ;
+        }
+    }
+
+    private void Sicherung_InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
+    {
+    }
+
+    private void Sicherung_InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
+    {
+        fuseboxdeckel.FuseSicherungIcon.SetActive(false);
+    }
+
+    void EnableEmission()
+    {
+        for (int i = 0; i < lightMaterials.Length; i++)
+        {
+            lightMaterials[i].material.EnableKeyword("_EMISSION");
+        }
+    }
+
+    void DisableEmission()
+    {
+        for (int i = 0; i < lightMaterials.Length; i++)
+        {
+            lightMaterials[i].material.DisableKeyword("_EMISSION");
+        }
+    }
 
 }

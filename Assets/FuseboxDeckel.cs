@@ -10,6 +10,7 @@ public class FuseboxDeckel : MonoBehaviour
     public GameObject FuseBoxDeckelIcon;
     public GameObject FuseBoxHebelIcon;
     public GameObject FuseSicherungIcon;
+    public GameObject IconRadio;
 
 
     //--------Audio---------

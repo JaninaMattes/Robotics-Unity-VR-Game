@@ -2,8 +2,8 @@
 	Properties{
 		_GridThickness("Grid Thickness", Float) = 0.1
 		_GridSpacing("Grid Spacing", Float) = 0.5
-		_GridColour("Grid Colour", Color) = (0.5, 1.0, 1.0, 1.0)
-		_BaseColour("Base Colour", Color) = (0.0, 0.0, 0.0, 0.0)
+		_GridColour("Grid Colour", Color) = (0.0, 0.0, 0.0, 1.0)
+		_BaseColour("Base Colour", Color) = (0.0, 0.0, 0.0, 1.0)
 		_Radius("Sphere Radius", Range(1, 10)) = 0.0
 		_Position("Player Position", Vector) = (0, 0, 0, 0)
 	}

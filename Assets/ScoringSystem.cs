@@ -34,7 +34,7 @@ public class ScoringSystem : MonoBehaviour
         restartTarget.SetActive(false);
         quitTarget.SetActive(false);
 
-        gameManager.SetAllMaterials(sensorMaterials);
+        //gameManager.SetAllMaterials(sensorMaterials);
 
         
         float minutes = Mathf.Floor(remainingTime / 60);

@@ -29,7 +29,7 @@ public class ChangeMaterials : MonoBehaviour
     public GameObject spawn;
 
     // Private Properties
-    protected Material[] materials = new Material[4];
+    protected Material[] materials = new Material[5];
     //protected GameObject[] currentGameObjects;
     protected Scene cur_Scene;
     // Toggle light in the rooms per material
@@ -70,13 +70,20 @@ public class ChangeMaterials : MonoBehaviour
         materials[0] = sonar_1_Material;
         materials[1] = sonar_2_Material;
         materials[2] = radar_1_Material;
-        materials[3] = black_Material;
+        materials[3] = lidar_1_Material;
+        materials[4] = black_Material;
         controller.SetAllMaterials(materials);
+
     }
 
     public void Update()
     {
         GetScene();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+           
+        }
     }
 
     public void ResetMaterial(GameObject gameObject)
@@ -90,7 +97,9 @@ public class ChangeMaterials : MonoBehaviour
     }
 
     protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
-    //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
+        //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
+        Debug.Log("patrone snapped" + snapZone.GetCurrentSnappedObject().tag);
+
         controller.SetSnappedPatrone(snapZone.GetCurrentSnappedObject().tag);
     }
 

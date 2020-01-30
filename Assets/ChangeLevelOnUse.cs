@@ -4,44 +4,30 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VRTK;
 
-public class ToggleLevel : MonoBehaviour
+
+public class ChangeLevelOnUse : MonoBehaviour
 {
-
-    public int DebuggingLevel;
-
     [Header("Level Index")]
-    public int WorkshopLevelIndex;
-    public int LevelIndex;
+    // Select the correct level index for a scene
+    public int WorkshopLevelIndex = 0;
+    public int DestinationLevelIndex = 1;
+    [Header("VR Headset To Trigger Change")]
+    public VRTK_InteractableObject headset;
+    private float timeElapsed;
 
     [Header("Do not Destroy On Load")]
     public List<GameObject> objectsToKeep = new List<GameObject>();
 
-    [Header("Snapdrop Zone Prefab")]
-    public VRTK_SnapDropZone snapZone;
-
-    [Header("VR Headset")]
-    public VRTK_InteractableObject headSet;
-    public GameObject headsetObj;
-    private GameObject[] headsetsInScene;
-
-    [Header("Level Fade Transition")]
-    public VRTK_HeadsetFade fadeHeadset;
-    public Color fadeColor;
-    [Range(0.0f, 10.0f)]
-    public float fadeDuration = 0;
-    [Range(0.0f, 10.0f)]
-    public float fadeOutDuration = 0;
-    private bool objectExitedSnapDropZone = false;
-    [Header("Snapdrop Zone Prefab Patrone")]
-    public VRTK_SnapDropZone snapZonePatrone;
+    [Header("Snapdrop Zone Prefab Munition")]
+    public VRTK_SnapDropZone snapZoneMunition;
     protected IEnumerator asyncLoadCoroutine;
 
     [Header("Start Position OnLevelLoaded")]
     public GameObject cameraRig;
-
     public Vector3 startPosition;
     private GameObject lookAt;
 
+    [Header("Keep Objects OnLevelLoaded")]
     GameObject rightControllerBasePointer;
     GameObject leftControllerBasePointer;
     GameObject OvrAvatarSDKManager;
@@ -50,12 +36,10 @@ public class ToggleLevel : MonoBehaviour
     // Singleton to controll all data used by various classes 
     protected Game_Manager controller = Game_Manager.Instance;
 
+    ManageScenes sceneManagement = new ManageScenes();
+
     void Awake()
     {
-
-        
-     
-        //CheckSnapUpdateMaterial();
         foreach (GameObject objectToKeep in objectsToKeep)
         {
             DontDestroyOnLoad(objectToKeep);
@@ -76,92 +60,68 @@ public class ToggleLevel : MonoBehaviour
         DontDestroyOnLoad(OvrAvatarSDKManager);
     }
 
-    void Update()
-    {
-       
-    }
-
     public void OnEnable()
     {
-        this.snapZone.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
-        this.snapZone.ObjectExitedSnapDropZone += ObjectExitedSnapDropZone;
-        this.headSet.InteractableObjectUsed += InteractableObjectUsed;
-        this.headSet.InteractableObjectUntouched += InteractableObjectUntouched;
-        this.fadeHeadset.HeadsetFadeComplete += OnHeadsetFadeComplete;
-        this.fadeHeadset.HeadsetUnfadeComplete += OnHeadsetUnfadeComplete;
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        headset = (headset == null ? GetComponent<VRTK_InteractableObject>() : headset);
+
+        if (headset != null)
+        {
+            headset.InteractableObjectGrabbed += InteractableObjectGrabbed;
+            headset.InteractableObjectUngrabbed += InteractableObjectUngrabbed;
+            this.snapZoneMunition.ObjectSnappedToDropZone += ObjectSnappedToDropZone;
+            this.snapZoneMunition.ObjectExitedSnapDropZone += ObjectExitedSnapDropZone;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
     }
 
     public void OnDisable()
     {
-        this.snapZone.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
-        this.snapZone.ObjectExitedSnapDropZone -= ObjectExitedSnapDropZone;
-        this.headSet.InteractableObjectUsed -= InteractableObjectUsed;
-        this.headSet.InteractableObjectUntouched -= InteractableObjectUntouched;
-        this.fadeHeadset.HeadsetFadeComplete -= OnHeadsetFadeComplete;
-        this.fadeHeadset.HeadsetUnfadeComplete -= OnHeadsetUnfadeComplete;
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (headset != null)
+        {
+            headset.InteractableObjectGrabbed -= InteractableObjectGrabbed;
+            headset.InteractableObjectUngrabbed -= InteractableObjectUngrabbed;
+            this.snapZoneMunition.ObjectSnappedToDropZone -= ObjectSnappedToDropZone;
+            this.snapZoneMunition.ObjectExitedSnapDropZone -= ObjectExitedSnapDropZone;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    public void Start()
+    {
+        headset = this.GetComponent<VRTK_InteractableObject>();
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //SetPlayerPosition(scene.buildIndex);
+        SetPlayerPosition(scene.buildIndex);
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
-        // if (scene.buildIndex != 0 && scene.buildIndex != 1)
+        //if (scene.buildIndex != 0 && scene.buildIndex != 1)
         //{
-        Destroy(this.headsetObj);
             SetRendererList(this.controller);
             controller.FindProbes();
             CheckSnapUpdateMaterial();
             ExchangeFloorTag();
-       // }
-
-     
-    }
-
-    protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
-    {
-        
-    }
-
-    protected virtual void OnHeadsetUnfadeComplete(object sender, HeadsetFadeEventArgs a)
-    {
-        
-    }
-
-    protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
-    {
-      
-        LoadLevel(this.LevelIndex, this.WorkshopLevelIndex, this.objectExitedSnapDropZone);
-    }
-
-    protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
-    {
-        
+        //}
     }
 
     protected virtual void ObjectSnappedToDropZone(object sender, SnapDropZoneEventArgs e)
     {
+        if (this.CheckForCurrentSnappedObject(snapZoneMunition))
+        {
+            controller.SetSnappedPatrone(snapZoneMunition.GetCurrentSnappedObject().tag);
+        }
+        else
+        {
+            controller.SetSnappedPatrone("default");
+        }
         
     }
 
     protected virtual void ObjectExitedSnapDropZone(object sender, SnapDropZoneEventArgs e)
     {
-        
-    }
 
-    private GameObject GetCurrentSnappedObject(VRTK_SnapDropZone snapDropZone)
-    {
-        if (CheckForCurrentSnappedObject(this.snapZone))
-        {
-            return snapDropZone.GetCurrentSnappedObject();
-        }
-        else
-        {
-            return null;
-        }
     }
 
     private bool CheckForCurrentSnappedObject(VRTK_SnapDropZone snapDropZone)
@@ -181,74 +141,20 @@ public class ToggleLevel : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    private void LoadLevel(int levelIndex, int workShopIndex, bool objectExitedDropZone)
+    private void LoadLevel(int levelIndex, int workShopIndex)
     {
-        if ((GetActiveSceneBuildIndex() == this.LevelIndex) )
+        if (GetActiveSceneBuildIndex() == this.DestinationLevelIndex)
         {
             // Allow async loading of the scene on background thread
             LoadTheSceneAsync(workShopIndex);
-            //SceneManager.LoadScene (workShopIndex);
         }
-        else if ((GetActiveSceneBuildIndex() == this.WorkshopLevelIndex) )
+        else if (GetActiveSceneBuildIndex() == this.WorkshopLevelIndex)
         {
             LoadTheSceneAsync(levelIndex);
-            // SceneManager.LoadScene (levelIndex);
         }
         else
         {
             return;
-        }
-    }
-
-    private void EnableRenderer(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Renderer>().enabled = true;
-        }
-    }
-
-    private void DisableRenderer(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Renderer>().enabled = false;
-        }
-    }
-
-    private void EnableCollider(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Collider>().enabled = true;
-        }
-    }
-
-    private void DisableCollider(GameObject snappedObject)
-    {
-        if (snappedObject != null)
-        {
-            snappedObject.GetComponent<Collider>().enabled = false;
-        }
-    }
-
-    private void FadeHeadset(Color color, float fadeDuration)
-    {
-       this.fadeHeadset.Fade(color, fadeDuration);
-    }
-
-    private void UnFadeHeadset(float fadeOutDuration)
-    {
-       this.fadeHeadset.Unfade(fadeOutDuration);
-    }
-
-    private void CheckHeadsetsInScene()
-    {
-        this.headsetsInScene = GameObject.FindGameObjectsWithTag("Headset");
-
-        if (this.headsetsInScene.Length > 1)
-        {
-            Destroy(this.headsetsInScene[1]);
         }
     }
 
@@ -261,7 +167,7 @@ public class ToggleLevel : MonoBehaviour
     private void CheckSnapUpdateMaterial()
     {
         // Fetch light and set it
-        //TODO: controller.SetLight(SceneManager.GetActiveScene().buildIndex);
+        controller.SetLight(SceneManager.GetActiveScene().buildIndex);
         string patrone = controller.GetSnappedPatrone();
         bool lightOn = false;
 
@@ -270,17 +176,17 @@ public class ToggleLevel : MonoBehaviour
             lightOn = true;
         }
 
-        if (CheckForCurrentSnappedObject(this.snapZonePatrone))
+        if (CheckForCurrentSnappedObject(this.snapZoneMunition))
         {
-            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
-            //controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
+            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZoneMunition));
+            controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
             controller.UpdateMaterial(patrone);
         }
         else
         {
-            Debug.Log("# DEfault Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
+            Debug.Log("# Default Update Material" + CheckForCurrentSnappedObject(this.snapZoneMunition));
             controller.UpdateMaterial("default");
-            //controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
+            controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
         }
     }
 
@@ -316,11 +222,6 @@ public class ToggleLevel : MonoBehaviour
         {
             yield return null;
         }
-
-        if (asyncLoad.isDone)
-        {
-            DebuggingLevel = SceneManager.GetActiveScene().buildIndex;
-        }
     }
 
     private void SetPlayerPosition(int buildIndex)
@@ -355,5 +256,20 @@ public class ToggleLevel : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    /// <summary>
+    /// Grabbing object to change Scene Level.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected virtual void InteractableObjectGrabbed(object sender, InteractableObjectEventArgs e)
+    {
+        LoadLevel(DestinationLevelIndex, WorkshopLevelIndex);
+    }
+
+    protected virtual void InteractableObjectUngrabbed(object sender, InteractableObjectEventArgs e)
+    {
+       
     }
 }

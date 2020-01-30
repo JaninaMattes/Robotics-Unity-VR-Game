@@ -113,7 +113,7 @@ namespace VRTK
             {
                 headsetColliding = false;
                 SetupHeadset();
-                VRTK_PlayerObject.SetPlayerObject(headsetColliderContainer.gameObject, VRTK_PlayerObject.ObjectTypes.Headset);
+                VRTK_PlayerObject.SetPlayerObject(headsetColliderContainer.gameObject, VRTK_PlayerObject.ObjectTypes.Headset); 
             }
         }
 

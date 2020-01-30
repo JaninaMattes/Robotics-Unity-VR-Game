@@ -27,7 +27,7 @@ public class LaserProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Scanner" && other.tag != "Munition")
+        if (other.tag != "Scanner" && other.tag != "Munition" && other.tag != "SonarSensor_2" && other.tag != "LidarSensor" && other.tag != "CameraSensor" && other.tag != "RadarSensor")
         {
             if (other.GetComponent<EnemyHit>())
             {

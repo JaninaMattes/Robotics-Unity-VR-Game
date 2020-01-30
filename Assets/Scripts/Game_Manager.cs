@@ -41,7 +41,7 @@ public class Game_Manager
     protected ReflectionProbe[] _reflectionProbes;
     protected Renderer[] _renderer;
     protected Hashtable _matList = new Hashtable();
-    protected Material[] _allMaterials;
+    protected Material[] _allMaterials = new Material[5];
     protected Material gridorientation_Material;
 
     //public SonarLaser sonar1;
@@ -271,8 +271,8 @@ public class Game_Manager
 
     public void ToggleProbes(bool isOn){
         foreach(ReflectionProbe probe in _reflectionProbes){
-                var cullMask =  probe.cullingMask;
-                probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible      
+           var cullMask =  probe.cullingMask;
+           probe.cullingMask = cullMask | (1 << 11); // To make Layer 11 visible      
         }
     }
 
@@ -360,7 +360,7 @@ public class Game_Manager
                 break;
             case "LidarSensor":
                 //Update Material
-                //UpdateMaterial(lidar_1_Material);
+                UpdateMaterial(_allMaterials[3]);
                 DeactivateAllRenderer();
                 SetLidarScript();
                 ToggleProbes(false);
@@ -376,16 +376,20 @@ public class Game_Manager
                 //Revert Material
                 ResetMaterial();
                 ActivateAllRenderer();
-                SetCameraPixelScript();
-                ToggleProbes(true);
+                SetCameraPixelScript();                
                 break;
-            default:
+            case "default":
                 //If no other case found
-                UpdateMaterial(_allMaterials[3]);
+                UpdateMaterial(_allMaterials[4]);
                 ActivateAllRenderer();
                 ToggleProbes(false);
                 break;
-
+            default:
+                //If no other case found
+                UpdateMaterial(_allMaterials[4]);
+                ActivateAllRenderer();
+                ToggleProbes(false);
+                break;
         }
     }
 
@@ -432,11 +436,11 @@ public class Game_Manager
             {
                 //TODO: Über auch über Layer definieren 
                 // --> Belt/Patrone/Hände/Player/Guns/Bucketlist/Bucket etc                
-                m = rend.sharedMaterials;
+                m = rend.materials;
                 //Set grid orientation to floor
                 if (rend.tag == gridorientation_Tag)
                 {
-                    rend.sharedMaterial = gridorientation_Material;
+                    rend.material = gridorientation_Material;
                 }
                 else
                 {
@@ -444,7 +448,7 @@ public class Game_Manager
                     {
                         m[i] = material;
                     }
-                    rend.sharedMaterials = m;
+                    rend.materials = m;
                 }
             }
             else

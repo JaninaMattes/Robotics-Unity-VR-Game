@@ -13,6 +13,7 @@ using VRTK;
         public float sonarLifeTime;
         public LaserController controller;
         private List<Vector4> sonarOrigins = new List<Vector4>();
+        Game_Manager _controller = Game_Manager.Instance;
 
 
     protected virtual void OnEnable()
@@ -20,27 +21,19 @@ using VRTK;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
 
-        laserPistol = (laserPistol == null ? GetComponent<VRTK_InteractableObject>() : laserPistol);
-
-            if (laserPistol != null)
-            {
-                laserPistol.InteractableObjectUsed += InteractableObjectUsed;
-                laserPistol.InteractableObjectUnused += InteractableObjectUnused;
-            }
+       
             controller.material = material;
     }
 
         protected virtual void OnDisable()
         {
-            if (laserPistol != null)
-            {
-                laserPistol.InteractableObjectUsed -= InteractableObjectUsed;
-                laserPistol.InteractableObjectUnused -= InteractableObjectUnused;
-            }
+          
         }
 
 
-        protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+        public void ShootSonar()
+        {
+        if (laserPistol.IsGrabbed() && _controller.GetSnappedPatrone() == "SonarSensor_2")
         {
             lineRenderer.enabled = true;
             StartCoroutine(WaitSonarShot());
@@ -54,7 +47,9 @@ using VRTK;
                 sonarOrigins.Add(new Vector4(sonarOrigin.x, sonarOrigin.y, sonarOrigin.z, 0));
                 Debug.Log($"Hit detected: x {sonarOrigin.x} y {sonarOrigin.y}");
             }
+
             else lineRenderer.SetPosition(1, transform.forward * 5000);
+        }
         }
 
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)

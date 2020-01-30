@@ -9,13 +9,13 @@ public class TestColorChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Game_Manager controller = Game_Manager.Instance;
+        //Game_Manager controller = Game_Manager.Instance;
 
-        controller.SetExcludeTag(excludeObj);
+        //controller.SetExcludeTag(excludeObj);
         
-        controller.GetMeshRenderer();
+        //controller.GetMeshRenderer();
 
-        controller.UpdateMaterial(TargetMat);
+        //controller.UpdateMaterial(TargetMat);
         
     }
 

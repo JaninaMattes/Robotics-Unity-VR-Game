@@ -11,8 +11,10 @@ using VRTK;
         private LineRenderer lineRenderer;
         public Material material;
         public float radarLifeTime;
-        public LaserController controller;
+        public LaserController laserController;
         private List<Vector4> sonarOrigins = new List<Vector4>();
+
+    Game_Manager _controller = Game_Manager.Instance;
 
 
         protected virtual void OnEnable()
@@ -20,28 +22,20 @@ using VRTK;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
 
-        laserPistol = (laserPistol == null ? GetComponent<VRTK_InteractableObject>() : laserPistol);
-
-            if (laserPistol != null)
-            {
-                laserPistol.InteractableObjectUsed += InteractableObjectUsed;
-                laserPistol.InteractableObjectUnused += InteractableObjectUnused;
-            }
-        controller.material = material;
+       
+        laserController.material = material;
 
         }
 
         protected virtual void OnDisable()
         {
-            if (laserPistol != null)
-            {
-                laserPistol.InteractableObjectUsed -= InteractableObjectUsed;
-                laserPistol.InteractableObjectUnused -= InteractableObjectUnused;
-            }
+           
         }
 
 
-        protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+        public void ShootRadar()
+        {
+        if (laserPistol.IsGrabbed() && _controller.GetSnappedPatrone() == "RadarSensor")
         {
             lineRenderer.enabled = true;
             StartCoroutine(WaitSonarShot());
@@ -57,6 +51,7 @@ using VRTK;
             }
             else lineRenderer.SetPosition(1, transform.forward * 5000);
         }
+        }
 
         protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
         {
@@ -70,7 +65,7 @@ using VRTK;
                .Select(hit => new Vector4(hit.x, hit.y, hit.z, hit.w + (Time.deltaTime / radarLifeTime)))
                .Where(hit => hit.w <= 1).ToList(); // delete all invalid elements from list
 
-            controller.sonarHits = sonarOrigins.ToArray();
+            laserController.sonarHits = sonarOrigins.ToArray();
         }
 
         IEnumerator WaitSonarShot()

@@ -8302,6 +8302,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2066542998, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066542998, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824473283354272841, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1621980055, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -8309,10 +8322,6 @@ PrefabInstance:
     - target: {fileID: 1621980055, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: m_TagString
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1610718451, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
-      propertyPath: StartWithControllers
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 819344421, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: m_ClearFlags
@@ -8334,18 +8343,9 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.a
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2066542998, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2066542998, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 4824473283354272841, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1610718451, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: StartWithControllers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4824473283901903525, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
         type: 3}
@@ -16145,7 +16145,7 @@ PrefabInstance:
     - target: {fileID: 768709283084417396, guid: 081d6df1fe09adb47b2c50c040c33bce,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.4376807
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 768709283084417396, guid: 081d6df1fe09adb47b2c50c040c33bce,
         type: 3}
@@ -17584,6 +17584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Target
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580017736135088764, guid: 081d6df1fe09adb47b2c50c040c33bce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5474381289847325780, guid: 081d6df1fe09adb47b2c50c040c33bce,
         type: 3}

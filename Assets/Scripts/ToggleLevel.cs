@@ -109,14 +109,14 @@ public class ToggleLevel : MonoBehaviour
         // Tags need to be:
         // "SonarSensor_1" "SonarSensor_2" 
         // "LidarSensor" "RadarSensor" "CameraSensor"
-        // if (scene.buildIndex != 0 && scene.buildIndex != 1)
-        //{
-        Destroy(this.headsetObj);
+        if (scene.buildIndex != 0 && scene.buildIndex != 1)
+        {
+            Destroy(this.headsetObj);
             SetRendererList(this.controller);
             controller.FindProbes();
             CheckSnapUpdateMaterial();
             ExchangeFloorTag();
-       // }
+        }
 
      
     }

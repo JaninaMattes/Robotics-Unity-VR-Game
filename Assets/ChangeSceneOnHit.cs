@@ -8,7 +8,7 @@ public class ChangeSceneOnHit : MonoBehaviour
     public int targetSceneIndex = 0;
     public float delay = 0;
 
-    private void Start()
+    public void Start()
     {
         gameObject.tag = "Target";
     }
@@ -18,9 +18,16 @@ public class ChangeSceneOnHit : MonoBehaviour
         Invoke("LoadScene", delay);
     }
 
-
     void LoadScene()
     {
         SceneManager.LoadSceneAsync(targetSceneIndex);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Target")
+        {
+            InvokeLoadScene();
+        }
     }
 }

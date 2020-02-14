@@ -39,6 +39,6 @@ public class neon_gradient : MonoBehaviour
             Color newCol = stdCol * sinVal;
             materials[i].SetColor("_EmissionColor", newCol);
         }
-       Debug.Log((Mathf.Sin((Time.time * phaseLength) + phaseOffset)+1)/2);
+       //Debug.Log((Mathf.Sin((Time.time * phaseLength) + phaseOffset)+1)/2);
     }
 }

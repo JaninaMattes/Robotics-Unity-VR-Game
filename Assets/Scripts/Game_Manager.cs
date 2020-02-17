@@ -283,7 +283,7 @@ public class Game_Manager
             this._originalPositions.Add(hashCode, position);
         }
     }
-
+    
     public Dictionary<int, Vector3> GetPositions()
     {
         return this._originalPositions;

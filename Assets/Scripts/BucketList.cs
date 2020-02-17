@@ -18,7 +18,7 @@ public class BucketList : MonoBehaviour
     [Tooltip("Return Speed")]
     public float speed = 1f;
     public float fadingTime = 2f;
-    public float beginingDelay = 1.0f;
+    public float beginingDelay = 1f;
 
     [Tooltip("Player Score Points")]
     public int playerScore = 10;
@@ -45,12 +45,12 @@ public class BucketList : MonoBehaviour
     // To change color by Coroutine Calls
     protected bool coroutineCalled = false;
     protected Collider bucketCollider;
-    private GameObject[] allGameObjects;
+    protected GameObject[] allGameObjects;
     protected IEnumerator moveCoroutine;
     protected IEnumerator delayCoroutine;
     protected GameObject[] checkListObjects;
 
-    int score = 10;
+
 
     // Controller 
     protected Game_Manager controller = Game_Manager.Instance;
@@ -91,7 +91,7 @@ public class BucketList : MonoBehaviour
 
                 if (bucketCollider.bounds.Contains(position))
                 {
-                    if (gameObj != bucket && !controller.GetBucketObjects().Contains(gameObj))
+                    if (gameObj != bucket && !gameObj.transform.root.CompareTag("Player"))
                     {
                         CheckGameObject(gameObj);
                     }
@@ -114,17 +114,17 @@ public class BucketList : MonoBehaviour
         foreach (GameObject obj in allGameObjects)
         {
             // Target objects
+            Debug.Log("Fetch All Positions " + obj.name);
             controller.AddPositions(obj.GetHashCode(), obj.transform.position);
         }
     }
 
     public void CheckGameObject(GameObject gameObj)
     {
-        for (int i = 0; i < checkListObjects.Length; i++)
-        {
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
-            if (checkListObjects[i].tag == gameObj.tag && !controller.GetBucketObjects().Contains(gameObj))
+            if (isFound(gameObj.tag) && !controller.GetBucketObjects().Contains(gameObj))
             {
+                Debug.Log("Gameobject Found " + gameObj.tag);
                 gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
                 controller.AddToBucketList(gameObj);
                 controller.ResetMaterial(gameObj);
@@ -132,7 +132,7 @@ public class BucketList : MonoBehaviour
                 //SetDefaultUIText(gameObj);
                 EnableUICheck(gameObj);
             }
-            else if (checkListObjects[i].tag != gameObj.tag && !gameObj.transform.root.CompareTag("Player"))
+            else if (!isFound(gameObj.tag) && !controller.GetBucketObjects().Contains(gameObj))
             {
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
@@ -142,7 +142,7 @@ public class BucketList : MonoBehaviour
                 if (!coroutineCalled)
                 {
                     StartCoroutine("FlashColor");
-                    controller.ReducePlayerScore(score);
+                    controller.ReducePlayerScore(playerScore);
                 }
                 else if (coroutineCalled)
                 {
@@ -150,7 +150,19 @@ public class BucketList : MonoBehaviour
                 }
 
             }
-        }
+    }
+
+    private bool isFound(string tag)
+    {
+        for (int i = 0; i < checkListObjects.Length; i++)
+        {
+            if (checkListObjects[i].tag == tag)
+            {
+                Debug.Log("Object is Found " + tag);
+                return true;
+            };
+        }       
+        return false;
     }
 
     /// <summary>
@@ -158,27 +170,16 @@ public class BucketList : MonoBehaviour
     /// </summary>
     private void SelectRandomObjects()
     {
-        int i = 0;
-        var length = this.bucketListContent.Length - 1;
-        while (i < max_size)
+        for (int i = 0; i < checkListObjects.Length; i++)
         {
-            int index = UnityEngine.Random.Range(i, length);
+            int index = UnityEngine.Random.Range(i, bucketListContent.Length - 1);
             // Select object  
             GameObject obj = bucketListContent[index];
-            if (checkListObjects[i] != obj)
-            {
-                checkListObjects[i] = obj;
-                Debug.Log("Add Object to Checklist: " + obj.tag);
-                i++;
-            }
-        }
+            checkListObjects[i] = obj;
+            Debug.Log("Add Object to Checklist: " + obj.tag);
+        }       
     }
-
-    public void CleanUp()
-    {
-        controller.CleanUp();
-    }
-
+    
     /// <summary>
     /// Adjust the color and flash ups
     /// </summary>
@@ -285,10 +286,9 @@ public class BucketList : MonoBehaviour
 
     private void CreateDefaultUIText()
     {
-
         for (int i = 0; i < max_size; i++)
         {
-            checkedObjects[i].GetComponent<TextMeshProUGUI>().text = bucketListContent[i].tag;
+            checkedObjects[i].GetComponent<TextMeshProUGUI>().text = checkListObjects[i].tag;
             checkedObjects[i].SetActive(true);
             checkedObjects[i].transform.GetChild(0).GetComponent<RawImage>().color = grey;
             ForceCanvasUpdate();
@@ -327,5 +327,4 @@ public class BucketList : MonoBehaviour
         backgroundTransparent.enabled = true;
         backgroundDefault.enabled = true;
     }
-
 }

@@ -6703,6 +6703,11 @@ PrefabInstance:
       propertyPath: snapZonePatrone
       value: 
       objectReference: {fileID: 829312104}
+    - target: {fileID: 8611438585173705373, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: LevelIndex
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5701142300940445332, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
@@ -24537,6 +24542,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Headset
       objectReference: {fileID: 0}
+    - target: {fileID: 977575457, guid: 03105eb456615bd478990f5c25bb5502, type: 3}
+      propertyPath: isUsable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 977575457, guid: 03105eb456615bd478990f5c25bb5502, type: 3}
+      propertyPath: useOverrideButton
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5259226025127096102, guid: 03105eb456615bd478990f5c25bb5502,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24618,14 +24631,6 @@ PrefabInstance:
     - target: {fileID: 1564917147, guid: 03105eb456615bd478990f5c25bb5502, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 977575457, guid: 03105eb456615bd478990f5c25bb5502, type: 3}
-      propertyPath: isUsable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 977575457, guid: 03105eb456615bd478990f5c25bb5502, type: 3}
-      propertyPath: useOverrideButton
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 977575458, guid: 03105eb456615bd478990f5c25bb5502, type: 3}
       propertyPath: activateInteractTouch

@@ -51,10 +51,7 @@ public class ToggleLevel : MonoBehaviour
     protected Game_Manager controller = Game_Manager.Instance;
 
     void Awake()
-    {
-
-        
-     
+    {      
         //CheckSnapUpdateMaterial();
         foreach (GameObject objectToKeep in objectsToKeep)
         {
@@ -113,9 +110,7 @@ public class ToggleLevel : MonoBehaviour
             controller.FindProbes();
             CheckSnapUpdateMaterial();
             ExchangeFloorTag();
-        }
-
-     
+        }     
     }
 
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)

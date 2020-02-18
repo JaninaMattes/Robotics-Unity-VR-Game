@@ -225,7 +225,7 @@ public class BucketList : MonoBehaviour
         // Move out of bucket by finding the centre of bucket and then move up straight
         Vector3 pos = new Vector3(
             this.GetComponent<Renderer>().bounds.center.x,
-            this.GetComponent<Renderer>().bounds.center.y + 1.50f,
+            this.GetComponent<Renderer>().bounds.center.y + 2.00f,
             this.GetComponent<Renderer>().bounds.center.z);
         objectToMove.transform.position = pos;
         // Move gradiently back 

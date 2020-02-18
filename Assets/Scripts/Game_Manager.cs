@@ -361,7 +361,7 @@ public class Game_Manager
             case "LidarSensor":
                 //Update Material
                 UpdateMaterial(_allMaterials[3]);
-                DeactivateAllRenderer();
+                //DeactivateAllRenderer();
                 SetLidarScript();
                 ToggleProbes(false);
                 break;

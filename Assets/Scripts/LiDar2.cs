@@ -67,8 +67,10 @@ public class LiDar2 : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float transparencyLimit = 0.0f;
 
-        //container for method ActivateLidar 
-        private RaycastHit hit;
+    Game_Manager _controller = Game_Manager.Instance;
+
+    //container for method ActivateLidar 
+    private RaycastHit hit;
         private Material rendMat;
         private GameObject dot2;
         private Vector3 direction;
@@ -90,11 +92,11 @@ public class LiDar2 : MonoBehaviour
              dotColor = dotMaterial.GetColor("_TintColor");
 
         if (dotMaterial != null)
-            {
+        {
                 dotMaterial.SetColor("_TintColor", startColor);
-            }
+        }
 
-            for (int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
@@ -118,38 +120,43 @@ public class LiDar2 : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-            lidarPistol = (lidarPistol == null ? GetComponent<VRTK_InteractableObject>() : lidarPistol);
-
-        if (lidarPistol != null)
-        {
-                lidarPistol.InteractableObjectUsed += InteractableObjectUsed;
-                lidarPistol.InteractableObjectUnused += InteractableObjectUnused;
-        }
+        lidarPistol.InteractableObjectUsed += InteractableObjectUsed;
+        lidarPistol.InteractableObjectUnused += InteractableObjectUnused;   
 
     }
 
     protected virtual void OnDisable()
     {
-        if (lidarPistol != null)
-        {
-                lidarPistol.InteractableObjectUsed -= InteractableObjectUsed;
-                lidarPistol.InteractableObjectUnused -= InteractableObjectUnused;
-        }
+        lidarPistol.InteractableObjectUsed -= InteractableObjectUsed;
+        lidarPistol.InteractableObjectUnused -= InteractableObjectUnused;     
     }
 
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
-    {
-            SetGrid();
-            if (allowShoot && lidarActive)
-            {
-                ActivateLidar();
+    {/*
+        Debug.Log("Set Grid 1");
+        SetGrid();
+        Debug.Log("Set Grid 2");
+        if (allowShoot && lidarActive)
+        {
+            Debug.Log("StartLidarShot");
+            ActivateLidar();
                 allowShoot = false;
-            }
-        }
+        }*/
+    }
 
     protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
     {  
 
+    }
+
+    public void ShootLidar()
+    {
+        if (lidarPistol.IsGrabbed() && _controller.GetSnappedPatrone() == "LidarSensor" && lidarActive && allowShoot)
+        {
+            SetGrid();
+            ActivateLidar();
+            allowShoot = false;
+        }
     }
 
     void DeactivateCurrentLidar()
@@ -161,8 +168,9 @@ public class LiDar2 : MonoBehaviour
             }
         }
 
-        void ActivateLidar()
+        public void ActivateLidar()
         {
+        Debug.Log("LidarActive");
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = 1 << 8;
         // This would cast rays only against colliders in layer 8.
@@ -176,59 +184,60 @@ public class LiDar2 : MonoBehaviour
                 dot2 = dots[i * rows + j];
                 direction = Quaternion.AngleAxis(spacing * i - (columns * spacing / 2), Vector3.right) * Vector3.forward;
                 direction = Quaternion.AngleAxis(spacing * j - (rows * spacing / 2), Vector3.up) * direction;
-                    
+
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position, transform.TransformDirection(direction), out hit, Mathf.Infinity, layerMask))
                 {
+                    Debug.Log("Activate Lidar - Raycast");
                     randomOffset = Random.Range(noiseOffsetMin, noiseOffsetMax);
                     hitLocation = transform.TransformDirection(direction) * hit.distance;
                     rendMat = hit.transform.GetComponent<Renderer>().material;
 
-                        if ((rendMat.HasProperty("_Color")) && (rendMat.color.a < transparencyLimit))
-                        {
-                            dotActive = false;     
-                        }
-                        else if ((rendMat.HasProperty("_Metallic") && rendMat.HasProperty("_Glossiness")) && (rendMat.GetFloat("_Metallic") > metallicLimit) && (rendMat.GetFloat("_Glossiness") > glossinessLimit))
+                    if ((rendMat.HasProperty("_Color")) && (rendMat.color.a < transparencyLimit))
+                    {
+                        dotActive = false;
+                    }
+                    else if ((rendMat.HasProperty("_Metallic") && rendMat.HasProperty("_Glossiness")) && (rendMat.GetFloat("_Metallic") > metallicLimit) && (rendMat.GetFloat("_Glossiness") > glossinessLimit))
+                    {
+                        dot2.transform.position = transform.position + (hitLocation * randomOffset);
+                        dotActive = true;
+                    }
+                    else if ((rendMat.HasProperty("_MetallicGlossMap")) && (rendMat.GetTexture("_MetallicGlossMap") != null) && (rendMat.GetTexture("_MetallicGlossMap").isReadable))
+                    {
+                        tex = rendMat.GetTexture("_MetallicGlossMap") as Texture2D;
+                        pixelUV = hit.textureCoord;
+                        pixelUV.x *= tex.width;
+                        pixelUV.y *= tex.height;
+                        colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
+                        smoothness = colorOfPixel.a;
+                        metallic = colorOfPixel.r;
+                        if ((metallic > metallicLimit) && (smoothness > glossinessLimit))
                         {
                             dot2.transform.position = transform.position + (hitLocation * randomOffset);
-                            dotActive = true;
                         }
-                         else if ((rendMat.HasProperty("_MetallicGlossMap")) && (rendMat.GetTexture("_MetallicGlossMap") != null) && (rendMat.GetTexture("_MetallicGlossMap").isReadable))
-                         {
-                             tex = rendMat.GetTexture("_MetallicGlossMap") as Texture2D;
-                             pixelUV = hit.textureCoord;
-                             pixelUV.x *= tex.width;
-                             pixelUV.y *= tex.height;
-                             colorOfPixel = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-                             smoothness = colorOfPixel.a;
-                             metallic = colorOfPixel.r;
-                             if ((metallic > metallicLimit) && (smoothness > glossinessLimit))
-                             {
-                                 dot2.transform.position = transform.position + (hitLocation * randomOffset);
-                             }
-                             dotActive = true;
-                         }
-                        else
-                        {
-                            dot2.transform.position = transform.position + hitLocation;
-                            dotActive = true;
-                        }
-                        if (dotActive)
-                        {
-                            dot2.SetActive(true);
-                        }
-                    // Coloring Grid over Distance
-                   if (enableDistanceColoring)
-                        {
-                            var lerp = Normalize(hit);
-                            dotColor = Color.Lerp(dotMaterial.GetColor("_TintColor"), endColor, lerp);
-                            dot2.GetComponent<Renderer>().material.SetColor("_TintColor", dotColor);
-                        }
+                        dotActive = true;
                     }
                     else
                     {
-                   dot2.SetActive(false);
+                        dot2.transform.position = transform.position + hitLocation;
+                        dotActive = true;
                     }
+                    if (dotActive)
+                    {
+                        dot2.SetActive(true);
+                    }
+                    // Coloring Grid over Distance
+                    if (enableDistanceColoring)
+                    {
+                        var lerp = Normalize(hit);
+                        dotColor = Color.Lerp(dotMaterial.GetColor("_TintColor"), endColor, lerp);
+                        dot2.GetComponent<Renderer>().material.SetColor("_TintColor", dotColor);
+                    }
+                }
+                else
+                {
+                    dot2.SetActive(false);
+                }
             }
         }
             if (enableFading)

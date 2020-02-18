@@ -6576,6 +6576,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 249600055}
@@ -6591,6 +6595,30 @@ PrefabInstance:
       propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ShootRadar
       objectReference: {fileID: 0}
+    - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 860881628}
+    - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ShootLidar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047652768, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6606,6 +6634,26 @@ PrefabInstance:
     - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ShootRadar
+      objectReference: {fileID: 0}
+    - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 860881628}
+    - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ShootLidar
+      objectReference: {fileID: 0}
+    - target: {fileID: 779608053, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
+      propertyPath: OnButtonOnePressed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 818456543, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
       propertyPath: m_Layer
@@ -6690,6 +6738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8611438585173705373, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
         type: 3}
+      propertyPath: objectsToKeep.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611438585173705373, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
       propertyPath: headSet
       value: 
       objectReference: {fileID: 1302577636}
@@ -6713,6 +6766,11 @@ PrefabInstance:
       propertyPath: startPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 8611438585173705373, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: objectsToKeep.Array.data[1]
+      value: 
+      objectReference: {fileID: 747576933}
     m_RemovedComponents:
     - {fileID: 5701142300940445332, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
@@ -16455,6 +16513,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81968dd369b6df04c85cfcc10a109ed5, type: 3}
+--- !u!114 &860881628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6126371565296769043, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1227182018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f990ef5e385d440409732efdec7779e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &863038975
 Material:
   serializedVersion: 6
@@ -23347,6 +23417,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 3938652, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1256132474, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_TagString
+      value: Scanner
+      objectReference: {fileID: 0}
     - target: {fileID: 1269065494, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -23358,6 +23436,36 @@ PrefabInstance:
     - target: {fileID: 1269065494, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.a
       value: 0.24313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473499429811803239, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Scanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769043, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769043, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: lidarPistol
+      value: 
+      objectReference: {fileID: 1872345261}
+    - target: {fileID: 6126371565296769043, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: angle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126371565296769043, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: spacing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385912487053145460, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
@@ -36999,6 +37107,18 @@ Material:
     m_Colors:
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1872345261 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7170086835895030448, guid: 11b346cb0b17d4bcb842b5e41f4721f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1227182018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1874747211
 Material:
   serializedVersion: 6

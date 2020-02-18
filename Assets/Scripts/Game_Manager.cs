@@ -56,6 +56,9 @@ public class Game_Manager
     protected GameObject[] _lightGameObjects = new GameObject[2];
     // Gun Objects
     protected string _patrone = "default";
+    protected GameObject cameraScreen;
+    protected Camera cameraRig;
+    protected int originalCullingMask;
 
     /// <summary>
     /// Gett and Setter  
@@ -122,6 +125,16 @@ public class Game_Manager
     public LaserController GetLaserController()
     {
         return _laser_controller;
+    }
+
+    public void SetCamera(Camera cameraRig)
+    {
+        this.cameraRig = cameraRig;
+    }
+
+    public void SetOriginalMask(int cullingMask)
+    {
+        this.originalCullingMask = cullingMask;
     }
 
     public void Set(Dictionary<int, Vector3> _originalPositions)
@@ -259,6 +272,16 @@ public class Game_Manager
         return _lightGameObjects;
     }
 
+    public void SetCameraScreen(GameObject cameraScreen)
+    {
+        this.cameraScreen = cameraScreen;
+    }
+
+    public GameObject GetCameraScreen()
+    {
+        return this.cameraScreen;
+    }
+
     public void FindProbes()
     {
         _reflectionProbes = GameObject.FindObjectsOfType<ReflectionProbe>();
@@ -350,6 +373,7 @@ public class Game_Manager
                 ActivateAllRenderer();
                 SetLaserScript(tag);
                 ToggleProbes(false);
+                ResetCameraPixelScript();
                 break;
             case "SonarSensor_2":
                 //Update Material
@@ -357,6 +381,7 @@ public class Game_Manager
                 ActivateAllRenderer();
                 SetLaserScript(tag);
                 ToggleProbes(false);
+                ResetCameraPixelScript();
                 break;
             case "LidarSensor":
                 //Update Material
@@ -364,6 +389,7 @@ public class Game_Manager
                 //DeactivateAllRenderer();
                 SetLidarScript();
                 ToggleProbes(false);
+                ResetCameraPixelScript();
                 break;
             case "RadarSensor":
                 //Update Material
@@ -371,6 +397,7 @@ public class Game_Manager
                 ActivateAllRenderer();
                 SetLaserScript(tag);
                 ToggleProbes(false);
+                ResetCameraPixelScript();
                 break;
             case "CameraSensor":
                 //Revert Material
@@ -383,12 +410,14 @@ public class Game_Manager
                 UpdateMaterial(_allMaterials[4]);
                 ActivateAllRenderer();
                 ToggleProbes(false);
+                ResetCameraPixelScript();
                 break;
             default:
                 //If no other case found
                 UpdateMaterial(_allMaterials[4]);
                 ActivateAllRenderer();
                 ToggleProbes(false);
+                ResetCameraPixelScript();
                 break;
         }
     }
@@ -542,8 +571,16 @@ public class Game_Manager
 
     public void SetCameraPixelScript()
     {
-        // TODO
+        cameraScreen.SetActive(true);
+        cameraRig.cullingMask = cameraRig.cullingMask | (1 << 11); // To make Layer 11 visible      
     }
+
+    public void ResetCameraPixelScript()
+    {
+        cameraScreen.SetActive(false);
+        cameraRig.cullingMask = this.originalCullingMask;   
+    }
+
 
     public void CleanUp()
     {

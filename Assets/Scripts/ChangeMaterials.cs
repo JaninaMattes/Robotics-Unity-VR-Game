@@ -27,6 +27,9 @@ public class ChangeMaterials : MonoBehaviour
     public List<string> excludeTags = new List<string>();
     [Tooltip("Spawn")]
     public GameObject spawn;
+    [Tooltip("Spawn")]
+    public GameObject cameraScreen;
+    public Camera cameraRig;
 
     // Private Properties
     protected Material[] materials = new Material[5];
@@ -73,7 +76,9 @@ public class ChangeMaterials : MonoBehaviour
         materials[3] = lidar_1_Material;
         materials[4] = black_Material;
         controller.SetAllMaterials(materials);
-
+        controller.SetCameraScreen(cameraScreen);
+        controller.SetCamera(cameraRig);
+        controller.SetOriginalMask(cameraRig.cullingMask);
     }
 
     public void Update()
@@ -81,8 +86,7 @@ public class ChangeMaterials : MonoBehaviour
         GetScene();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-           
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);           
         }
     }
 
@@ -99,7 +103,6 @@ public class ChangeMaterials : MonoBehaviour
     protected virtual void ObjectSnappedToDropZone (object sender, SnapDropZoneEventArgs e) {
         //   UpdateMaterial (snapZone.GetCurrentSnappedObject ().tag);
         Debug.Log("patrone snapped" + snapZone.GetCurrentSnappedObject().tag);
-
         controller.SetSnappedPatrone(snapZone.GetCurrentSnappedObject().tag);
     }
 

@@ -572,12 +572,15 @@ public class Game_Manager
     public void SetCameraPixelScript()
     {
         cameraScreen.SetActive(true);
+        cameraRig.clearFlags = CameraClearFlags.SolidColor;
+        cameraRig.backgroundColor = Color.black;
         cameraRig.cullingMask = cameraRig.cullingMask | (1 << 11); // To make Layer 11 visible      
     }
 
     public void ResetCameraPixelScript()
     {
         cameraScreen.SetActive(false);
+        cameraRig.clearFlags = CameraClearFlags.Skybox;
         cameraRig.cullingMask = this.originalCullingMask;   
     }
 

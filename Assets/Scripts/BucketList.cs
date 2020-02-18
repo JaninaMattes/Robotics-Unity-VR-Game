@@ -8,7 +8,6 @@ using VRTK;
 
 public class BucketList : MonoBehaviour
 {
-
     [Header("Bucket")]
     [Tooltip("Bucket")]
     public GameObject bucket;
@@ -122,7 +121,7 @@ public class BucketList : MonoBehaviour
     public void CheckGameObject(GameObject gameObj)
     {
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
-            if (isFound(gameObj.tag) && !controller.GetBucketObjects().Contains(gameObj))
+            if (isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
             {
                 Debug.Log("Gameobject Found " + gameObj.tag);
                 gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
@@ -132,7 +131,7 @@ public class BucketList : MonoBehaviour
                 //SetDefaultUIText(gameObj);
                 EnableUICheck(gameObj);
             }
-            else if (!isFound(gameObj.tag) && !controller.GetBucketObjects().Contains(gameObj))
+            else if (!isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
             {
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
@@ -152,11 +151,11 @@ public class BucketList : MonoBehaviour
             }
     }
 
-    private bool isFound(string tag)
+    private bool isFound(GameObject obj)
     {
         for (int i = 0; i < checkListObjects.Length; i++)
         {
-            if (checkListObjects[i].tag == tag)
+            if (checkListObjects[i].tag == obj.tag && !controller.GetBucketObjects().Contains(obj))
             {
                 Debug.Log("Object is Found " + tag);
                 return true;
@@ -261,14 +260,16 @@ public class BucketList : MonoBehaviour
         checkListHeader.enabled = false;
     }
 
-    private void EnableUICheck(GameObject gameObj)
+    private void EnableUICheck(GameObject obj)
     {
-
-        for (int i = 0; i < max_size; i++)
+        for (int i = 0; i < checkListObjects.Length; i++)
         {
-            checkedObjects[i].transform.GetChild(0).GetComponent<RawImage>().color = white;
-            ForceCanvasUpdate();
-        }
+            if (obj.tag == checkListObjects[i].tag)
+            {
+                checkedObjects[i].transform.GetChild(0).GetComponent<RawImage>().color = white;
+                ForceCanvasUpdate();
+            }
+        }            
     }
 
     private void SetDefaultUIText(GameObject gameObj)

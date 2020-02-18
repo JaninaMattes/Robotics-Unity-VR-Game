@@ -2098,7 +2098,7 @@ PrefabInstance:
     - target: {fileID: 916451551021328113, guid: a9dcc3976451f4372bb6129f0cecde30,
         type: 3}
       propertyPath: m_Name
-      value: Lidar_Prefab (1)
+      value: Radar_Sensor
       objectReference: {fileID: 0}
     - target: {fileID: 916451551021328113, guid: a9dcc3976451f4372bb6129f0cecde30,
         type: 3}
@@ -6707,6 +6707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: LevelIndex
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611438585173705373, guid: e88b063d0b4d3ec49b7c3b3715fe05d2,
+        type: 3}
+      propertyPath: startPosition.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5701142300940445332, guid: e88b063d0b4d3ec49b7c3b3715fe05d2, type: 3}
@@ -16915,6 +16920,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34153f52a607196459d110a4587b0044, type: 3}
+--- !u!1001 &883037714
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 916451551021328113, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_Name
+      value: Lidar_Sensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 916451551021328113, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_TagString
+      value: LidarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7069834
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7072302
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9dcc3976451f4372bb6129f0cecde30, type: 3}
 --- !u!1 &890066710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6075990375321903294, guid: 484e49d91e1f94942b9cdc8270f1646e,
@@ -18647,7 +18726,7 @@ GameObject:
   - component: {fileID: 1017011067}
   m_Layer: 2
   m_Name: PPVolume Dark
-  m_TagString: Untagged
+  m_TagString: Munition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21936,7 +22015,7 @@ PrefabInstance:
     - target: {fileID: 916451551021328113, guid: a9dcc3976451f4372bb6129f0cecde30,
         type: 3}
       propertyPath: m_Name
-      value: Lidar_Prefab
+      value: Sonar_Sensor
       objectReference: {fileID: 0}
     - target: {fileID: 4245973111283750114, guid: a9dcc3976451f4372bb6129f0cecde30,
         type: 3}
@@ -23255,6 +23334,30 @@ PrefabInstance:
     - target: {fileID: 1602649545, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
       propertyPath: identifiers.Array.data[2]
       value: RadarSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 202294245, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: OnGrab.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269065492, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269065492, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269065494, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269065494, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25fb97a39ada4304b85ac3d494b6a6f9, type: 2}
+    - target: {fileID: 1269065494, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.24313726
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b346cb0b17d4bcb842b5e41f4721f5, type: 3}

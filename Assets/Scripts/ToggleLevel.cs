@@ -105,13 +105,10 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //SetPlayerPosition(scene.buildIndex);
-        // Tags need to be:
-        // "SonarSensor_1" "SonarSensor_2" 
-        // "LidarSensor" "RadarSensor" "CameraSensor"
-         if (scene.buildIndex != 0 && scene.buildIndex != 1)
+        SetPlayerPosition(scene.buildIndex);
+        if (scene.buildIndex != 0 && scene.buildIndex != 1)
         {
-        Destroy(this.headsetObj);
+            Destroy(this.headsetObj);
             SetRendererList(this.controller);
             controller.FindProbes();
             CheckSnapUpdateMaterial();
@@ -280,7 +277,7 @@ public class ToggleLevel : MonoBehaviour
         }
         else
         {
-            Debug.Log("# DEfault Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
+            Debug.Log("# Default Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
             controller.UpdateMaterial("default");
             //controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
         }

@@ -481,7 +481,7 @@ public class Game_Manager
         }
         else if (sensor == "RadarSensor")
         {
-            // Sonar 
+            // Radar
             _radar.enabled = true;
             _radar.material = _allMaterials[2];
             _sonar2.enabled = false;

@@ -180,7 +180,7 @@ public class BucketList : MonoBehaviour
                 scoreText = Instantiate(score25, gameObject.transform.position, gameObject.transform.rotation);
         
 
-                GameObject vorzeichen = Instantiate(scorePlus, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+                GameObject vorzeichen = Instantiate(scorePlus, gameObject.transform.position + new Vector3(0.5f, 0, 0), gameObject.transform.rotation);
 
                 vorzeichen.transform.parent = scoreText.transform;
 
@@ -216,7 +216,7 @@ public class BucketList : MonoBehaviour
 
                 scoreText = Instantiate(score10, gameObject.transform.position, gameObject.transform.rotation);
 
-                GameObject vorzeichen = Instantiate(scoreMinus, gameObject.transform.position + new Vector3(1.5f, 0, 0), gameObject.transform.rotation);
+                GameObject vorzeichen = Instantiate(scoreMinus, gameObject.transform.position + new Vector3(0.5f, 0, 0), gameObject.transform.rotation);
 
                 vorzeichen.transform.parent = scoreText.transform;
 

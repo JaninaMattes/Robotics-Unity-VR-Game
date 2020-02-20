@@ -172,7 +172,7 @@ public class BucketList : MonoBehaviour
                 scoreValue = 25;
 
                 //------Scoring ----------------------
-                scoringSystem.SubtractLocalScore((sbyte)scoreValue);
+                scoringSystem.AddLocalScore((sbyte)scoreValue);
 
                 GameObject scoreText = null;
 
@@ -211,7 +211,7 @@ public class BucketList : MonoBehaviour
                 //------Scoring ----------------------
                 scoreValue = 10;
 
-                scoringSystem.AddLocalScore((sbyte)scoreValue);
+                scoringSystem.SubtractLocalScore((sbyte)scoreValue);
                 GameObject scoreText = null;
 
                 scoreText = Instantiate(score10, gameObject.transform.position, gameObject.transform.rotation);

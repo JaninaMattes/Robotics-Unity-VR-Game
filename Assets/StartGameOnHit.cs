@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartGameOnHit : MonoBehaviour
 {
     public ScoringSystem scoringSystem;
     public GameObject startText;
+    public GameObject ChecklistBox;
     bool started;
 
     private void Start()
@@ -20,6 +22,11 @@ public class StartGameOnHit : MonoBehaviour
             scoringSystem.startGame();
             startText.SetActive(false);
             started = true;
+
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                ChecklistBox.SetActive(true);
+            }
         }
     }
 

@@ -5,12 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using VRTK;
+using UnityEngine.SceneManagement;
 
 public class BucketList : MonoBehaviour
 {
     [Header("Bucket")]
     [Tooltip("Bucket")]
     public GameObject bucket;
+    public GameObject checkliste;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
@@ -90,7 +92,7 @@ public class BucketList : MonoBehaviour
 
                 if (bucketCollider.bounds.Contains(position))
                 {
-                    if (gameObj != bucket && !gameObj.transform.root.CompareTag("Player"))
+                    if (gameObj != bucket && gameObj != checkliste && !gameObj.transform.root.CompareTag("Player") && gameObj.layer != 11)
                     {
                         CheckGameObject(gameObj);
                     }
@@ -106,6 +108,21 @@ public class BucketList : MonoBehaviour
             }
 
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        bucket.SetActive(false);
     }
 
     public void FetchAllPositions()

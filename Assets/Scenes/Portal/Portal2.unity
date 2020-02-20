@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 155372220}
   - component: {fileID: 155372219}
   - component: {fileID: 155372218}
+  - component: {fileID: 155372222}
   m_Layer: 0
   m_Name: Kitchen_Target
   m_TagString: Untagged
@@ -352,6 +353,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &155372222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155372217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92b99e4db555db4ca0d2d11328d4c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneIndex: 3
+  delay: 0
 --- !u!1 &181489265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,6 +1563,7 @@ GameObject:
   - component: {fileID: 1035907874}
   - component: {fileID: 1035907873}
   - component: {fileID: 1035907872}
+  - component: {fileID: 1035907876}
   m_Layer: 0
   m_Name: FlyingObjects_Target
   m_TagString: Untagged
@@ -1630,6 +1646,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1035907876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035907871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92b99e4db555db4ca0d2d11328d4c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneIndex: 2
+  delay: 0
 --- !u!1 &1066123662
 GameObject:
   m_ObjectHideFlags: 0

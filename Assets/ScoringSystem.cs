@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoringSystem : MonoBehaviour
 {
@@ -27,8 +28,10 @@ public class ScoringSystem : MonoBehaviour
     public GameObject restartTarget;
     public GameObject quitTarget;
 
+
     private void Start()
     {
+        Time.timeScale = 1f;
         UpdateScoreAnzeige();
         remainingTime = maxTimeToComplete;
         
@@ -61,7 +64,10 @@ public class ScoringSystem : MonoBehaviour
         scoreLocked = false;
         StartCoroutine(Countdown());
         //spawnFlyingObjects.SpawnObjects();
-        StartCoroutine(spawnFlyingObjects.DisableEnableObjects(true, 0f));
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            StartCoroutine(spawnFlyingObjects.DisableEnableObjects(true, 0f));
+        }
     }
 
     void UpdateScoreAnzeige()
@@ -120,7 +126,10 @@ public class ScoringSystem : MonoBehaviour
         restartTarget.SetActive(true);
         quitTarget.SetActive(true);
         gameManager.AddPlayerScore(localScore);
-        spawnFlyingObjects.DestroyAllSpawness();
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            spawnFlyingObjects.DestroyAllSpawness();
+        }
         gamePlaySound.Stop();
     }
 

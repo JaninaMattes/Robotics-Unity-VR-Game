@@ -345,8 +345,7 @@ public class BucketList : MonoBehaviour
             {
                 checkedObjects[i].transform.GetChild(0).GetComponent<RawImage>().color = white;
                 ForceCanvasUpdate();
-            }
-         
+            }         
         }            
     }
 

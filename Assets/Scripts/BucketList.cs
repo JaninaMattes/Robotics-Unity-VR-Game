@@ -20,10 +20,7 @@ public class BucketList : MonoBehaviour
     public float speed = 1f;
     public float fadingTime = 2f;
     public float beginingDelay = 1f;
-
-    [Tooltip("Player Score Points")]
-    public int playerScore = 10;
-
+    
     [Header("UI Checklist")]
     public Image UIDefault;
     public TextMeshProUGUI checkListHeader;
@@ -54,19 +51,17 @@ public class BucketList : MonoBehaviour
     public AudioSource correctObject;
     public AudioSource IncorrectObject;
 
+
+    [Tooltip("Player Score Points")]
+    //public int playerScore = 10;
     // Score Objects
     ScoringSystem scoringSystem;
 
     public GameObject score10;
-
     public GameObject score25;
-
     public GameObject scorePlus;
-
     public GameObject scoreMinus;
-
     GameObject activeCameraRig;
-
     public int scoreValue;
 
 

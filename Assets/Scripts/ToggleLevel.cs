@@ -257,18 +257,12 @@ public class ToggleLevel : MonoBehaviour
         // Fetch light and set it
         //TODO: controller.SetLight(SceneManager.GetActiveScene().buildIndex);
         string patrone = controller.GetSnappedPatrone();
-        bool lightOn = false;
-
-        if (patrone == "CameraSensor")
-        {
-            lightOn = true;
-        }
 
         if (CheckForCurrentSnappedObject(this.snapZonePatrone))
         {
-            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));
-            //controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
+            Debug.Log("## Update Material" + CheckForCurrentSnappedObject(this.snapZonePatrone));            
             controller.UpdateMaterial(patrone);
+            //controller.ToggleLight(SceneManager.GetActiveScene().buildIndex, lightOn);
         }
         else
         {

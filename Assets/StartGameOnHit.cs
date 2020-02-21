@@ -8,13 +8,13 @@ public class StartGameOnHit : MonoBehaviour
     public ScoringSystem scoringSystem;
     public GameObject startText;
     public GameObject ChecklistBox;
-    bool started;
+    public bool started;
 
     private void Start()
     {
         gameObject.tag = "StartButton";
     }
-
+    
     public void StartGameAndScore()
     {
         if (!started)

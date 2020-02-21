@@ -187,12 +187,10 @@ public class BucketList : MonoBehaviour
                 //Vector3 dir = scoreText.transform.position - activeCameraRig.transform.position;
                 scoreText.transform.LookAt(activeCameraRig.transform);
 
-
-
                 Debug.Log("Korrektes Objekt: " + gameObj.tag);
 
             }
-        else if (!isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
+            else if (!isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
             {
                 // Set Gameobject back to it's original position
                 Vector3 position = controller.FindOriginalPos(gameObj);
@@ -201,8 +199,8 @@ public class BucketList : MonoBehaviour
             
 
             if (!coroutineCalled)
-                {
-                    StartCoroutine("FlashColor");
+            {
+                StartCoroutine("FlashColor");
                 //controller.ReducePlayerScore(playerScore);
                 Debug.Log("Inkorrektes Objekt: " + gameObj.tag);
 
@@ -249,13 +247,26 @@ public class BucketList : MonoBehaviour
     /// </summary>
     private void SelectRandomObjects()
     {
-        for (int i = 0; i < checkListObjects.Length; i++)
+        List<int> check = new List<int>();
+        int i = 0;
+        // Select random number       
+        for (int j = 0; j < bucketListContent.Length; j++)
         {
-            int index = UnityEngine.Random.Range(i, bucketListContent.Length - 1);
-            // Select object  
-            GameObject obj = bucketListContent[index];
-            checkListObjects[i] = obj;
-            Debug.Log("Add Object to Checklist: " + obj.tag);
+            while (i < checkListObjects.Length)
+            {
+                Debug.Log("Loop two: " + j);
+                int index = UnityEngine.Random.Range(j, bucketListContent.Length - 1);
+
+                if (!check.Contains(index))
+                {
+                    // Select object  
+                    GameObject obj = bucketListContent[index];
+                    checkListObjects[i] = obj;
+                    check.Add(index);
+                    Debug.Log("Add Object to Checklist: " + obj.tag);
+                    i++;
+                }                
+            }        
         }       
     }
     
@@ -368,7 +379,7 @@ public class BucketList : MonoBehaviour
 
     private void CreateDefaultUIText()
     {
-        for (int i = 0; i < max_size; i++)
+        for (int i = 0; i < checkListObjects.Length; i++)
         {
             checkedObjects[i].GetComponent<TextMeshProUGUI>().text = checkListObjects[i].tag;
             checkedObjects[i].SetActive(true);

@@ -5,12 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using VRTK;
+using UnityEngine.SceneManagement;
 
 public class BucketList : MonoBehaviour
 {
     [Header("Bucket")]
     [Tooltip("Bucket")]
     public GameObject bucket;
+    public GameObject checkliste;
     public float colorChangetimer = 1f;
     public float errorTimer = 5f;
     public float errorTimertotal = 5f;
@@ -49,6 +51,24 @@ public class BucketList : MonoBehaviour
     protected IEnumerator delayCoroutine;
     protected GameObject[] checkListObjects;
 
+    public AudioSource correctObject;
+    public AudioSource IncorrectObject;
+
+    // Score Objects
+    ScoringSystem scoringSystem;
+
+    public GameObject score10;
+
+    public GameObject score25;
+
+    public GameObject scorePlus;
+
+    public GameObject scoreMinus;
+
+    GameObject activeCameraRig;
+
+    public int scoreValue;
+
 
 
     // Controller 
@@ -69,6 +89,9 @@ public class BucketList : MonoBehaviour
         SelectRandomObjects();
         // Create UI
         CreateDefaultUIText();
+
+        scoringSystem = FindObjectOfType<ScoringSystem>();
+        Invoke("GetCameraRig", 0.05f);
     }
 
     public void Update()
@@ -90,7 +113,7 @@ public class BucketList : MonoBehaviour
 
                 if (bucketCollider.bounds.Contains(position))
                 {
-                    if (gameObj != bucket && !gameObj.transform.root.CompareTag("Player"))
+                    if (gameObj != bucket && gameObj != checkliste && !gameObj.transform.root.CompareTag("Player") && gameObj.layer != 11)
                     {
                         CheckGameObject(gameObj);
                     }
@@ -106,6 +129,21 @@ public class BucketList : MonoBehaviour
             }
 
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        bucket.SetActive(false);
     }
 
     public void FetchAllPositions()
@@ -127,9 +165,30 @@ public class BucketList : MonoBehaviour
                 gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
                 controller.AddToBucketList(gameObj);
                 controller.ResetMaterial(gameObj);
-                controller.SetPlayerScore(playerScore);
+                //controller.SetPlayerScore(playerScore);
                 //SetDefaultUIText(gameObj);
                 EnableUICheck(gameObj);
+                correctObject.Play();
+                scoreValue = 25;
+
+                //------Scoring ----------------------
+                scoringSystem.AddLocalScore((sbyte)scoreValue);
+
+                GameObject scoreText = null;
+
+                //Spawn Text 25_Cube
+                scoreText = Instantiate(score25, gameObject.transform.position, gameObject.transform.rotation);
+        
+
+                GameObject vorzeichen = Instantiate(scorePlus, gameObject.transform.position + new Vector3(0.5f, 0, 0), gameObject.transform.rotation);
+
+                vorzeichen.transform.parent = scoreText.transform;
+
+                //Vector3 dir = scoreText.transform.position - activeCameraRig.transform.position;
+                scoreText.transform.LookAt(activeCameraRig.transform);
+
+                Debug.Log("Korrektes Objekt: " + gameObj.tag);
+
             }
             else if (!isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
             {
@@ -137,13 +196,32 @@ public class BucketList : MonoBehaviour
                 Vector3 position = controller.FindOriginalPos(gameObj);
                 delayCoroutine = DelayAndMove(gameObj, gameObj.transform.position, position, speed);
                 StartCoroutine(delayCoroutine);
+            
 
-                if (!coroutineCalled)
-                {
-                    StartCoroutine("FlashColor");
-                    controller.ReducePlayerScore(playerScore);
-                }
-                else if (coroutineCalled)
+            if (!coroutineCalled)
+            {
+                StartCoroutine("FlashColor");
+                //controller.ReducePlayerScore(playerScore);
+                Debug.Log("Inkorrektes Objekt: " + gameObj.tag);
+
+                IncorrectObject.Play();
+
+                //------Scoring ----------------------
+                scoreValue = 10;
+
+                scoringSystem.SubtractLocalScore((sbyte)scoreValue);
+                GameObject scoreText = null;
+
+                scoreText = Instantiate(score10, gameObject.transform.position, gameObject.transform.rotation);
+
+                GameObject vorzeichen = Instantiate(scoreMinus, gameObject.transform.position + new Vector3(0.5f, 0, 0), gameObject.transform.rotation);
+
+                vorzeichen.transform.parent = scoreText.transform;
+
+                scoreText.transform.LookAt(activeCameraRig.transform);
+
+            }
+            else if (coroutineCalled)
                 {
                     DisableDefaultUI();
                 }
@@ -169,13 +247,26 @@ public class BucketList : MonoBehaviour
     /// </summary>
     private void SelectRandomObjects()
     {
-        for (int i = 0; i < checkListObjects.Length; i++)
+        List<int> check = new List<int>();
+        int i = 0;
+        // Select random number       
+        for (int j = 0; j < bucketListContent.Length; j++)
         {
-            int index = UnityEngine.Random.Range(i, bucketListContent.Length - 1);
-            // Select object  
-            GameObject obj = bucketListContent[index];
-            checkListObjects[i] = obj;
-            Debug.Log("Add Object to Checklist: " + obj.tag);
+            while (i < checkListObjects.Length)
+            {
+                Debug.Log("Loop two: " + j);
+                int index = UnityEngine.Random.Range(j, bucketListContent.Length - 1);
+
+                if (!check.Contains(index))
+                {
+                    // Select object  
+                    GameObject obj = bucketListContent[index];
+                    checkListObjects[i] = obj;
+                    check.Add(index);
+                    Debug.Log("Add Object to Checklist: " + obj.tag);
+                    i++;
+                }                
+            }        
         }       
     }
     
@@ -269,6 +360,7 @@ public class BucketList : MonoBehaviour
                 checkedObjects[i].transform.GetChild(0).GetComponent<RawImage>().color = white;
                 ForceCanvasUpdate();
             }
+         
         }            
     }
 
@@ -287,7 +379,7 @@ public class BucketList : MonoBehaviour
 
     private void CreateDefaultUIText()
     {
-        for (int i = 0; i < max_size; i++)
+        for (int i = 0; i < checkListObjects.Length; i++)
         {
             checkedObjects[i].GetComponent<TextMeshProUGUI>().text = checkListObjects[i].tag;
             checkedObjects[i].SetActive(true);
@@ -327,5 +419,10 @@ public class BucketList : MonoBehaviour
         backgroundDefault.enabled = false;
         backgroundTransparent.enabled = true;
         backgroundDefault.enabled = true;
+    }
+
+    void GetCameraRig()
+    {
+        activeCameraRig = GameObject.Find("CenterEyeAnchor");
     }
 }

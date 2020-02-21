@@ -64,7 +64,7 @@ public class ScoringSystem : MonoBehaviour
         scoreLocked = false;
         StartCoroutine(Countdown());
         //spawnFlyingObjects.SpawnObjects();
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             StartCoroutine(spawnFlyingObjects.DisableEnableObjects(true, 0f));
         }

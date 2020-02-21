@@ -18,9 +18,9 @@ public class ChangeSceneOnHit : MonoBehaviour
         Invoke("LoadScene", delay);
     }
 
-
-    void LoadScene()
+    public void LoadScene()
     {
         SceneManager.LoadSceneAsync(targetSceneIndex);
     }
+
 }

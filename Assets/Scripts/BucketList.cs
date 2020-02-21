@@ -151,7 +151,6 @@ public class BucketList : MonoBehaviour
         foreach (GameObject obj in allGameObjects)
         {
             // Target objects
-            Debug.Log("Fetch All Positions " + obj.name);
             controller.AddPositions(obj.GetHashCode(), obj.transform.position);
         }
     }
@@ -161,7 +160,6 @@ public class BucketList : MonoBehaviour
             // Gameobject Tag und gelistete Tags müssen übereinstimmen
             if (isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
             {
-                Debug.Log("Gameobject Found " + gameObj.tag);
                 gameObj.GetComponent<VRTK_InteractableObject>().isGrabbable = false;
                 controller.AddToBucketList(gameObj);
                 controller.ResetMaterial(gameObj);
@@ -187,8 +185,6 @@ public class BucketList : MonoBehaviour
                 //Vector3 dir = scoreText.transform.position - activeCameraRig.transform.position;
                 scoreText.transform.LookAt(activeCameraRig.transform);
 
-                Debug.Log("Korrektes Objekt: " + gameObj.tag);
-
             }
             else if (!isFound(gameObj) && !controller.GetBucketObjects().Contains(gameObj))
             {
@@ -202,8 +198,6 @@ public class BucketList : MonoBehaviour
             {
                 StartCoroutine("FlashColor");
                 //controller.ReducePlayerScore(playerScore);
-                Debug.Log("Inkorrektes Objekt: " + gameObj.tag);
-
                 IncorrectObject.Play();
 
                 //------Scoring ----------------------
@@ -235,7 +229,6 @@ public class BucketList : MonoBehaviour
         {
             if (checkListObjects[i].tag == obj.tag && !controller.GetBucketObjects().Contains(obj))
             {
-                Debug.Log("Object is Found " + tag);
                 return true;
             };
         }       
@@ -254,7 +247,6 @@ public class BucketList : MonoBehaviour
         {
             while (i < checkListObjects.Length)
             {
-                Debug.Log("Loop two: " + j);
                 int index = UnityEngine.Random.Range(j, bucketListContent.Length - 1);
 
                 if (!check.Contains(index))
@@ -263,7 +255,6 @@ public class BucketList : MonoBehaviour
                     GameObject obj = bucketListContent[index];
                     checkListObjects[i] = obj;
                     check.Add(index);
-                    Debug.Log("Add Object to Checklist: " + obj.tag);
                     i++;
                 }                
             }        

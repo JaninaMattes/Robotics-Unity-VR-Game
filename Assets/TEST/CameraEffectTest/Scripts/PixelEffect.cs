@@ -52,23 +52,7 @@ using System.Collections;
             Graphics.Blit(source, destination, pixelMaterial);
         }
 
-        void Update()
-        {
-        //Raycast pointing from the GameObjects camera to get the View direction / center spot of view direction.
-        //The hitObject is the GameObject hit by the Raycast.
-        Transform cameraTransform = Camera.main.transform;
-        RaycastHit HitInfo;
-
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out HitInfo, 20.0f))
-        {
-
-            hitObject = HitInfo.transform.gameObject;
-        }
-        else
-        {
-            hitObject = null;
-        }
-        }
+  
     }
 
 

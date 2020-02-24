@@ -577,17 +577,22 @@ public class Game_Manager
 
     public void SetCameraPixelScript()
     {
-        pointLight.cullingMask = -1;
+        if (pointLight != null)
+        {
+            pointLight.cullingMask = -1;
+        }
         cameraScreen.SetActive(true);
         cameraRig.clearFlags = CameraClearFlags.SolidColor;
         cameraRig.backgroundColor = Color.black;
-        cameraRig.cullingMask = 1 << 11; // To set Layermask to Layer 11     Alternativ 1 << LayerMask.NameToLayer("Gun")  oder 2048 (2 hoch 11 -> entspricht Integerwert des Layers)
+        cameraRig.cullingMask = (1 << 11) | (1 << 13); // To set Layermask to Layer 11     Alternativ 1 << LayerMask.NameToLayer("Gun")  oder 2048 (2 hoch 11 -> entspricht Integerwert des Layers)
     }
 
     public void ResetCameraPixelScript()
     {
-
-        pointLight.cullingMask = (1 << 11) | (1 << 12);
+        if (pointLight != null)
+        {
+            pointLight.cullingMask = (1 << 11) | (1 << 12) | (1 << 13);
+        }
         cameraScreen.SetActive(false);
         cameraRig.clearFlags = CameraClearFlags.Skybox;
         //cameraRig.cullingMask = this.originalCullingMask;   

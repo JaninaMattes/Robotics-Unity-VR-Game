@@ -31,7 +31,7 @@ public class SetTeleportPointer : MonoBehaviour
         UpdatePointer(this.leftController.GetComponent<VRTK_Pointer>(), this.leftController.GetComponent<VRTK_StraightPointerRenderer>());
     }
 
-    private void UpdatePointer(VRTK_Pointer pointer, VRTK_StraightPointerRenderer pointerRenderer)
+    public void UpdatePointer(VRTK_Pointer pointer, VRTK_StraightPointerRenderer pointerRenderer)
     {
         pointerRenderer.enabled = false;
         pointerRenderer.enabled = true;

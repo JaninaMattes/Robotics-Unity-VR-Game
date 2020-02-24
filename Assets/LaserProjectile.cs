@@ -49,7 +49,7 @@ public class LaserProjectile : MonoBehaviour
     {
         //Debug.Log("Boom!");
         Instantiate(explosionPrefab, gameObject.transform.position-rb.velocity.normalized*0.5f, Quaternion.identity);
-        
+      
         Destroy(gameObject);
     }
 

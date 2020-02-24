@@ -45,6 +45,7 @@ public class ToggleLevel : MonoBehaviour
     GameObject rightControllerBasePointer;
     GameObject leftControllerBasePointer;
     GameObject OvrAvatarSDKManager;
+    public SetTeleportPointer teleportPointerSetting;
 
 
     // Singleton to controll all data used by various classes 
@@ -102,12 +103,18 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.buildIndex == 2)
+        if (teleportPointerSetting != null)
+        {
+            teleportPointerSetting.UpdatePointer(teleportPointerSetting.leftController.GetComponent<VRTK_Pointer>(), teleportPointerSetting.leftController.GetComponent<VRTK_StraightPointerRenderer>());
+            teleportPointerSetting.UpdatePointer(teleportPointerSetting.rightController.GetComponent<VRTK_Pointer>(), teleportPointerSetting.rightController.GetComponent<VRTK_StraightPointerRenderer>());
+        }
+
+        if (scene.buildIndex == 2)
         {
             GameObject light = GameObject.FindGameObjectWithTag("PointLight");
             controller.SetPointLight(light.GetComponent<Light>());
         }
-        Destroy(this.headSet);
+        Destroy(this.headsetObj);
         SetPlayerPosition(scene.buildIndex);
         if (scene.buildIndex != 0 && scene.buildIndex != 1)
         {
@@ -118,6 +125,25 @@ public class ToggleLevel : MonoBehaviour
             CheckSnapUpdateMaterial();
             ExchangeFloorTag();
         }     
+    }
+
+    public void SensorSnap()
+    {
+       
+        if (SceneManager.GetActiveScene().buildIndex== 2)
+        {
+            GameObject light = GameObject.FindGameObjectWithTag("PointLight");
+            controller.SetPointLight(light.GetComponent<Light>());
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
+        {
+ 
+            SetRendererList(this.controller);
+            controller.FindProbes();
+            CheckSnapUpdateMaterial();
+            ExchangeFloorTag();
+        }
     }
 
     protected virtual void OnHeadsetFadeComplete(object sender, HeadsetFadeEventArgs a)
@@ -324,27 +350,27 @@ public class ToggleLevel : MonoBehaviour
         {
             case 0:
                 lookAt = GameObject.FindGameObjectWithTag("Robo");
-                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
-                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                cameraRig.transform.position = new Vector3(lookAt.transform.position.x, cameraRig.transform.position.y, lookAt.transform.position.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, lookAt.transform.eulerAngles.y, cameraRig.transform.rotation.z);
                 break;
 
             case 1:
                 lookAt = GameObject.FindGameObjectWithTag("LookAt");
-                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
-                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                cameraRig.transform.position = new Vector3(lookAt.transform.position.x, cameraRig.transform.position.y, lookAt.transform.position.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, lookAt.transform.eulerAngles.y, cameraRig.transform.rotation.z);
                 break;
 
             case 2:
                 lookAt = GameObject.FindGameObjectWithTag("LookAt");
-                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
-                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                cameraRig.transform.position = new Vector3(lookAt.transform.position.x, cameraRig.transform.position.y, lookAt.transform.position.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, lookAt.transform.eulerAngles.y, cameraRig.transform.rotation.z);
                 break;
 
             case 3:
                 // Kitchen with checklist
-                lookAt = GameObject.FindGameObjectWithTag("CheckListCanvas");
-                cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
-                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
+                lookAt = GameObject.FindGameObjectWithTag("LookAt");
+                cameraRig.transform.position = new Vector3(lookAt.transform.position.x, cameraRig.transform.position.y, lookAt.transform.position.z);
+                cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, lookAt.transform.eulerAngles.y, cameraRig.transform.rotation.z);
                 break;
 
             default:

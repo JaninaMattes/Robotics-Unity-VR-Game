@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace UnityStandardAssets.Effects
+namespace UnityStandardAssets.Effects;
 {
     public class ExplosionPhysicsForce : MonoBehaviour
     {
@@ -12,30 +13,33 @@ namespace UnityStandardAssets.Effects
 
         private IEnumerator Start()
         {
-            // wait one frame because some explosions instantiate debris which should then
-            // be pushed by physics force
-            yield return null;
-
-            float multiplier = GetComponent<ParticleSystemMultiplier>().multiplier;
-
-            float r = 5*multiplier;
-            var cols = Physics.OverlapSphere(transform.position, r);
-            var rigidbodies = new List<Rigidbody>();
-            foreach (var col in cols)
+            if (SceneManager.GetActiveScene().buildIndex != 3)
             {
-                if (col.attachedRigidbody != null && !rigidbodies.Contains(col.attachedRigidbody))
+                // wait one frame because some explosions instantiate debris which should then
+                // be pushed by physics force
+                yield return null;
+
+                float multiplier = GetComponent<ParticleSystemMultiplier>().multiplier;
+
+                float r = 5 * multiplier;
+                var cols = Physics.OverlapSphere(transform.position, r);
+                var rigidbodies = new List<Rigidbody>();
+                foreach (var col in cols)
                 {
-                    rigidbodies.Add(col.attachedRigidbody);
-                }
-            }
-            foreach (var rb in rigidbodies)
-            {
-                rb.AddExplosionForce(explosionForce*multiplier, transform.position, r, 1*multiplier, ForceMode.Impulse);
-                if (rb.gameObject.tag == "Zuendbar")
-                {
-                   if (rb.gameObject.GetComponent<JuicerRocket>())
+                    if (col.attachedRigidbody != null && !rigidbodies.Contains(col.attachedRigidbody))
                     {
-                        rb.gameObject.GetComponent<JuicerRocket>().Ignite();
+                        rigidbodies.Add(col.attachedRigidbody);
+                    }
+                }
+                foreach (var rb in rigidbodies)
+                {
+                    rb.AddExplosionForce(explosionForce * multiplier, transform.position, r, 1 * multiplier, ForceMode.Impulse);
+                    if (rb.gameObject.tag == "Zuendbar")
+                    {
+                        if (rb.gameObject.GetComponent<JuicerRocket>())
+                        {
+                            rb.gameObject.GetComponent<JuicerRocket>().Ignite();
+                        }
                     }
                 }
             }

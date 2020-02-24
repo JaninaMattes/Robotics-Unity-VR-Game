@@ -26,6 +26,7 @@ public class StartGameOnHit : MonoBehaviour
             if (SceneManager.GetActiveScene().buildIndex == 3)
             {
                 ChecklistBox.SetActive(true);
+                Destroy(gameObject);
             }
         }
     }

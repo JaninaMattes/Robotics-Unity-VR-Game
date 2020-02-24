@@ -31,6 +31,7 @@ public class ChangeMaterials : MonoBehaviour
     public GameObject cameraScreen;
     public Camera cameraRig;
 
+
     // Private Properties
     protected Material[] materials = new Material[5];
     //protected GameObject[] currentGameObjects;
@@ -64,6 +65,7 @@ public class ChangeMaterials : MonoBehaviour
         controller.SetExcludeTag(excludeTags);
         controller.SetGridOrientationTag(gridorientation_Tag);
         controller.SetGridOrientationMaterial(gridorientation_Material);
+        
         // Kann beliebig erweitert werden
         controller.SetSonar(spawn.GetComponent<SonarLaserAdv>());
         controller.SetRadar(spawn.GetComponent<RadarLaser>());

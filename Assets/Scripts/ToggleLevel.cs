@@ -102,6 +102,11 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(scene.buildIndex == 2)
+        {
+            GameObject light = GameObject.FindGameObjectWithTag("PointLight");
+            controller.SetPointLight(light.GetComponent<Light>());
+        }
         Destroy(this.headSet);
         SetPlayerPosition(scene.buildIndex);
         if (scene.buildIndex != 0 && scene.buildIndex != 1)

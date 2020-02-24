@@ -60,6 +60,8 @@ public class Game_Manager
     protected Camera cameraRig;
     protected int originalCullingMask;
 
+    protected Light pointLight;
+
     /// <summary>
     /// Gett and Setter  
     /// </summary>
@@ -568,9 +570,14 @@ public class Game_Manager
                 break;
         }
     }
+    public void SetPointLight(Light pointLight)
+    {
+        this.pointLight = pointLight;
+    }
 
     public void SetCameraPixelScript()
     {
+        pointLight.cullingMask = -1;
         cameraScreen.SetActive(true);
         cameraRig.clearFlags = CameraClearFlags.SolidColor;
         cameraRig.backgroundColor = Color.black;
@@ -579,6 +586,8 @@ public class Game_Manager
 
     public void ResetCameraPixelScript()
     {
+
+        pointLight.cullingMask = (1 << 11) | (1 << 12);
         cameraScreen.SetActive(false);
         cameraRig.clearFlags = CameraClearFlags.Skybox;
         //cameraRig.cullingMask = this.originalCullingMask;   

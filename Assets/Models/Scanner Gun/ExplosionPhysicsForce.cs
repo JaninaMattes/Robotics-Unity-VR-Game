@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UnityStandardAssets.Effects;
+namespace UnityStandardAssets.Effects
 {
     public class ExplosionPhysicsForce : MonoBehaviour
     {

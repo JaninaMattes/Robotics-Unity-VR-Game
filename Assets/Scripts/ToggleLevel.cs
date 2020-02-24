@@ -102,9 +102,11 @@ public class ToggleLevel : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Destroy(this.headSet);
         SetPlayerPosition(scene.buildIndex);
         if (scene.buildIndex != 0 && scene.buildIndex != 1)
         {
+            //Debug.Log("Change Materials");
             Destroy(this.headsetObj);
             SetRendererList(this.controller);
             controller.FindProbes();
@@ -322,13 +324,13 @@ public class ToggleLevel : MonoBehaviour
                 break;
 
             case 1:
-                lookAt = GameObject.FindGameObjectWithTag("SelectLevel2");
+                lookAt = GameObject.FindGameObjectWithTag("LookAt");
                 cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
                 cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
                 break;
 
             case 2:
-                lookAt = GameObject.FindGameObjectWithTag("Pilz");
+                lookAt = GameObject.FindGameObjectWithTag("LookAt");
                 cameraRig.transform.position = new Vector3(startPosition.x, cameraRig.transform.position.y, startPosition.z);
                 cameraRig.transform.eulerAngles = new Vector3(cameraRig.transform.rotation.x, -(lookAt.transform.eulerAngles.y), cameraRig.transform.rotation.z);
                 break;

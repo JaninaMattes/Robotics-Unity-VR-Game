@@ -11,6 +11,8 @@
 [Mm]emoryCaptures/
 
 # Never ignore Asset meta data
+#
+# encountered issues in distribution
 !/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
@@ -21,6 +23,7 @@
 
 # Visual Studio cache directory
 .vs/
+.vscode
 
 # Gradle cache directory
 .gradle/
@@ -61,3 +64,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 #*.meta
+
+#other
+tExitCode = false

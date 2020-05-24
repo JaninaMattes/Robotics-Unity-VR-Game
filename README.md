@@ -4,6 +4,13 @@
 _______________
 :mortar_board: The project was created as an interdisciplinary project between the _Oregon State University_ in Corvallis, Oregon and the _University of Applied Science and Media, Stuttgart_ in Stuttgart, Germany.
 
+Team members:
+Lara (Asset Design, Game Logic)
+Yannik (Asset Design, Game Play & Logic)
+Yvonne (Design, Graphical Design)
+Janina (Development)
+Maurice (Support and Tutor)
+
 #### Project Idea
 __________________
 :robot: The goal of the project was to gamify the interaction with modern, current sensors in a scenario of _autonomous vehicles_ in order to understand not only limitations, but also the use of those.

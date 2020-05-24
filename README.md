@@ -30,5 +30,8 @@ _____________________
 <img src="Images/img6_sensorsensation.JPG"
      alt="Markdown Sensor Sensation Gameplay"
      style="float: left; margin-right: 10px;" />
+     
+# Demo Video 
+______________
 [![Demo Video](https://thumbs.gfycat.com/VibrantHeavyFrogmouth-size_restricted.gif)](https://youtu.be/7oE6-0aCCRg)
 

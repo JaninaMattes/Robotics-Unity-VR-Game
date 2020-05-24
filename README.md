@@ -35,7 +35,7 @@ _____________________
 ______________
 [![Demo Video](https://thumbs.gfycat.com/VibrantHeavyFrogmouth-size_restricted.gif)](https://youtu.be/7oE6-0aCCRg)
 
-Team members:
+:dragon_face: Team members:
 * Lara (Asset Design, Game Logic)
 * Yannik (Asset Design, Game Play & Logic)
 * Yvonne (Design, Graphical Design)

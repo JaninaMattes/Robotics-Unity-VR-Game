@@ -1,5 +1,7 @@
 # Immersive Media and Robotics
 
+#### Project Structure
+
 #### Project Scope
 _______________
 :mortar_board: The project was created as an interdisciplinary project between the _Oregon State University_ in Corvallis, Oregon and the _University of Applied Science and Media, Stuttgart_ in Stuttgart, Germany.

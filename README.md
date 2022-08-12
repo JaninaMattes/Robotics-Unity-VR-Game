@@ -31,7 +31,7 @@
 <div align="center">
 <div style="display:inline; background-color:black; width:100%">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="100%" height="100%">
+    <img src="Images/logo.png" alt="Logo" width="100%" height="100%">
   </a>
 </div>
   <h3 align="center">VR Game - Immersive Media and Robotics </h3>
@@ -83,7 +83,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Alt Game Play 1](images/intro.gif)
+![Alt Game Play 1](Images/intro.gif)
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.

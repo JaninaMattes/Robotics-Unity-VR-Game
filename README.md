@@ -30,7 +30,7 @@
 <br />
 <div align="center" style="background-color:rgba(0, 0, 0, 0.0470588)">
     <a href="https://github.com/othneildrew/Best-README-Template">
-      <img src="Images/logo.png" alt="Logo" width="60%" height="60%">
+      <img src="Images/logo.png" alt="Logo" width="30%" height="30%">
     </a>
   <h3 align="center">VR Game - Immersive Media and Robotics </h3>
 

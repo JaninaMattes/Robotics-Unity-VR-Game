@@ -29,11 +29,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<div style="display:inline; background-color:black; width:100%">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="Images/logo.png" alt="Logo" width="100%" height="100%">
-  </a>
-</div>
+  <div style="background-color:black;">
+    <a href="https://github.com/othneildrew/Best-README-Template">
+      <img src="Images/logo.png" alt="Logo" width="60%" height="60%">
+    </a>
+  </div>
   <h3 align="center">VR Game - Immersive Media and Robotics </h3>
 
   <p align="center">

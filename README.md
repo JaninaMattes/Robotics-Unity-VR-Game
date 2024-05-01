@@ -19,7 +19,7 @@
 -->
 [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-1F1F1F.svg?style=for-the-badge&logo=unity)](https://unity.com/)
 [![C#](https://img.shields.io/badge/C%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-[![HSLS](https://img.shields.io/badge/Shader%20Language-%231A2B34.svg?style=for-the-badge&logo=shadertoy&logoColor=white)](https://docs.unity3d.com/Manual/SL-Reference.html)
+[![HSLS](https://img.shields.io/badge/HSLS-%231A2B34.svg?style=for-the-badge&logo=shadertoy&logoColor=white)](https://docs.unity3d.com/Manual/SL-Reference.html)
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 

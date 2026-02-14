@@ -27,7 +27,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center" style="background-color:rgba(0, 0, 0, 0.0470588)">
-  <img src="Images/logo.png" alt="Logo" width="25%" height="25%">
+  <img src="Images/Logo/logo.png" alt="Logo" width="20%" height="20%">
 
   <h3 align="center">Sensor Sensation – VR Game for Immersive Media & Robotics</h3>
 
@@ -76,15 +76,39 @@
 ## About The Project
 
 ![Alt Game Play 1](Images/Intro/sensor-sensation-intro.gif)
-[![Product Screenshot][product-screenshot]](#)
 
 **Sensor Sensation** is a **VR educational game developed in Unity for Oculus Rift S**, set in a stylized **steampunk-inspired world**. Players assume the role of **young robot engineers** who must solve interactive challenges by working with virtual sensor technologies such as **Camera, LiDAR and radar**.
+
 
 The project’s primary goal is to help **decision-makers and non-technical stakeholders** develop an intuitive understanding of the **capabilities, limitations, and trade-offs of modern sensor systems** used in robotics and autonomous vehicles. Complex technical concepts are translated into playful, hands-on gameplay mechanics that encourage experimentation and learning through interaction.
 
 The game was developed as a **student project by an interdisciplinary team**, combining technical development, visual design, and project management.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+### Game Play
+![Alt Game Play 0](Images/Demo/demo0-sensor-sensation-intro.gif)
+
+The game is set in a floating steampunk world in the clouds, experienced entirely through a VR headset. Players step into the role of a robotics engineer preparing for the annual Robo World Cup, a competition that tests both technical understanding and decision-making skills in sensor-based robotics.
+
+Before accessing the main competition, players must complete a series of smaller preparatory challenges distributed throughout the world. These tasks reward points and gradually introduce core gameplay mechanics, encouraging exploration and learning through interaction.
+
+![Alt Game Play 1](Images/Demo/demo1-sensor-sensation-intro.gif)
+
+The VR game is structured into three main levels, each centered around a specific sensor technology. As players progress and unlock additional levels, they gain access to complementary sensors, mirroring real-world autonomous systems where LiDAR, radar, and cameras are combined to improve perception and robustness.
+
+The final sensor, the camera, presents the environment as a pixelated image with bounding boxes, simulating computer-vision–based object detection. Players must interpret this limited visual information to identify and shoot down target objects, reinforcing the strengths and limitations of vision-based perception systems.
+
+![Alt Game Play 2](Images/Demo/demo2-sensor-sensation-intro.gif)
+
+
+### Demo Video
+
+The following shows a full demo video:
+
+[![Demo Video](https://img.youtube.com/vi/7oE6-0aCCRg/0.jpg)](https://www.youtube.com/watch?v=7oE6-0aCCRg)
+
+
 
 ### Built With
 
@@ -99,27 +123,32 @@ This project was built using the following technologies and tools:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<div align="center">
+<!-- <div align="center">
   <img src="Images/architecture.png" alt="Project Architecture" width="100%" height="100%">
-</div>
+</div> -->
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-The following instructions describe how to set up the project locally for development or demonstration purposes.
+This repository contains a **prototype VR game** developed as part of a **student project**.  
+The focus was on **gameplay, interaction design, and sensor visualization**, rather than long-term maintainability or clean project architecture.
+
+> ⚠️ The current project structure is exploratory and reflects fast-paced prototype development.
 
 ### Prerequisites
 
-To run this project, you will need:
+To open and run this project, you will need:
 
-- Unity (recommended version: **2021.x LTS** or project-specific version)
-- Oculus Rift S headset with Oculus software installed
-- Windows PC with a VR-capable GPU
+- **Unity Hub** with **Unity 2019.x – 2021.x LTS**  
+  > The project was originally developed with an older Unity version. Newer versions may require minor fixes or package updates.
+- **Oculus Rift S** headset
+- Oculus desktop software installed and configured
+- Windows PC with a **VR-capable GPU**
+- Basic familiarity with Unity, C#, and VR projects
 
 ### Installation
 
-1. Clone the repository
+1. **Clone the repository**
    ```sh
    git clone https://github.com/JaninaMattes/Robotics-Unity-VR-Game.git
-   ```

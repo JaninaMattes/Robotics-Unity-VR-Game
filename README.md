@@ -7,14 +7,22 @@
 -->
 
 <!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-1F1F1F.svg?style=for-the-badge&logo=unity)](https://unity.com/)
 [![C#](https://img.shields.io/badge/C%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![HLSL](https://img.shields.io/badge/HLSL-%231A2B34.svg?style=for-the-badge&logo=shadertoy&logoColor=white)](https://docs.unity3d.com/Manual/SL-Reference.html)
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Forks](https://img.shields.io/github/forks/your_username/repo_name.svg?style=for-the-badge)](https://github.com/your_username/repo_name/network/members)
+[![Stars](https://img.shields.io/github/stars/your_username/repo_name.svg?style=for-the-badge)](https://github.com/your_username/repo_name/stargazers)
+[![Issues](https://img.shields.io/github/issues/your_username/repo_name.svg?style=for-the-badge)](https://github.com/your_username/repo_name/issues)
+[![MIT License](https://img.shields.io/github/license/your_username/repo_name.svg?style=for-the-badge)](LICENSE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-black.svg?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
+
 
 <!-- PROJECT LOGO -->
 <br />

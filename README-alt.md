@@ -4,7 +4,7 @@
 
 #### Project Scope
 _______________
-:mortar_board: The project was created as an interdisciplinary project between the _Oregon State University_ in Corvallis, Oregon and the _University of Applied Science and Media, Stuttgart_ in Stuttgart, Germany.
+:mortar_board: The project was created as an interdisciplinary project between the _Oregon State University_ in Corvallis, Oregon and the _University of Applied Science, Stuttgart_ in Stuttgart, Germany.
 
 #### Project Idea
 __________________
@@ -42,6 +42,4 @@ ______________
 * Yannik (Asset Design, Game Play & Logic)
 * Yvonne (Design, Graphical Design)
 * Janina (Development)
- * Maurice (Support and Tutor)
-
-
+* Maurice (Development, Support and Tutor)

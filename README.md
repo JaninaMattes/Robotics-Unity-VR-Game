@@ -14,6 +14,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
 [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-1F1F1F.svg?style=for-the-badge&logo=unity)](https://unity.com/)
 [![C#](https://img.shields.io/badge/C%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![HLSL](https://img.shields.io/badge/HLSL-%231A2B34.svg?style=for-the-badge&logo=shadertoy&logoColor=white)](https://docs.unity3d.com/Manual/SL-Reference.html)
@@ -22,7 +23,6 @@
 [![Issues](https://img.shields.io/github/issues/your_username/repo_name.svg?style=for-the-badge)](https://github.com/your_username/repo_name/issues)
 [![MIT License](https://img.shields.io/github/license/your_username/repo_name.svg?style=for-the-badge)](LICENSE)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-black.svg?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -72,12 +72,13 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-![Alt Game Play 1](Images/intro.gif)
+![Alt Game Play 1](Images/Intro/sensor-sensation-intro.gif)
 [![Product Screenshot][product-screenshot]](#)
 
-**Sensor Sensation** is a **VR educational game developed in Unity for Oculus Rift S**, set in a stylized **steampunk-inspired world**. Players assume the role of **young robot engineers** who must solve interactive challenges by working with virtual sensor technologies such as **LiDAR and radar**.
+**Sensor Sensation** is a **VR educational game developed in Unity for Oculus Rift S**, set in a stylized **steampunk-inspired world**. Players assume the role of **young robot engineers** who must solve interactive challenges by working with virtual sensor technologies such as **Camera, LiDAR and radar**.
 
 The project’s primary goal is to help **decision-makers and non-technical stakeholders** develop an intuitive understanding of the **capabilities, limitations, and trade-offs of modern sensor systems** used in robotics and autonomous vehicles. Complex technical concepts are translated into playful, hands-on gameplay mechanics that encourage experimentation and learning through interaction.
 
@@ -89,12 +90,12 @@ The game was developed as a **student project by an interdisciplinary team**, co
 
 This project was built using the following technologies and tools:
 
-* **Unity** – Game engine and VR framework
-* **C#** – Gameplay logic, VR interaction systems, and game state management
-* **HLSL** – Custom shaders for sensor visualization and stylized rendering
-* **Oculus Rift S** – Target VR hardware platform
-* **Blender** – Creation of custom 3D assets
-* **Unity Particle System** – Visual feedback and sensor effects
+- **Unity** – Game engine and VR framework
+- **C#** – Gameplay logic, VR interaction systems, and game state management
+- **HLSL** – Custom shaders for sensor visualization and stylized rendering
+- **Oculus Rift S** – Target VR hardware platform
+- **Blender** – Creation of custom 3D assets
+- **Unity Particle System** – Visual feedback and sensor effects
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -103,6 +104,7 @@ This project was built using the following technologies and tools:
 </div>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 The following instructions describe how to set up the project locally for development or demonstration purposes.
@@ -111,12 +113,13 @@ The following instructions describe how to set up the project locally for develo
 
 To run this project, you will need:
 
-* Unity (recommended version: **2021.x LTS** or project-specific version)
-* Oculus Rift S headset with Oculus software installed
-* Windows PC with a VR-capable GPU
+- Unity (recommended version: **2021.x LTS** or project-specific version)
+- Oculus Rift S headset with Oculus software installed
+- Windows PC with a VR-capable GPU
 
 ### Installation
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/your_username/repo_name.git
+   git clone https://github.com/JaninaMattes/Robotics-Unity-VR-Game.git
+   ```

@@ -10,8 +10,11 @@
 [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-1F1F1F.svg?style=for-the-badge&logo=unity)](https://unity.com/)
 [![C#](https://img.shields.io/badge/C%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![HLSL](https://img.shields.io/badge/HLSL-%231A2B34.svg?style=for-the-badge&logo=shadertoy&logoColor=white)](https://docs.unity3d.com/Manual/SL-Reference.html)
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
